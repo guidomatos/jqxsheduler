@@ -1302,15 +1302,15 @@ License: https://jqwidgets.com/license/
                 this.schedulerLocalization = {
                     "/": "/",
                     ":": ":",
-                    firstDay: 0,
+                    firstDay: 1,
                     days: {
-                        names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                        namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-                        namesShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+                        names: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+                        namesAbbr: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+                        namesShort: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
                     },
                     months: {
-                        names: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ""],
-                        namesAbbr: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""]
+                        names: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre", ""],
+                        namesAbbr: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic", ""]
                     },
                     AM: ["AM", "am", "AM"],
                     PM: ["PM", "pm", "PM"],
@@ -1344,25 +1344,25 @@ License: https://jqwidgets.com/license/
                         d10: "MM-dd",
                         d11: "MM-dd-yyyy"
                     },
-                    agendaDateColumn: "Date",
-                    agendaTimeColumn: "Time",
-                    agendaAppointmentColumn: "Appointment",
-                    backString: "Back",
-                    forwardString: "Forward",
-                    toolBarPreviousButtonString: "previous",
-                    toolBarNextButtonString: "next",
-                    emptyDataString: "No data to display",
-                    loadString: "Loading...",
-                    clearString: "Clear",
-                    todayString: "Today",
-                    dayViewString: "Day",
-                    weekViewString: "Week",
-                    monthViewString: "Month",
+                    agendaDateColumn: "Fecha",
+                    agendaTimeColumn: "Hora",
+                    agendaAppointmentColumn: "Actividad",
+                    backString: "Atrás",
+                    forwardString: "Adelante",
+                    toolBarPreviousButtonString: "Anterior",
+                    toolBarNextButtonString: "Próximo",
+                    emptyDataString: "No hay datos para mostrar",
+                    loadString: "Cargando...",
+                    clearString: "Cerrar",
+                    todayString: "Hoy",
+                    dayViewString: "Diario",
+                    weekViewString: "Semanal",
+                    monthViewString: "Mensual",
                     agendaViewString: "Agenda",
                     timelineDayViewString: "Timeline Day",
                     timelineWeekViewString: "Timeline Week",
-                    timelineMonthViewString: "Timeline Month",
-                    agendaAllDayString: "all day",
+                    timelineMonthViewString: "Línea de Tiempo Mensual",
+                    agendaAllDayString: "Todo el día",
                     loadingErrorMessage: "The data is still loading and you cannot set a property or call a method. You can do that once the data binding is completed. jqxScheduler raises the 'bindingComplete' event when the binding is completed.",
                     editRecurringAppointmentDialogTitleString: "Edit Recurring Appointment",
                     editRecurringAppointmentDialogContentString: "Do you want to edit only this occurrence or the series?",
@@ -7637,7 +7637,7 @@ License: https://jqwidgets.com/license/
         },
         _rendercelltexts: function() {
             if (a.jqx.credits !== "75CE8878-FCD1-4EC7-9249-BA0F153A5DE8") {
-                var c = "www.jqwidgets.com";
+                var c = "Todos los Derechos Reservados 2020 - Tottus Perú";
                 if (location.hostname.indexOf(c.substring(4)) == -1) {
                     if (this._gridRenderElement) {
                         a(this._gridRenderElement).remove()

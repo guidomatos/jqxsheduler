@@ -25,7 +25,7 @@ License: https://jqwidgets.com/license/
                 headerZIndex: 235,
                 height: 600,
                 timeRulerWidth: 60,
-                loadingErrorMessage: "The data is still loading and you cannot set a property or call a method. You can do that once the data binding is completed. jqxScheduler raises the 'bindingComplete' event when the binding is completed.",
+                loadingErrorMessage: "Los datos aún se están cargando y no puede establecer una propiedad o llamar a un método. Puede hacerlo una vez que se complete la carga.",
                 localization: null,
                 ready: null,
                 renderToolBar: null,
@@ -233,626 +233,20 @@ License: https://jqwidgets.com/license/
                 beginDrag: null,
                 endDrag: null,
                 dragging: null,
-                timeZones: [{
-                    id: "Dateline Standard Time",
-                    offset: -720,
-                    offsetHours: -12,
-                    displayName: "(UTC-12:00) International Date Line West",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "UTC-11",
-                    offset: -660,
-                    offsetHours: -11,
-                    displayName: "(UTC-11:00) Coordinated Universal Time-11",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Hawaiteratoran Standard Time",
-                    offset: -600,
-                    offsetHours: -10,
-                    displayName: "(UTC-10:00) Hawaiterator",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Alaskan Standard Time",
-                    offset: -540,
-                    offsetHours: -9,
-                    displayName: "(UTC-09:00) Alaska",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Pacific Standard Time (Mexico)",
-                    offset: -480,
-                    offsetHours: -8,
-                    displayName: "(UTC-08:00) Baja California",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Pacific Standard Time",
-                    offset: -480,
-                    offsetHours: -8,
-                    displayName: "(UTC-08:00) Pacific Time (US & Canada)",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "US Mountain Standard Time",
-                    offset: -420,
-                    offsetHours: -7,
-                    displayName: "(UTC-07:00) Arizona",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Mountain Standard Time (Mexico)",
-                    offset: -420,
-                    offsetHours: -7,
-                    displayName: "(UTC-07:00) Chihuahua, La Paz, Mazatlan",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Mountain Standard Time",
-                    offset: -420,
-                    offsetHours: -7,
-                    displayName: "(UTC-07:00) Mountain Time (US & Canada)",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Central Standard Time",
-                    offset: -360,
-                    offsetHours: -6,
-                    displayName: "(UTC-06:00) Central Time (US & Canada)",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Central America Standard Time",
-                    offset: -360,
-                    offsetHours: -6,
-                    displayName: "(UTC-06:00) Central America",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Canada Central Standard Time",
-                    offset: -360,
-                    offsetHours: -6,
-                    displayName: "(UTC-06:00) Saskatchewan",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Central Standard Time (Mexico)",
-                    offset: -360,
-                    offsetHours: -6,
-                    displayName: "(UTC-06:00) Guadalajara, Mexico City, Monterrey",
-                    supportsDaylightSavingTime: true
-                }, {
+                timeZones: [
+                {
                     id: "SA Pacific Standard Time",
                     offset: -300,
                     offsetHours: -5,
-                    displayName: "(UTC-05:00) Bogota, Lima, Quito, Rio Branco",
+                    displayName: "(UTC-05:00) Bogotá, Lima, Quito, Rio Branco",
                     supportsDaylightSavingTime: false
-                }, {
-                    id: "Eastern Standard Time",
-                    offset: -300,
-                    offsetHours: -5,
-                    displayName: "(UTC-05:00) Eastern Time (US & Canada)",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "US Eastern Standard Time",
-                    offset: -300,
-                    offsetHours: -5,
-                    displayName: "(UTC-05:00) Indiana (East)",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Venezuela Standard Time",
-                    offset: -270,
-                    offsetHours: -4.5,
-                    displayName: "(UTC-04:30) Caracas",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Atlantic Standard Time",
-                    offset: -240,
-                    offsetHours: -4,
-                    displayName: "(UTC-04:00) Atlantic Time (Canada)",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Paraguay Standard Time",
-                    offset: -240,
-                    offsetHours: -4,
-                    displayName: "(UTC-04:00) Asuncion",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Central Brazilian Standard Time",
-                    offset: -240,
-                    offsetHours: -4,
-                    displayName: "(UTC-04:00) Cuiaba",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Pacific SA Standard Time",
-                    offset: -240,
-                    offsetHours: -4,
-                    displayName: "(UTC-04:00) Santiago",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "SA Western Standard Time",
-                    offset: -240,
-                    offsetHours: -4,
-                    displayName: "(UTC-04:00) Georgetown, La Paz, Manaus",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Newfoundland Standard Time",
-                    offset: -210,
-                    offsetHours: -3.5,
-                    displayName: "(UTC-03:30) Newfoundland",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "SA Eastern Standard Time",
-                    offset: -180,
-                    offsetHours: -3,
-                    displayName: "(UTC-03:00) Cayenne, Fortaleza",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Argentina Standard Time",
-                    offset: -180,
-                    offsetHours: -3,
-                    displayName: "(UTC-03:00) Buenos Aires",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "E. South America Standard Time",
-                    offset: -180,
-                    offsetHours: -3,
-                    displayName: "(UTC-03:00) Brasilia",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Bahia Standard Time",
-                    offset: -180,
-                    offsetHours: -3,
-                    displayName: "(UTC-03:00) Salvador",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Montevideo Standard Time",
-                    offset: -180,
-                    offsetHours: -3,
-                    displayName: "(UTC-03:00) Montevideo",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Greenland Standard Time",
-                    offset: -180,
-                    offsetHours: -3,
-                    displayName: "(UTC-03:00) Greenland",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "UTC-02",
-                    offset: -120,
-                    offsetHours: -2,
-                    displayName: "(UTC-02:00) Coordinated Universal Time-02",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Mid-Atlantic Standard Time",
-                    offset: -120,
-                    offsetHours: -2,
-                    displayName: "(UTC-02:00) Mid-Atlantic - Old",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Azores Standard Time",
-                    offset: -60,
-                    offsetHours: -1,
-                    displayName: "(UTC-01:00) Azores",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Cape Verde Standard Time",
-                    offset: -60,
-                    offsetHours: -1,
-                    displayName: "(UTC-01:00) Cape Verde Is.",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Morocco Standard Time",
-                    offset: 0,
-                    offsetHours: 0,
-                    displayName: "(UTC) Casablanca",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "UTC",
-                    offset: 0,
-                    offsetHours: 0,
-                    displayName: "(UTC) Coordinated Universal Time",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "GMT Standard Time",
-                    offset: 0,
-                    offsetHours: 0,
-                    displayName: "(UTC) Dublin, Edinburgh, Lisbon, London",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Greenwich Standard Time",
-                    offset: 0,
-                    offsetHours: 0,
-                    displayName: "(UTC) Monrovia, Reykjavik",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Central European Standard Time",
-                    offset: 60,
-                    offsetHours: 1,
-                    displayName: "(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Namibia Standard Time",
-                    offset: 60,
-                    offsetHours: 1,
-                    displayName: "(UTC+01:00) Windhoek",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "W. Central Africa Standard Time",
-                    offset: 60,
-                    offsetHours: 1,
-                    displayName: "(UTC+01:00) West Central Africa",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "W. Europe Standard Time",
-                    offset: 60,
-                    offsetHours: 1,
-                    displayName: "(UTC+01:00) Amsterdam, Berlin, Rome",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Central Europe Standard Time",
-                    offset: 60,
-                    offsetHours: 1,
-                    displayName: "(UTC+01:00) Belgrade, Budapest, Prague",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Romance Standard Time",
-                    offset: 60,
-                    offsetHours: 1,
-                    displayName: "(UTC+01:00) Brussels, Copenhagen, Madrid, Paris",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "FLE Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Helsinki, Kyiv, Riga, Sofia",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "South Africa Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Harare, Pretoria",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Turkey Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Istanbul",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "GTB Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Athens, Bucharest",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Libya Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Tripoli",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "E. Europe Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) E. Europe",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Jordan Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Amman",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Middle East Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Beirut",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Egypt Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Cairo",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Syria Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Damascus",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Israel Standard Time",
-                    offset: 120,
-                    offsetHours: 2,
-                    displayName: "(UTC+02:00) Jerusalem",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Arab Standard Time",
-                    offset: 180,
-                    offsetHours: 3,
-                    displayName: "(UTC+03:00) Kuwait, Riyadh",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "E. Africa Standard Time",
-                    offset: 180,
-                    offsetHours: 3,
-                    displayName: "(UTC+03:00) Nairobi",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Arabic Standard Time",
-                    offset: 180,
-                    offsetHours: 3,
-                    displayName: "(UTC+03:00) Baghdad",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Kaliningrad Standard Time",
-                    offset: 180,
-                    offsetHours: 3,
-                    displayName: "(UTC+03:00) Kaliningrad, Minsk",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Iran Standard Time",
-                    offset: 210,
-                    offsetHours: 3.5,
-                    displayName: "(UTC+03:30) Tehran",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Mauritius Standard Time",
-                    offset: 240,
-                    offsetHours: 4,
-                    displayName: "(UTC+04:00) Port Louis",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Georgian Standard Time",
-                    offset: 240,
-                    offsetHours: 4,
-                    displayName: "(UTC+04:00) Tbilisi",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Caucasus Standard Time",
-                    offset: 240,
-                    offsetHours: 4,
-                    displayName: "(UTC+04:00) Yerevan",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Arabian Standard Time",
-                    offset: 240,
-                    offsetHours: 4,
-                    displayName: "(UTC+04:00) Abu Dhabi, Muscat",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Azerbaijan Standard Time",
-                    offset: 240,
-                    offsetHours: 4,
-                    displayName: "(UTC+04:00) Baku",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Russian Standard Time",
-                    offset: 240,
-                    offsetHours: 4,
-                    displayName: "(UTC+04:00) Moscow, St. Petersburg, Volgograd",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Afghanistan Standard Time",
-                    offset: 270,
-                    offsetHours: 4.5,
-                    displayName: "(UTC+04:30) Kabul",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Pakistan Standard Time",
-                    offset: 300,
-                    offsetHours: 5,
-                    displayName: "(UTC+05:00) Islamabad, Karachi",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "West Asia Standard Time",
-                    offset: 300,
-                    offsetHours: 5,
-                    displayName: "(UTC+05:00) Ashgabat, Tashkent",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "India Standard Time",
-                    offset: 330,
-                    offsetHours: 5.5,
-                    displayName: "(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Sri Lanka Standard Time",
-                    offset: 330,
-                    offsetHours: 5.5,
-                    displayName: "(UTC+05:30) Sri Jayawardenepura",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Nepal Standard Time",
-                    offset: 345,
-                    offsetHours: 5.75,
-                    displayName: "(UTC+05:45) Kathmandu",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Central Asia Standard Time",
-                    offset: 360,
-                    offsetHours: 6,
-                    displayName: "(UTC+06:00) Astana",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Bangladesh Standard Time",
-                    offset: 360,
-                    offsetHours: 6,
-                    displayName: "(UTC+06:00) Dhaka",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Ekaterinburg Standard Time",
-                    offset: 360,
-                    offsetHours: 6,
-                    displayName: "(UTC+06:00) Ekaterinburg",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Myanmar Standard Time",
-                    offset: 390,
-                    offsetHours: 6.5,
-                    displayName: "(UTC+06:30) Yangon (Rangoon)",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "SE Asia Standard Time",
-                    offset: 420,
-                    offsetHours: 7,
-                    displayName: "(UTC+07:00) Bangkok, Hanoi, Jakarta",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "N. Central Asia Standard Time",
-                    offset: 420,
-                    offsetHours: 7,
-                    displayName: "(UTC+07:00) Novosibirsk",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Ulaanbaatar Standard Time",
-                    offset: 480,
-                    offsetHours: 8,
-                    displayName: "(UTC+08:00) Ulaanbaatar",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "China Standard Time",
-                    offset: 480,
-                    offsetHours: 8,
-                    displayName: "(UTC+08:00) Beijing, Chongqing, Hong Kong",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Singapore Standard Time",
-                    offset: 480,
-                    offsetHours: 8,
-                    displayName: "(UTC+08:00) Kuala Lumpur, Singapore",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "North Asia Standard Time",
-                    offset: 480,
-                    offsetHours: 8,
-                    displayName: "(UTC+08:00) Krasnoyarsk",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Taipei Standard Time",
-                    offset: 480,
-                    offsetHours: 8,
-                    displayName: "(UTC+08:00) Taipei",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "W. Australia Standard Time",
-                    offset: 480,
-                    offsetHours: 8,
-                    displayName: "(UTC+08:00) Perth",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Korea Standard Time",
-                    offset: 540,
-                    offsetHours: 9,
-                    displayName: "(UTC+09:00) Seoul",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "North Asia East Standard Time",
-                    offset: 540,
-                    offsetHours: 9,
-                    displayName: "(UTC+09:00) Irkutsk",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Tokyo Standard Time",
-                    offset: 540,
-                    offsetHours: 9,
-                    displayName: "(UTC+09:00) Osaka, Sapporo, Tokyo",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "AUS Central Standard Time",
-                    offset: 570,
-                    offsetHours: 9.5,
-                    displayName: "(UTC+09:30) Darwin",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Cen. Australia Standard Time",
-                    offset: 570,
-                    offsetHours: 9.5,
-                    displayName: "(UTC+09:30) Adelaide",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "West Pacific Standard Time",
-                    offset: 600,
-                    offsetHours: 10,
-                    displayName: "(UTC+10:00) Guam, Port Moresby",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Tasmania Standard Time",
-                    offset: 600,
-                    offsetHours: 10,
-                    displayName: "(UTC+10:00) Hobart",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "E. Australia Standard Time",
-                    offset: 600,
-                    offsetHours: 10,
-                    displayName: "(UTC+10:00) Brisbane",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "AUS Eastern Standard Time",
-                    offset: 600,
-                    offsetHours: 10,
-                    displayName: "(UTC+10:00) Canberra, Melbourne, Sydney",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Yakutsk Standard Time",
-                    offset: 600,
-                    offsetHours: 10,
-                    displayName: "(UTC+10:00) Yakutsk",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Vladivostok Standard Time",
-                    offset: 660,
-                    offsetHours: 11,
-                    displayName: "(UTC+11:00) Vladivostok",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Central Pacific Standard Time",
-                    offset: 660,
-                    offsetHours: 11,
-                    displayName: "(UTC+11:00) Solomon Is., New Caledonia",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Magadan Standard Time",
-                    offset: 720,
-                    offsetHours: 12,
-                    displayName: "(UTC+12:00) Magadan",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Kamchatka Standard Time",
-                    offset: 720,
-                    offsetHours: 12,
-                    displayName: "(UTC+12:00) Petropavlovsk-Kamchatsky - Old",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "Fiji Standard Time",
-                    offset: 720,
-                    offsetHours: 12,
-                    displayName: "(UTC+12:00) Fiji",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "New Zealand Standard Time",
-                    offset: 720,
-                    offsetHours: 12,
-                    displayName: "(UTC+12:00) Auckland, Wellington",
-                    supportsDaylightSavingTime: true
-                }, {
-                    id: "UTC+12",
-                    offset: 720,
-                    offsetHours: 12,
-                    displayName: "(UTC+12:00) Coordinated Universal Time+12",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Tonga Standard Time",
-                    offset: 780,
-                    offsetHours: 13,
-                    displayName: "(UTC+13:00) Nuku'alofa",
-                    supportsDaylightSavingTime: false
-                }, {
-                    id: "Samoa Standard Time",
-                    offset: 780,
-                    offsetHours: 13,
-                    displayName: "(UTC+13:00) Samoa",
-                    supportsDaylightSavingTime: true
-                }]
+                }
+                ]
             };
-            if (this === a.jqx._jqxScheduler.prototype) {
-                return b
-            }
+            if (this === a.jqx._jqxScheduler.prototype) return b;
             a.extend(true, this, b);
             this.that = this;
-            return b
+            return b;
         },
         createInstance: function(c) {
             var e = this;
@@ -864,29 +258,23 @@ License: https://jqwidgets.com/license/
                         type: e.views[d]
                     })
                 } else {
-                    e._views.push(e.views[d])
+                    e._views.push(e.views[d]);
                 }
             }
             for (var d = 0; d < e._views.length; d++) {
                 if (e._views[d].type == e.view) {
                     e._view = d;
-                    break
+                    break;
                 }
             }
-            if (a.jqx.utilities.scrollBarSize != 15) {
-                e.scrollBarSize = a.jqx.utilities.scrollBarSize
-            }
-            if (e.source && !e.source.dataBind) {
-                e.source = new a.jqx.dataAdapter(e.source)
-            }
+            if (a.jqx.utilities.scrollBarSize != 15) e.scrollBarSize = a.jqx.utilities.scrollBarSize;
+            if (e.source && !e.source.dataBind) e.source = new a.jqx.dataAdapter(e.source);
             var b = e.source._source.datafields;
             if (b && b.length > 0) {
                 e._camelCase = e.source._source.dataFields !== undefined;
                 e.selectionMode = e.selectionMode.toLowerCase()
             }
-            if (e.host.attr("tabindex") == null) {
-                e.host.attr("tabindex", "0")
-            }
+            if (e.host.attr("tabindex") == null) e.host.attr("tabindex", "0");
             e.host.attr("role", "grid");
             e.host.attr("align", "left");
             e.host.addClass(e.toTP("jqx-grid"));
@@ -895,9 +283,7 @@ License: https://jqwidgets.com/license/
             e.host.addClass(e.toTP("jqx-rc-all"));
             e.host.addClass(e.toTP("jqx-widget"));
             e.host.addClass(e.toTP("jqx-widget-content jqx-disableselect"));
-            if (e._testmodules()) {
-                return
-            }
+            if (e._testmodules()) return;
             e.overlay = a("<div style='z-index: 999; position:absolute;'></div>");
             e.overlay.hide();
             e.overlay.appendTo(e.host);
@@ -911,15 +297,14 @@ License: https://jqwidgets.com/license/
                 var i = e.host.height();
                 e._hostWidth = g;
                 e._hostHeight = i;
-                if (e._lastHostWidth != g || e._lastHostHeight != i) {
-                    e._updatesize(e._lastHostWidth != g, e._lastHostHeight != i)
-                }
+                if (e._lastHostWidth != g || e._lastHostHeight != i) 
+                    e._updatesize(e._lastHostWidth != g, e._lastHostHeight != i);
                 e._lastWidth = h;
                 e._lastHeight = f;
                 e._lastHostWidth = g;
-                e._lastHostHeight = i
+                e._lastHostHeight = i;
             });
-            e.createEditRecurrenceDialog()
+            e.createEditRecurrenceDialog();
         },
         createEditRecurrenceDialog: function() {
             var d = this;
@@ -945,12 +330,9 @@ License: https://jqwidgets.com/license/
             c.mousedown(function() {
                 e = true;
                 var f = this.id;
-                if (f.indexOf("editRecurringAppointmentOccurrence") >= 0) {
-                    d.editSeries(false)
-                } else {
-                    d.editSeries(true)
-                }
-                a(b).jqxWindow("close")
+                if (f.indexOf("editRecurringAppointmentOccurrence") >= 0) d.editSeries(false);
+                else d.editSeries(true);
+                a(b).jqxWindow("close");
             });
             this.addHandler(a(b), "open", function(f) {
                 d._raiseEvent("editRecurrenceDialogOpen", {
@@ -964,7 +346,7 @@ License: https://jqwidgets.com/license/
                         if (document.activeElement.nodeName.toLowerCase() == "button") {
                             a(document.activeElement).trigger("mousedown");
                             a(document.activeElement).trigger("mouseup");
-                            return true
+                            return true;
                         }
                     }
                 }
@@ -978,7 +360,7 @@ License: https://jqwidgets.com/license/
                         dialog: b,
                         appointment: d.selectedJQXAppointment ? d.selectedJQXAppointment.boundAppointment : null
                     });
-                    return false
+                    return false;
                 }
                 e = false;
                 d.overlay.hide();
@@ -997,10 +379,10 @@ License: https://jqwidgets.com/license/
             switch (b) {
                 case "dayView":
                 case "timelineDayView":
-                    return d
+                    return d;
             }
             var c = this.getFirstDayOfWeek(d);
-            return c
+            return c;
         },
         getViewEnd: function() {
             var e = this.getViewStart();
@@ -1013,54 +395,38 @@ License: https://jqwidgets.com/license/
                     break;
                 case "timelineDayView":
                     d = 1;
-                    if (c.days) {
-                        d = c.days
-                    }
+                    if (c.days) d = c.days;
                     break;
                 case "weekView":
                 case "timelineWeekView":
                     d = 7;
-                    if (c.days) {
-                        d = c.days
-                    }
+                    if (c.days) d = c.days;
                     break;
                 case "monthView":
                     d = 41;
                     break;
                 case "timelineMonthView":
                     d = 41;
-                    if (c.days) {
-                        d = c.days
-                    }
+                    if (c.days) d = c.days;
                     break;
                 case "agendaView":
                     d = 7;
-                    if (c.days) {
-                        d = c.days
-                    }
+                    if (c.days) d = c.days;
                     break
             }
-            return e.addDays(d)
+            return e.addDays(d);
         },
         getFirstDayOfWeek: function(d) {
             var c = d;
             var b = this.schedulerLocalization.firstDay;
-            if (b < 0 || b > 6) {
-                b = 6
-            }
-            while (c.dayOfWeek() != b) {
-                c.addDays(-1, false)
-            }
-            return c
+            if (b < 0 || b > 6) b = 6;
+            while (c.dayOfWeek() != b) c.addDays(-1, false);
+            return c;
         },
         getVisibleDate: function() {
             var d = this.date;
-            if (d < this.min) {
-                d = this.min
-            }
-            if (d > this.max) {
-                d = this.max
-            }
+            if (d < this.min) d = this.min;
+            if (d > this.max) d = this.max;
             var b = this._views[this._view].type;
             var f = this._views[this._view];
             d = d.clearTime();
@@ -1070,17 +436,15 @@ License: https://jqwidgets.com/license/
                 case "timelineDayView":
                 case "timelineWeekView":
                 case "agendaView":
-                    return d
+                    return d;
             }
             var e = d.day();
             var c = d.addDays(-e + 1);
             d = c;
-            return d
+            return d;
         },
         _builddataloadelement: function() {
-            if (this.dataloadelement) {
-                this.dataloadelement.remove()
-            }
+            if (this.dataloadelement) this.dataloadelement.remove();
             this.dataloadelement = a('<div class="jqx-datatable-load" style="z-index: 99998; background-color:rgba(50,50,50,0.1); overflow: hidden; position: absolute;"></div>');
             var c = a('<div style="z-index: 99999; margin-left: -66px; left: 50%; top: 50%; margin-top: -24px; position: relative; width: 100px; height: 33px; padding: 5px; font-family: verdana; font-size: 12px; color: #767676; border-color: #898989; border-width: 1px; border-style: solid; background: #f6f6f6; border-collapse: collapse;"><div style="float: left;"><div style="float: left; overflow: hidden; width: 32px; height: 32px;" class="jqx-grid-load"/><span style="margin-top: 10px; float: left; display: block; margin-left: 5px;" >' + this.schedulerLocalization.loadString + "</span></div></div>");
             c.addClass(this.toTP("jqx-rc-all"));
@@ -1093,27 +457,25 @@ License: https://jqwidgets.com/license/
             if (this.source._source.url != "") {
                 var b = false;
                 if (this.height === "auto" || this.height === null || this.autoheight) {
-                    if (this.maxHeight == 999999) {
-                        b = true
-                    }
+                    if (this.maxHeight == 999999) b = true;
                 }
                 if (b) {
                     this.host.height(100);
-                    this.dataloadelement.height(100)
+                    this.dataloadelement.height(100);
                 } else {
                     this.host.height(this.height);
-                    this.dataloadelement.height(this.height)
+                    this.dataloadelement.height(this.height);
                 }
                 var d = false;
                 if (this.width === "auto" || this.width === null || this.autoWidth) {
-                    d = true
+                    d = true;
                 }
                 if (d) {
                     this.host.width(300);
-                    this.dataloadelement.width(300)
+                    this.dataloadelement.width(300);
                 } else {
                     this.host.width(this.width);
-                    this.dataloadelement.width(this.width)
+                    this.dataloadelement.width(this.width);
                 }
             }
         },
@@ -1121,182 +483,149 @@ License: https://jqwidgets.com/license/
             var b = a("<span style='visibility: hidden; white-space: nowrap;'>measure Text</span>");
             b.addClass(this.toTP("jqx-widget"));
             a(document.body).append(b);
-            if (c == "cell") {
-                this._cellheight = b.height()
-            } else {
-                this._columnheight = b.height()
-            }
-            b.remove()
+            if (c == "cell") this._cellheight = b.height();
+            else this._columnheight = b.height();
+            b.remove();
         },
         _testmodules: function() {
             var e = "";
             var c = this;
             var b = function() {
-                if (e.length != "") {
-                    e += ","
-                }
+                if (e.length != "") e += ",";
             };
             if (!this.host.jqxScrollBar) {
                 b();
-                e += " jqxscrollbar.js"
+                e += " jqxscrollbar.js";
             }
             if (!this.host.jqxButton) {
                 b();
-                e += " jqxbuttons.js"
+                e += " jqxbuttons.js";
             }
             if (!a.jqx.dataAdapter) {
                 b();
-                e += " jqxdata.js"
+                e += " jqxdata.js";
             }
             if (!this.host.jqxDateTimeInput) {
                 b();
-                e += " jqxdatetimeinput.js"
+                e += " jqxdatetimeinput.js";
             }
             if (!this.host.jqxCalendar) {
                 b();
-                e += " jqxcalendar.js"
+                e += " jqxcalendar.js";
             }
             try {
                 if (!Globalize) {
                     b();
-                    e += " globalize.js"
+                    e += " globalize.js";
                 }
             } catch (d) {}
             if (e != "") {
                 throw new Error("jqxScheduler: Missing references to the following module(s): " + e);
                 this.host.remove();
-                return true
+                return true;
             }
-            return false
+            return false;
         },
         focus: function() {
             try {
-                if (this.isTouchDevice()) {
-                    return
-                }
+                if (this.isTouchDevice()) return;
                 if (this._editDialog && this._editDialog.jqxWindow("isOpen")) {
                     var c = this;
                     setTimeout(function() {
                         c.editDialogFields.subject.focus();
-                        c.editDialogFields.subject.select()
+                        c.editDialogFields.subject.select();
                     }, 1);
                     this.focused = true;
-                    return
+                    return;
                 }
-                if (document.activeElement == this.element) {
-                    return
-                }
+                if (document.activeElement == this.element) return;
                 this.host.focus();
                 var c = this;
                 setTimeout(function() {
                     c.host.focus()
                 }, 25);
-                this.focused = true
+                this.focused = true;
             } catch (b) {}
         },
         hiddenParent: function() {
-            return a.jqx.isHidden(this.host)
+            return a.jqx.isHidden(this.host);
         },
         _updatesize: function(h, g) {
-            if (this._loading) {
-                return
-            }
+            if (this._loading) return;
             var e = this;
             var f = e.host.width();
             var d = e.host.height();
-            if (!e._oldWidth) {
-                e._oldWidth = f
-            }
-            if (!e._oldHeight) {
-                e._oldHeight = d
-            }
+            if (!e._oldWidth) e._oldWidth = f;
+            if (!e._oldHeight) e._oldHeight = d;
             if (e._resizeTimer != undefined) {
                 clearTimeout(e._resizeTimer);
                 e._resizeTimer = null
             }
             var c = 300;
             var b = function() {
-                if (e._resizeTimer) {
-                    clearTimeout(e._resizeTimer)
-                }
+                if (e._resizeTimer) clearTimeout(e._resizeTimer);
                 e.resizingGrid = true;
-                if (a.jqx.isHidden(e.host)) {
-                    return
-                }
+                if (a.jqx.isHidden(e.host)) return;
                 e._updatecolumnwidths();
                 e.refresh();
                 e._oldWidth = f;
                 e._oldHeight = d;
-                e.resizingGrid = false
+                e.resizingGrid = false;
             };
             b();
             e._resizeTimer = setTimeout(function() {
                 var j = e.host.width();
                 var i = e.host.height();
-                if (e._oldWidth != j || e._oldHeight != i) {
-                    b()
-                }
+                if (e._oldWidth != j || e._oldHeight != i) b();
             }, c)
         },
         resize: function(c, b) {
-            if (c != undefined) {
-                this.width = c
-            }
-            if (b != undefined) {
-                this.height = b
-            }
+            if (c != undefined) this.width = c;
+            if (b != undefined) this.height = b;
             this._updatecolumnwidths();
-            this.refresh()
+            this.refresh();
         },
         isTouchDevice: function() {
-            if (this.touchDevice != undefined) {
-                return this.touchDevice
-            }
+            if (this.touchDevice != undefined)
+                return this.touchDevice;
             var b = a.jqx.mobile.isTouchDevice();
             this.touchDevice = b;
             if (this.touchMode == true) {
                 b = true;
                 a.jqx.mobile.setMobileSimulator(this.element);
-                this.touchDevice = b
+                this.touchDevice = b;
             } else {
-                if (this.touchMode == false) {
-                    b = false
-                }
+                if (this.touchMode == false) b = false;
             }
             if (b) {
                 this.touchDevice = true;
                 this.host.addClass(this.toThemeProperty("jqx-touch"));
                 this.host.find("jqx-widget-content").addClass(this.toThemeProperty("jqx-touch"));
                 this.host.find("jqx-widget-header").addClass(this.toThemeProperty("jqx-touch"));
-                this.scrollBarSize = this.touchScrollBarSize
+                this.scrollBarSize = this.touchScrollBarSize;
             }
-            return b
+            return b;
         },
         toTP: function(b) {
-            return this.toThemeProperty(b)
+            return this.toThemeProperty(b);
         },
         localizestrings: function(b, c) {
             this._cellscache = new Array();
-            if (a.jqx.dataFormat) {
-                a.jqx.dataFormat.cleardatescache()
-            }
+            if (a.jqx.dataFormat) a.jqx.dataFormat.cleardatescache();
             if (this._loading) {
                 throw new Error("jqxScheduler: " + this.loadingErrorMessage);
-                return false
+                return false;
             }
             if (b != null) {
-                for (var d in this.schedulerLocalization) {
-                    if (b[d]) {
-                        this.schedulerLocalization[d] = b[d]
-                    }
-                }
-                if (b.loadingErrorMessage) {
-                    this.loadingErrorMessage = b.loadingErrorMessage
-                }
+                for (var d in this.schedulerLocalization)
+                    if (b[d]) 
+                        this.schedulerLocalization[d] = b[d];
+                if (b.loadingErrorMessage)
+                    this.loadingErrorMessage = b.loadingErrorMessage;
                 if (c !== false) {
                     this._builddataloadelement();
                     a(this.dataloadelement).css("visibility", "hidden");
-                    a(this.dataloadelement).css("display", "none")
+                    a(this.dataloadelement).css("display", "none");
                 }
             } else {
                 this.schedulerLocalization = {
@@ -1359,62 +688,62 @@ License: https://jqwidgets.com/license/
                     weekViewString: "Semanal",
                     monthViewString: "Mensual",
                     agendaViewString: "Agenda",
-                    timelineDayViewString: "Timeline Day",
-                    timelineWeekViewString: "Timeline Week",
+                    timelineDayViewString: "Línea de Tiempo Diaria",
+                    timelineWeekViewString: "Línea de Tiempo Semanal",
                     timelineMonthViewString: "Línea de Tiempo Mensual",
                     agendaAllDayString: "Todo el día",
-                    loadingErrorMessage: "The data is still loading and you cannot set a property or call a method. You can do that once the data binding is completed. jqxScheduler raises the 'bindingComplete' event when the binding is completed.",
-                    editRecurringAppointmentDialogTitleString: "Edit Recurring Appointment",
-                    editRecurringAppointmentDialogContentString: "Do you want to edit only this occurrence or the series?",
-                    editRecurringAppointmentDialogOccurrenceString: "Edit Occurrence",
-                    editRecurringAppointmentDialogSeriesString: "Edit The Series",
+                    loadingErrorMessage: "La data aún se está cargando y no puedes asignar una propiedad o llamar un método. Lo podrás hacer una vez que el enlace de datos está completado.",
+                    editRecurringAppointmentDialogTitleString: "Editar Actividad Periódica",
+                    editRecurringAppointmentDialogContentString: "¿Quieres editar solo esta ocurrencia o la serie?",
+                    editRecurringAppointmentDialogOccurrenceString: "Editar Ocurrencia",
+                    editRecurringAppointmentDialogSeriesString: "Editar la serie",
                     editDialogTitleString: "Editar actividad",
                     editDialogCreateTitleString: "Nueva actividad",
                     contextMenuEditAppointmentString: "Editar actividad",
                     contextMenuCreateAppointmentString: "Nueva actividad",
-                    editDialogSubjectString: "Subject",
-                    editDialogLocationString: "Location",
-                    editDialogFromString: "From",
-                    editDialogToString: "To",
-                    editDialogAllDayString: "All day",
-                    editDialogExceptionsString: "Exceptions",
+                    editDialogSubjectString: "Actividad",
+                    editDialogLocationString: "Ubicación",
+                    editDialogFromString: "Desde",
+                    editDialogToString: "Hasta",
+                    editDialogAllDayString: "Todo el día",
+                    editDialogExceptionsString: "Excepciones",
                     editDialogResetExceptionsString: "Reset on Save",
-                    editDialogDescriptionString: "Description",
-                    editDialogResourceIdString: "Owner",
-                    editDialogStatusString: "Status",
+                    editDialogDescriptionString: "Descripción",
+                    editDialogResourceIdString: "Propietario",
+                    editDialogStatusString: "Estado",
                     editDialogColorString: "Color",
-                    editDialogColorPlaceHolderString: "Select Color",
+                    editDialogColorPlaceHolderString: "Seleccionar Color",
                     editDialogTimeZoneString: "Time Zone",
                     editDialogSelectTimeZoneString: "Select Time Zone",
                     editDialogSaveString: "Grabar",
                     editDialogDeleteString: "Eliminar",
                     editDialogCancelString: "Cancelar",
-                    editDialogRepeatString: "Repeat",
-                    editDialogRepeatEveryString: "Repeat every",
-                    editDialogRepeatEveryWeekString: "week(s)",
-                    editDialogRepeatEveryYearString: "year(s)",
-                    editDialogRepeatEveryDayString: "day(s)",
-                    editDialogRepeatNeverString: "Never",
-                    editDialogRepeatDailyString: "Daily",
-                    editDialogRepeatWeeklyString: "Weekly",
-                    editDialogRepeatMonthlyString: "Monthly",
-                    editDialogRepeatYearlyString: "Yearly",
-                    editDialogRepeatEveryMonthString: "month(s)",
-                    editDialogRepeatEveryMonthDayString: "Day",
-                    editDialogRepeatFirstString: "first",
-                    editDialogRepeatSecondString: "second",
-                    editDialogRepeatThirdString: "third",
-                    editDialogRepeatFourthString: "fourth",
-                    editDialogRepeatLastString: "last",
-                    editDialogRepeatEndString: "End",
-                    editDialogRepeatAfterString: "After",
+                    editDialogRepeatString: "Frecuencia",
+                    editDialogRepeatEveryString: "Repetir cada",
+                    editDialogRepeatEveryWeekString: "semana(s)",
+                    editDialogRepeatEveryYearString: "año(s)",
+                    editDialogRepeatEveryDayString: "día(s)",
+                    editDialogRepeatNeverString: "Nunca",
+                    editDialogRepeatDailyString: "Diaria",
+                    editDialogRepeatWeeklyString: "Semanal",
+                    editDialogRepeatMonthlyString: "Mensual",
+                    editDialogRepeatYearlyString: "Anual",
+                    editDialogRepeatEveryMonthString: "mes(s)",
+                    editDialogRepeatEveryMonthDayString: "Día",
+                    editDialogRepeatFirstString: "primer",
+                    editDialogRepeatSecondString: "segundo",
+                    editDialogRepeatThirdString: "tercer",
+                    editDialogRepeatFourthString: "cuarto",
+                    editDialogRepeatLastString: "último",
+                    editDialogRepeatEndString: "Fin",
+                    editDialogRepeatAfterString: "Después",
                     editDialogRepeatOnString: "On",
                     editDialogRepeatOfString: "of",
-                    editDialogRepeatOccurrencesString: "occurrence(s)",
-                    editDialogRepeatSaveString: "Save Occurrence",
+                    editDialogRepeatOccurrencesString: "ocurrencias(s)",
+                    editDialogRepeatSaveString: "Grabar Ocurrencias",
                     editDialogRepeatSaveSeriesString: "Save Series",
-                    editDialogRepeatDeleteString: "Delete Occurrence",
-                    editDialogRepeatDeleteSeriesString: "Delete Series",
+                    editDialogRepeatDeleteString: "Eliminar Ocurrencia",
+                    editDialogRepeatDeleteSeriesString: "Eliminar Series",
                     editDialogStatuses: {
                         free: "Free",
                         tentative: "Tentative",
@@ -1427,21 +756,18 @@ License: https://jqwidgets.com/license/
         _updateScrollbars: function(r) {
             var j = false;
             var d = this;
-            if (d.width === "auto" || d.width === null || d.autowidth) {
-                if (d.maxWidth == 999999) {
+            if (d.width === "auto" || d.width === null || d.autowidth)
+                if (d.maxWidth == 999999)
                     j = true
-                }
-            }
             var h = d._views[d._view].type;
             var g = d._views[d._view];
             if (h == "monthView" && d.resources && d.resources.orientation == "none" && !g.monthRowAutoHeight) {
                 var k = d.vScrollBar[0].style.visibility;
                 d.hScrollBar[0].style.visibility = "hidden";
                 d.vScrollBar[0].style.visibility = "hidden";
-                if ((k != d.vScrollBar[0].style.visibility)) {
-                    d._updatecolumnwidths()
-                }
-                return
+                if ((k != d.vScrollBar[0].style.visibility))
+                    d._updatecolumnwidths();
+                return;
             }
             var b = parseInt(d.scrollBarSize);
             var s = d.table ? d.table.height() : 0;
@@ -1449,36 +775,22 @@ License: https://jqwidgets.com/license/
             var n = "inherit";
             var k = d.vScrollBar[0].style.visibility;
             var o = d.hScrollBar[0].style.visibility;
-            if (!r) {
-                var f = d.host.height()
-            } else {
-                var f = r
-            }
-            if (!d.columnGroups) {
-                f -= d.showHeader ? d.columnsHeight : 0
-            } else {
-                f -= d.showHeader ? d.columnsheader.height() : 0
-            }
-            if (d.filterable) {
-                f -= d.filter.height()
-            }
+            if (!r) var f = d.host.height();
+            else var f = r;
+            if (!d.columnGroups)  f -= d.showHeader ? d.columnsHeight : 0;
+            else f -= d.showHeader ? d.columnsheader.height() : 0;
+            
+            if (d.filterable) f -= d.filter.height();
+
             if (d.pageable) {
                 f -= d.pagerHeight;
-                if (d.pagerPosition === "both") {
-                    f -= d.pagerHeight
-                }
+                if (d.pagerPosition === "both") f -= d.pagerHeight;
             }
-            if (d.showToolbar) {
-                f -= d.toolbarHeight
-            }
-            if (d.showLegend && d._resources.length > 0) {
-                f -= d.legendHeight
-            }
+            if (d.showToolbar) f -= d.toolbarHeight;
+            if (d.showLegend && d._resources.length > 0) f -= d.legendHeight;
             var m = false;
             if (d.height === "auto" || d.height === null || d.autoheight) {
-                if (d.maxHeight == 999999) {
-                    m = true
-                }
+                if (d.maxHeight == 999999) m = true;
             }
             if (!m && s > f && (d.getRows().length > 0)) {
                 d.vScrollBar[0].style.visibility = n;
@@ -1493,9 +805,7 @@ License: https://jqwidgets.com/license/
                 d._updatecolumnwidths()
             }
             var p = d.table ? d.table.width() : 0;
-            if (p > 4) {
-                p -= 4
-            }
+            if (p > 4) p -= 4;
             var q = parseInt(d.host.css("border-left-width")) + parseInt(d.host.css("border-right-width"));
             var l = q + d.host.width() - i;
             if (p > l && !j) {
@@ -1504,9 +814,7 @@ License: https://jqwidgets.com/license/
                     max: 2 + q + p - l
                 });
                 i = 4 + parseInt(b);
-                if (b == 0) {
-                    i = 0
-                }
+                if (b == 0) i = 0;
                 if (!m && s != f) {
                     if (s > f - i + 4 && (d.getRows().length > 0)) {
                         d.hScrollBar.jqxScrollBar({
@@ -1521,16 +829,14 @@ License: https://jqwidgets.com/license/
                             })
                         }
                         var e = d.table ? d.table.width() : 0;
-                        if (e > 3) {
-                            e -= 3
-                        }
+                        if (e > 3) e -= 3;
                         if (e != p) {
                             if (e < l) {
                                 d.hScrollBar.jqxScrollBar({
                                     max: q + e - l
                                 });
                                 d.hScrollBar[0].style.visibility = "hidden";
-                                i = 0
+                                i = 0;
                             } else {
                                 if (!c) {
                                     d.hScrollBar.jqxScrollBar({
@@ -7176,11 +6482,11 @@ License: https://jqwidgets.com/license/
             };
             g._renderrows()
         },
+        //#region "Grabar Actividad"
         addAppointment: function(o) {
+            console.log('addAppointment');
             var g = this;
-            if (!o.scheduler) {
-                o.scheduler = this
-            }
+            if (!o.scheduler) o.scheduler = this
             if (!o.duration) {
                 if ((!o.from && !o.to) || (!o.appointmentObject)) {
                     var f = o;
@@ -7189,108 +6495,74 @@ License: https://jqwidgets.com/license/
                     for (var w in g.appointmentDataFields) {
                         var b = g.appointmentDataFields[w];
                         var q = f[b];
-                        if (w == "from" || w == "to") {
-                            q = new a.jqx.date(q)
-                        }
+                        if (w == "from" || w == "to") q = new a.jqx.date(q)
                         if (w == "style") {
                             if (q) {
                                 var k = g.getAppointmentColors(q);
                                 d.color = k.color;
                                 d.background = k.background;
-                                d.borderColor = k.border
+                                d.borderColor = k.border;
                             }
                         }
                         if (w == "recurrencePattern") {
                             if (q) {
                                 q = new a.jqx.scheduler.recurrencePattern(q);
-                                q.timeZone = f.timeZone || g.timeZone
+                                q.timeZone = f.timeZone || g.timeZone;
                             }
                         }
                         if (w == "recurrenceException") {
                             var t = new Array();
                             if (q) {
-                                if (q.indexOf("EXDATE:") >= 0) {
-                                    q = q.substring(q.indexOf("EXDATE:") + 7)
-                                }
+                                if (q.indexOf("EXDATE:") >= 0) q = q.substring(q.indexOf("EXDATE:") + 7);
                                 var l = new Array();
-                                if (q.indexOf(",") >= 0) {
-                                    l = q.split(",")
-                                } else {
-                                    l.push(q)
-                                }
+                                if (q.indexOf(",") >= 0) l = q.split(",");
+                                else l.push(q);
+
                                 for (var s = 0; s < l.length; s++) {
                                     var p = l[s];
                                     if (p.indexOf(";") >= 0) {
                                         var h = p.split(";")[1];
                                         p = p.split(";")[0];
-                                        if (h.toLowerCase().indexOf("display") >= 0 && h.toLowerCase().indexOf("none")) {
-                                            d.hidden = true
-                                        }
+                                        if (h.toLowerCase().indexOf("display") >= 0 && h.toLowerCase().indexOf("none"))
+                                            d.hidden = true;
                                     }
                                     try {
                                         var u = a.jqx.scheduler.utilities.untilStringToDate(p);
                                         if (u != "Invalid Date") {
                                             if (d.timeZone) {
-                                                u = new a.jqx.date(u, d.timeZone)
+                                                u = new a.jqx.date(u, d.timeZone);
                                             } else {
-                                                if (g.timeZone) {
-                                                    u = u.toTimeZone(g.timeZone)
-                                                } else {
-                                                    u = new a.jqx.date(u)
-                                                }
+                                                if (g.timeZone) u = u.toTimeZone(g.timeZone);
+                                                else u = new a.jqx.date(u);
                                             }
                                         }
                                     } catch (v) {
-                                        var u = new a.jqx.date(p, g.timeZone)
+                                        var u = new a.jqx.date(p, g.timeZone);
                                     }
-                                    t.push(u)
+                                    t.push(u);
                                 }
                             }
-                            q = t
+                            q = t;
                         }
-                        d[w] = q
+                        d[w] = q;
                     }
                     for (var m in e) {
                         var w = e[m];
                         if (d[w] == undefined) {
                             var q = "";
-                            if (w == "originalData") {
-                                continue
-                            }
-                            if (w == "ownerId") {
-                                q = null
-                            }
-                            if (w == "timeZone") {
-                                q = null
-                            }
-                            if (w == "recurrencePattern") {
-                                q = null
-                            }
-                            if (w == "recurrenceException") {
-                                q = null
-                            }
-                            if (w == "allDay") {
-                                q = false
-                            }
-                            if (w == "draggable") {
-                                q = true
-                            }
-                            if (w == "resizable") {
-                                q = true
-                            }
-                            if (w == "hidden") {
-                                q = false
-                            }
-                            if (w == "resourceId") {
-                                q = null
-                            }
-                            if (w == "from") {
-                                q = new a.jqx.date()
-                            }
-                            if (w == "to") {
-                                q = new a.jqx.date().addHours(1)
-                            }
-                            d[w] = q
+                            if (w == "originalData") continue;
+                            if (w == "ownerId") q = null;
+                            if (w == "timeZone") q = null;
+                            if (w == "recurrencePattern") q = null;
+                            if (w == "recurrenceException") q = null;
+                            if (w == "allDay") q = false;
+                            if (w == "draggable") q = true;
+                            if (w == "resizable") q = true;
+                            if (w == "hidden") q = false;
+                            if (w == "resourceId") q = null;
+                            if (w == "from") q = new a.jqx.date();
+                            if (w == "to") q = new a.jqx.date().addHours(1);
+                            d[w] = q;
                         }
                     }
                     d.originalData = f;
@@ -7298,26 +6570,23 @@ License: https://jqwidgets.com/license/
                     var o = new a.jqx.scheduler.appointment(d);
                     if (d.timeZone) {
                         o.from = o.from.toTimeZone(d.timeZone);
-                        o.to = o.to.toTimeZone(d.timeZone)
+                        o.to = o.to.toTimeZone(d.timeZone);
                     }
                     if (g.timeZone) {
-                        if (!d.timeZone) {
-                            o.timeZone = g.timeZone
-                        }
+                        if (!d.timeZone) o.timeZone = g.timeZone;
                         o.from = o.from.toTimeZone(g.timeZone);
-                        o.to = o.to.toTimeZone(g.timeZone)
+                        o.to = o.to.toTimeZone(g.timeZone);
                     } else {
                         o.from = o.from.toTimeZone(null);
-                        o.to = o.to.toTimeZone(null)
+                        o.to = o.to.toTimeZone(null);
                     }
                 } else {
                     var i = new a.jqx.scheduler.appointment();
-                    for (var w in o) {
-                        i[w] = o[w]
-                    }
-                    o = i
+                    for (var w in o) i[w] = o[w];
+                    o = i;
                 }
             }
+            //Generar ID
             var w = g.dataview.generatekey();
             o.id = w;
             g.appointmentsByKey[w] = o;
@@ -7329,13 +6598,10 @@ License: https://jqwidgets.com/license/
                 var q = o[r];
                 c[r] = q;
                 if (r == "from" || r == "to") {
-                    if (q.toDate) {
-                        q = q.toDate()
-                    } else {
-                        q = new a.jqx.date(q).toDate()
-                    }
+                    if (q.toDate) q = q.toDate();
+                    else q = new a.jqx.date(q).toDate();
                 }
-                j[b] = q
+                j[b] = q;
             }
             c.originalData = j;
             o.boundAppointment = c;
@@ -7349,21 +6615,19 @@ License: https://jqwidgets.com/license/
                 type: "Add",
                 appointment: o.boundAppointment
             };
-            if (g.hiddenResources && g.hiddenResources[o.resourceId]) {
-                g.hideAppointmentsByResource(o.resourceId)
-            } else {
-                g._renderrows()
-            }
+            if (g.hiddenResources && g.hiddenResources[o.resourceId]) g.hideAppointmentsByResource(o.resourceId);
+            else g._renderrows();
             g._selectAppointment(o);
             g._lastSelectedAppointment = o;
             if (g.resources) {
                 var n = o.resourceId;
                 if (g._resources.indexOf(n) === -1) {
                     g._resources.push(n);
-                    g._renderrows()
+                    g._renderrows();
                 }
             }
         },
+        //#endregion
         _updateCellsSelection: function() {
             var f = this;
             var l = f.rows;
@@ -8913,12 +8177,12 @@ License: https://jqwidgets.com/license/
                         };
                         al[d].appointments.push(q);
                         al[al.length] = al[d];
-                        aj++
+                        aj++;
                     } else {
                         al[d].appointments.push(q);
-                        aj++
+                        aj++;
                     }
-                    au = au.addDays(1).clearTime()
+                    au = au.addDays(1).clearTime();
                 }
             }
             var O = 0;
@@ -8935,46 +8199,31 @@ License: https://jqwidgets.com/license/
                 var X = ab.columns.records[aq];
                 if (X.hidden) {
                     F++;
-                    continue
+                    continue;
                 }
                 var c = X.width;
-                if (c < X.minwidth) {
-                    c = X.minwidth
-                }
-                if (c > X.maxwidth) {
-                    c = X.maxwidth
-                }
+                if (c < X.minwidth) c = X.minwidth;
+                if (c > X.maxwidth) c = X.maxwidth;
                 c -= ax;
-                if (c < 0) {
-                    c = 0
-                }
+                if (c < 0) c = 0;
                 if (av) {
                     var ae = c;
-                    if (aq == F) {
-                        ae++
-                    }
-                    v += "<col style='max-width: " + ae + "px; width: " + ae + "px;'>"
+                    if (aq == F) ae++;
+                    v += "<col style='max-width: " + ae + "px; width: " + ae + "px;'>";
                 } else {
-                    v += "<col style='max-width: " + c + "px; width: " + c + "px;'>"
+                    v += "<col style='max-width: " + c + "px; width: " + c + "px;'>";
                 }
-                Z += c
+                Z += c;
             }
             v += "</colgroup>";
             if (R == 0) {
                 var l = '<tr role="row">';
                 var f = this.host.height();
                 var U = 0;
-                if (!ab.columnGroups) {
-                    U += ab.showHeader ? ab.columnsHeight : 0
-                } else {
-                    U += ab.showHeader ? ab.columnsheader.height() : 0
-                }
-                if (ab.showToolbar) {
-                    U += ab.toolbarHeight
-                }
-                if (ab.showLegend && ab._resources.length > 0) {
-                    U += ab.legendHeight
-                }
+                if (!ab.columnGroups) U += ab.showHeader ? ab.columnsHeight : 0;
+                else U += ab.showHeader ? ab.columnsheader.height() : 0;
+                if (ab.showToolbar) U += ab.toolbarHeight;
+                if (ab.showLegend && ab._resources.length > 0) U += ab.legendHeight;
                 f -= U;
                 var e = '<td data-date="' + K.toString() + '" colspan="' + this.columns.records.length + '" role="gridcell" style="border: none; min-height: ' + f + "px; height: " + f + "px; max-width:" + Z + "px; width:" + Z + "px;";
                 var E = this.toTP("jqx-cell") + " " + this.toTP("jqx-grid-cell") + " " + this.toTP("jqx-item");
@@ -8986,12 +8235,11 @@ License: https://jqwidgets.com/license/
                 l += "</tr>";
                 v += l;
                 this.table[0].style.width = Z + 2 + "px";
-                N = Z
+                N = Z;
             }
             var k = ab.rowsHeight;
-            if (ab.isTouchDevice()) {
-                k = ab.touchRowsHeight
-            }
+            if (ab.isTouchDevice()) k = ab.touchRowsHeight;
+
             for (var at = 0; at < al.length; at++) {
                 var H = at;
                 var au = al[at];
@@ -9003,24 +8251,14 @@ License: https://jqwidgets.com/license/
                     for (var aq = 0; aq < G; aq++) {
                         var ah = ab.columns.records[aq];
                         var ao = aq;
-                        if (ab.rtl) {
-                            ao = G - 1 - aq
-                        }
+                        if (ab.rtl) ao = G - 1 - aq;
                         var c = ah.width;
-                        if (c < ah.minwidth) {
-                            c = ah.minwidth
-                        }
-                        if (c > ah.maxwidth) {
-                            c = ah.maxwidth
-                        }
+                        if (c < ah.minwidth) c = ah.minwidth;
+                        if (c > ah.maxwidth) c = ah.maxwidth;
                         c -= ax;
-                        if (c < 0) {
-                            c = 0
-                        }
+                        if (c < 0) c = 0;
                         var E = ab.toTP("jqx-cell") + " " + ab.toTP("jqx-grid-cell") + " " + ab.toTP("jqx-item");
-                        if (ab.rtl) {
-                            E += " " + ab.toTP("jqx-cell-rtl")
-                        }
+                        if (ab.rtl) E += " " + ab.toTP("jqx-cell-rtl");
                         var J = "";
                         var H = ab.dataview.generatekey();
                         var s = -1;
@@ -9030,27 +8268,22 @@ License: https://jqwidgets.com/license/
                         if (ao == 0 && ai == 0) {
                             var M = au.appointments.length;
                             var e = '<td rowspan="' + M + '" data-key="' + H + '" data-view="' + (s) + '" data-date="' + g.toString() + '" role="gridcell" ' + J + ' style="max-width:' + c + "px; width:" + c + "px;  min-height: " + k + "px;";
-                            E += " " + ab.toTP("jqx-center-align")
+                            E += " " + ab.toTP("jqx-center-align");
                         } else {
                             if (ao == 0) {
                                 O++;
-                                continue
+                                continue;
                             }
                         }
-                        if (ab.rtl && ao == 1) {
-                            E += " " + ab.toTP("jqx-right-align")
-                        }
+                        if (ab.rtl && ao == 1) E += " " + ab.toTP("jqx-right-align");
                         if (!(ah.hidden)) {
                             m += ax + c;
-                            if (O == 0 && !ab.rtl) {
-                                e += "border-left-width: 0px;"
-                            } else {
-                                e += "border-left-width: 1px;"
-                            }
-                            O++
+                            if (O == 0 && !ab.rtl) e += "border-left-width: 0px;";
+                            else e += "border-left-width: 1px;";
+                            O++;
                         } else {
                             e += "display: none;";
-                            ab._hiddencolumns = true
+                            ab._hiddencolumns = true;
                         }
                         e += '" class="' + E + '">';
                         var an = "";
@@ -9060,39 +8293,35 @@ License: https://jqwidgets.com/license/
                             var ar = ab.toTP("jqx-scheduler-agenda-date");
                             var o = ab.toTP("jqx-scheduler-agenda-day");
                             var n = ab.toTP("jqx-scheduler-agenda-week");
-                            an = '<div class="' + ar + '"><strong class="' + o + '">' + g.day() + '</strong><br/><em class="' + n + '">' + D + '</em><br/><span class="' + ar + '">' + am + "</span></div>"
+                            an = '<div class="' + ar + '"><strong class="' + o + '">' + g.day() + '</strong><br/><em class="' + n + '">' + D + '</em><br/><span class="' + ar + '">' + am + "</span></div>";
                         }
                         if (ao == 1) {
                             var Q = "auto";
                             var aa = this._views[this._view];
                             var z = u.from;
                             var ay = u.to;
-                            if (aa.timeRuler && aa.timeRuler.formatString) {
-                                Q = aa.timeRuler.formatString
-                            }
+                            if (aa.timeRuler && aa.timeRuler.formatString) Q = aa.timeRuler.formatString;
                             var ad = Q;
                             var I = Q;
                             if (Q === "auto") {
-                                if ((z.hour() == 0 && z.minute() == 0) || (z.hour() == 12 && z.minute() == 0)) {
-                                    var ad = "hh tt"
-                                } else {
-                                    var ad = "hh:mm"
-                                }
-                                if ((ay.hour() == 0 && ay.minute() == 0) || (ay.hour() == 12 && ay.minute() == 0)) {
-                                    var I = "hh tt"
-                                } else {
-                                    var I = "hh:mm"
-                                }
+                                if ((z.hour() == 0 && z.minute() == 0) || (z.hour() == 12 && z.minute() == 0))
+                                    var ad = "hh tt";
+                                else 
+                                    var ad = "hh:mm";
+                                
+                                if ((ay.hour() == 0 && ay.minute() == 0) || (ay.hour() == 12 && ay.minute() == 0))
+                                    var I = "hh tt";
+                                else
+                                    var I = "hh:mm";
                             }
                             var ar = ab.toTP("jqx-scheduler-agenda-time");
                             if (u.allDay) {
-                                an = "<span class='" + ar + "'>" + ab.schedulerLocalization.agendaAllDayString + "</span>"
+                                an = "<span class='" + ar + "'>" + ab.schedulerLocalization.agendaAllDayString + "</span>";
                             } else {
-                                if (!ab.rtl) {
-                                    an = "<span class='" + ar + "'>" + z.toString(ad, ab.schedulerLocalization) + " - " + ay.toString(I, ab.schedulerLocalization) + "</span>"
-                                } else {
-                                    an = "<span class='" + ar + "'>" + ay.toString(I, ab.schedulerLocalization) + " - " + z.toString(ad, ab.schedulerLocalization) + "</span>"
-                                }
+                                if (!ab.rtl)
+                                    an = "<span class='" + ar + "'>" + z.toString(ad, ab.schedulerLocalization) + " - " + ay.toString(I, ab.schedulerLocalization) + "</span>";
+                                else
+                                    an = "<span class='" + ar + "'>" + ay.toString(I, ab.schedulerLocalization) + " - " + z.toString(ad, ab.schedulerLocalization) + "</span>";
                             }
                         } else {
                             if (ao == 2) {
@@ -9103,50 +8332,40 @@ License: https://jqwidgets.com/license/
                                             var j = this.toString();
                                             var w = ab.toTP("jqx-scheduler-agenda-appointment-resource jqx-scheduler-legend");
                                             if (ab.rtl) {
-                                                var w = ab.toTP("jqx-scheduler-agenda-appointment-resource-rtl jqx-scheduler-legend")
+                                                var w = ab.toTP("jqx-scheduler-agenda-appointment-resource-rtl jqx-scheduler-legend");
                                             }
                                             var t = "<div data-key='" + u.id + "' class='" + w + "' style='margin-right: 5px; border-color: " + i.border + "; background: " + i.background + ";' class='" + ab.toThemeProperty("jqx-scheduler-legend") + "'></div>";
-                                            an = t
+                                            an = t;
                                         }
                                     })
                                 }
-                                var W = u.subject ? u.subject : "(No Title)";
+                                var W = u.subject ? u.subject : "(Sin Nombre)";
                                 var C = u.location;
                                 var y = u.description;
                                 var T = u.status ? ab.schedulerLocalization.editDialogStatuses[u.status] : "";
                                 var b = u.isRecurrentAppointment();
                                 var B = u.isException();
                                 var Y = "" + ab.schedulerLocalization.editDialogSubjectString + ": " + W + "";
-                                if (C) {
-                                    Y += "\n" + ab.schedulerLocalization.editDialogLocationString + ": " + C + ""
-                                }
-                                if (y) {
-                                    Y += "\n" + ab.schedulerLocalization.editDialogDescriptionString + ": " + y + ""
-                                }
-                                if (T) {
-                                    Y += "\n" + ab.schedulerLocalization.editDialogStatusString + ": " + T + ""
-                                }
-                                if (b) {
-                                    Y += "\n" + ab.schedulerLocalization.editDialogRepeatString + ": " + b + ""
-                                }
+                                if (C) Y += "\n" + ab.schedulerLocalization.editDialogLocationString + ": " + C + "";
+                                if (y) Y += "\n" + ab.schedulerLocalization.editDialogDescriptionString + ": " + y + "";
+                                if (T) Y += "\n" + ab.schedulerLocalization.editDialogStatusString + ": " + T + "";
+                                if (b) Y += "\n" + ab.schedulerLocalization.editDialogRepeatString + ": " + b + "";
                                 var ar = ab.toTP("jqx-scheduler-agenda-appointment jqx-scheduler-legend-label");
-                                if (ab.rtl) {
-                                    var ar = ab.toTP("jqx-scheduler-agenda-appointment-rtl jqx-scheduler-legend-label")
-                                }
-                                an += "<span data-key='" + u.id + "' title='" + Y + "' class='" + ar + "'>" + W + "</span>"
+                                if (ab.rtl) var ar = ab.toTP("jqx-scheduler-agenda-appointment-rtl jqx-scheduler-legend-label");
+                                an += "<span data-key='" + u.id + "' title='" + Y + "' class='" + ar + "'>" + W + "</span>";
                             }
                         }
                         e += an;
                         e += "</td>";
-                        l += e
+                        l += e;
                     }
                     if (N == 0) {
                         ab.table[0].style.width = m + 2 + "px";
                         ab.pinnedtable[0].style.width = m + 2 + "px";
-                        N = m
+                        N = m;
                     }
                     l += "</tr>";
-                    v += l
+                    v += l;
                 }
             }
             v += "</table>";
@@ -9159,12 +8378,12 @@ License: https://jqwidgets.com/license/
             ab._pinnedtable = V;
             if (a.jqx.browser.msie && a.jqx.browser.version < 10) {
                 ab._table[0].style.width = N + "px";
-                ab._pinnedtable[0].style.width = N + "px"
+                ab._pinnedtable[0].style.width = N + "px";
             }
             if (R === 0) {
                 ab._table[0].style.width = (2 + N) + "px";
                 ab._pinnedtable[0].style.width = (2 + N) + "px";
-                ab._pinnedtable[0].style.display = "none"
+                ab._pinnedtable[0].style.display = "none";
             }
             ab._pinnedtable[0].style.display = "none";
             ab._table.addClass("jqx-grid-table-one-cell jqx-disableselect");
@@ -9176,29 +8395,25 @@ License: https://jqwidgets.com/license/
                 var i = {};
                 i.cells = new Array();
                 i.indexOf = function(j) {
-                    for (var r = 0; r < i.cells.length; r++) {
-                        if (i.cells[r].getAttribute("data-key") == j.getAttribute("data-key")) {
-                            return r
-                        }
-                    }
-                    return -1
+                    for (var r = 0; r < i.cells.length; r++)
+                        if (i.cells[r].getAttribute("data-key") == j.getAttribute("data-key"))
+                            return r;
+                    return -1;
                 };
-                return i
+                return i;
             }
             ab.cellWidth = 0;
             ab.cellHeight = 0;
             var L = ab.table[0].rows.length;
             for (var at = 0; at < L; at++) {
                 var ak = ab.table[0].rows[at];
-                if (ak.getAttribute("data-group-row")) {
-                    continue
-                }
+                if (ak.getAttribute("data-group-row")) continue;
                 var A = new p();
                 A.aboveRow = null;
                 A.belowRow = null;
                 if (ab.rows.length > 0) {
                     A.aboveRow = ab.rows[ab.rows.length - 1];
-                    ab.rows[ab.rows.length - 1].belowRow = A
+                    ab.rows[ab.rows.length - 1].belowRow = A;
                 }
                 A.element = ak;
                 ab.rows.push(A);
@@ -9210,53 +8425,33 @@ License: https://jqwidgets.com/license/
                             var aw = ab.table[0].rows[ac];
                             if (ab.table[0].rows[ac].cells.length == ab.columns.records.length) {
                                 var P = aw.cells[0];
-                                if (!ab.columnCells[A.cells.length]) {
-                                    ab.columnCells[A.cells.length] = new Array()
-                                }
+                                if (!ab.columnCells[A.cells.length]) ab.columnCells[A.cells.length] = new Array()
                                 ab.columnCells[A.cells.length].push(P);
-                                if (ab.cellWidth == 0) {
-                                    ab.cellWidth = P.clientWidth
-                                }
-                                if (ab.cellHeight == 0 && (L == 1 || at > 1)) {
-                                    ab.cellHeight = P.clientHeight
-                                }
+                                if (ab.cellWidth == 0) ab.cellWidth = P.clientWidth;
+                                if (ab.cellHeight == 0 && (L == 1 || at > 1)) ab.cellHeight = P.clientHeight
                                 A.cells.push(P);
                                 S = true;
-                                break
+                                break;
                             }
-                            ac--
+                            ac--;
                         }
                     }
                     var P = ak.cells[aq];
-                    if (P.style.display === "none") {
-                        continue
-                    }
-                    if (P.className.indexOf("jqx-grid-cell-pinned") >= 0) {
-                        continue
-                    }
-                    if (!ab.columnCells[A.cells.length]) {
-                        ab.columnCells[A.cells.length] = new Array()
-                    }
+                    if (P.style.display === "none") continue;
+                    if (P.className.indexOf("jqx-grid-cell-pinned") >= 0) continue;
+                    if (!ab.columnCells[A.cells.length]) ab.columnCells[A.cells.length] = new Array();
                     ab.columnCells[A.cells.length].push(P);
-                    if (ab.cellWidth == 0) {
-                        ab.cellWidth = P.clientWidth
-                    }
-                    if (ab.cellHeight == 0 && (L == 1 || at > 1)) {
-                        ab.cellHeight = P.clientHeight
-                    }
+                    if (ab.cellWidth == 0) ab.cellWidth = P.clientWidth;
+                    if (ab.cellHeight == 0 && (L == 1 || at > 1)) ab.cellHeight = P.clientHeight;
                     A.cells.push(P);
-                    ab.rowByCell[P.getAttribute("data-key")] = A
+                    ab.rowByCell[P.getAttribute("data-key")] = A;
                 }
             }
-            if (R === 0) {
-                ab._table[0].style.tableLayout = "auto"
-            }
+            if (R === 0) ab._table[0].style.tableLayout = "auto";
             ab._updateScrollbars(ab.host.height());
             ab._arrange();
-            if (ab.rendered) {
-                ab.rendered()
-            }
-            ab.renderedTime = new Date()
+            if (ab.rendered) ab.rendered();
+            ab.renderedTime = new Date();
         },
         _renderrows: function() {
             var V = this;

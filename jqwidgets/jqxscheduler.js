@@ -1353,116 +1353,80 @@ License: https://jqwidgets.com/license/
                     for (var G in h.appointmentDataFields) {
                         var l = h.appointmentDataFields[G];
                         var x = p[l];
-                        if (G == "from" || G == "to") {
-                            x = new a.jqx.date(x)
-                        }
+                        if (G == "from" || G == "to") x = new a.jqx.date(x);
                         if (G == "style") {
                             if (x) {
                                 var s = h.getAppointmentColors(x);
                                 n.color = s.color;
                                 n.background = s.background;
-                                n.borderColor = s.border
+                                n.borderColor = s.border;
                             }
                         }
                         if (G == "recurrencePattern") {
                             if (x) {
                                 x = new a.jqx.scheduler.recurrencePattern(x);
-                                x.timeZone = p.timeZone || h.timeZone
+                                x.timeZone = p.timeZone || h.timeZone;
                             }
                         }
                         if (G == "recurrenceException") {
                             var B = new Array();
                             if (x) {
-                                if (x.indexOf("EXDATE:") >= 0) {
-                                    x = x.substring(x.indexOf("EXDATE:") + 7)
-                                }
+                                if (x.indexOf("EXDATE:") >= 0) x = x.substring(x.indexOf("EXDATE:") + 7);
                                 var t = new Array();
-                                if (x.indexOf(",") >= 0) {
-                                    t = x.split(",")
-                                } else {
-                                    t.push(x)
-                                }
+                                if (x.indexOf(",") >= 0) t = x.split(",");
+                                else t.push(x);
                                 for (var A = 0; A < t.length; A++) {
                                     var w = t[A];
                                     if (w.indexOf(";") >= 0) {
                                         var q = w.split(";")[1];
                                         w = w.split(";")[0];
                                         if (q.toLowerCase().indexOf("display") >= 0 && q.toLowerCase().indexOf("none")) {
-                                            n.hidden = true
+                                            n.hidden = true;
                                         }
                                     }
                                     try {
                                         var E = a.jqx.scheduler.utilities.untilStringToDate(w);
                                         if (E != "Invalid Date") {
                                             if (n.timeZone) {
-                                                E = new a.jqx.date(E, n.timeZone)
+                                                E = new a.jqx.date(E, n.timeZone);
                                             } else {
-                                                if (h.timeZone) {
-                                                    E = E.toTimeZone(h.timeZone)
-                                                } else {
-                                                    E = new a.jqx.date(E)
-                                                }
+                                                if (h.timeZone) E = E.toTimeZone(h.timeZone);
+                                                else E = new a.jqx.date(E);
                                             }
                                         }
                                     } catch (F) {
-                                        var E = new a.jqx.date(w, h.timeZone)
+                                        var E = new a.jqx.date(w, h.timeZone);
                                     }
-                                    B.push(E)
+                                    B.push(E);
                                 }
                             }
-                            x = B
+                            x = B;
                         }
-                        n[G] = x
+                        n[G] = x;
                     }
                     for (var u in o) {
                         var G = o[u];
                         if (n[G] == undefined) {
                             var x = "";
-                            if (G == "originalData") {
-                                continue
-                            }
-                            if (G == "ownerId") {
-                                x = null
-                            }
-                            if (G == "timeZone") {
-                                x = null
-                            }
-                            if (G == "recurrencePattern") {
-                                x = null
-                            }
-                            if (G == "recurrenceException") {
-                                x = []
-                            }
-                            if (G == "allDay") {
-                                x = false
-                            }
-                            if (G == "draggable") {
-                                x = true
-                            }
-                            if (G == "resizable") {
-                                x = true
-                            }
-                            if (G == "hidden") {
-                                x = false
-                            }
-                            if (G == "resourceId") {
-                                x = null
-                            }
-                            if (G == "from") {
-                                x = new a.jqx.date()
-                            }
-                            if (G == "to") {
-                                x = new a.jqx.date().addHours(1)
-                            }
-                            n[G] = x
+                            if (G == "originalData") continue;
+                            if (G == "ownerId") x = null;
+                            if (G == "timeZone") x = null;
+                            if (G == "recurrencePattern") x = null;
+                            if (G == "recurrenceException") x = [];
+                            if (G == "allDay") x = false;
+                            if (G == "draggable") x = true;
+                            if (G == "resizable") x = true;
+                            if (G == "hidden") x = false;
+                            if (G == "resourceId") x = null;
+                            if (G == "from") x = new a.jqx.date();
+                            if (G == "to") x = new a.jqx.date().addHours(1);
+                            n[G] = x;
                         }
                     }
                     n.originalData = p;
                     if (h.resources && !h.resources.source) {
                         if (!h._resourcesBinding) {
-                            if (m.indexOf(n.resourceId) == -1) {
-                                m.push(n.resourceId)
-                            }
+                            if (m.indexOf(n.resourceId) == -1) m.push(n.resourceId);
                         }
                     }
                     h.appointmentsByKey[p.uid] = n;
@@ -1470,17 +1434,15 @@ License: https://jqwidgets.com/license/
                     var v = new a.jqx.scheduler.appointment(n);
                     if (n.timeZone) {
                         v.from = v.from.toTimeZone(n.timeZone);
-                        v.to = v.to.toTimeZone(n.timeZone)
+                        v.to = v.to.toTimeZone(n.timeZone);
                     }
                     if (h.timeZone) {
-                        if (!n.timeZone) {
-                            v.timeZone = h.timeZone
-                        }
+                        if (!n.timeZone) v.timeZone = h.timeZone;
                         v.from = v.from.toTimeZone(h.timeZone);
-                        v.to = v.to.toTimeZone(h.timeZone)
+                        v.to = v.to.toTimeZone(h.timeZone);
                     } else {
                         v.from = v.from.toTimeZone(null);
-                        v.to = v.to.toTimeZone(null)
+                        v.to = v.to.toTimeZone(null);
                     }
                     n.jqxAppointment = v;
                     if (n.recurrenceException) {
@@ -1489,50 +1451,40 @@ License: https://jqwidgets.com/license/
                             var r = v.clone();
                             r.occurrenceFrom = E;
                             var k = v.duration();
-                            if (h.allDay) {
-                                k = new a.jqx.timeSpan(10000 * (h.to - h.from))
-                            }
+                            if (h.allDay) k = new a.jqx.timeSpan(10000 * (h.to - h.from));
                             r.from = E;
                             r.to = E.add(k);
                             r.rootAppointment = v;
                             r.hidden = true;
-                            v.exceptions.push(r)
+                            v.exceptions.push(r);
                         }
                     }
                     v.boundAppointment = n;
                     v.scheduler = h;
-                    h.uiappointments.push(v)
+                    h.uiappointments.push(v);
                 }
-                if (!h._resourcesBinding) {
-                    h._resources = m
-                }
+                if (!h._resourcesBinding) h._resources = m;
                 c++;
-                i()
+                i();
             };
             this.resourcesDataView.update = function(k) {
                 if (h.resources.dataField) {
                     h._resources = new Array();
                     for (var l = 0; l < k.length; l++) {
-                        if (h._resources.indexOf(k[l][h.resources.dataField]) >= 0) {
-                            continue
-                        }
-                        if (k[l][h.resources.dataField]) {
-                            h._resources.push(k[l][h.resources.dataField])
-                        }
+                        if (h._resources.indexOf(k[l][h.resources.dataField]) >= 0) continue;
+                        if (k[l][h.resources.dataField]) h._resources.push(k[l][h.resources.dataField]);
                     }
                 } else {
-                    h._resources = k
+                    h._resources = k;
                 }
-                if (h.resources.orientation == undefined) {
-                    h.resources.orientation = "none"
-                }
+                if (h.resources.orientation == undefined) h.resources.orientation = "none";
                 c++;
-                i()
+                i();
             };
             this.dataview.databind(b);
             if (this.resources && this.resources.source) {
                 this._resourcesBinding = true;
-                this.resourcesDataView.databind(this.resources.source)
+                this.resourcesDataView.databind(this.resources.source);
             }
         },
         _raiseEvent: function(g, c) {
@@ -1549,82 +1501,64 @@ License: https://jqwidgets.com/license/
             f.args = e;
             var b = this.host.trigger(f);
             c = f.args;
-            return b
+            return b;
         },
         ensureAppointmentVisible: function(b) {
             if (this.appointmentsByKey[b]) {
-                return this._ensureAppointmentVisible(this.appointmentsByKey[b].jqxAppointment)
+                return this._ensureAppointmentVisible(this.appointmentsByKey[b].jqxAppointment);
             }
-            return false
+            return false;
         },
         _ensureAppointmentVisible: function(h) {
             if (this.vScrollBar[0].style.visibility === "hidden" && this.hScrollBar[0].style.visibility === "hidden") {
-                return false
+                return false;
             }
-            if (!h) {
-                return false
-            }
+            if (!h) return false;
             var k = this.getViewStart();
             var i = this.getViewEnd();
             var p = a.jqx.scheduler.utilities.rangeIntersection(h.from, h.to, k, i);
             if (!p) {
                 this.navigateTo(h.from);
-                return this._ensureAppointmentVisible(h)
+                return this._ensureAppointmentVisible(h);
             }
             var G = h.id;
             var t = a('[data-key="' + G + '"]');
             if (t.length > 0) {
-                var c = t[0]
+                var c = t[0];
             } else {
                 if (h.elements && h.elements.length > 0) {
                     var f = h.elements[0];
-                    var c = f.element
+                    var c = f.element;
                 } else {
-                    return false
+                    return false;
                 }
             }
             var z = this.vScrollInstance.value;
             var y = this.hScrollInstance.value;
-            if (this.rtl) {
-                var y = this.hScrollInstance.max - y
-            }
+            if (this.rtl) var y = this.hScrollInstance.max - y;
             var s = this.element.clientHeight;
             var v = this.element.clientWidth;
             var B = 0;
-            if (!this.columnGroups) {
-                B += this.showHeader ? this.columnsHeight : 0
-            } else {
-                B += this.showHeader ? this.columnsheader.height() : 0
-            }
+            if (!this.columnGroups) B += this.showHeader ? this.columnsHeight : 0;
+            else B += this.showHeader ? this.columnsheader.height() : 0;
             var r = this._views[this._view].type;
             var n = this._views[this._view];
             var D = 0;
             if (r == "dayView" || r == "weekView") {
                 var x = this.showAllDayRow;
                 if (n.timeRuler && (r === "dayView" || r === "weekView")) {
-                    if (n.timeRuler.showAllDayRow != undefined) {
-                        x = n.timeRuler.showAllDayRow
-                    }
+                    if (n.timeRuler.showAllDayRow != undefined) x = n.timeRuler.showAllDayRow;
                 }
                 if (x) {
-                    if (this.tableRows == 1) {
-                        D = this.table[0].rows[0].clientHeight
-                    } else {
-                        D = this.table[0].rows[1].clientHeight
-                    }
+                    if (this.tableRows == 1) D = this.table[0].rows[0].clientHeight;
+                    else D = this.table[0].rows[1].clientHeight;
                 }
                 var q = h.duration().days() >= 1 || h.allDay;
-                if (q && this.tableRows == 1 && this.tableColumns == 1) {
-                    return false
-                }
+                if (q && this.tableRows == 1 && this.tableColumns == 1) return false;
             }
-            if (this.showToolbar) {
-                B += this.toolbarHeight
-            }
+            if (this.showToolbar) B += this.toolbarHeight;
             s -= B;
-            if (this.showLegend && this._resources.length > 0) {
-                s -= this.legendHeight
-            }
+            if (this.showLegend && this._resources.length > 0) s -= this.legendHeight;
             var e = 0;
             var l = 0;
             var d = z - e;
@@ -1638,46 +1572,28 @@ License: https://jqwidgets.com/license/
             var m = j + g;
             if (j <= d) {
                 var A = j;
-                if (A < 0) {
-                    A = 0
-                }
-                if (!q || (q && this.tableRows > 1)) {
-                    this.vScrollBar.jqxScrollBar("setPosition", A)
-                }
+                if (A < 0) A = 0;
+                if (!q || (q && this.tableRows > 1)) this.vScrollBar.jqxScrollBar("setPosition", A);
             } else {
                 if (j >= C) {
                     var A = j;
-                    if (A < 0) {
-                        A = 0
-                    }
-                    if (!q || (q && this.tableRows > 1)) {
-                        this.vScrollBar.jqxScrollBar("setPosition", A - 2)
-                    }
+                    if (A < 0) A = 0;
+                    if (!q || (q && this.tableRows > 1)) this.vScrollBar.jqxScrollBar("setPosition", A - 2);
                 }
             }
             var u = E.position().left;
             u = Math.round(u);
             var b = u + E.outerWidth();
-            if (Math.round(E.position().left) === 0) {
-                this.hScrollBar.jqxScrollBar("setPosition", 0)
-            }
+            if (Math.round(E.position().left) === 0) this.hScrollBar.jqxScrollBar("setPosition", 0);
             if (u <= w) {
                 var o = u - E.outerWidth() + l;
-                if (o < 0) {
-                    o = 0
-                }
-                if (!this.rtl) {
-                    this.hScrollBar.jqxScrollBar("setPosition", u)
-                } else {
-                    this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - u)
-                }
+                if (o < 0) o = 0;
+                if (!this.rtl) this.hScrollBar.jqxScrollBar("setPosition", u);
+                else this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - u);
             }
             if (u > F) {
-                if (!this.rtl) {
-                    this.hScrollBar.jqxScrollBar("setPosition", u)
-                } else {
-                    this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - u)
-                }
+                if (!this.rtl) this.hScrollBar.jqxScrollBar("setPosition", u);
+                else this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - u);
             }
         },
         ensureVisible: function(d, l) {
@@ -1687,35 +1603,29 @@ License: https://jqwidgets.com/license/
                 for (var e = 0; e < g.rows[f].cells.length; e++) {
                     var k = g.rows[f].cells[e];
                     if (l) {
-                        if (k.getAttribute("data-view") !== l) {
-                            continue
-                        }
+                        if (k.getAttribute("data-view") !== l) continue;
                     }
                     var h = k.getAttribute("data-date");
                     var b = g._getDateByString;
                     var c = b(h);
-                    if (c.valueOf() == m.valueOf()) {
-                        return g._ensureVisible(k)
-                    }
+                    if (c.valueOf() == m.valueOf()) return g._ensureVisible(k);
                 }
             }
         },
         _ensureVisible: function(b) {
             if (this.vScrollBar[0].style.visibility === "hidden" && this.hScrollBar[0].style.visibility === "hidden") {
-                return false
+                return false;
             }
             var t = this.vScrollBar.jqxScrollBar("value");
             var s = this.hScrollBar.jqxScrollBar("value");
-            if (this.rtl) {
-                s = this.hScrollBar.jqxScrollBar("max") - s
-            }
+            if (this.rtl) s = this.hScrollBar.jqxScrollBar("max") - s;
             var m = this._hostHeight;
             var p = this._hostWidth;
             var w = 0;
             if (!this.columnGroups) {
-                w += this.showHeader ? this.columnsHeight : 0
+                w += this.showHeader ? this.columnsHeight : 0;
             } else {
-                w += this.showHeader ? this.columnsheader.height() : 0
+                w += this.showHeader ? this.columnsheader.height() : 0;
             }
             if (this.showToolbar) {
                 w += this.toolbarHeight
@@ -6447,7 +6357,7 @@ License: https://jqwidgets.com/license/
             var c = 0;
             if (b > 0 && f.rtl) {
                 b = 0;
-                c = 1
+                c = 1;
             }
             for (var e = 0; e < l.length; e++) {
                 var k = l[e].cells;
@@ -6463,16 +6373,12 @@ License: https://jqwidgets.com/license/
                                 if (h == f.focusedCell && f.focused) {
                                     g = g.replace(" jqx-scheduler-cell-focus", "");
                                     g = g.replace(" jqx-scheduler-cell-focus-" + f.theme, "");
-                                    if (!f.selectedAppointment) {
-                                        g = g += " " + f.toTP("jqx-scheduler-cell-focus")
-                                    }
+                                    if (!f.selectedAppointment) g = g += " " + f.toTP("jqx-scheduler-cell-focus");
                                 }
                             }
-                            if (h.className != g) {
-                                h.className = g
-                            }
+                            if (h.className != g) h.className = g;
                             h.jqxClassName = g;
-                            continue
+                            continue;
                         }
                         g = g.replace(" jqx-fill-state-pressed", "");
                         g = g.replace(" jqx-fill-state-pressed-" + f.theme, "");
@@ -6484,43 +6390,33 @@ License: https://jqwidgets.com/license/
                         g = g.replace(" jqx-scheduler-cell-selected-" + f.theme, "");
                         g = g += " " + f.toTP("jqx-fill-state-pressed jqx-grid-cell-selected jqx-scheduler-cell-selected");
                         if (h == f.focusedCell && f.focused && !f.selectedAppointment) {
-                            g = g += " " + f.toTP("jqx-scheduler-cell-focus")
+                            g = g += " " + f.toTP("jqx-scheduler-cell-focus");
                         }
-                        if (h.className != g) {
-                            h.className = g
-                        }
-                        h.jqxClassName = g
+                        if (h.className != g) h.className = g;
+                        h.jqxClassName = g;
                     } else {
                         var g = h.jqxClassName || h.className;
                         if (g.indexOf("jqx-fill-state-pressed") == -1) {
                             if (h != f.focusedCell) {
                                 g = g.replace(" jqx-scheduler-cell-focus", "");
-                                g = g.replace(" jqx-scheduler-cell-focus-" + f.theme, "")
+                                g = g.replace(" jqx-scheduler-cell-focus-" + f.theme, "");
                             } else {
                                 if (h == f.focusedCell && f.focused) {
                                     g = g.replace(" jqx-scheduler-cell-focus", "");
                                     g = g.replace(" jqx-scheduler-cell-focus-" + f.theme, "");
-                                    if (!f.selectedAppointment) {
-                                        g = g += " " + f.toTP("jqx-scheduler-cell-focus")
-                                    }
+                                    if (!f.selectedAppointment) g = g += " " + f.toTP("jqx-scheduler-cell-focus");
                                 }
                             }
-                            if (h.className != g) {
-                                h.className = g
-                            }
+                            if (h.className != g) h.className = g;
                             h.jqxClassName = g;
-                            continue
+                            continue;
                         } else {
                             if (h == f.focusedCell && f.focused) {
                                 g = g.replace(" jqx-scheduler-cell-focus", "");
                                 g = g.replace(" jqx-scheduler-cell-focus-" + f.theme, "");
-                                if (!f.selectedAppointment) {
-                                    g = g += " " + f.toTP("jqx-scheduler-cell-focus")
-                                }
-                                if (h.className != g) {
-                                    h.className = g
-                                }
-                                h.jqxClassName = g
+                                if (!f.selectedAppointment) g = g += " " + f.toTP("jqx-scheduler-cell-focus");
+                                if (h.className != g) h.className = g;
+                                h.jqxClassName = g;
                             }
                         }
                         g = g.replace(" jqx-fill-state-pressed", "");
@@ -6532,13 +6428,11 @@ License: https://jqwidgets.com/license/
                         g = g.replace(" jqx-scheduler-cell-selected", "");
                         g = g.replace(" jqx-scheduler-cell-selected-" + f.theme, "");
                         if (h == f.focusedCell && f.focused && !f.selectedAppointment) {
-                            g = g += " " + f.toTP("jqx-scheduler-cell-focus")
+                            g = g += " " + f.toTP("jqx-scheduler-cell-focus");
                         }
-                        if (h.className != g) {
-                            h.className = g
-                        }
+                        if (h.className != g) h.className = g;
                         h.jqxClassName = g;
-                        h.removeAttribute("data-selected")
+                        h.removeAttribute("data-selected");
                     }
                 }
             }
@@ -6556,7 +6450,7 @@ License: https://jqwidgets.com/license/
                             var g = b.attr("data-role");
                             if (!g) {
                                 e = b.attr("data-key");
-                                return e
+                                return e;
                             }
                         }
                     }
@@ -6568,50 +6462,34 @@ License: https://jqwidgets.com/license/
                                 var g = b.attr("data-role");
                                 if (!g) {
                                     e = b.attr("data-key");
-                                    return e
+                                    return e;
                                 }
                             }
                         }
                     }
                 }
-                return null
+                return null;
             }
-            return e
+            return e;
         },
         getRows: function() {
             var h = this._views[this._view].type;
             var k = this._views[this._view];
             var d = "halfHour";
-            if (k.timeRuler && k.timeRuler.scale) {
-                d = k.timeRuler.scale
-            }
+            if (k.timeRuler && k.timeRuler.scale) d = k.timeRuler.scale;
             var j = 24;
             var b = this.showAllDayRow;
             if (k.timeRuler && (h === "dayView" || h === "weekView")) {
                 var c = 0;
                 var f = 23;
-                if (k.timeRuler.scaleStartHour != undefined) {
-                    var c = parseInt(k.timeRuler.scaleStartHour)
-                }
-                if (k.timeRuler.scaleEndHour != undefined) {
-                    var f = parseInt(k.timeRuler.scaleEndHour)
-                }
-                if (c < 0) {
-                    c = 0
-                }
-                if (f < 0) {
-                    f = 23
-                }
-                if (c > 23) {
-                    c = 0
-                }
-                if (f > 23) {
-                    f = 23
-                }
+                if (k.timeRuler.scaleStartHour != undefined) var c = parseInt(k.timeRuler.scaleStartHour);
+                if (k.timeRuler.scaleEndHour != undefined) var f = parseInt(k.timeRuler.scaleEndHour);
+                if (c < 0) c = 0;
+                if (f < 0) f = 23;
+                if (c > 23) c = 0;
+                if (f > 23) f = 23;
                 j = f - c + 1;
-                if (k.timeRuler.showAllDayRow != undefined) {
-                    b = k.timeRuler.showAllDayRow
-                }
+                if (k.timeRuler.showAllDayRow != undefined) b = k.timeRuler.showAllDayRow;
             }
             var l = new Array();
             var g = 0;
@@ -6621,23 +6499,19 @@ License: https://jqwidgets.com/license/
                 default:
                     var g = j * 2;
                     if (d === "hour" || d === "sixtyMinutes") {
-                        var g = j
+                        var g = j;
                     } else {
                         if (d === "quarterHour" || d === "fifteenMinutes") {
-                            var g = j * 4
+                            var g = j * 4;
                         } else {
                             if (d === "tenMinutes") {
-                                var g = j * 6
+                                var g = j * 6;
                             } else {
-                                if (d === "fiveMinutes") {
-                                    var g = j * 12
-                                }
+                                if (d === "fiveMinutes") var g = j * 12;
                             }
                         }
                     }
-                    if (b) {
-                        g++
-                    }
+                    if (b) g++;
                     break;
                 case "monthView":
                     var g = 6;
@@ -6649,14 +6523,14 @@ License: https://jqwidgets.com/license/
                     break;
                 case "agendaView":
                     var g = this.appointments ? this.appointments.length : 0;
-                    break
+                    break;
             }
             for (var e = 0; e < g; e++) {
                 l.push({
                     uid: e
                 })
             }
-            return l
+            return l;
         },
         _getDateByString: function(j) {
             var e = j.split(" ");
@@ -6669,45 +6543,27 @@ License: https://jqwidgets.com/license/
             var c = parseInt(h[1], 10);
             var k = parseInt(h[2], 10);
             var b = new Date(g, f, i, d, c, k);
-            if (g < 1970) {
-                b.setFullYear(g, f, i)
-            }
-            return b
+            if (g < 1970) b.setFullYear(g, f, i);
+            return b;
         },
         _getCellByDate: function(b, d, c) {
             var m = this.rows;
-            if (d === undefined) {
-                d = false
-            }
+            if (d === undefined) d = false;
             if (c === undefined) {
-                if (this.focusedCell) {
-                    c = this.focusedCell.getAttribute("data-view")
-                }
+                if (this.focusedCell) c = this.focusedCell.getAttribute("data-view");
             }
             for (var g = 0; g < m.length; g++) {
                 var l = m[g];
-                if (l.element.getAttribute("data-group-row")) {
-                    continue
-                }
+                if (l.element.getAttribute("data-group-row")) continue;
                 for (var f = 0; f < l.cells.length; f++) {
                     var k = l.cells[f];
-                    if (k.getAttribute("rowspan") != null) {
-                        continue
-                    }
-                    if (k.getAttribute("data-view") !== c) {
-                        continue
-                    }
-                    if (k.getAttribute("data-time-slot")) {
-                        continue
-                    }
-                    if (d && k.getAttribute("data-end-date") != null) {
-                        continue
-                    }
+                    if (k.getAttribute("rowspan") != null) continue;
+                    if (k.getAttribute("data-view") !== c) continue;
+                    if (k.getAttribute("data-time-slot")) continue;
+                    if (d && k.getAttribute("data-end-date") != null) continue;
                     var h = k.getAttribute("data-date");
                     var e = this._getDateByString(h);
-                    if (e.valueOf() == b.valueOf()) {
-                        return k
-                    }
+                    if (e.valueOf() == b.valueOf()) return k;
                 }
             }
         },
@@ -6715,9 +6571,7 @@ License: https://jqwidgets.com/license/
             if (a.jqx.credits !== "75CE8878-FCD1-4EC7-9249-BA0F153A5DE8") {
                 var c = "Todos los Derechos Reservados 2020 - Tottus Perú";
                 if (location.hostname.indexOf(c.substring(4)) == -1) {
-                    if (this._gridRenderElement) {
-                        a(this._gridRenderElement).remove()
-                    }
+                    if (this._gridRenderElement) a(this._gridRenderElement).remove();
                     var d = String.fromCharCode(83, 80, 65, 78);
                     var b = String.fromCharCode(72, 84, 84, 80, 58, 47, 47);
                     var e = document.createElement(d);
@@ -6735,49 +6589,40 @@ License: https://jqwidgets.com/license/
                         open(b + c)
                     };
                     this.content[0].appendChild(e);
-                    this._gridRenderElement = e
+                    this._gridRenderElement = e;
                 }
             }
         },
         _handleKey: function(s) {
-            if (this._loading) {
-                return true
-            }
+            if (this._loading) return true;
             var t = s.shiftKey;
             var m = s.ctrlKey || s.metaKey;
             var i = this;
             var w = s.charCode ? s.charCode : s.keyCode ? s.keyCode : 0;
             if (i._hasOpenedMenu) {
-                if (w == 27) {
-                    i.closeMenu()
-                } else {
-                    i.menu.jqxMenu("focus")
-                }
-                return true
+                if (w == 27) i.closeMenu();
+                else i.menu.jqxMenu("focus");
+                return true;
             }
             if (w === 13 || (i.selectedAppointment && w == 46)) {
                 if (i.editRecurrenceDialog && i.editRecurrenceDialog.jqxWindow("isOpen")) {
-                    return true
+                    return true;
                 }
                 if (i._editDialog && i._editDialog.jqxWindow("isOpen")) {
-                    return true
+                    return true;
                 }
                 if (!i.selectedAppointment) {
                     i._initDialog();
-                    i._openDialog()
+                    i._openDialog();
                 } else {
                     var c = i.getJQXAppointmentByElement(i.selectedAppointment);
                     if (!c.readOnly) {
                         if (w == 46) {
                             var o = i._initDialog(c, "delete");
-                            if (o !== false) {
-                                i._openDialog()
-                            }
+                            if (o !== false) i._openDialog();
                         } else {
                             var o = i._initDialog(c);
-                            if (o !== false) {
-                                i._openDialog()
-                            }
+                            if (o !== false) i._openDialog();
                         }
                     }
                 }
@@ -6790,7 +6635,7 @@ License: https://jqwidgets.com/license/
                     i._prepareAppointmentsInView(f, e);
                     i._renderAppointments(f, e);
                     i._removeFeedbackAndStopResize();
-                    return false
+                    return false;
                 }
             }
             var r = function(z) {
@@ -6799,9 +6644,7 @@ License: https://jqwidgets.com/license/
                 var x = y.elements[0].cells[0].cell;
                 var L = y.elements[y.elements.length - 1].cells[y.elements[y.elements.length - 1].cells.length - 1].cell;
                 var E = i.rows[i.rows.length - 1].cells[i.rows[i.rows.length - 1].cells.length - 1];
-                if (t || (!t && !m && (z == "down" || z == "right"))) {
-                    x = L
-                }
+                if (t || (!t && !m && (z == "down" || z == "right"))) x = L;
                 var H = i._views[i._view].type;
                 var G = i._views[i._view];
                 var I = x;
@@ -6810,13 +6653,11 @@ License: https://jqwidgets.com/license/
                         var D = i.rowByCell[x.getAttribute("data-key")];
                         var F = D.indexOf(x);
                         if (F > 0 && !t) {
-                            I = D.cells[F - 1]
+                            I = D.cells[F - 1];
                         } else {
                             if (H == "monthView" && !t) {
                                 var A = D.aboveRow;
-                                if (A) {
-                                    I = A.cells[A.cells.length - 1]
-                                }
+                                if (A) I = A.cells[A.cells.length - 1];
                             }
                         }
                         break;
@@ -6824,35 +6665,27 @@ License: https://jqwidgets.com/license/
                         var D = i.rowByCell[x.getAttribute("data-key")];
                         var F = D.indexOf(x);
                         if (F < D.cells.length - 1) {
-                            I = D.cells[F + 1]
+                            I = D.cells[F + 1];
                         } else {
                             if (H == "monthView") {
                                 var P = D.belowRow;
-                                if (P) {
-                                    I = P.cells[0]
-                                }
+                                if (P) I = P.cells[0];
                             }
                         }
-                        if (H == "monthView" && !t && m && L == E) {
-                            I = x
-                        }
+                        if (H == "monthView" && !t && m && L == E) I = x;
                         break;
                     case "up":
                         var D = i.rowByCell[x.getAttribute("data-key")];
                         var F = D.indexOf(x);
                         var A = D.aboveRow;
-                        if (A && !t) {
-                            I = A.cells[F]
-                        }
+                        if (A && !t) I = A.cells[F];
                         break;
                     case "down":
                         var D = i.rowByCell[x.getAttribute("data-key")];
                         var F = D.indexOf(x);
                         var P = D.belowRow;
-                        if (P) {
-                            I = P.cells[F]
-                        }
-                        break
+                        if (P) I = P.cells[F];
+                        break;
                 }
                 var N = I.getAttribute("data-date");
                 var M = new a.jqx.date(N, i.timeZone);
@@ -6866,27 +6699,27 @@ License: https://jqwidgets.com/license/
                         if (x.getAttribute("data-end-date")) {
                             if (z == "left" && (y.elements[0].cells.length > 1 || i.rtl)) {
                                 if (!i.rtl) {
-                                    y.to = a.jqx.scheduler.utilities.getEndOfDay(M.addDays(-1))
+                                    y.to = a.jqx.scheduler.utilities.getEndOfDay(M.addDays(-1));
                                 } else {
-                                    y.to = a.jqx.scheduler.utilities.getEndOfDay(M.addDays(1))
+                                    y.to = a.jqx.scheduler.utilities.getEndOfDay(M.addDays(1));
                                 }
                                 C = true
                             } else {
                                 if (z == "right") {
                                     if (!i.rtl || (i.rtl && y.elements[0].cells.length > 1)) {
-                                        y.to = a.jqx.scheduler.utilities.getEndOfDay(M)
+                                        y.to = a.jqx.scheduler.utilities.getEndOfDay(M);
                                     }
-                                    C = true
+                                    C = true;
                                 }
                             }
                         } else {
                             if (z == "up" && y.elements[0].cells.length > 1) {
                                 y.to = M;
-                                C = true
+                                C = true;
                             } else {
                                 if (z == "down") {
                                     y.to = M.addMinutes(i.getMinutesPerScale());
-                                    C = true
+                                    C = true;
                                 }
                             }
                         }
@@ -6894,72 +6727,61 @@ License: https://jqwidgets.com/license/
                         if (H.indexOf("month") >= 0) {
                             if (z == "left" && (y.elements[0].cells.length > 1 || y.elements.length > 1)) {
                                 y.to = a.jqx.scheduler.utilities.getEndOfDay(M.addDays(-1));
-                                C = true
+                                C = true;
                             } else {
                                 if (z == "right") {
                                     y.to = a.jqx.scheduler.utilities.getEndOfDay(M);
-                                    C = true
+                                    C = true;
                                 }
                             }
                         } else {
                             if ((!i.rtl && z == "left" && y.elements[0].cells.length > 1) || (i.rtl && z == "right" && y.elements[0].cells.length > 1)) {
                                 y.to = M;
-                                if (i.rtl) {
-                                    y.to = M.addMinutes(i.getMinutesPerScale())
-                                }
-                                C = true
+                                if (i.rtl) y.to = M.addMinutes(i.getMinutesPerScale());
+                                C = true;
                             } else {
                                 if ((!i.rtl && z == "right") || (i.rtl && z == "left")) {
                                     y.to = M.addMinutes(i.getMinutesPerScale());
-                                    if (i.rtl) {
-                                        y.to = y.to.addMinutes(i.getMinutesPerScale())
-                                    }
-                                    C = true
+                                    if (i.rtl) y.to = y.to.addMinutes(i.getMinutesPerScale());
+                                    C = true;
                                 }
                             }
                         }
                     }
-                    if (C) {
-                        i.moveAppointment(y, M, J, I, true)
-                    }
+                    if (C) i.moveAppointment(y, M, J, I, true);
                 } else {
                     if (m) {
-                        i.moveAppointment(y, M, J, I)
+                        i.moveAppointment(y, M, J, I);
                     } else {
                         i.clearAppointmentsSelection();
                         var K = true;
-                        if (z == "down") {
-                            K = false
-                        }
+                        if (z == "down") K = false;
                         i.selectCell(M, K, H);
-                        i._ensureVisible(I)
+                        i._ensureVisible(I);
                     }
                 }
                 if (i.selectedAppointment) {
                     i.selectedAppointment.removeClass(i.toTP("jqx-scheduler-selected-appointment"));
                     var O = i.selectedAppointment.attr("data-key");
                     a('[data-key="' + O + '"]').addClass(i.toTP("jqx-scheduler-selected-appointment"));
-                    i.clearSelection()
+                    i.clearSelection();
                 }
             };
             if (s.altKey && i._resourcesElements && i._resources && i._resources.length > 0) {
                 var g = function(x) {
                     var y = i._resourcesElements.bottom[x];
-                    if (y.attr("data-toggle") == "on") {
-                        i.hideAppointmentsByResource(x)
-                    } else {
-                        i.showAppointmentsByResource(x)
-                    }
+                    if (y.attr("data-toggle") == "on") i.hideAppointmentsByResource(x);
+                    else i.showAppointmentsByResource(x);
                 };
                 var j = w >= 49 && w <= 58 ? j = w - 48 : -1;
                 if (j >= 1) {
                     a.each(i._resources, function(x, y) {
                         if (x == j - 1) {
                             g(y);
-                            return false
+                            return false;
                         }
                     });
-                    return false
+                    return false;
                 }
             }
             if (s.ctrlKey) {
@@ -6967,46 +6789,46 @@ License: https://jqwidgets.com/license/
                     if (w == 37) {
                         i.toolbarLeftButton.trigger("click");
                         i._ensureVisible(i.focusedCell);
-                        return false
+                        return false;
                     } else {
                         if (w == 39) {
                             i.toolbarRightButton.trigger("click");
                             i._ensureVisible(i.focusedCell);
-                            return false
+                            return false;
                         }
                     }
                 }
                 if (w == 49) {
                     i._setView(0);
-                    return false
+                    return false;
                 } else {
                     if (w == 50) {
                         i._setView(1);
-                        return false
+                        return false;
                     } else {
                         if (w == 51) {
                             i._setView(2);
-                            return false
+                            return false;
                         } else {
                             if (w == 52) {
                                 i._setView(3);
-                                return false
+                                return false;
                             } else {
                                 if (w == 53) {
                                     i._setView(4);
-                                    return false
+                                    return false;
                                 } else {
                                     if (w == 54) {
                                         i._setView(5);
-                                        return false
+                                        return false;
                                     } else {
                                         if (w == 68) {
                                             i.dateTimeInput.jqxDateTimeInput("open");
-                                            return false
+                                            return false;
                                         } else {
                                             if (w == 77) {
                                                 i.openMenu();
-                                                return false
+                                                return false;
                                             }
                                         }
                                     }
@@ -7028,10 +6850,10 @@ License: https://jqwidgets.com/license/
                             i._selectAppointment(c);
                             i._lastSelectedAppointment = c;
                             i._ensureAppointmentVisible(c);
-                            return false
+                            return false;
                         } else {
                             i.clearAppointmentsSelection();
-                            return true
+                            return true;
                         }
                     } else {
                         var c = i.tabKeyAppointments[0];
@@ -7039,18 +6861,18 @@ License: https://jqwidgets.com/license/
                             i._selectAppointment(c);
                             i._lastSelectedAppointment = c;
                             i._ensureAppointmentVisible(c);
-                            return false
+                            return false;
                         } else {
                             if (!i.focusedCell) {
                                 i._updateFocusedCell();
                                 i._ensureVisible(i.focusedCell);
-                                return false
+                                return false;
                             } else {
                                 if (i.focusedCell) {
                                     if (i.focusedCell.className.indexOf("-focus") == -1) {
                                         i._updateCellsSelection();
                                         i._ensureVisible(i.focusedCell);
-                                        return false
+                                        return false;
                                     }
                                 }
                             }
@@ -7068,35 +6890,35 @@ License: https://jqwidgets.com/license/
                                 i._selectAppointment(c);
                                 i._lastSelectedAppointment = c;
                                 i._ensureAppointmentVisible(c);
-                                return false
+                                return false;
                             } else {
                                 i.clearAppointmentsSelection();
                                 if (!i.focusedCell) {
                                     i._updateFocusedCell();
                                     i._ensureVisible(i.focusedCell);
-                                    return false
+                                    return false;
                                 } else {
                                     if (i.focusedCell) {
                                         if (i.focusedCell.className.indexOf("-focus") == -1) {
                                             i._updateCellsSelection();
                                             i._ensureVisible(i.focusedCell);
-                                            return false
+                                            return false;
                                         }
                                     }
                                 }
-                                return true
+                                return true;
                             }
                         }
                     } else {
                         if (!i.focusedCell) {
                             i._updateFocusedCell();
-                            i._ensureVisible(i.focusedCell)
+                            i._ensureVisible(i.focusedCell);
                         } else {
                             if (i.focusedCell) {
                                 if (i.focusedCell.className.indexOf("-focus") == -1) {
                                     i._updateCellsSelection();
                                     i._ensureVisible(i.focusedCell);
-                                    return false
+                                    return false;
                                 }
                             }
                         }
@@ -7105,40 +6927,34 @@ License: https://jqwidgets.com/license/
             }
             if (i.selectedAppointment) {
                 if (w == 37) {
-                    r("left")
+                    r("left");
                 } else {
                     if (w == 38) {
-                        r("up")
+                        r("up");
                     } else {
                         if (w == 40) {
-                            r("down")
+                            r("down");
                         } else {
                             if (w == 39) {
-                                r("right")
+                                r("right");
                             }
                         }
                     }
                 }
-                if (w >= 37 && w <= 40) {
-                    return false
-                }
-                return
+                if (w >= 37 && w <= 40) return false;
+                return;
             }
             var k = this._lastSelectedCell;
-            if (!k) {
-                return
-            }
+            if (!k) return;
             if (!a(this._lastSelectedCell).parent()[0]) {
                 this._lastSelectedCell = this.rows[0].cells[0];
-                k = this._lastSelectedCell
+                k = this._lastSelectedCell;
             }
             var n = this.rows;
             var p = this._views[this._view].type;
             var l = this._views[this._view];
             var v = "halfHour";
-            if (l.timeRuler && l.timeRuler.scale) {
-                v = l.timeRuler.scale
-            }
+            if (l.timeRuler && l.timeRuler.scale) v = l.timeRuler.scale;
             var q = function(K, F) {
                 var B = 30;
                 switch (v) {
@@ -7159,54 +6975,46 @@ License: https://jqwidgets.com/license/
                         break;
                     case "fiveMinutes":
                         B = 5;
-                        break
+                        break;
                 }
                 var I = K.getAttribute("data-date");
                 var H = function(U, N, P) {
                     if (U && (U.getAttribute("rowspan") == null || p == "agendaView") && U.getAttribute("data-time-slot") == null) {
-                        if (P < i.min || P > i.max) {
-                            return
-                        }
+                        if (P < i.min || P > i.max) return;
                         var S = i.rows;
                         var R = i._lastSelectedCell;
                         i._lastSelectedCell = U;
                         if (s.shiftKey && i._lastSelectedCell) {
-                            if (!i.shiftSelectedCell) {
-                                i.shiftSelectedCell = k
-                            }
+                            if (!i.shiftSelectedCell) i.shiftSelectedCell = k;
                         } else {
-                            if (!s.shiftKey) {
-                                i.shiftSelectedCell = null
-                            }
+                            if (!s.shiftKey) i.shiftSelectedCell = null;
                         }
                         if (!i.shiftSelectedCell) {
                             for (var Q = 0; Q < S.length; Q++) {
                                 var T = S[Q];
-                                if (T.element.getAttribute("data-group-row")) {
-                                    continue
-                                }
+                                if (T.element.getAttribute("data-group-row")) continue;
                                 for (var O = 0; O < T.cells.length; O++) {
                                     var N = T.cells[O];
-                                    N.removeAttribute("data-selected", "false")
+                                    N.removeAttribute("data-selected", "false");
                                 }
                             }
                             U.setAttribute("data-selected", "true");
-                            i.focusedCell = U
+                            i.focusedCell = U;
                         } else {
                             if (U.getAttribute("data-end-date") && i.shiftSelectedCell.getAttribute("data-end-date")) {
                                 i.focusedCell = U;
-                                i._selectRange(U, i.shiftSelectedCell)
+                                i._selectRange(U, i.shiftSelectedCell);
                             } else {
                                 if (!U.getAttribute("data-end-date") && !i.shiftSelectedCell.getAttribute("data-end-date")) {
                                     i.focusedCell = U;
-                                    i._selectRange(U, i.shiftSelectedCell)
+                                    i._selectRange(U, i.shiftSelectedCell);
                                 } else {
                                     i.focusedCell = R;
-                                    i._lastSelectedCell = R
+                                    i._lastSelectedCell = R;
                                 }
                             }
                         }
-                        i._ensureVisible(i.focusedCell)
+                        i._ensureVisible(i.focusedCell);
                     }
                 };
                 var y = new a.jqx.date(I, i.timeZone);
@@ -7289,9 +7097,9 @@ License: https://jqwidgets.com/license/
                         var C = L.cells[E];
                         var J = new a.jqx.date(C.getAttribute("data-date"), i.timeZone);
                         H(C, K, J);
-                        break
+                        break;
                 }
-                i._updateCellsSelection()
+                i._updateCellsSelection();
             };
             var u = function() {
                 q(k, "home")
@@ -7301,43 +7109,31 @@ License: https://jqwidgets.com/license/
             };
             if (w == 36 || (m && w == 38)) {
                 u();
-                return false
+                return false;
             } else {
                 if (w == 35 || (m && w == 40)) {
                     b();
-                    return false
+                    return false;
                 } else {
                     if (w == 37) {
-                        if (i.selectedAppointment) {
-                            r(k, "left")
-                        } else {
-                            q(k, "left")
-                        }
-                        return false
+                        if (i.selectedAppointment) r(k, "left");
+                        else q(k, "left");
+                        return false;
                     } else {
                         if (w == 38) {
-                            if (i.selectedAppointment) {
-                                r(k, "up")
-                            } else {
-                                q(k, "up")
-                            }
-                            return false
+                            if (i.selectedAppointment) r(k, "up");
+                            else q(k, "up");
+                            return false;
                         } else {
                             if (w == 40) {
-                                if (i.selectedAppointment) {
-                                    r(k, "down")
-                                } else {
-                                    q(k, "down")
-                                }
-                                return false
+                                if (i.selectedAppointment) r(k, "down");
+                                else q(k, "down");
+                                return false;
                             } else {
                                 if (w == 39) {
-                                    if (i.selectedAppointment) {
-                                        r(k, "right")
-                                    } else {
-                                        q(k, "right")
-                                    }
-                                    return false
+                                    if (i.selectedAppointment) r(k, "right");
+                                    else q(k, "right");
+                                    return false;
                                 }
                             }
                         }
@@ -7354,7 +7150,7 @@ License: https://jqwidgets.com/license/
                 var d = h[e].cells;
                 for (var c = 0; c < d.length; c++) {
                     if (d[c].getAttribute("data-selected")) {
-                        b.push(d[c])
+                        b.push(d[c]);
                     }
                 }
             }
@@ -7365,19 +7161,13 @@ License: https://jqwidgets.com/license/
         getSelection: function() {
             var e = this;
             var b = e.getSelectedCells();
-            if (b.length == 0) {
-                return null
-            }
+            if (b.length == 0) return null;
             var h = b[0].getAttribute("data-date");
             var g = b[b.length - 1].getAttribute("data-date");
             var d = e.getMinutesPerScale();
             var c = e._views[e._view].type;
-            if (c.toLowerCase().indexOf("month") >= 0) {
-                d = 0
-            }
-            if (b[0].getAttribute("data-end-date")) {
-                d = 0
-            }
+            if (c.toLowerCase().indexOf("month") >= 0) d = 0;
+            if (b[0].getAttribute("data-end-date")) d = 0;
             g = new a.jqx.date(g, e.timeZone).addMinutes(d);
             var c = parseInt(b[0].getAttribute("data-view")) - 1;
             var f = e._resources[c];
@@ -7426,15 +7216,13 @@ License: https://jqwidgets.com/license/
             for (var d = 0; d < e; d++) {
                 var c = g[d].cells;
                 for (var b = 0; b < c.length; b++) {
-                    c[b].removeAttribute("data-selected")
+                    c[b].removeAttribute("data-selected");
                 }
             }
-            f._updateCellsSelection()
+            f._updateCellsSelection();
         },
         _getvirtualcolumnsindexes: function(c, k, g, i, b) {
-            if (this.rtl) {
-                c = this.hScrollInstance.max - c
-            }
+            if (this.rtl) c = this.hScrollInstance.max - c;
             var d = 0;
             var h = -1;
             var e = g + i;
@@ -7447,25 +7235,17 @@ License: https://jqwidgets.com/license/
             if (!b) {
                 for (var f = 0; f < g + i; f++) {
                     var l = f;
-                    if (!this.columns.records[f].hidden) {
-                        d += this.columns.records[f].width
-                    }
-                    if (d >= c && h == -1) {
-                        h = f
-                    }
+                    if (!this.columns.records[f].hidden) d += this.columns.records[f].width;
+                    if (d >= c && h == -1) h = f;
                     if (d > k + c) {
                         e = f;
-                        break
+                        break;
                     }
                 }
             }
             e++;
-            if (e > g + i) {
-                e = g + i
-            }
-            if (h == -1) {
-                h = 0
-            }
+            if (e > g + i) e = g + i;
+            if (h == -1) h = 0;
             return {
                 start: h,
                 end: e
@@ -7477,17 +7257,13 @@ License: https://jqwidgets.com/license/
             var s = r.value;
             if (k.hScrollBar[0].style.visibility === "hidden") {
                 r.value = 0;
-                s = 0
+                s = 0;
             }
             var d = parseInt(s);
-            if (k.table == null) {
-                return
-            }
+            if (k.table == null) return;
             var j = function(i) {
-                if (i.parentNode && i.parentNode.nodeName != "#document-fragment") {
-                    return true
-                }
-                return false
+                if (i.parentNode && i.parentNode.nodeName != "#document-fragment") return true;
+                return false;
             };
             var q = k._getvirtualcolumnsindexes(d, k._hostWidth, 0, k.columns.records.length, false);
             var l = q.start;
@@ -7496,23 +7272,17 @@ License: https://jqwidgets.com/license/
             for (var m = 0; m < l; m++) {
                 var h = m;
                 var t = k.columns.records[h].element[0];
-                if (j(t)) {
-                    t.parentNode.removeChild(t)
-                }
+                if (j(t)) t.parentNode.removeChild(t);
             }
             for (var m = n; m < k.columns.records.length; m++) {
                 var h = m;
                 var t = k.columns.records[h].element[0];
-                if (j(t)) {
-                    t.parentNode.removeChild(t)
-                }
+                if (j(t)) t.parentNode.removeChild(t);
             }
             for (var m = l; m < n; m++) {
                 var h = m;
                 t = k.columns.records[h].element[0];
-                if (!j(t)) {
-                    k.columnsrow[0].appendChild(t)
-                }
+                if (!j(t)) k.columnsrow[0].appendChild(t);
             }
             var o = k.columnsrow;
             var p = 0;
@@ -7520,33 +7290,25 @@ License: https://jqwidgets.com/license/
             var c = k.columns.records;
             var f = k.source.records.length == 0;
             if (k.rtl) {
-                if (k.hScrollBar.css("visibility") != "hidden") {
-                    d = r.max - d
-                }
+                if (k.hScrollBar.css("visibility") != "hidden") d = r.max - d;
             }
             k.table[0].style.left = -d + "px";
             if (k.pinnedtable[0].style.display == "block") {
-                k.pinnedtable[0].style.left = -d + "px"
+                k.pinnedtable[0].style.left = -d + "px";
             }
             if (k._resources.length > 0 && k.tableRows > 0) {
                 for (var u = 0; u < this.table[0].rows.length; u++) {
                     var g = this.table[0].rows[u];
-                    if (g.getAttribute("data-group-row")) {
-                        a(g).find("span").css("left", 5 + d)
-                    }
+                    if (g.getAttribute("data-group-row")) a(g).find("span").css("left", 5 + d);
                 }
             }
-            o[0].style.marginLeft = -d + "px"
+            o[0].style.marginLeft = -d + "px";
         },
         _getDayName: function(b, d) {
-            if (b >= 7) {
-                b -= 7
-            }
+            if (b >= 7) b -= 7;
             if (!d) {
                 d = this.dayNameFormat;
-                if (this.isTouchDevice()) {
-                    d = this.touchDayNameFormat
-                }
+                if (this.isTouchDevice()) d = this.touchDayNameFormat;
             }
             var c = this.schedulerLocalization.days.names[b];
             switch (d) {
@@ -7564,9 +7326,9 @@ License: https://jqwidgets.com/license/
                     break;
                 case "firstLetter":
                     c = c.substring(0, 1);
-                    break
+                    break;
             }
-            return c
+            return c;
         },
         _initializeColumns: function() {
             if (this._views.length === 0) {
@@ -7575,13 +7337,13 @@ License: https://jqwidgets.com/license/
                 })
             }
             if (!this._views[this._view]) {
-                throw new Error("jqxScheduler: View is undefined. You need to define the View in the Views Array when you create jqxScheduler")
+                throw new Error("La vista no está definida. Debe definir la vista en la matriz de vistas.")
             }
             var p = this._views[this._view].type;
             var m = this._views[this._view];
             if (m.timeSlotWidth) {
                 m.timeSlotWidth = Math.max(m.timeSlotWidth, 30);
-                m.columnWidth = m.timeSlotWidth
+                m.columnWidth = m.timeSlotWidth;
             }
             if (m.columnWidth) {
                 if (m.columnWidth < 30) m.columnWidth = 30;
@@ -7662,7 +7424,7 @@ License: https://jqwidgets.com/license/
                         text: E,
                         minwidth: 30,
                         width: j
-                    })
+                    });
                 }
             };
             for (var x = 0; x < this.tableColumns; x++) {
@@ -7674,22 +7436,16 @@ License: https://jqwidgets.com/license/
                     })
                 }
                 var w = "left";
-                if (this.rtl) w = "right"
+                if (this.rtl) w = "right";
                 switch (p) {
                     case "dayView":
                         var g = this.getViewStart();
                         if (false === m.showWeekends) {
-                            if (g.dayOfWeek() === 0 || g.dayOfWeek() === 6) {
-                                g = g.addDays(1)
-                            }
-                            if (g.dayOfWeek() === 0 || g.dayOfWeek() === 6) {
-                                g = g.addDays(1)
-                            }
+                            if (g.dayOfWeek() === 0 || g.dayOfWeek() === 6) g = g.addDays(1);
+                            if (g.dayOfWeek() === 0 || g.dayOfWeek() === 6) g = g.addDays(1);
                         }
                         var v = "auto";
-                        if (m && m.columnWidth) {
-                            v = m.columnWidth
-                        }
+                        if (m && m.columnWidth) v = m.columnWidth;
                         var f = h._resources[x] ? h._resources[x] : "Resource" + x;
                         this.columns.push({
                             align: w,
@@ -7714,7 +7470,7 @@ License: https://jqwidgets.com/license/
                                 width: v,
                                 columnGroup: f,
                                 text: this._getDayName(y)
-                            })
+                            });
                         }
                         break;
                     case "timelineDayView":
@@ -7725,9 +7481,7 @@ License: https://jqwidgets.com/license/
                         for (var z = 0; z < 7; z++) {
                             var y = this.schedulerLocalization.firstDay + z;
                             if (false === m.showWeekends) {
-                                if (z === 0 || z === 6) {
-                                    continue
-                                }
+                                if (z === 0 || z === 6) continue;
                             }
                             var f = h._resources[x] ? h._resources[x] : "Resource" + x;
                             B.push({
@@ -7736,7 +7490,7 @@ License: https://jqwidgets.com/license/
                                 name: this._getDayName(y) + x,
                                 text: this._getDayName(y)
                             });
-                            q(h.getViewStart().addDays(z), this._getDayName(y) + x)
+                            q(h.getViewStart().addDays(z), this._getDayName(y) + x);
                         }
                         break;
                     case "timelineMonthView":
@@ -7794,7 +7548,7 @@ License: https://jqwidgets.com/license/
                             text: h.schedulerLocalization.agendaAppointmentColumn,
                             width: o
                         });
-                        break
+                        break;
                 }
             }
             if (B.length > 0) this.columnGroups = B;
@@ -7820,13 +7574,9 @@ License: https://jqwidgets.com/license/
                 C = m.timeRuler.position || "left";
                 e.hidden = m.timeRuler.hidden || false;
                 e.width = m.timeRuler.width || h.timeRulerWidth;
-                if (m.timeRuler.timeZones) {
-                    b = true
-                }
+                if (m.timeRuler.timeZones) b = true;
             } else {
-                if (p !== "dayView" && p !== "weekView") {
-                    e.hidden = true
-                }
+                if (p !== "dayView" && p !== "weekView") e.hidden = true;
             }
             var n = function(i) {
                 var j = new a.jqx.scheduler.column(h, h);
@@ -7844,45 +7594,43 @@ License: https://jqwidgets.com/license/
                     j._text = m.timeRuler.timeZones[z].text || "";
                     j.hidden = m.timeRuler.hidden || false;
                     j.width = m.timeRuler.width || h.timeRulerWidth;
-                    s.add(j)
+                    s.add(j);
                 }
             };
             if (C === "left" && (p === "dayView" || p === "weekView")) {
                 if (m.timeRuler && m.timeRuler.timeZones) {
                     for (var z = 0; z < m.timeRuler.timeZones.length; z++) {
-                        n(z)
+                        n(z);
                     }
                 }
-                s.add(e)
+                s.add(e);
             }
             if (C === "left" && p === "monthView" && m.showWeekNumbers) {
                 e.hidden = false;
-                s.add(e)
+                s.add(e);
             }
             var t = new Array();
             a.each(this.columns, function(i) {
                 if (h.columns[i] != undefined) {
                     var j = new a.jqx.scheduler.column(h, this);
                     j.visibleindex = d++;
-                    s.add(j)
+                    s.add(j);
                 }
             });
             if (C === "right" && (p === "dayView" || p === "weekView")) {
                 if (m.timeRuler) {
                     for (var z = 0; z < m.timeRuler.timeZones.length; z++) {
-                        n(z)
+                        n(z);
                     }
                 }
-                s.add(e)
+                s.add(e);
             }
             if (C === "right" && p === "monthView" && m.showWeekNumbers) {
                 e.hidden = false;
-                s.add(e)
+                s.add(e);
             }
-            if (this.rtl) {
-                s.records.reverse()
-            }
-            this.columns = s
+            if (this.rtl) s.records.reverse();
+            this.columns = s;
         },
         _getColumnsLengthPerView: function() {
             var b = this._views[this._view].type;
@@ -7893,18 +7641,12 @@ License: https://jqwidgets.com/license/
                     c = 1;
                     break;
                 case "weekView":
-                    if (d.showWeekends !== false) {
-                        c = 7
-                    } else {
-                        c = 5
-                    }
+                    if (d.showWeekends !== false) c = 7;
+                    else c = 5;
                     break;
                 case "monthView":
-                    if (d.showWeekends !== false) {
-                        c = 7
-                    } else {
-                        c = 5
-                    }
+                    if (d.showWeekends !== false) c = 7;
+                    else c = 5;
                     break;
                 case "timelineDayView":
                 case "timelineWeekView":
@@ -7913,9 +7655,9 @@ License: https://jqwidgets.com/license/
                     break;
                 case "agendaView":
                     c = this.columns.records.length;
-                    break
+                    break;
             }
-            return c
+            return c;
         },
         _renderagenda: function() {
             var ab = this;
@@ -8217,21 +7959,15 @@ License: https://jqwidgets.com/license/
         },
         _renderrows: function() {
             var V = this;
-            if (V._loading) {
-                return
-            }
-            if (V._updating || V._appupdating) {
-                return
-            }
-            if (V.rendering) {
-                V.rendering()
-            }
+            if (V._loading) return;
+            if (V._updating || V._appupdating) return;
+            if (V.rendering) V.rendering();
             var V = this;
             var aF = V._views[V._view].type;
             var G = V._views[V._view];
             if (aF == "agendaView") {
                 V._renderagenda();
-                return
+                return;
             }
             var az = 1;
             var d = V.getViewStart();
@@ -8242,29 +7978,21 @@ License: https://jqwidgets.com/license/
                 var az = V.getMaxAllDayAppointments(V.appointmentsToRender)
             } else {
                 if (aF === "monthView" && G.monthRowAutoHeight && V.rows && V.rows.length == 6) {
-                    N = V._getMonthAppointmentsPerWeek()
+                    N = V._getMonthAppointmentsPerWeek();
                 }
             }
             var aa = V.tableRows > 1 ? V.tableRows : 0;
             var aL = "halfHour";
             var B = null;
             var aQ;
-            if (G.rowHeight) {
-                B = G.rowHeight
-            }
-            if (G && G.allDayRowHeight) {
-                aQ = G.allDayRowHeight
-            }
-            if (G.timeRuler && G.timeRuler.scale) {
-                aL = G.timeRuler.scale
-            }
+            if (G.rowHeight) B = G.rowHeight;
+            if (G && G.allDayRowHeight) aQ = G.allDayRowHeight;
+            if (G.timeRuler && G.timeRuler.scale) aL = G.timeRuler.scale;
             var aM = 0;
             V.table[0].rows = new Array();
             V.rows = new Array();
             var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-widget-content");
-            if (V.rtl) {
-                a5 += " " + V.toTP("jqx-cell-rtl")
-            }
+            if (V.rtl) a5 += " " + V.toTP("jqx-cell-rtl");
             var b = V.columns.records.length;
             var av = V._getColumnsLengthPerView();
             var W = a.jqx.browser.msie && a.jqx.browser.version < 8;
@@ -8286,18 +8014,14 @@ License: https://jqwidgets.com/license/
                 for (var X = 0; X < b; X++) {
                     var ac = V.columns.records[X];
                     var aK = ac.width;
-                    if (aK < ac.minwidth) {
-                        aK = ac.minwidth
-                    }
-                    if (aK > ac.maxwidth) {
-                        aK = ac.maxwidth
-                    }
+                    if (aK < ac.minwidth) aK = ac.minwidth;
+                    if (aK > ac.maxwidth) aK = ac.maxwidth;
                     var aJ = a('<table><tr><td role="gridcell" style="max-width: ' + aK + "px; width:" + aK + 'px;" class="' + a5 + '"></td></tr></table>');
                     a(document.body).append(aJ);
                     var at = aJ.find("td");
                     o = 1 + parseInt(at.css("padding-left")) + parseInt(at.css("padding-right"));
                     aJ.remove();
-                    break
+                    break;
                 }
             }
             var K = V.rtl ? " " + V.toTP("jqx-grid-table-rtl") : "";
@@ -8329,23 +8053,20 @@ License: https://jqwidgets.com/license/
                 case "fiveMinutes":
                     an = 5;
                     aS = 12;
-                    break
+                    break;
             }
             var a3 = 1;
             if (aF === "timelineDayView" || aF === "timelineWeekView") {
                 b = aS * b;
                 a3 = aS;
-                av = b / V.tableColumns
+                av = b / V.tableColumns;
             } else {
                 if (aF === "timelineMonthView") {
-                    av = b / V.tableColumns
+                    av = b / V.tableColumns;
                 } else {
                     if (aF === "monthView") {
-                        if (G.showWeekNumbers) {
-                            av = (b - V.tableColumns) / V.tableColumns
-                        } else {
-                            av = b / V.tableColumns
-                        }
+                        if (G.showWeekNumbers) av = (b - V.tableColumns) / V.tableColumns;
+                        else av = b / V.tableColumns;
                     }
                 }
             }

@@ -78,7 +78,7 @@ Globalize.prototype.init.prototype = Globalize.prototype;
 //    it may be dynamically changed at any time to one of the calendars in ".calendars".
 Globalize.cultures[ "default" ] = {
 	// A unique name for the culture in the form <language code>-<country/region code>
-	name: "en",
+	name: "es",
 	// the name of the culture in the english language
 	englishName: "English",
 	// the name of the culture in its own language
@@ -102,7 +102,7 @@ Globalize.cultures[ "default" ] = {
 	// This field should be used to navigate from a specific culture to it's
 	// more general, neutral culture. If a culture is already as general as it
 	// can get, the language may refer to itself.
-	language: "en",
+	language: "es",
 	// numberFormat defines general number formatting rules, like the digits in
 	// each grouping, the group separator, and how negative numbers are displayed.
 	numberFormat: {

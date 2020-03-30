@@ -7,7 +7,7 @@ License: https://jqwidgets.com/license/
 
 (function(a) {
     if (!a.jqx.scheduler) {
-        a.jqx.scheduler = {}
+        a.jqx.scheduler = {};
     }
     a.jqx.scheduler.utilities = {
         weekDays: {
@@ -21,95 +21,77 @@ License: https://jqwidgets.com/license/
         },
         guid: function() {
             function b() {
-                return Math.floor((1 + Math.random()) * 65536).toString(16).substring(1)
+                return Math.floor((1 + Math.random()) * 65536).toString(16).substring(1);
             }
-            return b() + b()
+            return b() + b();
         },
         areWeekDaysIncluded: function(d, c) {
             var b = false;
             a.each(d, function(e, f) {
                 if (f === c) {
                     b = true;
-                    return false
+                    return false;
                 }
             });
-            return b
+            return b;
         },
         getStartOfDay: function(c) {
             var b = new a.jqx.date(c.year(), c.month(), c.day(), 0, 0, 0);
             b.timeZone = c.timeZone;
-            return b
+            return b;
         },
         getEndOfDay: function(c) {
             var b = new a.jqx.date(c.year(), c.month(), c.day(), 23, 59, 59);
             b.timeZone = c.timeZone;
-            return b
+            return b;
         },
         getDaysCount: function(d, c) {
             var b = 1;
             while (d < c) {
-                if (d.day() != c.day()) {
-                    b++
-                }
-                d = d.addDays(1)
+                if (d.day() != c.day()) b++;
+                d = d.addDays(1);
             }
-            return b
+            return b;
         },
         getStartOfWeek: function(e, g) {
             var c = e.dayOfWeek();
             var b = g.firstDay;
-            if (c < b) {
-                c += 7
-            }
+            if (c < b) c += 7;
             var d = c - b;
             var f = e.addDays(-d);
-            return f.date()
+            return f.date();
         },
         getEndOfWeek: function(d, f, c) {
             var e = this;
             var g = 7;
             var b = e.getStartOfWeek(d, f, c);
-            return b.addDays(g)
+            return b.addDays(g);
         },
         getEndOfMonth: function(d, e) {
             var c = d.daysInMonth();
             var b = new a.jqx.date(d.year(), d.month(), c, 23, 59, 59);
             b.timeZone = d.timeZone;
-            return b
+            return b;
         },
         rangeIntersection: function(i, h, f, e) {
             var g = i.valueOf();
             var d = f.valueOf();
             var c = h.valueOf();
             var b = e.valueOf();
-            if (d >= g && d < c) {
-                return true
-            }
-            if (d < g && b > g) {
-                return true
-            }
-            if (g == d || c == b) {
-                return true
-            }
+            if (d >= g && d < c) return true;
+            if (d < g && b > g) return true;
+            if (g == d || c == b) return true;
             if (g < d) {
-                if (c > d && c < b) {
-                    return true
-                }
-                if (c > b) {
-                    return true
-                }
+                if (c > d && c < b) return true;
+                if (c > b) return true;
             } else {
-                if (b > g && b < c) {
-                    return true
-                }
-                if (b > c) {
-                    return true
-                }
+                if (b > g && b < c) return true;
+                if (b > c) return true;
             }
-            return false
+            return false;
         },
         rangeContains: function(e, d, c, b) {
-            return (e <= c && b <= d)
+            return (e <= c && b <= d);
         },
         monthDays: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
         msPerDay: 1000 * 60 * 60 * 24,
@@ -117,36 +99,34 @@ License: https://jqwidgets.com/license/
         ORDINAL_BASE: new Date(1970, 0, 1),
         getYearDay: function(b) {
             var c = new Date(b.getFullYear(), b.getMonth(), b.getDate());
-            return Math.ceil((c - new Date(b.getFullYear(), 0, 1)) / a.jqx.scheduler.utilities.msPerDay) + 1
+            return Math.ceil((c - new Date(b.getFullYear(), 0, 1)) / a.jqx.scheduler.utilities.msPerDay) + 1;
         },
         isLeapYear: function(b) {
-            if (b instanceof Date) {
-                b = b.getFullYear()
-            }
-            return ((b % 4 === 0) && (b % 100 !== 0)) || (b % 400 === 0)
+            if (b instanceof Date) b = b.getFullYear();
+            return ((b % 4 === 0) && (b % 100 !== 0)) || (b % 400 === 0);
         },
         tzOffset: function(b) {
-            return b.getTimezoneOffset() * 60 * 1000
+            return b.getTimezoneOffset() * 60 * 1000;
         },
         monthRange: function(c, d) {
             var b = new Date(c, d, 1);
-            return [a.jqx.scheduler.utilities.getWeekday(b), a.jqx.scheduler.utilities.getMonthDays(b)]
+            return [a.jqx.scheduler.utilities.getWeekday(b), a.jqx.scheduler.utilities.getMonthDays(b)];
         },
         getMonthDays: function(b) {
             var c = b.getMonth();
-            return c == 1 && a.jqx.scheduler.utilities.isLeapYear(b) ? 29 : a.jqx.scheduler.utilities.monthDays[c]
+            return c == 1 && a.jqx.scheduler.utilities.isLeapYear(b) ? 29 : a.jqx.scheduler.utilities.monthDays[c];
         },
         getWeekday: function(b) {
             var c = [6, 0, 1, 2, 3, 4, 5];
-            return c[b.getDay()]
+            return c[b.getDay()];
         },
         combine: function(b, c) {
             c = c || b;
-            return new Date(b.getFullYear(), b.getMonth(), b.getDate(), c.getHours(), c.getMinutes(), c.getSeconds())
+            return new Date(b.getFullYear(), b.getMonth(), b.getDate(), c.getHours(), c.getMinutes(), c.getSeconds());
         },
         sort: function(b) {
             b.sort(function(d, c) {
-                return d.getTime() - c.getTime()
+                return d.getTime() - c.getTime();
             })
         },
         timeToUntilString: function(e) {
@@ -154,19 +134,15 @@ License: https://jqwidgets.com/license/
             var b, f = [c.getUTCFullYear(), c.getUTCMonth() + 1, c.getUTCDate(), "T", c.getUTCHours(), c.getUTCMinutes(), c.getUTCSeconds(), "Z"];
             for (var d = 0; d < f.length; d++) {
                 b = f[d];
-                if (!/[TZ]/.test(b) && b < 10) {
-                    f[d] = "0" + String(b)
-                }
+                if (!/[TZ]/.test(b) && b < 10) f[d] = "0" + String(b);
             }
-            return f.join("")
+            return f.join("");
         },
         untilStringToDate: function(d) {
             var b = /^(\d{4})(\d{2})(\d{2})(T(\d{2})(\d{2})(\d{2})Z)?$/;
             var c = b.exec(d);
-            if (!c) {
-                throw new Error("Invalid UNTIL value: " + d)
-            }
-            return new Date(Date.UTC(c[1], c[2] - 1, c[3], c[5] || 0, c[6] || 0, c[7] || 0))
+            if (!c) throw new Error("Valor inválido HASTA: " + d);
+            return new Date(Date.UTC(c[1], c[2] - 1, c[3], c[5] || 0, c[6] || 0, c[7] || 0));
         },
         Time: function(b, e, c) {
             this.hour = b;
@@ -175,28 +151,28 @@ License: https://jqwidgets.com/license/
             this.that = this;
             var d = this;
             this.getHours = function() {
-                return d.hour
+                return d.hour;
             };
             this.getMinutes = function() {
-                return d.minute
+                return d.minute;
             }, this.getSeconds = function() {
-                return d.second
+                return d.second;
             }, this.getTime = function() {
-                return ((d.hour * 60 * 60) + (d.minute * 60) + d.second) * 1000
+                return ((d.hour * 60 * 60) + (d.minute * 60) + d.second) * 1000;
             }
         }
     };
     a.jqx.scheduler.appointment = function() {
         var c = this;
-        c.from = new a.jqx.date();
-        c.to = new a.jqx.date().addHours(1);
+        c.id = "";
         c.subject = "";
         c.description = "";
+        c.from = new a.jqx.date();
+        c.to = new a.jqx.date().addHours(1);
         c.location = "";
         c.tooltip = "";
         c.hidden = false;
         c.resourceId = null;
-        c.id = "";
         c.background = null;
         c.color = null;
         c.borderColor = null;
@@ -235,87 +211,70 @@ License: https://jqwidgets.com/license/
                 return k
             };
             var g = function(k) {
-                return (k < 10 ? "0" : "") + k
+                return (k < 10 ? "0" : "") + k;
             };
             var j = function(l, k) {
-                return (!l ? "" : (!k ? "" + l.getFullYear() + "-" + g(l.getMonth() + 1) + "-" + g(l.getDate()) + "T" + g(l.getHours()) + ":" + g(l.getMinutes()) + ":" + g(l.getSeconds()) + "Z" : "" + l.getUTCFullYear() + "-" + g(l.getUTCMonth() + 1) + "-" + g(l.getUTCDate()) + "T" + g(l.getUTCHours()) + ":" + g(l.getUTCMinutes()) + ":" + g(l.getUTCSeconds()) + "Z"))
+                return (!l ? "" : (!k ? "" + l.getFullYear() + "-" + g(l.getMonth() + 1) + "-" + g(l.getDate()) + "T" + g(l.getHours()) + ":" + g(l.getMinutes()) + ":" + g(l.getSeconds()) + "Z" : "" + l.getUTCFullYear() + "-" + g(l.getUTCMonth() + 1) + "-" + g(l.getUTCDate()) + "T" + g(l.getUTCHours()) + ":" + g(l.getUTCMinutes()) + ":" + g(l.getUTCSeconds()) + "Z"));
             };
             var f = function() {
                 var k = "";
                 for (var l = 0; l < c.recurrenceException.length; l++) {
                     k += c.recurrenceException[l].toString();
-                    if (l < c.recurrenceException.length - 1) {
-                        k += ","
-                    }
+                    if (l < c.recurrenceException.length - 1)
+                        k += ",";
                 }
-                return k
+                return k;
             };
             var i = {};
             i.id = c.id;
+            i.subject = c.subject;
+            i.description = c.description;
             i.from = j(c.from.toDate(), h);
             i.to = j(c.to.toDate(), h);
-            i.subject = c.subject;
             i.status = c.status;
             i.location = c.location;
-            i.description = c.description;
             i.title = c.title;
             i.resourceId = c.resourceId;
-            if (c.recurrencePattern) {
-                i.recurrencePattern = c.recurrencePattern.toString()
-            } else {
-                i.recurrencePattern = ""
-            }
-            if (c.recurrenceException && c.recurrenceException.length > 0) {
-                i.recurrenceException = f()
-            } else {
-                i.recurrenceException = ""
-            }
+            if (c.recurrencePattern) i.recurrencePattern = c.recurrencePattern.toString();
+            else i.recurrencePattern = "";
+            if (c.recurrenceException && c.recurrenceException.length > 0) i.recurrenceException = f();
+            else i.recurrenceException = "";
+            
             i.dtstamp = j(new Date(), h);
-            return JSON.stringify(i)
+            return JSON.stringify(i);
         };
         c.toString = function(i) {
             var f = function(l) {
                 var k = "";
                 while (l.length > 75) {
                     k += l.substr(0, 75) + "\n";
-                    l = " " + l.substr(75)
+                    l = " " + l.substr(75);
                 }
                 k += l;
-                return k
+                return k;
             };
             var h = function(k) {
-                return (k < 10 ? "0" : "") + k
+                return (k < 10 ? "0" : "") + k;
             };
             var j = function(l, k) {
-                return (!l ? "" : (k ? "" + l.getFullYear() + h(l.getMonth() + 1) + h(l.getDate()) + "T" + h(l.getHours()) + h(l.getMinutes()) + h(l.getSeconds()) : "" + l.getUTCFullYear() + h(l.getUTCMonth() + 1) + h(l.getUTCDate()) + "T" + h(l.getUTCHours()) + h(l.getUTCMinutes()) + h(l.getUTCSeconds()) + "Z"))
+                return (!l ? "" : (k ? "" + l.getFullYear() + h(l.getMonth() + 1) + h(l.getDate()) + "T" + h(l.getHours()) + h(l.getMinutes()) + h(l.getSeconds()) : "" + l.getUTCFullYear() + h(l.getUTCMonth() + 1) + h(l.getUTCDate()) + "T" + h(l.getUTCHours()) + h(l.getUTCMinutes()) + h(l.getUTCSeconds()) + "Z"));
             };
             var g = function() {
                 var k = "";
                 for (var l = 0; l < c.recurrenceException.length; l++) {
                     k += j(c.recurrenceException[l].toDate(), i);
-                    if (l < c.recurrenceException.length - 1) {
-                        k += ","
-                    }
+                    if (l < c.recurrenceException.length - 1)
+                        k += ",";
                 }
-                return k
+                return k;
             };
             var e = c.status;
-            if (!e) {
-                e = "CONFIRMED"
-            }
-            if (e.toLowerCase() == "busy") {
-                e = "CONFIRMED"
-            }
-            if (e.toLowerCase() == "tentative") {
-                e = "TENTATIVE"
-            }
-            if (e.toLowerCase() == "free") {
-                e = "CANCELLED"
-            }
-            if (e.toLowerCase() == "outOfOffice") {
-                e = "CANCELLED"
-            }
-            return "BEGIN:VEVENT\nUID:" + c.id + "\nDTSTAMP:" + j(new Date(), i) + "\n" + f("TITLE:" + c.subject) + "\nDTSTART:" + j(c.from.toDate(), i) + "\nDTEND:" + j(c.to.toDate(), i) + "\n" + (c.recurrencePattern ? "RRULE:" + c.recurrencePattern.toString() + "\n" : "") + (c.recurrenceException && c.recurrenceException.length > 0 ? "EXDATE:" + g() + "\n" : "") + (c.subject ? f("SUMMARY:" + c.subject) + "\n" : "") + "TRANSP:OPAQUE\n" + (c.status ? f("STATUS:" + e) + "\n" : "") + (c.description ? f("DESCRIPTION:" + c.description) + "\n" : "") + (c.location ? f("LOCATION:" + c.location) + "\n" : "") + "END:VEVENT"
+            if (!e) e = "CONFIRMED";
+            if (e.toLowerCase() == "busy") e = "CONFIRMED";
+            if (e.toLowerCase() == "tentative") e = "TENTATIVE";
+            if (e.toLowerCase() == "free") e = "CANCELLED";
+            if (e.toLowerCase() == "outOfOffice") e = "CANCELLED";
+            return "BEGIN:VEVENT\nUID:" + c.id + "\nDTSTAMP:" + j(new Date(), i) + "\n" + f("TITLE:" + c.subject) + "\nDTSTART:" + j(c.from.toDate(), i) + "\nDTEND:" + j(c.to.toDate(), i) + "\n" + (c.recurrencePattern ? "RRULE:" + c.recurrencePattern.toString() + "\n" : "") + (c.recurrenceException && c.recurrenceException.length > 0 ? "EXDATE:" + g() + "\n" : "") + (c.subject ? f("SUMMARY:" + c.subject) + "\n" : "") + "TRANSP:OPAQUE\n" + (c.status ? f("STATUS:" + e) + "\n" : "") + (c.description ? f("DESCRIPTION:" + c.description) + "\n" : "") + (c.location ? f("LOCATION:" + c.location) + "\n" : "") + "END:VEVENT";
         };
         c.range = function() {
             if (!c.allDay) {
@@ -336,11 +295,11 @@ License: https://jqwidgets.com/license/
                 c.exceptionDates = new Array();
                 c.recurrencePattern = null;
                 c.recurrenceException = new Array();
-                c.hidden = false
+                c.hidden = false;
             }
         };
         c.isAllDayAppointment = function() {
-            return this.duration().days() >= 1 || this.allDay
+            return this.duration().days() >= 1 || this.allDay;
         };
         c.cloneAppointmentAttributes = function(e) {
             e.subject = c.subject;
@@ -357,18 +316,14 @@ License: https://jqwidgets.com/license/
             e.hidden = c.hidden;
             e.timezone = c.timeZone;
             e.style = c.style;
-            e.hiddenByResourceId = c.hiddenByResourceId
+            e.hiddenByResourceId = c.hiddenByResourceId;
         };
         c.createOccurrence = function(g) {
-            if (g == null) {
-                return null
-            }
+            if (g == null) return null;
             var f = new a.jqx.scheduler.appointment();
             f.allDay = c.allDay;
             var e = c.duration();
-            if (c.allDay) {
-                e = new a.jqx.timeSpan(10000 * (c.to - c.from))
-            }
+            if (c.allDay) e = new a.jqx.timeSpan(10000 * (c.to - c.from));
             f.from = g;
             f.to = g.add(e);
             f.occurrenceFrom = g.clone();
@@ -390,13 +345,11 @@ License: https://jqwidgets.com/license/
             f.style = c.style;
             f.hiddenByResourceId = c.hiddenByResourceId;
             f.boundAppointment = c.boundAppointment;
-            if (c.hiddenByResourceId) {
-                f.hidden = true
-            }
+            if (c.hiddenByResourceId) f.hidden = true;
             f.id = c.id + "." + a.jqx.scheduler.utilities.guid();
             c.hidden = true;
             c.occurrenceIndex++;
-            return f
+            return f;
         };
         c.clone = function() {
             var e = new a.jqx.scheduler.appointment();
@@ -416,75 +369,65 @@ License: https://jqwidgets.com/license/
             e.style = c.style;
             e.timeZone = c.timeZone;
             e.hiddenByResourceId = c.hiddenByResourceId;
-            if (c.hiddenByResourceId) {
-                e.hidden = true
-            }
+            if (c.hiddenByResourceId) e.hidden = true;
             e.id = c.id + "." + a.jqx.scheduler.utilities.guid();
-            return e
+            return e;
         };
         c.isRecurrentAppointment = function() {
-            return c.recurrentAppointment || c.recurrencePattern != null
+            return c.recurrentAppointment || c.recurrencePattern != null;
         };
         c.anyExceptions = function() {
-            return c.exceptions != null && c.exceptions.length > 0
+            return c.exceptions != null && c.exceptions.length > 0;
         };
         c.anyOccurrences = function() {
-            return c.occurrenceEnumerator != null && c.occurrenceEnumerator.getNextAppointment()
+            return c.occurrenceEnumerator != null && c.occurrenceEnumerator.getNextAppointment();
         };
         c.isException = function() {
             var g = c.rootAppointment || this;
-            if (!g.recurrenceException) {
-                return false
-            }
+            if (!g.recurrenceException) return false;
             for (var f = 0; f < g.recurrenceException.length; f++) {
                 var e = g.recurrenceException[f];
-                if (c.occurrenceFrom && e.equals(c.occurrenceFrom)) {
-                    return true
-                }
+                if (c.occurrenceFrom && e.equals(c.occurrenceFrom)) return true;
             }
-            return false
+            return false;
         };
         c.getOccurrences = function(h, g) {
             c.occurrenceIndex = 0;
             var f = h !== null ? h : c.from;
             var e = new a.jqx.scheduler.recurrentAppointmentsList(c, c.calendar, f, g, c.scheduler);
             c.occurrences = e.list;
-            return e.list
+            return e.list;
         };
         if (arguments.length === 1) {
             if (a.type(arguments[0]) == "object") {
                 for (var b in arguments[0]) {
                     var d = arguments[0][b];
-                    if (this[b] !== undefined) {
-                        this[b] = d
-                    }
+                    if (this[b] !== undefined) this[b] = d;
                 }
             } else {
                 c.from = arguments[0];
-                c.to = new a.jqx.date(c.from).addHours(1)
+                c.to = new a.jqx.date(c.from).addHours(1);
             }
         } else {
             if (arguments.length === 2) {
                 c.from = arguments[0];
-                c.to = arguments[1]
+                c.to = arguments[1];
             } else {
                 if (arguments.length === 3) {
                     c.from = arguments[0];
                     c.to = arguments[1];
-                    c.subject = arguments[2]
+                    c.subject = arguments[2];
                 } else {
                     if (arguments.length === 3) {
                         c.from = arguments[0];
                         c.to = arguments[1];
                         c.subject = arguments[2];
-                        c.description = arguments[3]
+                        c.description = arguments[3];
                     }
                 }
             }
         }
-        if (c.recurrencePattern != null) {
-            c.recurrencePattern.setFrom(c.from)
-        }
+        if (c.recurrencePattern != null) c.recurrencePattern.setFrom(c.from);
     };
     a.jqx.scheduler.recurrentAppointmentsList = function() {
         var b = this;
@@ -497,13 +440,11 @@ License: https://jqwidgets.com/license/
         b.list = new Array();
         b.scheduler = null;
         b.getOccurrences = function(c, e, d) {
-            if (c == undefined) {
-                return b.list
-            }
-            return new a.jqx.scheduler.recurrentAppointmentsList(c, b.calendar, e, d).list
+            if (c == undefined) return b.list;
+            return new a.jqx.scheduler.recurrentAppointmentsList(c, b.calendar, e, d).list;
         };
         b.current = function() {
-            return b.recurrentAppointment.createOccurrence(b.currentTime)
+            return b.recurrentAppointment.createOccurrence(b.currentTime);
         };
         b.fillList = function() {
             b.currentTime = null;
@@ -513,20 +454,14 @@ License: https://jqwidgets.com/license/
             c.step = 0;
             c.current = 0;
             c.currentYearDay = 0;
-            if (c == null) {
-                return false
-            }
+            if (c == null) return false;
             while (b.getNextAppointment(c)) {
                 var d = b.current();
-                if (d) {
-                    b.list.push(d)
-                }
+                if (d) b.list.push(d);
             }
         };
         b.getNextAppointment = function(h) {
-            if (b.recurrentAppointment == null) {
-                return false
-            }
+            if (b.recurrentAppointment == null) return false;
             var d = 4294967295;
             var j = this.scheduler._views[this.scheduler._view].type;
             var l = this.scheduler._views[this.scheduler._view];
@@ -540,21 +475,19 @@ License: https://jqwidgets.com/license/
                     break;
                 case "yearly":
                     f = 365;
-                    break
+                    break;
             }
             for (var e = 0; e < d; e++) {
                 var k = h.getNewOccurenceDate();
-                if (!k) {
-                    continue
-                }
+                if (!k) continue;
                 h.currentTime = k;
                 if ((h.to < k && h.to.addDays(f) >= k) || (b.to < k && b.to.addDays(f) >= k)) {
                     b.currentTime = null;
-                    return true
+                    return true;
                 }
                 if (a.jqx.scheduler.utilities.getEndOfDay(h.to).addDays(f) < k || a.jqx.scheduler.utilities.getEndOfDay(b.to).addDays(f) < k) {
                     b.currentTime = null;
-                    return false
+                    return false;
                 }
                 var g = true;
                 g = b.getCanSetTime(h, k, g);
@@ -562,71 +495,49 @@ License: https://jqwidgets.com/license/
                     var c = true;
                     if (false === l.showWeekends) {
                         if (k.dayOfWeek() == 6 || k.dayOfWeek() == 0) {
-                            c = false
+                            c = false;
                         }
                     }
-                    if (c) {
-                        b.foundItems++
-                    }
+                    if (c) b.foundItems++;
                 }
-                if (!g) {
-                    continue
-                }
+                if (!g) continue;
                 b.currentTime = k;
-                if (b.foundItems > h.count) {
-                    return false
-                }
-                return true
+                if (b.foundItems > h.count) return false;
+                return true;
             }
-            return false
+            return false;
         };
         b.getCanSetTime = function(c, e, d) {
-            if (!c.canCreateNewOccurence(e, b.calendar)) {
-                d = false
-            }
-            if (e < b.from && e.add(b.recurrentAppointment.duration()) <= b.from) {
-                d = false
-            }
-            if (b.to <= e) {
-                d = false
-            }
-            return d
+            if (!c.canCreateNewOccurence(e, b.calendar)) d = false;
+            if (e < b.from && e.add(b.recurrentAppointment.duration()) <= b.from) d = false;
+            if (b.to <= e) d = false;
+            return d;
         };
         b.isException = function(f, c, g) {
             var e = b.recurrentAppointment.exceptions;
             for (var d = 0; d < e.length; d++) {
                 if (g.isDateInExceptionAppointment(f, c, e[d])) {
                     if (-1 === g.newExceptions.indexOf(e[d])) {
-                        return true
+                        return true;
                     }
                 }
             }
-            return false
+            return false;
         };
         if (arguments && arguments.length > 0) {
             b.recurrentAppointment = arguments[0];
-            if (arguments[1]) {
-                b.calendar = arguments[1]
-            }
-            if (arguments[2]) {
-                b.from = arguments[2]
-            }
-            if (arguments[3]) {
-                b.to = arguments[3]
-            }
-            if (arguments[4]) {
-                b.scheduler = arguments[4]
-            }
+            if (arguments[1]) b.calendar = arguments[1];
+            if (arguments[2]) b.from = arguments[2];
+            if (arguments[3]) b.to = arguments[3];
+            if (arguments[4]) b.scheduler = arguments[4];
             if (arguments[2] === undefined) {
                 b.from = new a.jqx.date(0);
-                b.to = new a.jqx.date(9999, 12, 31)
+                b.to = new a.jqx.date(9999, 12, 31);
             }
-            if (b.scheduler && b.scheduler.localization) {
-                b.calendar.firstDay = b.scheduler.localization.firstDay
-            }
-            b.fillList()
+            if (b.scheduler && b.scheduler.localization) b.calendar.firstDay = b.scheduler.localization.firstDay;
+            b.fillList();
         }
-        return b
+        return b;
     };
     a.jqx.scheduler.recurrencePattern = function() {
         var c = this;
@@ -668,30 +579,24 @@ License: https://jqwidgets.com/license/
                 var k = 0,
                     D = [];
                 if (n instanceof Array) {
-                    for (; k < C; k++) {
-                        D[k] = [].concat(n)
-                    }
+                    for (; k < C; k++) D[k] = [].concat(n);
                 } else {
-                    for (; k < C; k++) {
-                        D[k] = n
-                    }
+                    for (; k < C; k++) D[k] = n;
                 }
-                return D
+                return D;
             };
             var d = function(k, i) {
                 var n = k % i;
-                return (n * i < 0) ? n + i : n
+                return (n * i < 0) ? n + i : n;
             };
             var v = function(D, k) {
                 if (arguments.length === 1) {
                     k = D;
-                    D = 0
+                    D = 0;
                 }
                 var n = [];
-                for (var C = D; C < k; C++) {
-                    n.push(C)
-                }
-                return n
+                for (var C = D; C < k; C++) n.push(C);
+                return n;
             };
             var u = [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366];
             var l = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
@@ -704,16 +609,16 @@ License: https://jqwidgets.com/license/
                 var C = j[new Date(i, 0, 1).getDay()];
                 var n = (function() {
                     for (var D = [], E = 0; E < 55; E++) {
-                        D = D.concat(v(7))
+                        D = D.concat(v(7));
                     }
-                    return D
+                    return D;
                 }());
                 if (c.yearlen == 365) {
                     c.wdaymask = n.slice(C);
-                    c.mrange = [].concat(l)
+                    c.mrange = [].concat(l);
                 } else {
                     c.wdaymask = n.slice(C);
-                    c.mrange = [].concat(u)
+                    c.mrange = [].concat(u);
                 }
             };
             q(r);
@@ -730,13 +635,11 @@ License: https://jqwidgets.com/license/
                         g = g.addDays(7 * (c.step));
                         g = g.addDays(c.byweekday[c.current]);
                         g = g.addDays(-t);
-                        if (g < c.from) {
-                            g = null
-                        }
+                        if (g < c.from) g = null;
                         c.current++;
                         if (undefined == c.byweekday[c.current]) {
                             c.current = 0;
-                            c.step++
+                            c.step++;
                         }
                     }
                     return g;
@@ -758,20 +661,18 @@ License: https://jqwidgets.com/license/
                                 x = c.bynweekday[y][1];
                             if (x < 0) {
                                 z = m + (x + 1) * 7;
-                                z -= d(c.wdaymask[z] - s, 7)
+                                z -= d(c.wdaymask[z] - s, 7);
                             } else {
                                 z = h + (x - 1) * 7;
-                                z += d(7 - c.wdaymask[z] + s, 7)
+                                z += d(7 - c.wdaymask[z] + s, 7);
                             }
-                            if (h <= z && z <= m) {
-                                c.nwdaymask[z] = 1
-                            }
+                            if (h <= z && z <= m) c.nwdaymask[z] = 1;
                         }
                         var w = z + 1;
                         var A = w - h;
                         var g = new a.jqx.date(c.from.year(), c.from.month(), A, c.from.hour(), c.from.minute(), c.from.second());
                         g.timeZone = c.timeZone;
-                        g = g.addMonths((c.step - 1) * c.interval)
+                        g = g.addMonths((c.step - 1) * c.interval);
                     } else {
                         if (c.bymonthday.length > 0) {
                             var g = new a.jqx.date(c.from.year(), c.from.month(), c.bymonthday[c.current], c.from.hour(), c.from.minute(), c.from.second());
@@ -780,13 +681,13 @@ License: https://jqwidgets.com/license/
                             c.current++;
                             if (!c.bymonthday[c.current]) {
                                 c.current = 0;
-                                c.step++
+                                c.step++;
                             }
                         } else {
                             var g = new a.jqx.date(c.from.year(), c.from.month(), c.day, c.from.hour(), c.from.minute(), c.from.second());
                             g.timeZone = c.timeZone;
                             g = g.addMonths(c.step * c.interval);
-                            c.step++
+                            c.step++;
                         }
                     }
                     return g;
@@ -808,20 +709,18 @@ License: https://jqwidgets.com/license/
                                     x = c.bynweekday[y][1];
                                 if (x < 0) {
                                     z = m + (x + 1) * 7;
-                                    z -= d(c.wdaymask[z] - s, 7)
+                                    z -= d(c.wdaymask[z] - s, 7);
                                 } else {
                                     z = h + (x - 1) * 7;
-                                    z += d(7 - c.wdaymask[z] + s, 7)
+                                    z += d(7 - c.wdaymask[z] + s, 7);
                                 }
-                                if (h <= z && z <= m) {
-                                    c.nwdaymask[z] = 1
-                                }
+                                if (h <= z && z <= m) c.nwdaymask[z] = 1;
                             }
                             var w = z + 1;
                             var A = w - h;
                             g = new a.jqx.date(g.year(), c.bymonth[c.current], A, c.from.hour(), c.from.minute(), c.from.second());
                             g.timeZone = c.timeZone;
-                            c.step++
+                            c.step++;
                         } else {
                             if (c.byyearday && c.byyearday.length > 0) {
                                 var g = new a.jqx.date(c.from.year(), c.bymonth[c.current], c.byyearday[c.currentYearDay], c.from.hour(), c.from.minute(), c.from.second());
@@ -833,7 +732,7 @@ License: https://jqwidgets.com/license/
                                     c.current++;
                                     if (!c.bymonth[c.current]) {
                                         c.current = 0;
-                                        c.step++
+                                        c.step++;
                                     }
                                 }
                             } else {
@@ -843,7 +742,7 @@ License: https://jqwidgets.com/license/
                                 c.current++;
                                 if (!c.bymonth[c.current]) {
                                     c.current = 0;
-                                    c.step++
+                                    c.step++;
                                 }
                             }
                         }
@@ -855,7 +754,7 @@ License: https://jqwidgets.com/license/
                             c.current++;
                             if (!c.byyearday[c.current]) {
                                 c.current = 0;
-                                c.step++
+                                c.step++;
                             }
                         } else {
                             if (c.byweekno != null) {
@@ -866,14 +765,12 @@ License: https://jqwidgets.com/license/
                                     while (i != n) {
                                         C = C.addDays(7);
                                         i++;
-                                        if (i > 53) {
-                                            break
-                                        }
+                                        if (i > 53) break;
                                     }
                                     while (a.jqx.scheduler.utilities.getWeekday(C.toDate()) != c.wkst) {
-                                        C = C.addDays(1)
+                                        C = C.addDays(1);
                                     }
-                                    return C
+                                    return C;
                                 };
                                 var g = c.from.addYears(c.step * c.interval);
                                 g = p(c.byweekno[c.current], g);
@@ -881,9 +778,9 @@ License: https://jqwidgets.com/license/
                                     var e = g;
                                     for (var z = 0; z < 7; z++) {
                                         if (j[e.dayOfWeek()] === c.byweekday[c.currentYearDay]) {
-                                            break
+                                            break;
                                         }
-                                        e = e.addDays(1)
+                                        e = e.addDays(1);
                                     }
                                     g = e;
                                     c.currentYearDay++;
@@ -892,25 +789,25 @@ License: https://jqwidgets.com/license/
                                         c.current++;
                                         if (!c.byweekno[c.current]) {
                                             c.current = 0;
-                                            c.step++
+                                            c.step++;
                                         }
                                     }
                                 } else {
                                     c.current++;
                                     if (!c.byweekno[c.current]) {
                                         c.current = 0;
-                                        c.step++
+                                        c.step++;
                                     }
                                 }
                             } else {
                                 var g = new a.jqx.date(c.from.year(), c.month, c.day, c.from.hour(), c.from.minute(), c.from.second());
                                 g.timeZone = c.timeZone;
                                 g = g.addYears(c.step * c.interval);
-                                c.step++
+                                c.step++;
                             }
                         }
                     }
-                    return g
+                    return g;
             }
         };
         c.isDateInExceptionAppointment = function(d, e, f) {
@@ -918,13 +815,13 @@ License: https://jqwidgets.com/license/
                 case "daily":
                 case "weekly":
                 default:
-                    return d.year() == f.from.year() && d.dayOfYear() == f.from.dayOfYear()
+                    return d.year() == f.from.year() && d.dayOfYear() == f.from.dayOfYear();
             }
         };
         c.createNewPattern = function() {
             if (c.ical) {
                 var d = new a.jqx.scheduler.recurrencePattern(c.ical);
-                return d
+                return d;
             } else {
                 var d = new a.jqx.scheduler.recurrencePattern();
                 d.from = c.from;
@@ -949,22 +846,22 @@ License: https://jqwidgets.com/license/
                 d.byweekday = c.byweekday;
                 d.freq = d.freq;
                 d.timeZone = d.timeZone;
-                return d
+                return d;
             }
         };
         c.equals = function(e) {
             var d = c.from == e.from && c.to == e.to && c.count === e.count && c.interval === e.interval && c.day === e.day && c.month === e.month;
-            return d
+            return d;
         };
         c.isDayOfWeekIncluded = function(e) {
             var d = e.dayOfWeek();
-            return a.jqx.scheduler.utilities.areWeekDaysIncluded(c.weekDays, d)
+            return a.jqx.scheduler.utilities.areWeekDaysIncluded(c.weekDays, d);
         };
         c.getWeekIndexFromDate = function(g, f) {
             var e = f.firstDay;
             var h = a.jqx.scheduler.utilities.getStartOfWeek(c.from, f, e);
             var d = new a.jqx.timeSpan(g.subtract(h));
-            return parseInt(d.days() / 7)
+            return parseInt(d.days() / 7);
         };
         c.canCreateNewOccurence = function(e, g) {
             var d = e.toDate();
@@ -972,54 +869,37 @@ License: https://jqwidgets.com/license/
                 case "daily":
                 default:
                     if (c.bymonth) {
-                        if (c.bymonth.indexOf(e.month()) == -1) {
-                            return false
-                        }
+                        if (c.bymonth.indexOf(e.month()) == -1) return false;
                     }
                     if (c.isEveryWeekDay) {
-                        if (!c.isDayOfWeekIncluded(e, g)) {
-                            return false
-                        } else {
-                            return true
-                        }
+                        if (!c.isDayOfWeekIncluded(e, g)) return false;
+                        else return true;
                     } else {
-                        return true
+                        return true;
                     }
                     break;
                 case "weekly":
                     var f = c.getWeekIndexFromDate(e, g);
                     if (c.bymonth) {
-                        if (c.bymonth.indexOf(e.month()) == -1) {
-                            return false
-                        }
+                        if (c.bymonth.indexOf(e.month()) == -1) return false;
                     }
-                    if ((f % c.interval) != 0) {
-                        return false
-                    }
+                    if ((f % c.interval) != 0) return false;
                     if (c.weekDays == {}) {
                         var h = e;
-                        if (c.from.dayOfWeek() != h.dayOfWeek()) {
-                            return false
-                        }
+                        if (c.from.dayOfWeek() != h.dayOfWeek()) return false;
                     } else {
-                        if (!c.isDayOfWeekIncluded(e, g)) {
-                            return false
-                        }
+                        if (!c.isDayOfWeekIncluded(e, g)) return false;
                     }
                     break;
                 case "monthly":
                 case "yearly":
                     if (c.bymonth) {
-                        if (c.bymonth.indexOf(e.month()) == -1) {
-                            return false
-                        }
+                        if (c.bymonth.indexOf(e.month()) == -1) return false;
                     }
-                    if (e < c.from) {
-                        return false
-                    }
-                    break
+                    if (e < c.from) return false;
+                    break;
             }
-            return true
+            return true;
         };
         c.toString = function() {
             var d = {};
@@ -1036,29 +916,23 @@ License: https://jqwidgets.com/license/
             e.SECONDLY = 6;
             d.freq = e[this.freq.toUpperCase()];
             if (d.freq == "YEARLY") {
-                d.bymonth = this.bymonth ? this.bymonth : new Array().push(this.month)
+                d.bymonth = this.bymonth ? this.bymonth : new Array().push(this.month);
             }
             d.byweekday = new Array();
             var g = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
             a.each(this.weekDays, function() {
                 var h = this;
                 h--;
-                if (h < 0) {
-                    h = 6
-                }
-                d.byweekday.push(h)
+                if (h < 0) h = 6;
+                d.byweekday.push(h);
             });
-            if (this.byyearday != undefined) {
-                d.byyearday = this.byyearday
-            }
-            if (this.byweekno != undefined) {
-                d.byweekno = this.byweekno
-            }
+            if (this.byyearday != undefined) d.byyearday = this.byyearday;
+            if (this.byweekno != undefined) d.byweekno = this.byweekno;
             d.bymonthday = this.bymonthday;
             d.wkst = g[this.wkst];
             d.interval = this.interval;
             var f = new a.jqx.ICalRule(d);
-            return f.toString()
+            return f.toString();
         };
         c.init = function(j) {
             var d = new a.jqx.ICalRule(c.ical, j);
@@ -1070,11 +944,8 @@ License: https://jqwidgets.com/license/
             c.to = f.until ? new a.jqx.date(f.until, c.timeZone) : c.to;
             c.wkst = f.wkst;
             c.bymonth = f.bymonth;
-            if (c.bymonth && c.bymonth.length > 0) {
-                c.month = c.bymonth[0]
-            } else {
-                c.month = c.from.month()
-            }
+            if (c.bymonth && c.bymonth.length > 0) c.month = c.bymonth[0];
+            else c.month = c.from.month();
             c.day = c.from.day();
             if (f.byweekday != undefined) {
                 var h = {
@@ -1110,38 +981,32 @@ License: https://jqwidgets.com/license/
                             break;
                         case 6:
                             c.weekDays.Sunday = 0;
-                            break
+                            break;
                     }
                 }
-                c.byweekday = f.byweekday
+                c.byweekday = f.byweekday;
             }
             c.byweekno = f.byweekno;
-            if (f.bynweekday) {
-                c.bynweekday = f.bynweekday
-            }
+            if (f.bynweekday) c.bynweekday = f.bynweekday;
             if (f.bymonthday != undefined) {
                 c.bymonthday = f.bymonthday.sort();
-                if (c.bymonthday[0]) {
-                    c.day = c.bymonthday[0]
-                }
+                if (c.bymonthday[0]) c.day = c.bymonthday[0];
             }
             if (f.byyearday != undefined) {
                 c.day = f.byyearday[0];
-                c.byyearday = f.byyearday.sort()
+                c.byyearday = f.byyearday.sort();
             }
-            return f
+            return f;
         };
         c.setFrom = function(d) {
             c.from = d.clone();
-            if (c.ical) {
-                c.init(d)
-            }
+            if (c.ical) c.init(d);
         };
         if (arguments.length == 1) {
             c.ical = arguments[0];
-            c.init()
+            c.init();
         }
-        return c
+        return c;
     };
     a.jqx.scheduler.calendar = {
         "/": "/",
@@ -1194,33 +1059,28 @@ License: https://jqwidgets.com/license/
         var m = function(R, j) {
             if (arguments.length === 1) {
                 j = R;
-                R = 0
+                R = 0;
             }
             var k = [];
-            for (var v = R; v < j; v++) {
-                k.push(v)
-            }
-            return k
+            for (var v = R; v < j; v++)
+                k.push(v);
+            return k;
         };
         var A = function(k, v) {
             var j = 0,
                 R = [];
             if (k instanceof Array) {
-                for (; j < v; j++) {
-                    R[j] = [].concat(k)
-                }
+                for (; j < v; j++) R[j] = [].concat(k);
             } else {
-                for (; j < v; j++) {
-                    R[j] = k
-                }
+                for (; j < v; j++) R[j] = k;
             }
-            return R
+            return R;
         };
         var C = function(i) {
-            return (i instanceof Array && i.length == 0) ? false : Boolean(i)
+            return (i instanceof Array && i.length == 0) ? false : Boolean(i);
         };
         var B = function(i, j) {
-            return i.indexOf(j) != -1
+            return i.indexOf(j) != -1;
         };
         var G = [].concat(A(1, 31), A(2, 28), A(3, 31), A(4, 30), A(5, 31), A(6, 30), A(7, 31), A(8, 31), A(9, 30), A(10, 31), A(11, 30), A(12, 31), A(1, 7));
         var s = [].concat(A(1, 31), A(2, 29), A(3, 31), A(4, 30), A(5, 31), A(6, 30), A(7, 31), A(8, 31), A(9, 30), A(10, 31), A(11, 30), A(12, 31), A(1, 7));
@@ -1239,33 +1099,28 @@ License: https://jqwidgets.com/license/
         var c = [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366];
         var z = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
         var q = (function() {
-            for (var j = [], k = 0; k < 55; k++) {
-                j = j.concat(m(7))
-            }
-            return j
+            for (var j = [], k = 0; k < 55; k++)
+                j = j.concat(m(7));
+            return j;
         }());
         var f = function(j, k) {
             var i = this;
-            if (k === 0) {
-                throw new Error("Can't create weekday with n == 0")
-            }
+            if (k === 0) throw new Error("No se puede crear el día de la semana con n == 0");
             this.weekday = j;
             this.n = k;
             this.nth = function(v) {
-                return i.n == v ? i : new f(i.weekday, v)
+                return i.n == v ? i : new f(i.weekday, v);
             };
             this.equals = function(v) {
-                return i.weekday == v.weekday && i.n == v.n
+                return i.weekday == v.weekday && i.n == v.n;
             };
             this.toString = function() {
                 var v = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"][i.weekday];
-                if (this.n) {
-                    v = (i.n > 0 ? "+" : "") + String(i.n) + v
-                }
-                return v
+                if (this.n) v = (i.n > 0 ? "+" : "") + String(i.n) + v;
+                return v;
             };
             this.getJsWeekday = function() {
-                return i.weekday == 6 ? 0 : i.weekday + 1
+                return i.weekday == 6 ? 0 : i.weekday + 1;
             }
         };
         this.FREQUENCIES = ["YEARLY", "MONTHLY", "WEEKLY", "DAILY", "HOURLY", "MINUTELY", "SECONDLY"];
@@ -1308,15 +1163,12 @@ License: https://jqwidgets.com/license/
             Z = Object.keys(aa);
             V = Object.keys(d);
             for (var R = 0; R < Z.length; R++) {
-                if (!B(V, Z[R])) {
-                    continue
-                }
+                if (!B(V, Z[R])) continue;
                 Y = Z[R].toUpperCase();
                 W = aa[Z[R]];
                 U = [];
-                if (W === null || W instanceof Array && !W.length) {
+                if (W === null || W instanceof Array && !W.length)
                     continue;
-                }
                 switch (Y) {
                     case "FREQ":
                         W = D.FREQUENCIES[aa.freq];
@@ -1344,9 +1196,8 @@ License: https://jqwidgets.com/license/
                         break;
                     default:
                         if (W instanceof Array) {
-                            for (var v = 0; v < W.length; v++) {
+                            for (var v = 0; v < W.length; v++)
                                 U[v] = String(W[v]);
-                            }
                             W = U;
                         } else {
                             W = String(W);
@@ -1486,7 +1337,7 @@ License: https://jqwidgets.com/license/
             p = Object.keys(d);
         w.forEach(function(i) {
             this.origOptions[i] = this.options[i];
-            if (!B(p, i)) E.push(i)
+            if (!B(p, i)) E.push(i);
         }, this);
         if (E.length) throw new Error("Invalid options: " + E.join(", "));
         if (!D.FREQUENCIES[this.options.freq] && u.byeaster === null) throw new Error("Invalid Frequency: " + String(u.freq));
@@ -1501,11 +1352,11 @@ License: https://jqwidgets.com/license/
         }
         if (n) x.dtstart = n.toDate();
         if (x.wkst === null) {
-            x.wkst = this.MO.weekday
+            x.wkst = this.MO.weekday;
         } else {
             if (typeof x.wkst == "number") {} else {
-                if (x.wkst == null) x.wkst = this.MO.weekday
-                else x.wkst = x.wkst.weekday
+                if (x.wkst == null) x.wkst = this.MO.weekday;
+                else x.wkst = x.wkst.weekday;
             }
         }
         if (x.bysetpos !== null) {
@@ -1513,14 +1364,14 @@ License: https://jqwidgets.com/license/
             for (var N = 0; N < x.bysetpos.length; N++) {
                 var H = x.bysetpos[N];
                 if (H == 0 || !(-366 <= H && H <= 366)) {
-                    throw new Error("bysetpos debe estar entre 1 y 366, o entre -366 y -1")
+                    throw new Error("bysetpos debe estar entre 1 y 366, o entre -366 y -1");
                 }
             }
         }
         if (!(C(x.byweekno) || C(x.byyearday) || C(x.bymonthday) || x.byweekday !== null || x.byeaster !== null)) {
             switch (x.freq) {
                 case this.YEARLY:
-                    if (!x.bymonth) x.bymonth = x.dtstart.getMonth() + 1
+                    if (!x.bymonth) x.bymonth = x.dtstart.getMonth() + 1;
                     x.bymonthday = x.dtstart.getDate();
                     break;
                 case this.MONTHLY:
@@ -2544,11 +2395,9 @@ License: https://jqwidgets.com/license/
                 h.editDialogFields.yearly.panel = aq;
                 aq.detach()
             };
-            if (h.editAppointment && h.editAppointment.rootAppointment) {
-                q()
-            } else {
-                q()
-            }
+            if (h.editAppointment && h.editAppointment.rootAppointment) q();
+            else q();
+            
             var g = a("<div></div>");
             i.append(g);
             var f = a("<div class='" + h._editDialogLabel() + "'>" + h.schedulerLocalization.editDialogExceptionsString + "</div>").appendTo(g);
@@ -2866,7 +2715,7 @@ License: https://jqwidgets.com/license/
                         H.append(A);
                         var C = a("<div class='" + m._editDialogLabel() + "'>" + m.schedulerLocalization.editDialogSubjectString + "</div>").appendTo(A);
                         var ad = a("<div class='" + m._editDialogField() + "'></div>").appendTo(A);
-                        var U = a("<input type='text'/>").appendTo(ad);
+                        var U = a("<input type='text' />").appendTo(ad);
                         U.jqxInput({
                             height: 25,
                             rtl: m.rtl,
@@ -2895,6 +2744,7 @@ License: https://jqwidgets.com/license/
                         m.editDialogFields.location = T;
                         m.editDialogFields.locationLabel = z;
                         m.editDialogFields.locationContainer = P;
+                        P.hide();
                         //#endregion
 
                         //#region "Vigencia Desde"
@@ -3014,6 +2864,8 @@ License: https://jqwidgets.com/license/
                         m.editDialogFields.allDay = ai;
                         m.editDialogFields.allDayLabel = R;
                         m.editDialogFields.allDayContainer = t;
+                        t.hide();
+
                         m.addHandler(t, "change", function(i) {
                             if (i.args.checked) {
                                 S.jqxDateTimeInput({
@@ -3079,8 +2931,10 @@ License: https://jqwidgets.com/license/
                         m.editDialogFields.timeZone = ao;
                         m.editDialogFields.timeZoneLabel = W;
                         m.editDialogFields.timeZoneContainer = w;
+                        w.hide();
                         //#endregion
 
+                        /*
                         m.initRepeatPanels(q, H, h.toDate());
                         if (m.editDialogFields && m.editDialogFields.repeatContainer) {
                             if (m.editAppointment && m.editAppointment.rootAppointment) {
@@ -3091,6 +2945,7 @@ License: https://jqwidgets.com/license/
                                 m.editDialogFields.repeatPanel.show()
                             }
                         }
+                        */
 
                         //#region "Descripción"
                         var K = a("<div></div>");
@@ -3108,6 +2963,7 @@ License: https://jqwidgets.com/license/
                         m.editDialogFields.description = D;
                         m.editDialogFields.descriptionLabel = aA;
                         m.editDialogFields.descriptionContainer = K;
+                        K.hide();
                         //#endregion
 
                         //#region "Color"
@@ -3151,6 +3007,7 @@ License: https://jqwidgets.com/license/
                         m.editDialogFields.color = F;
                         m.editDialogFields.colorLabel = aD;
                         m.editDialogFields.colorContainer = ac;
+                        ac.hide();
                         //#endregion
 
                         //#region "Estado"
@@ -3171,6 +3028,7 @@ License: https://jqwidgets.com/license/
                         m.editDialogFields.status = B;
                         m.editDialogFields.statusLabel = az;
                         m.editDialogFields.statusContainer = ah;
+                        //ah.hide();
                         //#endregion
                         
                         //#region "Propietario"
@@ -3446,10 +3304,10 @@ License: https://jqwidgets.com/license/
 
                     //#region "Limpiar Datos"
                     m.editDialogFields.subject.val("");
-                    m.editDialogFields.location.val("");
+                    //m.editDialogFields.location.val("");
                     s();
-                    m.editDialogFields.resetExceptions.val(false);
-                    m.editDialogFields.description.val("");
+                    //m.editDialogFields.resetExceptions.val(false);
+                    //m.editDialogFields.description.val("");
                     if (!b) m.editDialogFields.deleteButton.hide();
                     //#endregion
                     
@@ -3674,6 +3532,8 @@ License: https://jqwidgets.com/license/
                     n.borderColor = v.border;
                 }
                 n.subject = e.editDialogFields.subject.val();
+
+                /*
                 var f = e.editDialogFields.repeat.jqxDropDownList("selectedIndex");
                 var r = new a.jqx.scheduler.recurrencePattern();
                 var j = e.editDialogFields.repeatEndPanel;
@@ -3802,11 +3662,15 @@ License: https://jqwidgets.com/license/
                         r.interval = F;
                         break;
                 }
+                
+                
                 if (n.rootAppointment) {
                     n.rootAppointment.recurrencePattern = r;
                 } else {
                     if (f > 0) n.recurrencePattern = r;
                 }
+                */
+                
                 var m = {};
                 var t = {};
                 for (var H in e.appointmentDataFields) {
@@ -3831,6 +3695,7 @@ License: https://jqwidgets.com/license/
             console.log('ok 2.1: Establecer Propiedades de Calendario seleccionado en Modal')
 
             var f = this;
+            /*
             var c = function() {
                 var p = f.editDialogFields.repeatEndPanel;
                 p.repeatEndNever.jqxRadioButton({
@@ -3889,6 +3754,9 @@ License: https://jqwidgets.com/license/
                 }
             };
             c();
+            */
+
+           /*
             if (e && e.isRecurrentAppointment()) {
                 if (!e.rootAppointment) f.editDialogFields.resetExceptionsContainer.show();
                 else f.editDialogFields.resetExceptionsContainer.hide();
@@ -3898,20 +3766,24 @@ License: https://jqwidgets.com/license/
                     f.editDialogFields.repeat.jqxDropDownList("selectIndex", 0);
                 }
             }
+            */
+
             if (!e) {
-                f.editDialogFields.timeZone.jqxDropDownList("clearSelection");
-                if (!g) f.editDialogFields.resource.jqxDropDownList("selectIndex", 0);
-                else f.editDialogFields.resource.val(g);
-                f.editDialogFields.allDay.val(false);
-                if (f._views[f._view].type.indexOf("month") >= 0 || (h && h.equals(d)) || (d && d.equals(a.jqx.scheduler.utilities.getEndOfDay(d)) && h && h.equals(a.jqx.scheduler.utilities.getStartOfDay(h)))) {
-                    f.editDialogFields.allDay.val(true);
-                }
-                f.editDialogFields.color.jqxDropDownList("clearSelection");
-                f.editDialogFields.description.val("");
+                // f.editDialogFields.timeZone.jqxDropDownList("clearSelection");
+                // if (!g) f.editDialogFields.resource.jqxDropDownList("selectIndex", 0);
+                // else f.editDialogFields.resource.val(g);
+                // f.editDialogFields.allDay.val(false);
+                // if (f._views[f._view].type.indexOf("month") >= 0 || (h && h.equals(d)) || (d && d.equals(a.jqx.scheduler.utilities.getEndOfDay(d)) && h && h.equals(a.jqx.scheduler.utilities.getStartOfDay(h)))) {
+                //     f.editDialogFields.allDay.val(true);
+                // }
+                // f.editDialogFields.color.jqxDropDownList("clearSelection");
+                // f.editDialogFields.description.val("");
                 f.editDialogFields.subject.val("");
-                f.editDialogFields.repeat.jqxDropDownList("selectIndex", 0);
+                // f.editDialogFields.repeat.jqxDropDownList("selectIndex", 0);
                 return;
             }
+
+            /*
             var b = function(j) {
                 var r = j.recurrencePattern;
                 if (j.rootAppointment) var r = j.rootAppointment.recurrencePattern;
@@ -4049,6 +3921,7 @@ License: https://jqwidgets.com/license/
                 }
             };
             b(e);
+            */
         }
         //#endregion
     });

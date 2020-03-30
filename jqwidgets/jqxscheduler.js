@@ -154,14 +154,16 @@ License: https://jqwidgets.com/license/
                     busy: "transparent",
                     outOfOffice: "#800080"
                 },
+                //#region "Entidad Actividad"
                 appointmentDataFields: {
+                    id: "id",
+                    nombre: "nombre",
+                    subject: "subject",
+                    description: "description",
                     from: "from",
                     to: "to",
-                    id: "id",
                     calendarId: "calendarId",
-                    description: "description",
                     location: "location",
-                    subject: "subject",
                     background: "background",
                     color: "color",
                     borderColor: "borderColor",
@@ -178,6 +180,7 @@ License: https://jqwidgets.com/license/
                     timeZone: "timeZone",
                     ownerId: "ownerId"
                 },
+                //#endregion
                 appointmentTooltips: true,
                 tableColumns: 1,
                 tableRows: 1,
@@ -745,10 +748,10 @@ License: https://jqwidgets.com/license/
                     editDialogRepeatDeleteString: "Eliminar Ocurrencia",
                     editDialogRepeatDeleteSeriesString: "Eliminar Series",
                     editDialogStatuses: {
-                        free: "Free",
-                        tentative: "Tentative",
-                        busy: "Busy",
-                        outOfOffice: "Out of Office"
+                        free: "Libre",
+                        tentative: "Tentativo",
+                        busy: "Ocupado",
+                        outOfOffice: "Fuera de Oficina"
                     }
                 }
             }
@@ -2416,22 +2419,15 @@ License: https://jqwidgets.com/license/
                 m.addClass(i.toTP("jqx-group-button-normal jqx-button jqx-fill-state-normal"));
                 h.push(m);
                 if (n == 0) {
-                    if (!i.rtl) {
-                        m.addClass(i.toTP("jqx-rc-l"))
-                    } else {
-                        m.addClass(i.toTP("jqx-rc-r"))
-                    }
+                    if (!i.rtl) m.addClass(i.toTP("jqx-rc-l"));
+                    else m.addClass(i.toTP("jqx-rc-r"));
                 }
                 if (n == i._views.length - 1) {
-                    if (!i.rtl) {
-                        m.addClass(i.toTP("jqx-rc-r"))
-                    } else {
-                        m.addClass(i.toTP("jqx-rc-l"))
-                    }
+                    if (!i.rtl) m.addClass(i.toTP("jqx-rc-r"));
+                    else m.addClass(i.toTP("jqx-rc-l"));
                 }
-                if (n === i._view) {
-                    m.addClass(i.toTP("jqx-fill-state-pressed"))
-                }
+                if (n === i._view) m.addClass(i.toTP("jqx-fill-state-pressed"));
+
                 m.mouseenter(function() {
                     m.addClass(i.toTP("jqx-fill-state-hover"))
                 });
@@ -2473,16 +2469,15 @@ License: https://jqwidgets.com/license/
             var d = function(m) {
                 var o = a.jqx.formatDate(i.getViewStart().toDate(), m, i.schedulerLocalization);
                 var n = a.jqx.formatDate(i.getViewEnd().toDate(), m, i.schedulerLocalization);
-                if (g === "dayView" || g === "timelineDayView") {
-                    i.toolbarDetails.html(o)
-                } else {
-                    i.toolbarDetails.html(o + " - " + n)
-                }
+
+                if (g === "dayView" || g === "timelineDayView") i.toolbarDetails.html(o);
+                else i.toolbarDetails.html(o + " - " + n);
+                
                 if (i.rtl) {
                     i.toolbarDetails.addClass("jqx-rtl");
-                    i.toolbarDetails.html("<span style='direction:rtl;'>" + n + "<span> - <span style='direction:rtl;'>" + o + "</span>")
+                    i.toolbarDetails.html("<span style='direction:rtl;'>" + n + "<span> - <span style='direction:rtl;'>" + o + "</span>");
                 } else {
-                    i.toolbarDetails[0].style.direction = "ltr"
+                    i.toolbarDetails[0].style.direction = "ltr";
                 }
             };
             d(i.toolBarRangeFormat);
@@ -2495,38 +2490,28 @@ License: https://jqwidgets.com/license/
                 if (c > i.host.width()) {
                     i.toolbarDetails.hide();
                     var c = i.toolbarViews.width() + 120;
-                    if (c > i.host.width()) {
-                        i.toolbarViews.hide()
-                    }
+                    if (c > i.host.width()) i.toolbarViews.hide();
                 }
             } else {
-                i.currentToolbarFormat = i.toolBarRangeFormat
+                i.currentToolbarFormat = i.toolBarRangeFormat;
             }
         },
         _setView: function(g) {
             var f = this;
             f.toolbarViews.find(".jqx-fill-state-pressed").removeClass(f.toTP("jqx-fill-state-pressed"));
-            if (!f.rtl) {
-                a(f.toolbarViews.children()[g]).addClass(f.toTP("jqx-fill-state-pressed"))
-            } else {
-                a(f.toolbarViews.children()[f._views.length - 1 - g]).addClass(f.toTP("jqx-fill-state-pressed"))
-            }
-            if (f._view === g) {
-                return
-            }
+            if (!f.rtl) a(f.toolbarViews.children()[g]).addClass(f.toTP("jqx-fill-state-pressed"));
+            else a(f.toolbarViews.children()[f._views.length - 1 - g]).addClass(f.toTP("jqx-fill-state-pressed"));
+            if (f._view === g) return;
+            
             var b = f.vScrollBar[0].style.visibility;
             if (b) {
-                if (!f._scrollPosition) {
-                    f._scrollPosition = new Array()
-                }
-                f._scrollPosition[f._view] = f.vScrollInstance.value
+                if (!f._scrollPosition) f._scrollPosition = new Array();
+                f._scrollPosition[f._view] = f.vScrollInstance.value;
             }
             var c = f.hScrollBar[0].style.visibility;
             if (c) {
-                if (!f._hscrollPosition) {
-                    f._hscrollPosition = new Array()
-                }
-                f._hscrollPosition[f._view] = f.hScrollInstance.value
+                if (!f._hscrollPosition) f._hscrollPosition = new Array();
+                f._hscrollPosition[f._view] = f.hScrollInstance.value;
             }
             var i = f._views[f._view].type;
             var e = f._views[g].type;
@@ -2536,17 +2521,12 @@ License: https://jqwidgets.com/license/
             var h = f.hScrollBar[0].style.visibility;
             if (c !== h) {
                 f._renderrows();
-                f._updateTouchScrolling()
+                f._updateTouchScrolling();
             }
-            if (f._scrollPosition[f._view]) {
-                f.vScrollInstance.setPosition(f._scrollPosition[f._view])
-            }
-            if (f._hscrollPosition[f._view]) {
-                f.hScrollInstance.setPosition(f._hscrollPosition[f._view])
-            }
-            if (f.selectedJQXAppointment) {
-                f._ensureAppointmentVisible(f.selectedJQXAppointment)
-            }
+            if (f._scrollPosition[f._view]) f.vScrollInstance.setPosition(f._scrollPosition[f._view]);
+            if (f._hscrollPosition[f._view]) f.hScrollInstance.setPosition(f._hscrollPosition[f._view]);
+            if (f.selectedJQXAppointment) f._ensureAppointmentVisible(f.selectedJQXAppointment);
+
             var d = f.getViewStart();
             var j = a.jqx.scheduler.utilities.getEndOfDay(f.getViewEnd());
             f._raiseEvent("viewChange", {
@@ -2597,7 +2577,7 @@ License: https://jqwidgets.com/license/
             var c = new a.jqx.date(this.date, d.timeZone);
             var j = function() {
                 while ((c.dayOfWeek() == 0 || c.dayOfWeek() == 6) && false === i.showWeekends) {
-                    c = c.addDays(1)
+                    c = c.addDays(1);
                 }
                 return c
             };
@@ -2621,14 +2601,11 @@ License: https://jqwidgets.com/license/
                     c = b.addMonths(1);
                     break;
                 case "agendaView":
-                    if (i.days) {
-                        c = c.addDays(i.days)
-                    } else {
-                        c = c.addDays(7)
-                    }
-                    break
+                    if (i.days) c = c.addDays(i.days);
+                    else c = c.addDays(7);
+                    break;
             }
-            return this.navigateTo(c)
+            return this.navigateTo(c);
         },
         navigateBackward: function() {
             var d = this;
@@ -2637,9 +2614,9 @@ License: https://jqwidgets.com/license/
             var c = new a.jqx.date(this.date, d.timeZone);
             var j = function() {
                 while ((c.dayOfWeek() == 0 || c.dayOfWeek() == 6) && false === i.showWeekends) {
-                    c = c.addDays(-1)
+                    c = c.addDays(-1);
                 }
-                return c
+                return c;
             };
             switch (h) {
                 case "dayView":
@@ -2661,14 +2638,11 @@ License: https://jqwidgets.com/license/
                     c = b.addMonths(-1);
                     break;
                 case "agendaView":
-                    if (i.days) {
-                        c = c.addDays(-i.days)
-                    } else {
-                        c = c.addDays(-7)
-                    }
-                    break
+                    if (i.days) c = c.addDays(-i.days);
+                    else c = c.addDays(-7);
+                    break;
             }
-            return this.navigateTo(c)
+            return this.navigateTo(c);
         },
         _refreshToolBar: function(d) {
             var f = this;
@@ -2680,36 +2654,30 @@ License: https://jqwidgets.com/license/
                 var h = f._views[f._view].type;
                 var k = f._views[f._view];
                 if (k.showWeekends === false) {
-                    if (g.dayOfWeek() == 0 || g.dayOfWeek() == 6) {
-                        g = g.addDays(1)
-                    }
-                    if (g.dayOfWeek() == 0 || g.dayOfWeek() == 6) {
-                        g = g.addDays(1)
-                    }
-                    if (e.dayOfWeek() == 0 || e.dayOfWeek() == 6) {
-                        e = e.addDays(-1)
-                    }
-                    if (e.dayOfWeek() == 0 || e.dayOfWeek() == 6) {
-                        e = e.addDays(-1)
-                    }
+                    if (g.dayOfWeek() == 0 || g.dayOfWeek() == 6)
+                        g = g.addDays(1);
+                    if (g.dayOfWeek() == 0 || g.dayOfWeek() == 6)
+                        g = g.addDays(1);
+                    if (e.dayOfWeek() == 0 || e.dayOfWeek() == 6)
+                        e = e.addDays(-1);
+                    if (e.dayOfWeek() == 0 || e.dayOfWeek() == 6)
+                        e = e.addDays(-1);
                     var l = a.jqx.formatDate(g.toDate(), i, f.schedulerLocalization);
-                    var j = a.jqx.formatDate(e.toDate(), i, f.schedulerLocalization)
+                    var j = a.jqx.formatDate(e.toDate(), i, f.schedulerLocalization);
                 }
-                if (h === "dayView" || h === "timelineDayView") {
-                    f.toolbarDetails.html(l)
-                } else {
-                    f.toolbarDetails.html(l + " - " + j)
-                }
+                if (h === "dayView" || h === "timelineDayView") f.toolbarDetails.html(l);
+                else f.toolbarDetails.html(l + " - " + j);
+                
                 if (f.rtl) {
                     f.toolbarDetails.addClass("jqx-rtl");
-                    f.toolbarDetails.html("<span style='direction:rtl;'>" + j + "<span> - <span style='direction:rtl;'>" + l + "</span>")
+                    f.toolbarDetails.html("<span style='direction:rtl;'>" + j + "<span> - <span style='direction:rtl;'>" + l + "</span>");
                 } else {
-                    f.toolbarDetails[0].style.direction = "ltr"
+                    f.toolbarDetails[0].style.direction = "ltr";
                 }
             };
             if (d) {
                 c(f._lastFormatString || f.toolBarRangeFormat);
-                return
+                return;
             }
             c(f.toolBarRangeFormat);
             f.toolbarDetails.show();
@@ -2721,23 +2689,16 @@ License: https://jqwidgets.com/license/
                 if (b > f.host.width()) {
                     f.toolbarDetails.hide();
                     var b = f.toolbarViews.width() + 120;
-                    if (b > f.host.width()) {
-                        f.toolbarViews.hide()
-                    }
+                    if (b > f.host.width()) f.toolbarViews.hide();
                 }
             }
         },
         navigateTo: function(b) {
             var d = this;
-            if (a.type(b) == "date") {
-                b = new a.jqx.date(b)
-            }
-            if (b < this.min) {
-                return
-            }
-            if (b > this.max) {
-                return
-            }
+            if (a.type(b) == "date") b = new a.jqx.date(b);
+            if (b < this.min) return;
+            if (b > this.max) return;
+
             b.timeZone = d.timeZone;
             d.date = b;
             d._refreshToolBar(true);
@@ -2747,9 +2708,7 @@ License: https://jqwidgets.com/license/
             d._refreshColumnTitles();
             d._renderrows();
             d._updateFocusedCell();
-            if (d.resources) {
-                d._renderhorizontalscroll()
-            }
+            if (d.resources) d._renderhorizontalscroll();
             var e = d.getViewStart();
             var c = a.jqx.scheduler.utilities.getEndOfDay(d.getViewEnd());
             d._raiseEvent("dateChange", {
@@ -2775,30 +2734,21 @@ License: https://jqwidgets.com/license/
                     var m = function(j) {
                         for (var s = 0; s < l.columnGroups.length; s++) {
                             var t = l.columnGroups[s];
-                            if (t.name === j) {
-                                return t
-                            }
+                            if (t.name === j) return t;
                         }
-                        return null
+                        return null;
                     };
                     for (var f = 0; f < this.columnGroups.length; f++) {
                         var o = this.columnGroups[f];
-                        if (!o.groups) {
-                            o.groups = null
-                        }
-                        if (o.parentGroup) {
-                            o.parentgroup = o.parentGroup
-                        }
+                        if (!o.groups) o.groups = null;
+                        if (o.parentGroup) o.parentgroup = o.parentGroup;
+                        
                         if (o.parentgroup) {
                             var q = m(o.parentgroup);
                             if (q) {
                                 o.parent = q;
-                                if (!q.groups) {
-                                    q.groups = new Array()
-                                }
-                                if (q.groups.indexOf(o) === -1) {
-                                    q.groups.push(o)
-                                }
+                                if (!q.groups) q.groups = new Array();
+                                if (q.groups.indexOf(o) === -1) q.groups.push(o);
                             }
                         }
                     }
@@ -2807,13 +2757,9 @@ License: https://jqwidgets.com/license/
                         if (o.columngroup) {
                             var q = m(o.columngroup);
                             if (q) {
-                                if (!q.groups) {
-                                    q.groups = new Array()
-                                }
+                                if (!q.groups) q.groups = new Array();
                                 o.parent = q;
-                                if (q.groups.indexOf(o) === -1) {
-                                    q.groups.push(o)
-                                }
+                                if (q.groups.indexOf(o) === -1) q.groups.push(o);
                             }
                         }
                     }
@@ -2831,32 +2777,25 @@ License: https://jqwidgets.com/license/
                         p = Math.max(p, o.level);
                         while (c.parent) {
                             c = c.parent;
-                            if (c) {
-                                c.level = --b
-                            }
+                            if (c) c.level = --b;
                         }
                     }
                     var k = function(w) {
                         var v = new Array();
-                        if (w.columngroup) {
-                            v.push(w)
-                        }
-                        if (!w.groups) {
-                            return new Array()
-                        }
+                        if (w.columngroup) v.push(w);
+                        if (!w.groups) return new Array();
                         for (var u = 0; u < w.groups.length; u++) {
                             if (w.groups[u].columngroup) {
-                                v.push(w.groups[u])
+                                v.push(w.groups[u]);
                             } else {
                                 if (w.groups[u].groups) {
                                     var t = k(w.groups[u]);
-                                    for (var s = 0; s < t.length; s++) {
-                                        v.push(t[s])
-                                    }
+                                    for (var s = 0; s < t.length; s++)
+                                        v.push(t[s]);
                                 }
                             }
                         }
-                        return v
+                        return v;
                     };
                     for (var f = 0; f < this.columnGroups.length; f++) {
                         var o = this.columnGroups[f];
@@ -2866,129 +2805,92 @@ License: https://jqwidgets.com/license/
                         var r = 0;
                         for (var e = 0; e < d.length; e++) {
                             g.push(this.columns.records.indexOf(d[e]));
-                            if (d[e].pinned) {
-                                r++
-                            }
+                            if (d[e].pinned) r++;
                         }
                         if (r != 0) {
-                            throw new Error("jqxScheduler: Column Groups initialization Error. Please, check the initialization of the jqxScheduler's columns array. The columns in a column group cannot be pinned.")
+                            throw new Error("Error de inicialización de grupos de columnas. Por favor, verifique la inicialización de la matriz de columnas. Las columnas en un grupo de columnas no se pueden anclar.")
                         }
                         g.sort(function(j, i) {
                             j = parseInt(j);
                             i = parseInt(i);
-                            if (j < i) {
-                                return -1
-                            }
-                            if (j > i) {
-                                return 1
-                            }
-                            return 0
+                            if (j < i) return -1;
+                            if (j > i) return 1;
+                            return 0;
                         });
                         for (var h = 1; h < g.length; h++) {
                             if (g[h] != g[h - 1] + 1) {
-                                throw new Error("jqxScheduler: Column Groups initialization Error. Please, check the initialization of the jqxScheduler's columns array. The columns in a column group are expected to be siblings in the columns array.");
-                                this.host.remove()
+                                throw new Error("Error de inicialización de grupos de columnas. Por favor, verifique la inicialización de la matriz de columnas. Se espera que las columnas en un grupo de columnas sean hermanos en la matriz de columnas.");
+                                this.host.remove();
                             }
                         }
                     }
                 }
                 this.columnGroupslevel = 1 + p;
-                n = this.columnGroupslevel * this.columnsHeight
+                n = this.columnGroupslevel * this.columnsHeight;
             }
-            return n
+            return n;
         },
         wheel: function(d, c) {
-            if (c.editRecurrenceDialog && c.editRecurrenceDialog.jqxWindow("isOpen")) {
-                return true
-            }
-            if (c._editDialog && c._editDialog.jqxWindow("isOpen")) {
-                return true
-            }
+            if (c.editRecurrenceDialog && c.editRecurrenceDialog.jqxWindow("isOpen")) return true;
+            if (c._editDialog && c._editDialog.jqxWindow("isOpen")) return true;
             if (c.autoheight && c.hScrollBar.css("visibility") == "hidden") {
                 d.returnValue = true;
-                return true
+                return true;
             }
             var e = 0;
-            if (!d) {
-                d = window.event
-            }
-            if (d.originalEvent && d.originalEvent.wheelDelta) {
-                d.wheelDelta = d.originalEvent.wheelDelta
-            }
+            if (!d) d = window.event;
+            if (d.originalEvent && d.originalEvent.wheelDelta) d.wheelDelta = d.originalEvent.wheelDelta;
             if (d.wheelDelta) {
-                e = d.wheelDelta / 120
+                e = d.wheelDelta / 120;
             } else {
-                if (d.detail) {
-                    e = -d.detail / 3
-                }
+                if (d.detail) e = -d.detail / 3;
             }
             if (e) {
                 var b = c._handleDelta(e);
                 if (b) {
-                    if (d.preventDefault) {
-                        d.preventDefault()
-                    }
-                    if (d.originalEvent != null) {
-                        d.originalEvent.mouseHandled = true
-                    }
-                    if (d.stopPropagation != undefined) {
-                        d.stopPropagation()
-                    }
+                    if (d.preventDefault) d.preventDefault();
+                    if (d.originalEvent != null) d.originalEvent.mouseHandled = true;
+                    if (d.stopPropagation != undefined) d.stopPropagation();
                 }
                 if (b) {
                     b = false;
                     d.returnValue = b;
-                    return b
+                    return b;
                 } else {
-                    return false
+                    return false;
                 }
             }
-            if (d.preventDefault) {
-                d.preventDefault()
-            }
-            d.returnValue = false
+            if (d.preventDefault) d.preventDefault();
+            d.returnValue = false;
         },
         _handleDelta: function(d) {
             if (this.vScrollBar.css("visibility") != "hidden") {
                 var c = this.vScrollInstance.value;
-                if (d < 0) {
-                    this.vScrollInstance.setPosition(this.vScrollInstance.value + 2 * 10)
-                } else {
-                    this.vScrollInstance.setPosition(this.vScrollInstance.value - 2 * 10)
-                }
+                if (d < 0) this.vScrollInstance.setPosition(this.vScrollInstance.value + 2 * 10);
+                else this.vScrollInstance.setPosition(this.vScrollInstance.value - 2 * 10);
+                
                 var b = this.vScrollInstance.value;
-                if (c != b) {
-                    return true
-                }
+                if (c != b) return true;
             } else {
                 if (this.hScrollBar.css("visibility") != "hidden") {
                     var c = this.hScrollInstance.value;
                     if (d > 0) {
-                        if (this.hScrollInstance.value > 2 * 10) {
-                            this.hScrollInstance.setPosition(this.hScrollInstance.value - 2 * 10)
-                        } else {
-                            this.hScrollInstance.setPosition(0)
-                        }
+                        if (this.hScrollInstance.value > 2 * 10) this.hScrollInstance.setPosition(this.hScrollInstance.value - 2 * 10);
+                        else this.hScrollInstance.setPosition(0);
+                        
                     } else {
-                        if (this.hScrollInstance.value < this.hScrollInstance.max) {
-                            this.hScrollInstance.setPosition(this.hScrollInstance.value + 2 * 10)
-                        } else {
-                            this.hScrollInstance.setPosition(this.hScrollInstance.max)
-                        }
+                        if (this.hScrollInstance.value < this.hScrollInstance.max) this.hScrollInstance.setPosition(this.hScrollInstance.value + 2 * 10);
+                        else this.hScrollInstance.setPosition(this.hScrollInstance.max);
                     }
                     var b = this.hScrollInstance.value;
-                    if (c != b) {
-                        return true
-                    }
+                    if (c != b) return true;
                 }
             }
-            return false
+            return false;
         },
         _removeHandlers: function() {
             var e = this;
-            if (e._mousewheelfunc) {
-                e.removeHandler(this.host, "mousewheel", e._mousewheelfunc)
-            }
+            if (e._mousewheelfunc) e.removeHandler(this.host, "mousewheel", e._mousewheelfunc);
             e.removeHandler(a(document), "keydown.scheduler" + e.element.id);
             e.removeHandler(e.host, "focus");
             e.removeHandler(e.host, "blur");
@@ -2999,18 +2901,14 @@ License: https://jqwidgets.com/license/
             var d = "mousedown";
             if (e.isTouchDevice()) {
                 d = a.jqx.mobile.getTouchEventName("touchstart");
-                if (a.jqx.browser.msie && a.jqx.browser.version < 10) {
-                    d = "mousedown"
-                }
+                if (a.jqx.browser.msie && a.jqx.browser.version < 10) d = "mousedown";
             }
-            if (e.table) {
-                e.removeHandler(e.table, "mouseleave")
-            }
+            if (e.table) e.removeHandler(e.table, "mouseleave");
             var c = "mousemove.scheduler" + e.element.id;
             var f = "mouseup.scheduler" + e.element.id;
             if (e.isTouchDevice() && e.touchMode !== true) {
                 c = a.jqx.mobile.getTouchEventName("touchmove") + ".scheduler" + e.element.id;
-                f = a.jqx.mobile.getTouchEventName("touchend") + ".scheduler" + e.element.id
+                f = a.jqx.mobile.getTouchEventName("touchend") + ".scheduler" + e.element.id;
             }
             e.removeHandler(a(document), c);
             e.removeHandler(a(document), f);
@@ -3019,12 +2917,9 @@ License: https://jqwidgets.com/license/
                     if (document.referrer != "" || window.frameElement) {
                         if (window.top != null && window.top != window.self) {
                             var g = null;
-                            if (window.parent && document.referrer) {
-                                g = document.referrer
-                            }
-                            if (g && g.indexOf(document.location.host) != -1) {
-                                e.removeHandler(a(window.top.document), "mouseup.jqxscheduler" + e.element.id)
-                            }
+                            if (window.parent && document.referrer) g = document.referrer;
+                            if (g && g.indexOf(document.location.host) != -1)
+                                e.removeHandler(a(window.top.document), "mouseup.jqxscheduler" + e.element.id);
                         }
                     }
                 } catch (b) {}
@@ -3035,41 +2930,32 @@ License: https://jqwidgets.com/license/
             if (e.table) {
                 e.removeHandler(e.table, "dblclick");
                 e.removeHandler(e.pinnedtable, d);
-                e.removeHandler(e.table, d)
+                e.removeHandler(e.table, d);
             }
         },
         selectAppointment: function(b) {
-            if (this.appointmentsByKey[b]) {
-                this._selectAppointment(this.appointmentsByKey[b].jqxAppointment)
-            }
+            if (this.appointmentsByKey[b]) this._selectAppointment(this.appointmentsByKey[b].jqxAppointment);
         },
         _selectAppointment: function(d, i, f) {
-            if (!d) {
-                return
-            }
+            if (!d) return;
             var h = this;
-            if (h.selectedAppointment) {
-                h.clearAppointmentsSelection()
-            }
+            if (h.selectedAppointment) h.clearAppointmentsSelection();
             var e = d.id;
             var c = a('[data-key="' + e + '"]');
             if (c.length > 0) {
                 h.selectedJQXAppointment = d;
-                if (!i) {
-                    h.selectedAppointment = a(c[0])
-                } else {
-                    h.selectedAppointment = a(i)
-                }
+                if (!i) h.selectedAppointment = a(c[0]);
+                else h.selectedAppointment = a(i);
+                
                 var b = h._views[h._view].type;
                 var g = h._views[h._view];
                 if (b == "agendaView") {
                     h.clearSelection();
-                    return
+                    return;
                 }
                 c.addClass(h.toTP("jqx-scheduler-selected-appointment"));
-                if (d.resizable) {
-                    c.find(".jqx-scheduler-appointment-resize-indicator").show()
-                }
+                if (d.resizable) c.find(".jqx-scheduler-appointment-resize-indicator").show();
+                
                 switch (b) {
                     case "dayView":
                         a(c).find(".jqx-scheduler-appointment-left-resize-indicator").hide();
@@ -3084,30 +2970,22 @@ License: https://jqwidgets.com/license/
                         if (c.length > 1) {
                             a.each(c, function(j) {
                                 if (!h.rtl) {
-                                    if (j > 0) {
-                                        a(this).find(".jqx-scheduler-appointment-left-resize-indicator").hide()
-                                    }
-                                    if (j < c.length - 1) {
-                                        a(this).find(".jqx-scheduler-appointment-right-resize-indicator").hide()
-                                    }
+                                    if (j > 0) a(this).find(".jqx-scheduler-appointment-left-resize-indicator").hide();
+                                    if (j < c.length - 1) a(this).find(".jqx-scheduler-appointment-right-resize-indicator").hide();
                                 } else {
-                                    if (j > 0) {
-                                        a(this).find(".jqx-scheduler-appointment-right-resize-indicator").hide()
-                                    }
-                                    if (j < c.length - 1) {
-                                        a(this).find(".jqx-scheduler-appointment-left-resize-indicator").hide()
-                                    }
+                                    if (j > 0) a(this).find(".jqx-scheduler-appointment-right-resize-indicator").hide();
+                                    if (j < c.length - 1) a(this).find(".jqx-scheduler-appointment-left-resize-indicator").hide();
                                 }
                             })
                         }
-                        break
+                        break;
                 }
                 if (f == "mouse") {
                     h.clearSelection();
-                    return
+                    return;
                 }
             }
-            h.clearSelection()
+            h.clearSelection();
         },
         clearAppointmentsSelection: function() {
             var d = this;
@@ -3117,7 +2995,7 @@ License: https://jqwidgets.com/license/
                 b.removeClass(d.toTP("jqx-scheduler-selected-appointment"));
                 b.find(".jqx-scheduler-appointment-resize-indicator").hide();
                 d.selectedAppointment = null;
-                d.selectedJQXAppointment = null
+                d.selectedJQXAppointment = null;
             }
         },
         selectCell: function(c, m, l) {
@@ -3127,9 +3005,7 @@ License: https://jqwidgets.com/license/
                 for (var e = 0; e < g.rows[f].cells.length; e++) {
                     var k = g.rows[f].cells[e];
                     if (l) {
-                        if (k.getAttribute("data-view") !== l) {
-                            continue
-                        }
+                        if (k.getAttribute("data-view") !== l) continue;
                     }
                     var h = k.getAttribute("data-date");
                     var b = g._getDateByString;
@@ -3141,12 +3017,10 @@ License: https://jqwidgets.com/license/
                             g._lastSelectedCell = k;
                             g._updateCellsSelection();
                             g._ensureVisible(g.focusedCell);
-                            return
+                            return;
                         }
                     } else {
-                        if (!m && k.getAttribute("data-end-date")) {
-                            continue
-                        }
+                        if (!m && k.getAttribute("data-end-date")) continue;
                     }
                     if (d.valueOf() == n.valueOf()) {
                         k.setAttribute("data-selected", "true");
@@ -3154,70 +3028,56 @@ License: https://jqwidgets.com/license/
                         g._lastSelectedCell = k;
                         g._updateCellsSelection();
                         g._ensureVisible(g.focusedCell);
-                        return
+                        return;
                     }
                 }
             }
-            g._updateCellsSelection()
+            g._updateCellsSelection();
         },
         selectRange: function(m, n, q, p) {
             var k = this;
-            if (m < this.min) {
-                m = this.min
-            }
-            if (n > this.max) {
-                n = this.max
-            }
+            if (m < this.min) m = this.min;
+            if (n > this.max) n = this.max;
+            
             var f = m.toDate();
             var d = n.toDate();
             var g = false;
             for (var h = 0; h < k.rows.length; h++) {
                 for (var e = 0; e < k.rows[h].cells.length; e++) {
                     var o = k.rows[h].cells[e];
-                    if (p) {
-                        if (o.getAttribute("data-view") !== p) {
-                            continue
-                        }
-                    }
+                    if (p)
+                        if (o.getAttribute("data-view") !== p) 
+                            continue;
                     var l = o.getAttribute("data-date");
                     var b = k._getDateByString;
                     var c = b(l);
                     if (q && o.getAttribute("data-end-date")) {
-                        if (c.valueOf() >= f.valueOf() && c.valueOf() <= d.valueOf()) {
-                            o.setAttribute("data-selected", "true")
-                        }
+                        if (c.valueOf() >= f.valueOf() && c.valueOf() <= d.valueOf())
+                            o.setAttribute("data-selected", "true");
                     } else {
-                        if (!q && o.getAttribute("data-end-date")) {
-                            continue
-                        }
+                        if (!q && o.getAttribute("data-end-date")) continue;
                     }
                     if (c.valueOf() >= f.valueOf() && c.valueOf() <= d.valueOf()) {
                         o.setAttribute("data-selected", "true");
                         if (!g) {
                             k._lastSelectedCell = o;
                             k.focusedCell = o;
-                            g = true
+                            g = true;
                         }
                     }
                 }
             }
-            k._updateCellsSelection()
+            k._updateCellsSelection();
         },
         _selectRange: function(b, r) {
             var h = this;
-            if (h._views[h._view].type == "agendaView") {
-                return
-            }
+            if (h._views[h._view].type == "agendaView") return;
             var k = b;
             var v = r.getAttribute("data-view");
-            if (b.getAttribute("data-view") !== v) {
-                return
-            }
+            if (b.getAttribute("data-view") !== v) return;
             var q = r.getAttribute("data-date");
             var m = k.getAttribute("data-date");
-            if (null == q || null == m) {
-                return
-            }
+            if (null == q || null == m) return;
             var C = r.getAttribute("data-end-date");
             var F = k.getAttribute("data-end-date");
             var H = C != null || F != null;
@@ -3225,18 +3085,10 @@ License: https://jqwidgets.com/license/
             var n = h._getDateByString;
             var u = n(q);
             var t = n(m);
-            if (u < this.min.toDate()) {
-                u = this.min.toDate()
-            }
-            if (t < this.min.toDate()) {
-                t = this.min.toDate()
-            }
-            if (u > this.max.toDate()) {
-                u = this.max.toDate()
-            }
-            if (t > this.max.toDate()) {
-                t = this.max.toDate()
-            }
+            if (u < this.min.toDate()) u = this.min.toDate();
+            if (t < this.min.toDate()) t = this.min.toDate();
+            if (u > this.max.toDate()) u = this.max.toDate();
+            if (t > this.max.toDate()) t = this.max.toDate();
             var w = Math.min(u, t);
             var A = Math.max(u, t);
             var p = h.rows;
@@ -3244,7 +3096,7 @@ License: https://jqwidgets.com/license/
             var e = 0;
             if (f > 0 && h.rtl) {
                 f = 0;
-                e = 1
+                e = 1;
             }
             var d = p.length;
             if (H) {
@@ -3264,7 +3116,7 @@ License: https://jqwidgets.com/license/
                             var J = n(j);
                             w = Math.min(K, J);
                             A = Math.max(K, J);
-                            return false
+                            return false;
                         }
                     })
                 }
@@ -3276,48 +3128,34 @@ License: https://jqwidgets.com/license/
                     var l = p.length / h.tableRows;
                     var o = (-1 + y) * l;
                     c = p[o];
-                    g = p[o]
+                    g = p[o];
                 }
                 var c = g.cells;
                 for (var x = f; x < c.length - e; x++) {
-                    if (c[x].getAttribute("data-view") !== v) {
-                        continue
-                    }
+                    if (c[x].getAttribute("data-view") !== v) continue;
                     c[x].removeAttribute("data-selected");
-                    if (!s && c[x].getAttribute("data-end-date")) {
-                        continue
-                    }
+                    if (!s && c[x].getAttribute("data-end-date")) continue;
                     var G = c[x].getAttribute("data-date");
                     var D = n(G).valueOf();
-                    if (w <= D && D <= A) {
-                        c[x].setAttribute("data-selected", "true")
-                    }
+                    if (w <= D && D <= A) c[x].setAttribute("data-selected", "true");
                 }
             }
-            h._updateCellsSelection()
+            h._updateCellsSelection();
         },
         findCell: function(s, p) {
             var k = this;
             var l = null;
             if (!k._tableOffset) {
                 var c = k.schedulercontent.coord();
-                k._tableOffset = c
+                k._tableOffset = c;
             }
             var g = k._tableOffset;
             var e = g.top;
             var n = g.left;
-            if (p < e) {
-                return null
-            }
-            if (s < n) {
-                return null
-            }
-            if (p > e + k._hostHeight) {
-                return null
-            }
-            if (s > n + k._hostWidth) {
-                return null
-            }
+            if (p < e) return null;
+            if (s < n) return null;
+            if (p > e + k._hostHeight) return null;
+            if (s > n + k._hostWidth) return null;
             var q = false;
             var r = k.rows;
             var o = k._views[k._view];
@@ -3326,28 +3164,21 @@ License: https://jqwidgets.com/license/
             var m = k.vScrollInstance.value;
             var u = k.hScrollInstance.value;
             for (var B = 0; B < r.length; B++) {
-                if (q) {
-                    break
-                }
+                if (q) break;
                 var h = r[B];
                 var d = h.cells;
                 var z = false;
                 if (B == 0 && t == "dayView" || t == "weekView") {
                     z = k.showAllDayRow;
                     if (o.timeRuler && (t === "dayView" || t === "weekView")) {
-                        if (o.timeRuler.showAllDayRow != undefined) {
-                            z = o.timeRuler.showAllDayRow
-                        }
+                        if (o.timeRuler.showAllDayRow != undefined)
+                            z = o.timeRuler.showAllDayRow;
                     }
-                    if (z) {
-                        D = k._allDayRowFullHeight
-                    }
+                    if (z) D = k._allDayRowFullHeight;
                 }
                 for (var C = 0; C < d.length; C++) {
                     var b = d[C];
-                    if (C == 0 && b.getAttribute("data-time-slot")) {
-                        continue
-                    }
+                    if (C == 0 && b.getAttribute("data-time-slot")) continue;
                     if (!b._left) {
                         var f = b.offsetLeft + n;
                         var v = b.offsetTop + e;
@@ -3356,58 +3187,48 @@ License: https://jqwidgets.com/license/
                         b._left = f;
                         b._top = v;
                         b._width = A;
-                        b._height = w
+                        b._height = w;
                     } else {
                         var f = b._left;
                         var v = b._top;
                         var A = b._width;
-                        var w = b._height
+                        var w = b._height;
                     }
                     b._left = f;
                     b._top = v;
                     b._width = A;
                     b._height = w;
-                    if (A === 0 || w === 0) {
-                        continue
-                    }
+                    if (A === 0 || w === 0) continue;
                     if (!k.rtl) {
-                        f -= u
+                        f -= u;
                     } else {
-                        if (k.hScrollInstance.element.style.visibility != "hidden") {
-                            f -= (k.hScrollInstance.max - u)
-                        }
+                        if (k.hScrollInstance.element.style.visibility != "hidden") f -= (k.hScrollInstance.max - u);
                     }
                     v -= m;
-                    if (B == 0 && z) {
-                        v += m
-                    }
+                    if (B == 0 && z) v += m;
                     if (v <= p && p < v + w) {
                         if (f <= s && s < f + A) {
                             l = b;
                             q = true;
-                            break
+                            break;
                         }
                     } else {
-                        break
+                        break;
                     }
                 }
             }
-            return l
+            return l;
         },
         _removeFeedbackAndStopResize: function() {
             var d = this;
-            if (!d.feedback) {
-                return
-            }
+            if (!d.feedback) return;
             d.feedback.remove();
             d.feedback = null;
             d.pinnedfeedback.remove();
             d.pinnedfeedback = null;
-            if (d.feedbacks) {
-                for (var c = 0; c < d.feedbacks.length; c++) {
-                    d.feedbacks[c].remove()
-                }
-            }
+            if (d.feedbacks)
+                for (var c = 0; c < d.feedbacks.length; c++) 
+                    d.feedbacks[c].remove();
             d._resizeDays = 0;
             d._resizeStep = 0;
             d._lastX = null;
@@ -3426,32 +3247,28 @@ License: https://jqwidgets.com/license/
             d.isMouseDown = false;
             if (d.selectedJQXAppointment) {
                 var b = a('[data-key="' + d.selectedJQXAppointment.id + '"]');
-                b.removeClass(d.toTP("jqx-scheduler-feedback-appointment jqx-disableselect"))
+                b.removeClass(d.toTP("jqx-scheduler-feedback-appointment jqx-disableselect"));
             }
-            if (d.openedMonthCellPopup) {
-                d.openedMonthCellPopup.remove()
-            }
+            if (d.openedMonthCellPopup) d.openedMonthCellPopup.remove();
         },
         _saveChangesAfterDragOrResize: function(e, b, r, m) {
             var l = this;
             if (e === false) {
                 if (!b.isException()) {
-                    if (!b.rootAppointment.recurrenceException) {
-                        b.rootAppointment.recurrenceException = new Array()
-                    }
+                    if (!b.rootAppointment.recurrenceException) b.rootAppointment.recurrenceException = new Array();
                     if (b.rootAppointment != null) {
                         b.rootAppointment.exceptions.push(b);
-                        b.rootAppointment.recurrenceException.push(b.occurrenceFrom)
+                        b.rootAppointment.recurrenceException.push(b.occurrenceFrom);
                     } else {
                         b.exceptions.push(b);
-                        b.recurrenceException.push(b.occurrenceFrom)
+                        b.recurrenceException.push(b.occurrenceFrom);
                     }
                 } else {
                     var d = b.rootAppointment ? b.rootAppointment.exceptions : b.exceptions;
                     for (var h = 0; h < d.length; h++) {
                         if (d[h].occurrenceFrom.equals(b.occurrenceFrom)) {
                             d[h] = b;
-                            break
+                            break;
                         }
                     }
                 }
@@ -3466,7 +3283,7 @@ License: https://jqwidgets.com/license/
                                         var q = b.from;
                                         var f = new a.jqx.date(d[h].occurrenceFrom.year(), d[h].occurrenceFrom.month(), d[h].occurrenceFrom.day(), b.from.hour(), b.from.minute(), b.from.second());
                                         b.rootAppointment.recurrenceException[g] = f;
-                                        break
+                                        break;
                                     }
                                 }
                                 d[h] = b;
@@ -3495,14 +3312,14 @@ License: https://jqwidgets.com/license/
                                 break;
                             case "yearly":
                                 f = new a.jqx.date(p.year(), p.month(), p.day(), b.from.hour(), b.from.minute(), b.from.second());
-                                break
+                                break;
                         }
                         if (m) {
                             b.rootAppointment.from = p;
-                            b.rootAppointment.to = p.add(b.duration())
+                            b.rootAppointment.to = p.add(b.duration());
                         } else {
                             b.rootAppointment.from = f;
-                            b.rootAppointment.to = f.add(n)
+                            b.rootAppointment.to = f.add(n);
                         }
                         b.rootAppointment.allDay = b.allDay;
                         b.rootAppointment.resourceId = b.resourceId;
@@ -3515,23 +3332,18 @@ License: https://jqwidgets.com/license/
                         b.rootAppointment.location = b.location;
                         b.rootAppointment.category = b.category;
                         b.rootAppointment.status = b.status;
-                        if (!l.resizing) {
-                            b.rootAppointment.recurrencePattern.setFrom(f)
-                        } else {
-                            b.rootAppointment.recurrencePattern.setFrom(p)
-                        }
+                        if (!l.resizing) b.rootAppointment.recurrencePattern.setFrom(f);
+                        else b.rootAppointment.recurrencePattern.setFrom(p);
+                        
                     } else {
                         b.recurrencePattern = b.recurrencePattern.createNewPattern();
-                        b.recurrencePattern.setFrom(b.from)
+                        b.recurrencePattern.setFrom(b.from);
                     }
                     var o = a(r).attr("data-view");
                     var k = l._resources[parseInt(o) - 1];
                     if (k != null) {
-                        if (b.rootAppointment != null) {
-                            b.rootAppointment.resourceId = k
-                        } else {
-                            b.resourceId = k
-                        }
+                        if (b.rootAppointment != null) b.rootAppointment.resourceId = k;
+                        else b.resourceId = k;
                     }
                 }
             }
@@ -7772,46 +7584,29 @@ License: https://jqwidgets.com/license/
                 m.columnWidth = m.timeSlotWidth
             }
             if (m.columnWidth) {
-                if (m.columnWidth < 30) {
-                    m.columnWidth = 30
-                }
+                if (m.columnWidth < 30) m.columnWidth = 30;
             }
             if (this.columns && this.columns.records) {
-                for (var z = 0; z < this.columns.records.length; z++) {
-                    this._removecolumnhandlers(this.columns.records[z])
-                }
+                for (var z = 0; z < this.columns.records.length; z++)
+                    this._removecolumnhandlers(this.columns.records[z]);
             }
             this.columns = new Array();
             var B = new Array();
             var h = this;
             var q = function(H, N) {
                 var I = "halfHour";
-                if (m.timeRuler && m.timeRuler.scale) {
-                    I = m.timeRuler.scale
-                }
+                if (m.timeRuler && m.timeRuler.scale) I = m.timeRuler.scale;
                 var Q = 24;
                 var G = 0;
                 var P = 23;
                 if (m.timeRuler) {
-                    if (m.timeRuler.scaleStartHour != undefined) {
-                        var G = parseInt(m.timeRuler.scaleStartHour)
-                    }
-                    if (m.timeRuler.scaleEndHour != undefined) {
-                        var P = parseInt(m.timeRuler.scaleEndHour)
-                    }
-                    if (G < 0) {
-                        G = 0
-                    }
-                    if (P < 0) {
-                        P = 23
-                    }
-                    if (G > 23) {
-                        G = 0
-                    }
-                    if (P > 23) {
-                        P = 23
-                    }
-                    Q = P - G + 1
+                    if (m.timeRuler.scaleStartHour != undefined) var G = parseInt(m.timeRuler.scaleStartHour);
+                    if (m.timeRuler.scaleEndHour != undefined) var P = parseInt(m.timeRuler.scaleEndHour);
+                    if (G < 0) G = 0;
+                    if (P < 0) P = 23;
+                    if (G > 23) G = 0;
+                    if (P > 23) P = 23;
+                    Q = P - G + 1;
                 }
                 var K = 60;
                 var O = 2;
@@ -7834,37 +7629,29 @@ License: https://jqwidgets.com/license/
                             break;
                         case "fiveMinutes":
                             O = 12;
-                            break
+                            break;
                     }
                 }
                 var S = new Array();
                 var R = "auto";
-                if (m.timeRuler && m.timeRuler.formatString) {
-                    R = m.timeRuler.formatString
-                }
+                if (m.timeRuler && m.timeRuler.formatString) R = m.timeRuler.formatString;
                 var F = G;
                 var L = Q;
                 var D = H.addHours(F);
                 var j = "auto";
-                if (m.columnWidth) {
-                    j = O * m.columnWidth
-                } else {
-                    j = O * 80
-                }
+                if (m.columnWidth) j = O * m.columnWidth;
+                else j = O * 80;
+
                 for (var M = 0; M < L; M++) {
                     var E = D.toDate();
                     if (R === "auto") {
-                        if ((E.getHours() == 0 && E.getMinutes() == 0) || (E.getHours() == 12 && E.getMinutes() == 0)) {
-                            var J = "hh tt"
-                        } else {
-                            var J = "hh:mm"
-                        }
+                        if ((E.getHours() == 0 && E.getMinutes() == 0) || (E.getHours() == 12 && E.getMinutes() == 0))
+                            var J = "hh tt";
+                        else
+                            var J = "hh:mm";
                     } else {
-                        if (a.isFunction(R)) {
-                            var J = R(E)
-                        } else {
-                            J = R
-                        }
+                        if (a.isFunction(R)) var J = R(E);
+                        else J = R;
                     }
                     if (a.jqx.dataFormat.isDate(E)) {
                         E = a.jqx.dataFormat.formatdate(E, J, h.schedulerLocalization)
@@ -7887,9 +7674,7 @@ License: https://jqwidgets.com/license/
                     })
                 }
                 var w = "left";
-                if (this.rtl) {
-                    w = "right"
-                }
+                if (this.rtl) w = "right"
                 switch (p) {
                     case "dayView":
                         var g = this.getViewStart();
@@ -7917,18 +7702,12 @@ License: https://jqwidgets.com/license/
                     case "monthView":
                         for (var z = 0; z < 7; z++) {
                             var y = this.schedulerLocalization.firstDay + z;
-                            if (y > 6) {
-                                y = 0
-                            }
+                            if (y > 6) y = 0;
                             if (false === m.showWeekends) {
-                                if (y === 0 || y === 6) {
-                                    continue
-                                }
+                                if (y === 0 || y === 6) continue;
                             }
                             var v = "auto";
-                            if (m && m.columnWidth) {
-                                v = m.columnWidth
-                            }
+                            if (m && m.columnWidth) v = m.columnWidth;
                             var f = h._resources[x] ? h._resources[x] : "Resource" + x;
                             this.columns.push({
                                 align: p == "weekView" ? w : "center",
@@ -7963,39 +7742,28 @@ License: https://jqwidgets.com/license/
                     case "timelineMonthView":
                         var k = h.getViewStart();
                         var A = "auto";
-                        if (m.timeRuler && m.timeRuler.formatString) {
-                            A = m.timeRuler.formatString
-                        }
+                        if (m.timeRuler && m.timeRuler.formatString)
+                            A = m.timeRuler.formatString;
                         for (var z = 0; z < 41; z++) {
                             var y = k.dayOfWeek();
                             if (false === m.showWeekends) {
-                                if (y === 0 || y === 6) {
-                                    continue
-                                }
+                                if (y === 0 || y === 6)
+                                    continue;
                             }
                             var v = "auto";
-                            if (m.columnWidth) {
-                                v = m.columnWidth
-                            } else {
-                                v = 100
-                            }
+                            if (m.columnWidth) v = m.columnWidth;
+                            else v = 100;
                             var r = k.toDate();
                             if (A === "auto") {
                                 var c = "dd";
                                 r = k.toDate();
-                                if (r.getDate() === 1) {
-                                    c = "MMM dd"
-                                }
+                                if (r.getDate() === 1) c = "MMM dd";
                             } else {
-                                if (a.isFunction(A)) {
-                                    var c = A(r)
-                                } else {
-                                    c = A
-                                }
+                                if (a.isFunction(A)) var c = A(r);
+                                else c = A;
                             }
-                            if (a.jqx.dataFormat.isDate(r)) {
-                                r = a.jqx.dataFormat.formatdate(r, c, h.schedulerLocalization)
-                            }
+                            if (a.jqx.dataFormat.isDate(r))
+                                r = a.jqx.dataFormat.formatdate(r, c, h.schedulerLocalization);
                             k = k.addDays(1);
                             var f = h._resources[x] ? h._resources[x] : "Resource" + x;
                             h.columns.push({
@@ -8010,23 +7778,18 @@ License: https://jqwidgets.com/license/
                         var l = m.dateColumnWidth;
                         var u = m.timeColumnWidth;
                         var o = m.appointmentColumnWidth;
-                        if (!o) {
-                            o = "70%"
-                        }
-                        if (!u) {
-                            u = "auto"
-                        }
-                        if (!l) {
-                            l = "auto"
-                        }
+                        if (!o) o = "70%";
+                        if (!u) u = "auto";
+                        if (!l) l = "auto";
+                        
                         h.columns.push({
                             text: h.schedulerLocalization.agendaDateColumn,
                             width: l
                         });
-                        h.columns.push({
-                            text: h.schedulerLocalization.agendaTimeColumn,
-                            width: u
-                        });
+                        // h.columns.push({
+                        //     text: h.schedulerLocalization.agendaTimeColumn,
+                        //     width: u
+                        // });
                         h.columns.push({
                             text: h.schedulerLocalization.agendaAppointmentColumn,
                             width: o
@@ -8034,9 +7797,8 @@ License: https://jqwidgets.com/license/
                         break
                 }
             }
-            if (B.length > 0) {
-                this.columnGroups = B
-            }
+            if (B.length > 0) this.columnGroups = B;
+            
             var h = this;
             var s = new a.jqx.schedulerDataCollection(this.element);
             var d = 0;
@@ -8506,9 +8268,7 @@ License: https://jqwidgets.com/license/
             var b = V.columns.records.length;
             var av = V._getColumnsLengthPerView();
             var W = a.jqx.browser.msie && a.jqx.browser.version < 8;
-            if (W) {
-                V.host.attr("hideFocus", "true")
-            }
+            if (W) V.host.attr("hideFocus", "true");
             V._lastSelectedCell = null;
             V.focusedCell = null;
             var E = new Array();
@@ -8591,46 +8351,32 @@ License: https://jqwidgets.com/license/
             }
             var g = function(i) {
                 var c = V.columns.records[i];
-                if (c) {
-                    return c
-                }
-                while (i >= V.columns.records.length) {
-                    i -= V.columns.records.length
-                }
+                if (c) return c;
+                while (i >= V.columns.records.length) i -= V.columns.records.length;
                 var c = V.columns.records[i];
-                return c
+                return c;
             };
             for (var X = 0; X < b; X++) {
                 var ac = g(X);
                 if (ac.hidden) {
                     aY++;
                     a4--;
-                    continue
+                    continue;
                 }
                 var aK = ac.width / a3;
-                if (aK < ac.minwidth) {
-                    aK = ac.minwidth / a3
-                }
-                if (aK > ac.maxwidth) {
-                    aK = ac.maxwidth / a3
-                }
+                if (aK < ac.minwidth) aK = ac.minwidth / a3;
+                if (aK > ac.maxwidth) aK = ac.maxwidth / a3;
                 aK -= o;
-                if (aK < 0) {
-                    aK = 0
-                }
-                if (aF == "monthView" && V.rtl && ac.timeColumn) {
-                    aK++
-                }
+                if (aK < 0) aK = 0;
+                if (aF == "monthView" && V.rtl && ac.timeColumn) aK++;
                 if (W) {
                     var P = aK;
-                    if (X == aY) {
-                        P++
-                    }
-                    H += "<col style='max-width: " + P + "px; width: " + P + "px;'>"
+                    if (X == aY) P++;
+                    H += "<col style='max-width: " + P + "px; width: " + P + "px;'>";
                 } else {
-                    H += "<col style='max-width: " + aK + "px; width: " + aK + "px;'>"
+                    H += "<col style='max-width: " + aK + "px; width: " + aK + "px;'>";
                 }
-                aH += aK
+                aH += aK;
             }
             H += "</colgroup>";
             V._hiddencolumns = false;
@@ -8639,28 +8385,16 @@ License: https://jqwidgets.com/license/
                 var z = V.host.height();
                 if (V.pageable) {
                     z -= V.pagerHeight;
-                    if (V.pagerPosition === "both") {
-                        z -= V.pagerHeight
-                    }
+                    if (V.pagerPosition === "both") z -= V.pagerHeight;
                 }
                 z -= V.columnsHeight;
-                if (V.showLegend && V._resources.length > 0) {
-                    z -= V.legendHeight
-                }
-                if (z < 25) {
-                    z = 25
-                }
-                if (V.hScrollBar[0].style.visibility != "hidden") {
-                    z -= V.hScrollBar.outerHeight()
-                }
-                if (V.height === "auto" || V.height === null || V.autoheight) {
-                    z = 300
-                }
+                if (V.showLegend && V._resources.length > 0) z -= V.legendHeight;
+                if (z < 25) z = 25;
+                if (V.hScrollBar[0].style.visibility != "hidden") z -= V.hScrollBar.outerHeight();
+                if (V.height === "auto" || V.height === null || V.autoheight) z = 300;
                 var aJ = '<td colspan="' + V.columns.records.length + '" role="gridcell" style="border: none; min-height: ' + z + "px; height: " + z + "px; max-width:" + aH + "px; width:" + aH + "px;";
                 var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
-                if (V.rtl) {
-                    a5 += " " + V.toTP("jqx-cell-rtl")
-                }
+                if (V.rtl) a5 += " " + V.toTP("jqx-cell-rtl");
                 a5 += " " + V.toTP("jqx-center-align");
                 aJ += '" class="' + a5 + '">';
                 aJ += V.schedulerLocalization.emptyDataString;
@@ -8668,84 +8402,58 @@ License: https://jqwidgets.com/license/
                 u += aJ;
                 H += u;
                 V.table[0].style.width = aH + 2 + "px";
-                aM = aH
+                aM = aH;
             }
             var au = V.getRows();
             var d = V.getViewStart();
             var z = V._hostHeight ? V._hostHeight : V.host.height();
             var a2 = 0;
-            if (!V.columnGroups) {
-                a2 += V.showHeader ? V.columnsHeight : 0
-            } else {
-                a2 += V.showHeader ? V.columnsheader.height() : 0
-            }
-            if (V.showToolbar) {
-                a2 += V.toolbarHeight
-            }
-            if (V.showLegend && V._resources.length > 0) {
-                a2 += V.legendHeight
-            }
+            if (!V.columnGroups) a2 += V.showHeader ? V.columnsHeight : 0;
+            else a2 += V.showHeader ? V.columnsheader.height() : 0;
+            if (V.showToolbar) a2 += V.toolbarHeight;
+            if (V.showLegend && V._resources.length > 0) a2 += V.legendHeight;
             var f = V.showAllDayRow;
             var m = 23;
-            if (G.resourceHeaderRowHeight) {
-                m = G.resourcesRowHeight
-            }
+            if (G.resourceHeaderRowHeight) m = G.resourcesRowHeight;
             m += 2;
-            if (G.showAllDayRow != undefined) {
-                f = G.showAllDayRow
-            }
+            if (G.showAllDayRow != undefined) f = G.showAllDayRow;
             var h = V._columnswidth > V._hostWidth;
             var al = h ? (3 + V.scrollBarSize) : 0;
             var ag = V.tableRows > 1 ? V.resources.unitsInView : 1;
-            if (ag == undefined) {
-                ag = V._resources.length
-            }
-            if (V.resources && V.resources.resourceRowHeight) {
-                B = V.resources.resourceRowHeight
-            }
+            if (ag == undefined) ag = V._resources.length;
+            if (V.resources && V.resources.resourceRowHeight) B = V.resources.resourceRowHeight;
             if (B == null || B == "auto") {
                 var p = V.rowsHeight;
                 var ap = 3 * p;
                 if (V.isTouchDevice()) {
                     p = V.touchRowsHeight;
-                    var ap = 22 + p
+                    var ap = 22 + p;
                 }
                 if (V.tableRows == 1) {
                     B = z > 0 ? (z - a2) : p;
-                    if (V.columns.records.length > 10) {
-                        B = z > 0 ? (z - V.scrollBarSize - 5 - a2) : p
-                    }
+                    if (V.columns.records.length > 10) B = z > 0 ? (z - V.scrollBarSize - 5 - a2) : p;
                 } else {
                     B = z > 0 ? (z - a2 - m) / (ai) : p;
-                    if (V.columns.records.length > 10) {
-                        B = z > 0 ? (z - V.scrollBarSize - 5 - a2 - ag * m) / (ag * ai) : p
-                    }
+                    if (V.columns.records.length > 10) B = z > 0 ? (z - V.scrollBarSize - 5 - a2 - ag * m) / (ag * ai) : p;
                 }
                 if (aF === "dayView" || aF === "weekView") {
                     if (f) {
                         if (aQ == null || aQ == "auto") {
                             B = z > 0 ? (z - a2) / (V.tableRows * (ai)) : ap;
-                            aQ = B
+                            aQ = B;
                         } else {
-                            B = z > 0 ? (z - a2 - aQ - ag * m) / (ag * (ai - 1)) : p
+                            B = z > 0 ? (z - a2 - aQ - ag * m) / (ag * (ai - 1)) : p;
                         }
                     }
                 } else {
                     if (aF === "monthView") {
-                        if (V.hScrollBar[0].style.visibility == "hidden") {
-                            al = 0
-                        }
-                        if (V.tableRows == 1) {
-                            B = z > 0 ? (z - a2 - al) / ai : p
-                        } else {
-                            B = z > 0 ? (z - a2 - m - al) / (ai) : p
-                        }
+                        if (V.hScrollBar[0].style.visibility == "hidden") al = 0;
+                        if (V.tableRows == 1) B = z > 0 ? (z - a2 - al) / ai : p;
+                        else B = z > 0 ? (z - a2 - m - al) / (ai) : p;
                     }
                 }
                 B = Math.max(p, B);
-                if (!aQ) {
-                    aQ = ap
-                }
+                if (!aQ) aQ = ap;
                 aQ = Math.max(ap, aQ);
                 V._allDayRowHeight = aQ;
                 V._defaultRowHeight = p;
@@ -8755,7 +8463,7 @@ License: https://jqwidgets.com/license/
                 if (G.allDayRowHeight) {
                     V._allDayRowHeight = G.allDayRowHeight;
                     aQ = az * (G.allDayRowHeight - 2);
-                    V._allDayRowFullHeight = aQ
+                    V._allDayRowFullHeight = aQ;
                 }
             }
             var aB = new Array();
@@ -8763,42 +8471,32 @@ License: https://jqwidgets.com/license/
                 for (var ao = 0; ao < V.colorSchemes.length; ao++) {
                     if (V.colorSchemes[ao].name == V.resources.colorScheme) {
                         aB = V.colorSchemes[ao].colors;
-                        break
+                        break;
                     }
                 }
                 while (V._resources.length > aB.length - 1) {
                     var aW = parseInt(V.resources.colorScheme.substring(6));
-                    if (aW >= 27) {
-                        aW = 0
-                    }
+                    if (aW >= 27) aW = 0;
                     aB = aB.concat(V.colorSchemes[aW].colors);
-                    aW++
+                    aW++;
                 }
             }
             for (var aE = 0; aE < V.tableRows; aE++) {
                 var aq = 0;
                 var S = 0;
                 var e = 23;
-                if (G.timeRuler && G.timeRuler.scaleStartHour != undefined) {
-                    var S = parseInt(G.timeRuler.scaleStartHour)
-                }
-                if (G.timeRuler && G.timeRuler.scaleEndHour != undefined) {
-                    var e = parseInt(G.timeRuler.scaleEndHour)
-                }
+                if (G.timeRuler && G.timeRuler.scaleStartHour != undefined) var S = parseInt(G.timeRuler.scaleStartHour);
+                if (G.timeRuler && G.timeRuler.scaleEndHour != undefined) var e = parseInt(G.timeRuler.scaleEndHour);
                 var A = d;
                 if (false === G.showWeekends) {
-                    if (A.dayOfWeek() == 0 || A.dayOfWeek() == 6) {
-                        A = A.addDays(1)
-                    }
+                    if (A.dayOfWeek() == 0 || A.dayOfWeek() == 6) A = A.addDays(1);
                 }
                 var ar = new Array();
                 var k = aF != "monthView" && aF != "timelineDayView" && aF != "timelineWeekView" && aF != "timelineMonthView" && f ? 1 : 0;
                 if (V.tableRows > 1) {
                     var u = '<tr data-group-row="true" role="row">';
                     var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
-                    if (V.rtl) {
-                        a5 += " " + V.toTP("jqx-cell-rtl")
-                    }
+                    if (V.rtl) a5 += " " + V.toTP("jqx-cell-rtl");
                     if (!W) {
                         a5 += " " + V.toTP("jqx-grid-cell-pinned");
                         Z += ' colspan="' + b + '"';
@@ -8806,28 +8504,18 @@ License: https://jqwidgets.com/license/
                         for (var Q = 0; Q < b; Q++) {
                             var ab = g(Q);
                             var ak = ab.width / a3;
-                            if (ak < ab.minwidth) {
-                                aK = ab.minwidth / a3
-                            }
-                            if (ak > ab.maxwidth) {
-                                aK = ab.maxwidth / a3
-                            }
+                            if (ak < ab.minwidth) aK = ab.minwidth / a3;
+                            if (ak > ab.maxwidth) aK = ab.maxwidth / a3;
                             ak -= o;
-                            if (ak < 0) {
-                                ak = 0
-                            }
-                            if (!ab.hidden) {
-                                P += ak
-                            }
+                            if (ak < 0) ak = 0;
+                            if (!ab.hidden) P += ak;
                         }
                         aK = P
                     } else {
-                        a5 += " " + V.toTP("jqx-grid-cell-pinned")
+                        a5 += " " + V.toTP("jqx-grid-cell-pinned");
                     }
                     var aJ = '<td style="height:' + m + "px;";
-                    if (X == b - 1 && b == 1 && !V.rtl) {
-                        aJ += "border-right-color: transparent;"
-                    }
+                    if (X == b - 1 && b == 1 && !V.rtl) aJ += "border-right-color: transparent;";
                     if (V._resources.length > 0 && V.resources.colorScheme && V.resources.orientation != "none") {
                         var aO = "";
                         var y = "";
@@ -8836,7 +8524,7 @@ License: https://jqwidgets.com/license/
                             var c = 105;
                             var j = (i.r * 0.299) + (i.g * 0.587) + (i.b * 0.114);
                             var q = (255 - j < c) ? "Black" : "White";
-                            return q
+                            return q;
                         };
                         aO = aB[aE];
                         aO = V.hexToRgba(aB[aE], 0.7).toString();
@@ -8844,14 +8532,14 @@ License: https://jqwidgets.com/license/
                         y = aB[aE];
                         aJ += "background: " + aO + ";";
                         aJ += "border-color: " + y + ";";
-                        aJ += "color: " + D + ";"
+                        aJ += "color: " + D + ";";
                     }
                     aJ += '" class="' + a5 + '" role="gridcell" ' + Z + "";
                     var aX = V._resources[aE];
                     aJ += "><span style='position: relative;'>" + aX + "</span>";
                     aJ += "</td>";
                     u += aJ;
-                    H += u
+                    H += u;
                 }
                 for (var Y = 0; Y < ai; Y++) {
                     var aI = {};
@@ -8881,15 +8569,11 @@ License: https://jqwidgets.com/license/
                                     break;
                                 case "fiveMinutes":
                                     an = 5;
-                                    break
+                                    break;
                             }
-                            for (var T = 0; T < b; T++) {
-                                ar[T] = ar[T].addMinutes(an, false)
-                            }
+                            for (var T = 0; T < b; T++) ar[T] = ar[T].addMinutes(an, false);
                         } else {
-                            for (var T = 0; T < b; T++) {
-                                ar[T] = ar[T].addDays(7, false)
-                            }
+                            for (var T = 0; T < b; T++) ar[T] = ar[T].addDays(7, false);
                         }
                     }
                     var ax = 0;
@@ -8897,15 +8581,13 @@ License: https://jqwidgets.com/license/
                     var aj = 0;
                     if (G.showWeekends || G.showWeekends == undefined) {
                         aj = (V.columns.records.length) / (7 * V.tableColumns);
-                        aj *= aS
+                        aj *= aS;
                     } else {
                         aj = (V.columns.records.length) / (5 * V.tableColumns);
-                        aj *= aS
+                        aj *= aS;
                     }
                     var aw = 0;
-                    if (V.rtl) {
-                        aw = 1
-                    }
+                    if (V.rtl) aw = 1;
                     var aU = 0;
                     for (var X = 0; X < b; X++) {
                         var R = g(X);
@@ -8913,122 +8595,94 @@ License: https://jqwidgets.com/license/
                             ax = 0;
                             aU = 0;
                             aw = 0;
-                            if (V.rtl) {
-                                aw = 1
-                            }
-                            ae++
+                            if (V.rtl) aw = 1;
+                            ae++;
                         }
                         if (!ar[X]) {
                             if (!V.rtl) {
                                 if (aF.toString().indexOf("timelineDayView") >= 0) {
                                     var I = X;
-                                    ar[X] = A.addHours(S).addMinutes(I * an, false)
+                                    ar[X] = A.addHours(S).addMinutes(I * an, false);
                                 } else {
                                     if (aF.toString().indexOf("timelineWeekView") >= 0) {
-                                        ar[X] = A.addDays(aU).addHours(S, false).addMinutes(aw * an, false)
+                                        ar[X] = A.addDays(aU).addHours(S, false).addMinutes(aw * an, false);
                                     } else {
-                                        ar[X] = A.addDays(ax).addHours(S, false)
+                                        ar[X] = A.addDays(ax).addHours(S, false);
                                     }
                                 }
-                                if (V.timeZone) {
-                                    ar[X].timeZone = V.timeZone
-                                }
+                                if (V.timeZone) ar[X].timeZone = V.timeZone;
                             } else {
                                 if (aF.toString().indexOf("timelineDayView") >= 0) {
                                     var I = 1 + X;
-                                    ar[X] = A.addHours(1 + e).addMinutes(-I * an, false)
+                                    ar[X] = A.addHours(1 + e).addMinutes(-I * an, false);
                                 } else {
                                     if (aF.toString().indexOf("timelineWeekView") >= 0) {
                                         if (G.showWeekends || G.showWeekends == undefined) {
-                                            ar[X] = A.addDays(6 - aU).addHours(1 + e, false).addMinutes(-aw * an, false)
+                                            ar[X] = A.addDays(6 - aU).addHours(1 + e, false).addMinutes(-aw * an, false);
                                         } else {
-                                            ar[X] = A.addDays(4 - aU).addHours(1 + e, false).addMinutes(-aw * an, false)
+                                            ar[X] = A.addDays(4 - aU).addHours(1 + e, false).addMinutes(-aw * an, false);
                                         }
                                     } else {
                                         if (aF == "dayView" || aF == "monthView" || aF == "weekView") {
                                             if (G.showWeekends || G.showWeekends == undefined) {
-                                                ar[X] = A.addDays(6 - ax).addHours(S, false)
+                                                ar[X] = A.addDays(6 - ax).addHours(S, false);
                                             } else {
-                                                ar[X] = A.addDays(4 - ax).addHours(S, false)
+                                                ar[X] = A.addDays(4 - ax).addHours(S, false);
                                             }
                                         } else {
-                                            ar[X] = A.addDays(av - ax - 1).addHours(S, false)
+                                            ar[X] = A.addDays(av - ax - 1).addHours(S, false);
                                         }
                                     }
                                 }
-                                if (V.timeZone) {
-                                    ar[X].timeZone = V.timeZone
-                                }
+                                if (V.timeZone) ar[X].timeZone = V.timeZone;
                             }
                         }
                         aw++;
                         if (aw >= aj) {
                             aw = 0;
-                            aU++
+                            aU++;
                         }
                         if (!R.timeColumn && (aF === "dayView" || aF === "weekView")) {
-                            ax++
+                            ax++;
                         } else {
                             if (!R.timeColumn && (aF === "monthView" && G.showWeekNumbers)) {
-                                ax++
+                                ax++;
                             } else {
                                 if ((aF === "monthView" && !(G.showWeekNumbers)) || aF === "timelineMonthView") {
-                                    ax++
+                                    ax++;
                                 } else {
                                     if (aF == "timelineDayView" || aF == "timelineWeekView") {
-                                        ax++
+                                        ax++;
                                     }
                                 }
                             }
                         }
                         var C = ar[X];
                         var aK = R.width / a3;
-                        if (aK < R.minwidth) {
-                            aK = R.minwidth / a3
-                        }
-                        if (aK > R.maxwidth) {
-                            aK = R.maxwidth / a3
-                        }
+                        if (aK < R.minwidth) aK = R.minwidth / a3;
+                        if (aK > R.maxwidth) aK = R.maxwidth / a3;
                         aK -= o;
-                        if (aK < 0) {
-                            aK = 0
-                        }
+                        if (aK < 0) aK = 0;
                         var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
-                        if (R.pinned) {
-                            a5 += " " + V.toTP("jqx-grid-cell-pinned")
-                        }
-                        if (V.sortcolumn === R.displayfield) {
-                            a5 += " " + V.toTP("jqx-grid-cell-sort")
-                        }
-                        if (V.altRows && Y % 2 != 0) {
-                            a5 += " " + V.toTP("jqx-grid-cell-alt")
-                        }
-                        if (Y == 0 && f && (aF === "dayView" || aF === "weekView")) {
-                            a5 += " " + V.toTP("jqx-grid-cell-alt")
-                        }
-                        if (C > V.max || C < V.min) {
-                            a5 += " " + V.toTP("jqx-scheduler-disabled-cell")
-                        }
-                        if (V.rtl) {
-                            a5 += " " + V.toTP("jqx-cell-rtl")
-                        }
+                        if (R.pinned) a5 += " " + V.toTP("jqx-grid-cell-pinned");
+                        if (V.sortcolumn === R.displayfield) a5 += " " + V.toTP("jqx-grid-cell-sort");
+                        if (V.altRows && Y % 2 != 0) a5 += " " + V.toTP("jqx-grid-cell-alt");
+                        if (Y == 0 && f && (aF === "dayView" || aF === "weekView")) a5 += " " + V.toTP("jqx-grid-cell-alt");
+                        if (C > V.max || C < V.min) a5 += " " + V.toTP("jqx-scheduler-disabled-cell");
+                        if (V.rtl) a5 += " " + V.toTP("jqx-cell-rtl");
                         var Z = "";
                         var am = V.dataview.generatekey();
                         var aG = aE + ae;
-                        if (V.resources && V.resources.orientation == "none") {
-                            aG = -1
-                        }
-                        if (V._resources.length == 0) {
-                            aG = -1
-                        }
+                        if (V.resources && V.resources.orientation == "none") aG = -1;
+                        if (V._resources.length == 0) aG = -1;
                         var aJ = '<td data-key="' + am + '" data-view="' + (aG) + '" data-date="' + C.toString() + '" role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px;  height:" + B + "px;";
                         if (Y == 0 && f && (aF === "dayView" || aF === "weekView")) {
-                            var aJ = '<td  data-key="' + am + '" data-view="' + (aG) + '" data-end-date="' + a.jqx.scheduler.utilities.getEndOfDay(C).toString() + '" data-date="' + C.clearTime().toString() + '" role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px; height:" + aQ + "px;"
+                            var aJ = '<td  data-key="' + am + '" data-view="' + (aG) + '" data-end-date="' + a.jqx.scheduler.utilities.getEndOfDay(C).toString() + '" data-date="' + C.clearTime().toString() + '" role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px; height:" + aQ + "px;";
                         }
                         if (aF == "monthView" && G.monthRowAutoHeight && N.length > 0) {
                             if (N[Y] && N[Y] != "auto") {
                                 if (B < N[Y]) {
-                                    var aJ = '<td data-key="' + am + '" data-view="' + (aG) + '" data-date="' + C.toString() + '" role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px;  height:" + N[Y] + "px;"
+                                    var aJ = '<td data-key="' + am + '" data-view="' + (aG) + '" data-date="' + C.toString() + '" role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px;  height:" + N[Y] + "px;";
                                 }
                             }
                         }
@@ -9038,9 +8692,9 @@ License: https://jqwidgets.com/license/
                             var y = "";
                             aO = aB[aE + ae - 1];
                             if (!(Y == 0 && f && (aF === "dayView" || aF === "weekView"))) {
-                                aO = V.hexToRgba(aB[aE + ae - 1], 0.3).toString()
+                                aO = V.hexToRgba(aB[aE + ae - 1], 0.3).toString();
                             } else {
-                                aO = V.shadeColor(aB[aE + ae - 1], 0.3).toString()
+                                aO = V.shadeColor(aB[aE + ae - 1], 0.3).toString();
                             }
                             if (!(Y == 0 && f && (aF === "dayView" || aF === "weekView"))) {
                                 if (aF.indexOf("month") == -1) {
@@ -9054,11 +8708,11 @@ License: https://jqwidgets.com/license/
                                                 var O = G.workTime.fromDayOfWeek ? G.workTime.fromDayOfWeek : 0;
                                                 var J = G.workTime.toDayOfWeek ? G.workTime.toDayOfWeek : 0;
                                                 var ay = G.workTime.fromHour !== undefined ? G.workTime.fromHour : 8;
-                                                var l = G.workTime.toHour ? G.workTime.toHour : 8
+                                                var l = G.workTime.toHour ? G.workTime.toHour : 8;
                                             }
                                             if (C.dayOfWeek() >= O && C.dayOfWeek() <= J) {
                                                 if (C.hour() >= ay && C.hour() < l) {
-                                                    aO = V.hexToRgba(aB[aE + ae - 1], 0.1).toString()
+                                                    aO = V.hexToRgba(aB[aE + ae - 1], 0.1).toString();
                                                 }
                                             }
                                         }
@@ -9067,96 +8721,71 @@ License: https://jqwidgets.com/license/
                             }
                             y = aB[ae + aE - 1];
                             aJ += "background: " + aO + ";";
-                            aJ += "border-color: " + y + ";"
+                            aJ += "border-color: " + y + ";";
                         }
                         if (X == b - 1 && b == 1 && !V.rtl) {
-                            aJ += "border-right-color: transparent;"
+                            aJ += "border-right-color: transparent;";
                         }
                         if (R.timeColumn && !R.hidden && aF === "monthView") {
                             var a5 = V.toTP("jqx-scheduler-time-column") + " " + V.toTP("jqx-widget-header") + " " + V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
                             a5 += " " + V.toTP("jqx-scheduler-week-number-column");
-                            if (V.tableRows > 1) {
-                                var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item")
-                            }
-                            if (V.rtl) {
-                                a5 += " " + V.toTP("jqx-cell-rtl")
-                            }
+                            if (V.tableRows > 1) var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
+                            if (V.rtl) a5 += " " + V.toTP("jqx-cell-rtl");
                             if (C.minute() === 0) {
                                 var aJ = '<td classname="jqx-disableselect" data-time-slot="true" data-date="' + C.toString() + '" role="gridcell" style="max-width:' + aK + "px; width:" + aK + "px;";
                                 if (X == b - 1 && b == 1 && !V.rtl) {
-                                    aJ += "border-right-color: transparent;"
+                                    aJ += "border-right-color: transparent;";
                                 } else {
-                                    if (V.rtl && X == 0) {
-                                        aJ += "border-left-color: transparent;"
-                                    }
+                                    if (V.rtl && X == 0) aJ += "border-left-color: transparent;";
                                 }
-                                if (X == b - 1 && V.rtl) {
-                                    aJ += "border-right-color: transparent;"
-                                }
+                                if (X == b - 1 && V.rtl) aJ += "border-right-color: transparent;";
                             } else {
                                 x++;
-                                continue
+                                continue;
                             }
                         }
                         if (R.timeColumn && !R.hidden && (aF === "dayView" || aF === "weekView")) {
                             var a5 = V.toTP("jqx-scheduler-time-column") + " " + V.toTP("jqx-widget-header") + " " + V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
-                            if (V.tableRows > 1) {
-                                var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item")
-                            }
-                            if (V.rtl) {
-                                a5 += " " + V.toTP("jqx-cell-rtl")
-                            }
+                            if (V.tableRows > 1) var a5 = V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
+                            if (V.rtl) a5 += " " + V.toTP("jqx-cell-rtl");
                             if (Y > 0) {
                                 if (C.minute() === 0) {
                                     var aJ = '<td classname="jqx-disableselect" data-time-slot="true" data-date="' + C.toString() + '" rowspan=' + aS + ' role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px;";
                                     if (X == b - 1 && b == 1 && !V.rtl) {
-                                        aJ += "border-right-color: transparent;"
+                                        aJ += "border-right-color: transparent;";
                                     } else {
-                                        if (V.rtl && X == 0) {
-                                            aJ += "border-left-color: transparent;"
-                                        }
+                                        if (V.rtl && X == 0) aJ += "border-left-color: transparent;";
                                     }
                                 } else {
                                     x++;
-                                    continue
+                                    continue;
                                 }
                             } else {
-                                if (V.resources && V.resources.orientation == "none") {
-                                    aG = -1
-                                }
+                                if (V.resources && V.resources.orientation == "none") aG = -1;
                                 if (Y == 0 && f && (aF === "dayView" || aF === "weekView")) {
-                                    var aJ = '<td data-view="' + (aG) + '" data-time-slot="true" data-end-date="' + a.jqx.scheduler.utilities.getEndOfDay(C).toString() + '" data-date="' + C.toString() + '" role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px;"
+                                    var aJ = '<td data-view="' + (aG) + '" data-time-slot="true" data-end-date="' + a.jqx.scheduler.utilities.getEndOfDay(C).toString() + '" data-date="' + C.toString() + '" role="gridcell" ' + Z + ' style="max-width:' + aK + "px; width:" + aK + "px;";
                                 }
                                 if (X == b - 1 && b == 1 && !V.rtl) {
-                                    aJ += "border-right-color: transparent;"
+                                    aJ += "border-right-color: transparent;";
                                 } else {
-                                    if (X == 0 && b == 1 && V.rtl) {
-                                        aJ += "border-right-color: transparent;"
-                                    }
+                                    if (X == 0 && b == 1 && V.rtl) aJ += "border-right-color: transparent;";
                                 }
-                                if (V.rtl) {
-                                    aJ += "border-left-width: 1px;"
-                                }
+                                if (V.rtl) aJ += "border-left-width: 1px;";
                                 if (V.tableRows > 1) {
                                     aJ += "background: " + aO + ";";
-                                    aJ += "border-color: " + y + ";"
+                                    aJ += "border-color: " + y + ";";
                                 }
                             }
                         } else {
                             if (Y > 0) {
                                 var n = "border-left-width: 1px;";
-                                if (V.rtl && X == 0 && aF == "monthView" && G.showWeekNumbers) {
-                                    n = "border-left-width: 0px;"
-                                }
-                                aJ += n
+                                if (V.rtl && X == 0 && aF == "monthView" && G.showWeekNumbers) n = "border-left-width: 0px;";
+                                aJ += n;
                             }
                         }
                         if (R.cellsalign != "left") {
-                            if (R.cellsalign === "right") {
-                                a5 += " " + V.toTP("jqx-right-align")
-                            } else {
-                                a5 += " " + V.toTP("jqx-center-align")
-                            }
+                            if (R.cellsalign === "right") a5 += " " + V.toTP("jqx-right-align");
+                            else a5 += " " + V.toTP("jqx-center-align");
                         }
                         if (!R.timeColumn) {
                             if (V.rowinfo[aI.uid]) {
@@ -9165,7 +8794,7 @@ License: https://jqwidgets.com/license/
                                         if (V.selectionMode !== "none") {
                                             a5 += " " + V.toTP("jqx-grid-cell-selected");
                                             a5 += " " + V.toTP("jqx-fill-state-pressed");
-                                            a5 += " " + V.toTP("jqx-scheduler-cell-selected")
+                                            a5 += " " + V.toTP("jqx-scheduler-cell-selected");
                                         }
                                     }
                                 }
@@ -9173,20 +8802,16 @@ License: https://jqwidgets.com/license/
                         }
                         if (!(R.hidden)) {
                             ad += o + aK;
-                            if (x == 0 && !V.rtl) {
-                                aJ += "border-left-width: 0px;"
-                            }
-                            x++
+                            if (x == 0 && !V.rtl) aJ += "border-left-width: 0px;";
+                            x++;
                         } else {
                             aJ += "display: none;";
-                            V._hiddencolumns = true
+                            V._hiddencolumns = true;
                         }
                         if (!(Y == 0 && f && (aF === "dayView" || aF === "weekView"))) {
                             if (aF.indexOf("month") == -1) {
                                 a5 += " " + V.toTP("jqx-grid-cell-nowrap");
-                                if (Y % 2 == 1 && !R.timeColumn) {
-                                    a5 += " " + V.toTP("jqx-scheduler-middle-cell")
-                                }
+                                if (Y % 2 == 1 && !R.timeColumn) a5 += " " + V.toTP("jqx-scheduler-middle-cell");
                                 if (!R.timeColumn) {
                                     if (G.showWorkTime !== false) {
                                         var O = 1;
@@ -9197,16 +8822,15 @@ License: https://jqwidgets.com/license/
                                             var O = G.workTime.fromDayOfWeek ? G.workTime.fromDayOfWeek : 0;
                                             var J = G.workTime.toDayOfWeek ? G.workTime.toDayOfWeek : 0;
                                             var ay = G.workTime.fromHour !== undefined ? G.workTime.fromHour : 8;
-                                            var l = G.workTime.toHour ? G.workTime.toHour : 8
+                                            var l = G.workTime.toHour ? G.workTime.toHour : 8;
                                         }
                                         if (C.dayOfWeek() >= O && C.dayOfWeek() <= J) {
-                                            if (C.hour() >= ay && C.hour() < l) {
-                                                a5 += " " + V.toTP("jqx-scheduler-work-time-cell")
-                                            } else {
-                                                a5 += " " + V.toTP("jqx-scheduler-not-work-time-cell")
-                                            }
+                                            if (C.hour() >= ay && C.hour() < l)
+                                                a5 += " " + V.toTP("jqx-scheduler-work-time-cell");
+                                            else
+                                                a5 += " " + V.toTP("jqx-scheduler-not-work-time-cell");
                                         } else {
-                                            a5 += " " + V.toTP("jqx-scheduler-not-work-time-cell")
+                                            a5 += " " + V.toTP("jqx-scheduler-not-work-time-cell");
                                         }
                                     }
                                 }
@@ -9214,103 +8838,80 @@ License: https://jqwidgets.com/license/
                         }
                         var ah = "";
                         if (aF === "monthView") {
-                            if (!V.touchDevice && !R.timeColumn) {
-                                a5 += " " + V.toTP("jqx-top-align")
-                            }
+                            if (!V.touchDevice && !R.timeColumn) a5 += " " + V.toTP("jqx-top-align");
                             var af = "dd";
                             ah = C.toDate();
                             var a1 = V.toTP("jqx-scheduler-month-outer-cell") + " ";
                             var aA = V.toTP("jqx-scheduler-month-weekend-cell");
-                            if (V.date.month() == C.month()) {
-                                a1 = ""
-                            }
-                            if (!C.isWeekend()) {
-                                aA = ""
-                            } else {
-                                a5 += " " + aA
-                            }
-                            if (ah.getDate() === 1) {
-                                af = "MMM dd"
-                            }
+                            if (V.date.month() == C.month()) a1 = "";
+                            if (!C.isWeekend()) aA = "";
+                            else a5 += " " + aA;
+                            if (ah.getDate() === 1) af = "MMM dd";
                             if (V.touchDevice) {
                                 if (B > 16) {
-                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell-touch") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer; width:16px; height: 16px;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>"
+                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell-touch") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer; width:16px; height: 16px;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>";
                                 } else {
-                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell-touch") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>"
+                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell-touch") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>";
                                 }
                             } else {
                                 if (B > 16) {
-                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer; width:16px; height: 16px;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>"
+                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer; width:16px; height: 16px;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>";
                                 } else {
-                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>"
+                                    ah = "<div class='" + a1 + V.toTP("jqx-scheduler-month-cell") + "'>" + a.jqx.dataFormat.formatdate(ah, af, V.schedulerLocalization) + "<span style='display: none; float: right; cursor: pointer;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span></div>";
                                 }
                             }
                         } else {
                             if (aF === "timelineWeekView" || aF === "timelineDayView" || aF === "timelineMonthView") {
                                 a5 += " " + V.toTP("jqx-right-align jqx-bottom-align");
-                                ah = "<span style='display: none; float: right; cursor: pointer; width:16px; height: 16px;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span>"
+                                ah = "<span style='display: none; float: right; cursor: pointer; width:16px; height: 16px;' class='" + V.toTP("jqx-icon-arrow-down") + "'></span>";
                             }
                         }
                         if (Y == 0 && f && (aF === "dayView" || aF === "weekView") && !R.timeColumn) {
                             a5 += " " + V.toTP("jqx-top-align");
                             a5 += " " + V.toTP("jqx-scheduler-all-day-cell");
-                            if (V.rtl) {
-                                a5 += " " + V.toTP("jqx-rtl")
-                            }
+                            if (V.rtl) a5 += " " + V.toTP("jqx-rtl");
                             ah = C.toDate();
-                            ah = "<span>" + a.jqx.dataFormat.formatdate(ah, "dd", V.schedulerLocalization) + "</span>"
+                            ah = "<span>" + a.jqx.dataFormat.formatdate(ah, "dd", V.schedulerLocalization) + "</span>";
                         }
                         var r = R.cellsFormat;
                         if (R.timeColumn && !R.hidden) {
                             ah = C.toDate();
                             if (R.timeZone) {
                                 ah = C.clone().toTimeZone(R.timeZone);
-                                ah = ah.toDate()
+                                ah = ah.toDate();
                             }
                             var s = "auto";
                             if (G.timeRuler && G.timeRuler.formatString) {
-                                r = G.timeRuler.formatString
+                                r = G.timeRuler.formatString;
                             } else {
                                 if (!R.timeColumn.format) {
-                                    if (ah.getHours() == 0 || ah.getHours() == 12) {
-                                        r = "hh tt"
-                                    } else {
-                                        r = "hh:mm"
-                                    }
+                                    if (ah.getHours() == 0 || ah.getHours() == 12) r = "hh tt";
+                                    else r = "hh:mm";
                                 }
                             }
                             if (a.jqx.dataFormat.isDate(ah)) {
-                                ah = a.jqx.dataFormat.formatdate(ah, r, V.schedulerLocalization)
+                                ah = a.jqx.dataFormat.formatdate(ah, r, V.schedulerLocalization);
                             }
                             if (Y < k) {
-                                if (!V.rtl) {
-                                    a5 += " " + V.toTP("jqx-scheduler-time-column-header-cell")
-                                } else {
-                                    a5 += " " + V.toTP("jqx-scheduler-time-column-header-cell-rtl")
-                                }
-                                ah = ""
+                                if (!V.rtl) a5 += " " + V.toTP("jqx-scheduler-time-column-header-cell");
+                                else a5 += " " + V.toTP("jqx-scheduler-time-column-header-cell-rtl");
+                                ah = "";
                             }
                             if (Y < k) {
-                                if (R._text) {
-                                    a5 += " " + V.toTP("jqx-bottom-align")
-                                }
+                                if (R._text) a5 += " " + V.toTP("jqx-bottom-align");
                                 if (G.timeRuler && G.timeRuler.timeZones && G.timeRuler.timeZones.length > 0) {
-                                    if (X < G.timeRuler.timeZones.length) {
-                                        ah = R._text
-                                    }
+                                    if (X < G.timeRuler.timeZones.length) ah = R._text;
                                 }
                             }
-                            if (aF == "monthView") {
-                                ah = C.weekOfYear(V.schedulerLocalization.firstDay)
-                            }
+                            if (aF == "monthView") ah = C.weekOfYear(V.schedulerLocalization.firstDay);
                         } else {
                             if (r != "") {
                                 if (a.jqx.dataFormat) {
                                     if (a.jqx.dataFormat.isDate(ah)) {
-                                        ah = a.jqx.dataFormat.formatdate(ah, r, V.schedulerLocalization)
+                                        ah = a.jqx.dataFormat.formatdate(ah, r, V.schedulerLocalization);
                                     } else {
                                         if (a.jqx.dataFormat.isNumber(ah) || (!isNaN(parseFloat(ah)) && isFinite(ah))) {
-                                            ah = a.jqx.dataFormat.formatnumber(ah, r, V.schedulerLocalization)
+                                            ah = a.jqx.dataFormat.formatnumber(ah, r, V.schedulerLocalization);
                                         }
                                     }
                                 }
@@ -9318,27 +8919,25 @@ License: https://jqwidgets.com/license/
                         }
                         if (R.cellclassname != "" && R.cellclassname) {
                             if (typeof R.cellclassname == "string") {
-                                a5 += " " + R.cellclassname
+                                a5 += " " + R.cellclassname;
                             } else {
                                 var a0 = R.cellclassname(Y, R.datafield, ah, aI);
-                                if (a0) {
-                                    a5 += " " + a0
-                                }
+                                if (a0) a5 += " " + a0;
                             }
                         }
                         if (R.cellsRenderer != "" && R.cellsRenderer) {
                             var aT = au.indexOf(aI);
-                            ah = R.cellsRenderer(aT, R.datafield, ah, aI)
+                            ah = R.cellsRenderer(aT, R.datafield, ah, aI);
                         }
                         aJ += '" class="' + a5 + '">';
                         aJ += ah;
                         aJ += "</td>";
-                        u += aJ
+                        u += aJ;
                     }
                     if (aM == 0) {
                         V.table[0].style.width = ad + 2 + "px";
                         V.pinnedtable[0].style.width = ad + 2 + "px";
-                        aM = ad
+                        aM = ad;
                     }
                     u += "</tr>";
                     H += u;
@@ -9348,7 +8947,7 @@ License: https://jqwidgets.com/license/
                         }
                     } else {
                         if (!("row" in V.rowinfo[aI.uid])) {
-                            V.rowinfo[aI.uid].row = aI
+                            V.rowinfo[aI.uid].row = aI;
                         }
                     }
                 }
@@ -9369,21 +8968,21 @@ License: https://jqwidgets.com/license/
                     if (V.tableRows == 1) {
                         V.oldRow = V.table[0].rows[0];
                         try {
-                            V.table[0].rows[0] = V.pinnedtable.find("tr")[0]
+                            V.table[0].rows[0] = V.pinnedtable.find("tr")[0];
                         } catch (aC) {}
                         aP = V.pinnedtable.find("tr")[0];
-                        V.pinnedTableRow = aP
+                        V.pinnedTableRow = aP;
                     } else {
                         V.oldRow = V.table[0].rows[1];
                         try {
-                            V.table[0].rows[1] = V.pinnedtable.find("tr")[1]
+                            V.table[0].rows[1] = V.pinnedtable.find("tr")[1];
                         } catch (aC) {}
                         aP = V.pinnedtable.find("tr")[1];
-                        V.pinnedTableRow = aP
+                        V.pinnedTableRow = aP;
                     }
                 }
             } else {
-                V.pinnedtable[0].style.display = "none"
+                V.pinnedtable[0].style.display = "none";
             }
             var Q = a(V.table[0].firstChild);
             var aV = a(V.pinnedtable[0].firstChild);
@@ -9391,11 +8990,11 @@ License: https://jqwidgets.com/license/
             V._pinnedtable = aV;
             if (a.jqx.browser.msie && a.jqx.browser.version < 10) {
                 V._table[0].style.width = aM + "px";
-                V._pinnedtable[0].style.width = aM + "px"
+                V._pinnedtable[0].style.width = aM + "px";
             }
             if (ai === 0) {
                 V._table[0].style.width = (2 + aM) + "px";
-                V._pinnedtable[0].style.width = (2 + aM) + "px"
+                V._pinnedtable[0].style.width = (2 + aM) + "px";
             }
             V._table.addClass("jqx-grid-table-one-cell jqx-disableselect");
             V._pinnedtable.addClass("jqx-grid-table-one-cell jqx-disableselect");
@@ -9408,81 +9007,56 @@ License: https://jqwidgets.com/license/
                 c.indexOf = function(j) {
                     for (var q = 0; q < c.cells.length; q++) {
                         if (c.cells[q].getAttribute("data-key") == j.getAttribute("data-key")) {
-                            return q
+                            return q;
                         }
                     }
-                    return -1
+                    return -1;
                 };
-                return c
+                return c;
             }
             V.cellWidth = 0;
             V.cellHeight = 0;
             var U = V.table[0].rows.length;
             for (var Y = 0; Y < U; Y++) {
                 var v = V.table[0].rows[Y];
-                if (Y == 0 && aP) {
-                    v = aP
-                }
-                if (v.getAttribute("data-group-row")) {
-                    continue
-                }
+                if (Y == 0 && aP) v = aP;
+                if (v.getAttribute("data-group-row")) continue;
                 var aI = new F();
                 aI.aboveRow = null;
                 aI.belowRow = null;
                 if (V.rows.length > 0) {
                     aI.aboveRow = V.rows[V.rows.length - 1];
-                    V.rows[V.rows.length - 1].belowRow = aI
+                    V.rows[V.rows.length - 1].belowRow = aI;
                 }
                 aI.element = v;
                 V.rows.push(aI);
                 for (var X = 0; X < v.cells.length; X++) {
                     var M = v.cells[X];
-                    if (M.getAttribute("data-time-slot")) {
-                        continue
-                    }
-                    if (M.style.display === "none") {
-                        continue
-                    }
-                    if (M.className.indexOf("jqx-grid-cell-pinned") >= 0) {
-                        continue
-                    }
-                    if (!V.columnCells[aI.cells.length]) {
-                        V.columnCells[aI.cells.length] = new Array()
-                    }
+                    if (M.getAttribute("data-time-slot")) continue;
+                    if (M.style.display === "none") continue;
+                    if (M.className.indexOf("jqx-grid-cell-pinned") >= 0) continue;
+                    if (!V.columnCells[aI.cells.length]) V.columnCells[aI.cells.length] = new Array();
                     V.columnCells[aI.cells.length].push(M);
-                    if (V.cellWidth == 0) {
-                        V.cellWidth = M.clientWidth
-                    }
-                    if (V.cellHeight == 0 && (U == 1 || Y > 1)) {
-                        V.cellHeight = M.clientHeight
-                    }
+                    if (V.cellWidth == 0) V.cellWidth = M.clientWidth;
+                    if (V.cellHeight == 0 && (U == 1 || Y > 1)) V.cellHeight = M.clientHeight;
                     if (V._views[V._view].type == "monthView") {
-                        if (aI.top == undefined) {
-                            aI.top = parseInt(a(M).position().top)
-                        }
+                        if (aI.top == undefined) aI.top = parseInt(a(M).position().top);
                     }
                     aI.cells.push(M);
-                    V.rowByCell[M.getAttribute("data-key")] = aI
+                    V.rowByCell[M.getAttribute("data-key")] = aI;
                 }
             }
-            if (ai === 0) {
-                V._table[0].style.tableLayout = "auto"
-            }
+            if (ai === 0) V._table[0].style.tableLayout = "auto";
             V._renderAppointments(d, aN);
             if (V.pinnedtable[0].style.display != "none" || ((aF == "dayView" || aF == "weekView") && V.tableRows > 1)) {
-                V._updateScrollbars(V.host.height())
+                V._updateScrollbars(V.host.height());
             }
             if (aF === "monthView" && G.monthRowAutoHeight) {
-                if (N.length == 0) {
-                    V._renderrows()
-                } else {
-                    V._updateScrollbars(V.host.height())
-                }
+                if (N.length == 0) V._renderrows();
+                else V._updateScrollbars(V.host.height());
             }
-            if (V.rendered) {
-                V.rendered()
-            }
-            V.renderedTime = new Date()
+            if (V.rendered) V.rendered();
+            V.renderedTime = new Date();
         },
         showAppointmentsByResource: function(f) {
             var e = this;
@@ -9493,7 +9067,7 @@ License: https://jqwidgets.com/license/
                     g.hiddenByResourceId = false;
                     if (g.exceptions) {
                         for (var c = 0; c < g.exceptions.length; c++) {
-                            g.exceptions[c].hiddenByResourceId = false
+                            g.exceptions[c].hiddenByResourceId = false;
                         }
                     }
                 }
@@ -9503,12 +9077,10 @@ License: https://jqwidgets.com/license/
                 e._resourcesElements.top[f].attr("data-toggle", "on");
                 e._resourcesElements.top[f].css("background", b.background);
                 e._resourcesElements.bottom[f].attr("data-toggle", "on");
-                e._resourcesElements.bottom[f].css("background", b.background)
+                e._resourcesElements.bottom[f].css("background", b.background);
             }
-            if (e.hiddenResources) {
-                delete e.hiddenResources[f]
-            }
-            e._renderrows()
+            if (e.hiddenResources) delete e.hiddenResources[f];
+            e._renderrows();
         },
         hideAppointmentsByResource: function(e) {
             var d = this;
@@ -9520,7 +9092,7 @@ License: https://jqwidgets.com/license/
                     if (f.exceptions) {
                         for (var b = 0; b < f.exceptions.length; b++) {
                             f.exceptions[b].hiddenByResourceId = true;
-                            f.exceptions[b].hidden = true
+                            f.exceptions[b].hidden = true;
                         }
                     }
                 }
@@ -9529,29 +9101,21 @@ License: https://jqwidgets.com/license/
                 d._resourcesElements.top[e].attr("data-toggle", "off");
                 d._resourcesElements.top[e].css("background", "transparent");
                 d._resourcesElements.bottom[e].attr("data-toggle", "off");
-                d._resourcesElements.bottom[e].css("background", "transparent")
+                d._resourcesElements.bottom[e].css("background", "transparent");
             }
-            if (!d.hiddenResources) {
-                d.hiddenResources = new Array()
-            }
+            if (!d.hiddenResources) d.hiddenResources = new Array();
             d.hiddenResources[e] = true;
-            d._renderrows()
+            d._renderrows();
         },
         _prepareAppointmentsInView: function(g, f) {
             var h = this;
-            if (h._appupdating) {
-                return
-            }
+            if (h._appupdating) return;
             var l = new Array();
             for (var s = 0; s < this.uiappointments.length; s++) {
                 var n = this.uiappointments[s];
-                if (n.hidden && n.recurrencePattern == null) {
-                    continue
-                }
+                if (n.hidden && n.recurrencePattern == null) continue;
                 var o = a.jqx.scheduler.utilities.rangeIntersection(n.from, n.to, g, f);
-                if (o && !n.recurrencePattern) {
-                    l.push(n)
-                }
+                if (o && !n.recurrencePattern) l.push(n);
                 n.renderedAppointments = new Array();
                 var v = false;
                 if (n.recurrencePattern) {
@@ -9559,9 +9123,7 @@ License: https://jqwidgets.com/license/
                     var t = n.exceptions;
                     for (var r = 0; r < u.length; r++) {
                         var e = u[r];
-                        if (e.hidden) {
-                            continue
-                        }
+                        if (e.hidden) continue;
                         var c = true;
                         for (var p = 0; p < t.length; p++) {
                             var k = t[p];
@@ -9569,25 +9131,23 @@ License: https://jqwidgets.com/license/
                             if (h.selectedJQXAppointment && h.selectedJQXAppointment.rootAppointment) {
                                 if (!v && h.selectedJQXAppointment.occurrenceFrom.clearTime().equals(w.clearTime())) {
                                     h.selectedJQXAppointment = k;
-                                    v = true
+                                    v = true;
                                 }
                             }
                             if (w.clearTime().equals(e.from.clearTime())) {
                                 c = false;
-                                break
+                                break;
                             }
                         }
-                        if (!c) {
-                            continue
-                        }
+                        if (!c) continue;
                         if (h.selectedJQXAppointment && h.selectedJQXAppointment.rootAppointment) {
                             if (!v && h.selectedJQXAppointment.occurrenceFrom.clearTime().equals(e.occurrenceFrom.clearTime())) {
                                 h.selectedJQXAppointment = e;
-                                v = true
+                                v = true;
                             }
                         }
                         n.renderedAppointments[e.id] = e;
-                        l.push(e)
+                        l.push(e);
                     }
                     for (var p = 0; p < t.length; p++) {
                         var k = t[p];
@@ -9595,13 +9155,11 @@ License: https://jqwidgets.com/license/
                         var q = n.createOccurrence(w);
                         if (k.occurrenceFrom) {
                             k.cloneAppointmentAttributes(q);
-                            if (k.hidden) {
-                                continue
-                            }
+                            if (k.hidden) continue;
                         }
                         if (q != n) {
                             l.push(k);
-                            n.renderedAppointments[k.id] = k
+                            n.renderedAppointments[k.id] = k;
                         }
                     }
                 }
@@ -9611,7 +9169,7 @@ License: https://jqwidgets.com/license/
             for (var s = 0; s < l.length; s++) {
                 var d = l[s];
                 b.push(d);
-                this.tabKeyAppointments.push(d)
+                this.tabKeyAppointments.push(d);
             }
             b.sort(this._sortAppointmentsByFrom);
             if (this._resources.length > 0) {
@@ -9619,9 +9177,9 @@ License: https://jqwidgets.com/license/
                     return h._sortAppointmentsByResourceId(j, i, h)
                 })
             } else {
-                this.tabKeyAppointments.sort(this._sortAppointmentsByFrom)
+                this.tabKeyAppointments.sort(this._sortAppointmentsByFrom);
             }
-            this.appointmentsToRender = b
+            this.appointmentsToRender = b;
         },
         _renderDayWeekAppointments: function() {
             var N = this;
@@ -9633,7 +9191,7 @@ License: https://jqwidgets.com/license/
             var E = N.showAllDayRow;
             var ad = N.getMinutesPerScale();
             if (M.timeRuler && M.timeRuler.showAllDayRow != undefined) {
-                E = M.timeRuler.showAllDayRow
+                E = M.timeRuler.showAllDayRow;
             }
             for (var f = 0; f < this.appointmentsToRender.length; f++) {
                 var s = this.appointmentsToRender[f];
@@ -9647,61 +9205,41 @@ License: https://jqwidgets.com/license/
                 var r = new Array();
                 var p = s.resourceId;
                 var h = N._resources.indexOf(p);
-                if (N.resources && N.resources.orientation == "none") {
-                    h = -1
-                }
+                if (N.resources && N.resources.orientation == "none") h = -1;
                 var B = u.toDate().valueOf();
                 var k = ae.toDate().valueOf();
                 var Q = V.toDate().valueOf();
                 var af = function(j, i) {
-                    if (j.date < i.date) {
-                        return -1
-                    }
-                    if (j.date == i.date) {
-                        return 0
-                    }
-                    if (j.date > i.date) {
-                        return 1
-                    }
+                    if (j.date < i.date) return -1;
+                    if (j.date == i.date) return 0;
+                    if (j.date > i.date) return 1;
                 };
                 if (!s.allDay && s.duration().days() < 1 || !E) {
                     var q = ae.toDate();
                     var I = false;
-                    if (q.getHours() == 0 && q.getMinutes() == 0) {
-                        I = true
-                    }
+                    if (q.getHours() == 0 && q.getMinutes() == 0) I = true;
                     for (var X = 0; X < N.columnCells.length; X++) {
-                        if (!N.columnCells[X]) {
-                            continue
-                        }
+                        if (!N.columnCells[X]) continue;
                         var w = N.columnCells[X];
-                        if (N.rtl) {
-                            w = N.columnCells[N.columnCells.length - 1 - X]
-                        }
+                        if (N.rtl) w = N.columnCells[N.columnCells.length - 1 - X];
                         for (var W = 0; W < w.length; W++) {
-                            if (w[W].getAttribute("data-end-date")) {
-                                continue
-                            }
+                            if (w[W].getAttribute("data-end-date")) continue;
                             var n = w[W].getAttribute("data-date");
                             var Y = v(n);
                             var F = v(n);
                             F.setMinutes(F.getMinutes() + ad - 1);
                             var m = Y.valueOf();
                             var H = F.valueOf();
-                            if (m > ae) {
-                                continue
-                            }
+                            if (m > ae) continue;
                             if ((B <= m && m < k) || (B <= H && H < k) || (B >= m && H >= k)) {
                                 if (h != -1) {
-                                    if ((1 + h) != w[W].getAttribute("data-view")) {
-                                        continue
-                                    }
+                                    if ((1 + h) != w[W].getAttribute("data-view")) continue;
                                 }
                                 if (D != Y.getDate()) {
                                     G.sort(af);
                                     r.push(G);
                                     G = new Array();
-                                    D = u.addDays(1).day()
+                                    D = u.addDays(1).day();
                                 }
                                 G.push({
                                     cell: w[W],
@@ -9715,9 +9253,7 @@ License: https://jqwidgets.com/license/
                     var C = new Array();
                     for (var X = 0; X < r.length; X++) {
                         var w = r[X];
-                        if (w.length == 0) {
-                            continue
-                        }
+                        if (w.length == 0) continue;
                         var c = N.cellWidth;
                         var d = w[w.length - 1].cell.offsetTop + N.cellHeight;
                         var P = w[0].cell.offsetLeft;
@@ -9735,18 +9271,16 @@ License: https://jqwidgets.com/license/
                             to: q
                         };
                         C.push(ac);
-                        A.push(ac)
+                        A.push(ac);
                     }
                     s.elements = C;
-                    if (s.rootAppointment) {
-                        s.rootAppointment.elements = s.rootAppointment.elements.concat(s.elements)
-                    }
+                    if (s.rootAppointment) s.rootAppointment.elements = s.rootAppointment.elements.concat(s.elements);
                 } else {
                     var w = Z[0].cells;
                     if (this.tableRows > 1) {
                         var U = Z.length / N.tableRows;
                         var b = h * U;
-                        w = Z[b].cells
+                        w = Z[b].cells;
                     }
                     for (var W = 0; W < w.length; W++) {
                         var n = w[W].getAttribute("data-date");
@@ -9754,18 +9288,12 @@ License: https://jqwidgets.com/license/
                         var Y = new a.jqx.date(ag, N.timeZone);
                         Y = a.jqx.scheduler.utilities.getEndOfDay(Y);
                         var m = Y.toDate().valueOf();
-                        if (m > V) {
-                            continue
-                        }
+                        if (m > V) continue;
                         if (u <= Y && Y <= V) {
                             if (h != -1) {
-                                if ((1 + h) != w[W].getAttribute("data-view")) {
-                                    continue
-                                }
+                                if ((1 + h) != w[W].getAttribute("data-view")) continue;
                             }
-                            if (G.length == 0) {
-                                Y = a.jqx.scheduler.utilities.getStartOfDay(Y)
-                            }
+                            if (G.length == 0) Y = a.jqx.scheduler.utilities.getStartOfDay(Y);
                             G.push({
                                 cell: w[W],
                                 date: Y
@@ -9777,9 +9305,7 @@ License: https://jqwidgets.com/license/
                     var C = new Array();
                     for (var X = 0; X < r.length; X++) {
                         var w = r[X];
-                        if (w.length == 0) {
-                            break
-                        }
+                        if (w.length == 0) break;
                         var l = a(w[0].cell).position();
                         var c = a(w[w.length - 1].cell).position().left + this.cellWidth - l.left;
                         var d = a(w[w.length - 1].cell).position().top;
@@ -9788,7 +9314,7 @@ License: https://jqwidgets.com/license/
                         if (this.rtl) {
                             var l = a(w[w.length - 1].cell).position();
                             var P = l.left;
-                            var c = a(w[0].cell).position().left + this.cellWidth - l.left
+                            var c = a(w[0].cell).position().left + this.cellWidth - l.left;
                         }
                         var T = w[w.length - 1].date;
                         T = new a.jqx.date(a.jqx.scheduler.utilities.getEndOfDay(T), N.timeZone);
@@ -9803,12 +9329,10 @@ License: https://jqwidgets.com/license/
                             to: T
                         };
                         C.push(ac);
-                        K.push(ac)
+                        K.push(ac);
                     }
                     s.elements = C;
-                    if (s.rootAppointment) {
-                        s.rootAppointment.elements = s.rootAppointment.elements.concat(s.elements)
-                    }
+                    if (s.rootAppointment) s.rootAppointment.elements = s.rootAppointment.elements.concat(s.elements);
                 }
             }
             var z = this.getViewStart();
@@ -9824,16 +9348,14 @@ License: https://jqwidgets.com/license/
                         if (t.from.day() == g.day()) {
                             t.column = -1;
                             t.columnSpan = 1;
-                            aa[J].push(t)
+                            aa[J].push(t);
                         }
                     }
                     J++;
-                    g = g.addDays(1)
+                    g = g.addDays(1);
                 }
-                for (var X = 0; X < aa.length; X++) {
-                    this._renderAppointmentsInDay(aa[X])
-                }
-                this._renderAllDayAppointments(K)
+                for (var X = 0; X < aa.length; X++) this._renderAppointmentsInDay(aa[X]);
+                this._renderAllDayAppointments(K);
             } else {
                 for (var W = 0; W < this._resources.length; W++) {
                     var L = this._resources[W];
@@ -9847,24 +9369,18 @@ License: https://jqwidgets.com/license/
                             if (t.from.day() == g.day()) {
                                 t.column = -1;
                                 t.columnSpan = 1;
-                                if (t.appointment.resourceId == L) {
-                                    aa[J].push(t)
-                                }
+                                if (t.appointment.resourceId == L) aa[J].push(t);
                             }
                         }
                         J++;
-                        g = g.addDays(1)
+                        g = g.addDays(1);
                     }
-                    for (var X = 0; X < aa.length; X++) {
-                        this._renderAppointmentsInDay(aa[X])
-                    }
+                    for (var X = 0; X < aa.length; X++) this._renderAppointmentsInDay(aa[X]);
                     var o = new Array();
                     for (var X = 0; X < K.length; X++) {
-                        if (K[X].appointment.resourceId == L) {
-                            o.push(K[X])
-                        }
+                        if (K[X].appointment.resourceId == L) o.push(K[X]);
                     }
-                    this._renderAllDayAppointments(o)
+                    this._renderAllDayAppointments(o);
                 }
             }
         },
@@ -9872,23 +9388,15 @@ License: https://jqwidgets.com/license/
             var ac = this;
             var I = this.showAllDayRow;
             var ab = this._views[this._view];
-            if (ab.timeRuler && ab.timeRuler.showAllDayRow != undefined) {
-                I = ab.timeRuler.showAllDayRow
-            }
-            if (!I) {
-                return
-            }
-            if (ar.length == 0) {
-                return
-            }
+            if (ab.timeRuler && ab.timeRuler.showAllDayRow != undefined) I = ab.timeRuler.showAllDayRow;
+            if (!I) return;
+            if (ar.length == 0) return;
             var B = ar;
             var H = 1;
             H = this.getMaxAllDayAppointments(ar);
-            if (this.tableRows == 1) {
-                var A = this.table[0].rows[0].clientHeight / H
-            } else {
-                var A = this.table[0].rows[1].clientHeight / H
-            }
+            if (this.tableRows == 1) var A = this.table[0].rows[0].clientHeight / H;
+            else var A = this.table[0].rows[1].clientHeight / H;
+            
             for (var ap = 0; ap < ar.length; ap++) {
                 var z = ar[ap];
                 z.row = -1;
@@ -9896,25 +9404,19 @@ License: https://jqwidgets.com/license/
                 d.sort(this._sortAppointmentsByFrom);
                 var s = d.indexOf(z);
                 if (s >= 0) {
-                    for (var aj = s; aj < d.length; aj++) {
-                        d[aj].row = -1
-                    }
+                    for (var aj = s; aj < d.length; aj++) d[aj].row = -1;
                 }
                 for (var am = 0; am < H; am++) {
                     var n = am;
                     for (var U in d) {
-                        if (U == "indexOf") {
-                            break
-                        }
+                        if (U == "indexOf") break;
                         var Y = d[U];
                         if (Y.row == -1 && !this.isBusyRow(n, d)) {
                             Y.row = n;
                             var an = H;
                             var c = this.getMaxAllDayAppointments(d);
-                            if (an > c) {
-                                an = c
-                            }
-                            Y.rowsCount = an
+                            if (an > c) an = c;
+                            Y.rowsCount = an;
                         }
                     }
                 }
@@ -9925,49 +9427,35 @@ License: https://jqwidgets.com/license/
                 d.sort(this._sortAppointmentsByFrom);
                 var l = 1;
                 for (var U in d) {
-                    if (U == "indexOf") {
-                        break
-                    }
+                    if (U == "indexOf") break;
                     var O = d[U];
-                    l = Math.max(l, O.rowsCount)
+                    l = Math.max(l, O.rowsCount);
                 }
                 for (var U in d) {
-                    if (U == "indexOf") {
-                        break
-                    }
+                    if (U == "indexOf") break;
                     var O = d[U];
-                    O.rowsCount = l
+                    O.rowsCount = l;
                 }
                 if (d.length == 1) {
-                    z.rowSpan = l
+                    z.rowSpan = l;
                 } else {
                     var F = 0;
                     var f = true;
                     for (var aj = z.row; aj < l; aj++) {
                         for (var U in d) {
-                            if (U == "indexOf") {
-                                break
-                            }
+                            if (U == "indexOf") break;
                             var Y = d[U];
-                            if (Y == z) {
-                                continue
-                            }
-                            if (Y.row == aj) {
-                                f = false
-                            }
+                            if (Y == z) continue;
+                            if (Y.row == aj) f = false;
                         }
-                        if (!f) {
-                            break
-                        }
-                        F++
+                        if (!f) break;
+                        F++;
                     }
-                    z.rowSpan = F
+                    z.rowSpan = F;
                 }
             }
             var aq = ac.appointmentsMinHeight + 2;
-            if (ac.isTouchDevice()) {
-                var aq = ac.touchAppointmentsMinHeight + 2
-            }
+            if (ac.isTouchDevice()) var aq = ac.touchAppointmentsMinHeight + 2;
             for (var ae = 0; ae < B.length; ae++) {
                 var ad = aq;
                 var z = B[ae];
@@ -9981,52 +9469,40 @@ License: https://jqwidgets.com/license/
                     var ag = this.getViewEnd();
                     if (!ac.rtl) {
                         var K = parseFloat(ac.cellWidth / 24) * (z.appointment.from.hour()) + parseFloat(ac.cellWidth / 48) * (z.appointment.from.minute() / 30);
-                        if (z.appointment.from < C) {
-                            K = 0
-                        }
+                        if (z.appointment.from < C) K = 0;
                         z.timewidth = z.width;
                         z.timex = K;
                         var L = parseFloat(ac.cellWidth / 24) * (z.appointment.to.hour()) + parseFloat(ac.cellWidth / 48) * (z.appointment.to.minute() / 30);
-                        if (z.appointment.to > ag) {
-                            L = 0
-                        }
+                        if (z.appointment.to > ag) L = 0;
                         z.timewidth -= K;
                         if (L > 0) {
                             z.timewidth -= ac.cellWidth;
-                            z.timewidth += L
+                            z.timewidth += L;
                         }
                         if (ab.appointmentsRenderMode == "exactTime") {
                             z.width = z.timewidth;
-                            z.x += K
+                            z.x += K;
                         }
                     } else {
                         var K = parseFloat(ac.cellWidth / 24) * (z.appointment.to.hour()) + parseFloat(ac.cellWidth / 48) * (z.appointment.to.minute() / 30);
                         var L = (parseFloat(ac.cellWidth / 24) * (z.appointment.from.hour()) + parseFloat(ac.cellWidth / 48) * (z.appointment.from.minute() / 30));
-                        if (K > 0) {
-                            K = ac.cellWidth - K
-                        }
-                        if (z.appointment.from < C) {
-                            L = 0
-                        }
-                        if (z.appointment.to > ag) {
-                            K = 0
-                        }
+                        if (K > 0) K = ac.cellWidth - K;
+                        if (z.appointment.from < C) L = 0;
+                        if (z.appointment.to > ag) K = 0;
                         if (ab.appointmentsRenderMode == "exactTime") {
                             z.x += K;
                             z.width -= K;
-                            z.width -= L
+                            z.width -= L;
                         }
                         if (z.appointment.duration().days() < 1) {
-                            if (z.width < 15) {
-                                z.width = 15
-                            }
+                            if (z.width < 15) z.width = 15;
                         }
                         z.timewidth = z.width;
                         if (ab.appointmentsRenderMode == "exactTimeStatus") {
                             z.timewidth -= K;
-                            z.timewidth -= L
+                            z.timewidth -= L;
                         }
-                        z.timex = K
+                        z.timex = K;
                     }
                 }
             }
@@ -10037,20 +9513,18 @@ License: https://jqwidgets.com/license/
                 var ab = this._views[this._view];
                 var o = ak.appointment.from;
                 var av = ak.appointment.to;
-                if (ab.timeRuler && ab.timeRuler.formatString) {
-                    P = ab.timeRuler.formatString
-                }
+                if (ab.timeRuler && ab.timeRuler.formatString) P = ab.timeRuler.formatString;
                 var af = P;
                 if (P === "auto") {
                     if ((o.hour() == 0 && o.minute() == 0) || (o.hour() == 12 && o.minute() == 0)) {
-                        var af = "hh tt"
+                        var af = "hh tt";
                     } else {
-                        var af = "hh:mm"
+                        var af = "hh:mm";
                     }
                     if ((av.hour() == 0 && av.minute() == 0) || (av.hour() == 12 && av.minute() == 0)) {
-                        var y = "hh tt"
+                        var y = "hh tt";
                     } else {
-                        var y = "hh:mm"
+                        var y = "hh:mm";
                     }
                 }
                 var u = o.toString(af);
@@ -10065,24 +9539,16 @@ License: https://jqwidgets.com/license/
                 var ai = " data-resourceId='" + i + "' ";
                 var X = ak.appointment.borderColor;
                 var t = ak.appointment.location;
-                if (t.length > 0) {
-                    t = ", " + t
-                }
-                if (!aa) {
-                    aa = ah.background
-                }
-                if (!X) {
-                    X = ah.border
-                }
-                if (!M) {
-                    M = ah.color
-                }
+                if (t.length > 0) t = ", " + t;
+                if (!aa) aa = ah.background;
+                if (!X) X = ah.border;
+                if (!M) M = ah.color;
                 var b = ak.appointment.isRecurrentAppointment();
                 var r = ak.appointment.isException();
                 var g = u + "-" + v;
                 if (e) {
                     u = "";
-                    v = ""
+                    v = "";
                 }
                 var ao = "";
                 var w = ac.toTP("jqx-scheduler-appointment-status");
@@ -10091,40 +9557,34 @@ License: https://jqwidgets.com/license/
                 var k = false;
                 if (R) {
                     if (R == "transparent") {
-                        k = false
+                        k = false;
                     } else {
                         S = "<div style='background: " + R + "; border-right-color: " + X + "' class='" + w + "'></div>";
                         if (R == "tentative") {
                             w = ac.toTP("jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                            S = "<div style='background-color: " + X + "; border-right-color: " + X + "' class='" + w + "'></div>"
+                            S = "<div style='background-color: " + X + "; border-right-color: " + X + "' class='" + w + "'></div>";
                         }
-                        k = true
+                        k = true;
                     }
                 }
                 var E = ac.toTP("jqx-scheduler-appointment-duration-status");
                 var al = "<div style='width: " + ak.timewidth + "px; left: " + ak.timex + "px;' class='" + E + "'></div>";
-                if (e) {
-                    al = ""
-                }
+                if (e) al = "";
                 var G = "";
-                if (ab.appointmentsRenderMode != "exactTimeStatus") {
-                    al = ""
-                }
+                if (ab.appointmentsRenderMode != "exactTimeStatus") al = "";
                 if (ac.rtl) {
                     var w = ac.toTP("jqx-scheduler-appointment-status-rtl jqx-scheduler-appointment-status");
                     S = "<div style='background: " + R + "; border-left-color: " + X + "' class='" + w + "'></div>";
                     if (R == "tentative") {
                         w = ac.toTP("jqx-scheduler-appointment-status-rtl jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                        S = "<div style='background-color: " + X + "; border-left-color: " + X + "' class='" + w + "'></div>"
+                        S = "<div style='background-color: " + X + "; border-left-color: " + X + "' class='" + w + "'></div>";
                     }
                     G = S;
-                    S = ""
+                    S = "";
                 }
                 var W = "";
                 var Q = T + t;
-                if (!e) {
-                    Q = T + t + al
-                }
+                if (!e) Q = T + t + al;
                 if (ac.renderAppointment) {
                     var au = ac.renderAppointment({
                         appointment: ak.appointment.boundAppointment,
@@ -10140,75 +9600,60 @@ License: https://jqwidgets.com/license/
                     });
                     if (au) {
                         var N = au.html;
-                        if (N != Q) {
-                            Q = N
-                        }
+                        if (N != Q) Q = N;
                         M = au.textColor;
                         aa = au.background;
                         X = au.borderColor;
-                        if (au.cssClass) {
-                            W = au.cssClass + " "
-                        }
+                        if (au.cssClass) W = au.cssClass + " ";
                         if (au.style != "") {
                             var ah = ac.getAppointmentColors(au.style);
                             aa = ah.background;
                             X = ah.border;
-                            M = ah.color
+                            M = ah.color;
                         }
                     }
                 }
                 if (ao === "") {
                     if (k) {
-                        var ao = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'>" + S + "<div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div>" + G + "</div>"
+                        var ao = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'>" + S + "<div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div>" + G + "</div>";
                     } else {
-                        var ao = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'><div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div></div>"
+                        var ao = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'><div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div></div>";
                     }
                 }
                 var at = "";
-                if (ac.rtl) {
-                    at = ac.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " "
-                }
+                if (ac.rtl) at = ac.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " ";
                 if (r) {
                     var h = M.toLowerCase() == "white" ? ac.toTP("jqx-icon-recurrence-exception-white") : ac.toTP("jqx-icon-recurrence-exception");
-                    N = "<div data-key='" + ak.appointment.id + "'" + ai + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ak.x + "px; top: " + ak.y + "px; width: " + ak.width + "px; line-height: " + ak.height + "px; height: " + ak.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + h + "'></div>" + ao + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                    N = "<div data-key='" + ak.appointment.id + "'" + ai + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ak.x + "px; top: " + ak.y + "px; width: " + ak.width + "px; line-height: " + ak.height + "px; height: " + ak.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + h + "'></div>" + ao + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                 } else {
                     if (b) {
                         var q = M.toLowerCase() == "white" ? ac.toTP("jqx-icon-recurrence-white") : ac.toTP("jqx-icon-recurrence");
-                        N = "<div data-key='" + ak.appointment.id + "'" + ai + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ak.x + "px; top: " + ak.y + "px; width: " + ak.width + "px; line-height: " + ak.height + "px; height: " + ak.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + q + "'></div>" + ao + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                        N = "<div data-key='" + ak.appointment.id + "'" + ai + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ak.x + "px; top: " + ak.y + "px; width: " + ak.width + "px; line-height: " + ak.height + "px; height: " + ak.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + q + "'></div>" + ao + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                     } else {
-                        N = "<div data-key='" + ak.appointment.id + "'" + ai + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ak.x + "px; top: " + ak.y + "px; width: " + ak.width + "px; line-height: " + ak.height + "px; height: " + ak.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'>" + ao + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                        N = "<div data-key='" + ak.appointment.id + "'" + ai + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ak.x + "px; top: " + ak.y + "px; width: " + ak.width + "px; line-height: " + ak.height + "px; height: " + ak.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'>" + ao + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                     }
                 }
                 var V = a(N);
-                if (this.tableRows == 1) {
-                    V.appendTo(this.pinnedtable)
-                } else {
-                    V.appendTo(this.table)
-                }
+                if (this.tableRows == 1) V.appendTo(this.pinnedtable);
+                else V.appendTo(this.table);
                 ak.element = V;
                 if (this.appointmentTooltips) {
                     if (!ak.appointment.tooltip) {
                         var Z = ak.appointment.subject;
-                        if (u) {
-                            Z = u + " - " + v + " " + Z
-                        }
+                        if (u) Z = u + " - " + v + " " + Z;
                         if (Z) {
                             var t = ak.appointment.location;
-                            if (t) {
-                                Z += "\n" + t
-                            }
-                            V[0].setAttribute("title", Z)
+                            if (t) Z += "\n" + t;
+                            V[0].setAttribute("title", Z);
                         }
                     } else {
-                        V[0].setAttribute("title", ak.appointment.tooltip)
+                        V[0].setAttribute("title", ak.appointment.tooltip);
                     }
                 }
             }
         },
         _renderAppointmentsInDay: function(an, am) {
-            if (an.length == 0) {
-                return
-            }
+            if (an.length == 0) return;
             var Z = this;
             var Y = this._views[this._view];
             var B = an;
@@ -10218,17 +9663,13 @@ License: https://jqwidgets.com/license/
             var o = 0;
             if (Y.timeRuler) {
                 o = this.columns.records[1].width;
-                if (Y.timeRuler.timeZones) {
-                    o = this.columns.records[1 + Y.timeRuler.timeZones.length].width
-                }
+                if (Y.timeRuler.timeZones) o = this.columns.records[1 + Y.timeRuler.timeZones.length].width;
             } else {
-                o = this.columns.records[1].width
+                o = this.columns.records[1].width;
             }
             ai = this.getMaxColumnsInADay(an);
             var n = o / ai;
-            if (n < 0) {
-                return
-            }
+            if (n < 0) return;
             for (var al = 0; al < an.length; al++) {
                 var A = an[al];
                 A.column = -1;
@@ -10236,25 +9677,19 @@ License: https://jqwidgets.com/license/
                 d.sort(this._sortAppointmentsByFrom);
                 var t = d.indexOf(A);
                 if (t >= 0) {
-                    for (var ag = t; ag < d.length; ag++) {
-                        d[ag].column = -1
-                    }
+                    for (var ag = t; ag < d.length; ag++) d[ag].column = -1;
                 }
                 for (var aj = 0; aj < ai; aj++) {
                     var e = aj;
                     for (var R in d) {
-                        if (R == "indexOf") {
-                            break
-                        }
+                        if (R == "indexOf") break;
                         var V = d[R];
                         if (V.column == -1 && !this.isBusyColumn(e, d)) {
                             V.column = e;
                             var g = ai;
                             var c = this.getMaxColumnsInADay(d);
-                            if (g > c) {
-                                g = c
-                            }
-                            V.columnsCount = g
+                            if (g > c) g = c;
+                            V.columnsCount = g;
                         }
                     }
                 }
@@ -10265,49 +9700,33 @@ License: https://jqwidgets.com/license/
                 d.sort(this._sortAppointmentsByFrom);
                 var H = 1;
                 for (var R in d) {
-                    if (R == "indexOf") {
-                        break
-                    }
+                    if (R == "indexOf") break;
                     var L = d[R];
-                    if (L.columnsCount == undefined) {
-                        continue
-                    }
-                    H = Math.max(H, L.columnsCount)
+                    if (L.columnsCount == undefined) continue;
+                    H = Math.max(H, L.columnsCount);
                 }
                 for (var R in d) {
-                    if (R == "indexOf") {
-                        break
-                    }
+                    if (R == "indexOf") break;
                     var L = d[R];
-                    L.columnsCount = H
+                    L.columnsCount = H;
                 }
                 if (d.length == 1) {
-                    A.columnSpan = H
+                    A.columnSpan = H;
                 } else {
                     var D = 0;
                     var f = true;
                     for (var ag = A.column; ag < H; ag++) {
                         for (var R in d) {
-                            if (R == "indexOf") {
-                                break
-                            }
+                            if (R == "indexOf") break;
                             var V = d[R];
-                            if (V.column == undefined) {
-                                continue
-                            }
-                            if (V == A) {
-                                continue
-                            }
-                            if (V.column == ag) {
-                                f = false
-                            }
+                            if (V.column == undefined) continue;
+                            if (V == A) continue;
+                            if (V.column == ag) f = false;
                         }
-                        if (!f) {
-                            break
-                        }
-                        D++
+                        if (!f) break;
+                        D++;
                     }
-                    A.columnSpan = D
+                    A.columnSpan = D;
                 }
             }
             for (var aa = 0; aa < B.length; aa++) {
@@ -10322,22 +9741,20 @@ License: https://jqwidgets.com/license/
                     var ae = Z.getMinutesPerScale();
                     if (A.appointment.from.minute() % ae != 0) {
                         var at = A.appointment.from.minute() % ae;
-                        var J = parseFloat(Z.cellHeight / ae) * at
+                        var J = parseFloat(Z.cellHeight / ae) * at;
                     } else {
-                        var J = 0
+                        var J = 0;
                     }
                     if (A.appointment.to.minute() % ae != 0) {
                         var at = A.appointment.to.minute() % ae;
                         var G = Z.cellHeight - parseFloat(Z.cellHeight / ae) * at;
-                        if (A.to.day() !== A.appointment.to.day()) {
-                            G = 0
-                        }
+                        if (A.to.day() !== A.appointment.to.day()) G = 0;
                     } else {
-                        G = 0
+                        G = 0;
                     }
                     A.y += J;
                     A.height -= J;
-                    A.height -= G
+                    A.height -= G;
                 }
             }
             for (var aa = 0; aa < B.length; aa++) {
@@ -10347,20 +9764,18 @@ License: https://jqwidgets.com/license/
                 var Y = this._views[this._view];
                 var q = ah.appointment.from;
                 var ar = ah.appointment.to;
-                if (Y.timeRuler && Y.timeRuler.formatString) {
-                    M = Y.timeRuler.formatString
-                }
+                if (Y.timeRuler && Y.timeRuler.formatString) M = Y.timeRuler.formatString;
                 var ab = M;
                 if (M === "auto") {
                     if ((q.hour() == 0 && q.minute() == 0) || (q.hour() == 12 && q.minute() == 0)) {
-                        var ab = "hh tt"
+                        var ab = "hh tt";
                     } else {
-                        var ab = "hh:mm"
+                        var ab = "hh:mm";
                     }
                     if ((ar.hour() == 0 && ar.minute() == 0) || (ar.hour() == 12 && ar.minute() == 0)) {
-                        var z = "hh tt"
+                        var z = "hh tt";
                     } else {
-                        var z = "hh:mm"
+                        var z = "hh:mm";
                     }
                 }
                 var v = q.toString(ab);
@@ -10373,15 +9788,9 @@ License: https://jqwidgets.com/license/
                 var ad = Z.getColors(Z._resources.indexOf(k));
                 var af = " data-resourceId='" + k + "' ";
                 var U = ah.appointment.borderColor;
-                if (!X) {
-                    X = ad.background
-                }
-                if (!U) {
-                    U = ad.border
-                }
-                if (!I) {
-                    I = ad.color
-                }
+                if (!X) X = ad.background;
+                if (!U) U = ad.border;
+                if (!I) I = ad.color;
                 var b = ah.appointment.isRecurrentAppointment();
                 var s = ah.appointment.isException();
                 var ak = "";
@@ -10391,14 +9800,14 @@ License: https://jqwidgets.com/license/
                 var l = false;
                 if (O) {
                     if (O == "transparent") {
-                        l = false
+                        l = false;
                     } else {
                         P = "<div style='background: " + O + "; border-right-color: " + U + "' class='" + y + "'></div>";
                         if (O == "tentative") {
                             y = Z.toTP("jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                            P = "<div style='background-color: " + U + "; border-right-color: " + U + "' class='" + y + "'></div>"
+                            P = "<div style='background-color: " + U + "; border-right-color: " + U + "' class='" + y + "'></div>";
                         }
-                        l = true
+                        l = true;
                     }
                 }
                 var F = "";
@@ -10407,16 +9816,14 @@ License: https://jqwidgets.com/license/
                     P = "<div style='background: " + O + "; border-left-color: " + U + "' class='" + y + "'></div>";
                     if (O == "tentative") {
                         y = Z.toTP("jqx-scheduler-appointment-status-rtl jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                        P = "<div style='background-color: " + U + "; border-left-color: " + U + "' class='" + y + "'></div>"
+                        P = "<div style='background-color: " + U + "; border-left-color: " + U + "' class='" + y + "'></div>";
                     }
                     F = P;
-                    P = ""
+                    P = "";
                 }
                 var T = "";
                 var N = Q + "<br/>" + u;
-                if (!u) {
-                    var N = Q
-                }
+                if (!u) var N = Q;
                 if (Z.renderAppointment) {
                     var aq = Z.renderAppointment({
                         appointment: ah.appointment.boundAppointment,
@@ -10432,28 +9839,24 @@ License: https://jqwidgets.com/license/
                     });
                     if (aq) {
                         var K = aq.html;
-                        if (K != N) {
-                            N = K
-                        }
+                        if (K != N) N = K;
                         I = aq.textColor;
                         X = aq.background;
                         U = aq.borderColor;
-                        if (aq.cssClass) {
-                            T = aq.cssClass + " "
-                        }
+                        if (aq.cssClass) T = aq.cssClass + " ";
                         if (aq.style != "") {
                             var ad = Z.getAppointmentColors(aq.style);
                             X = ad.background;
                             U = ad.border;
-                            I = ad.color
+                            I = ad.color;
                         }
                     }
                 }
                 if (ak === "") {
                     if (l) {
-                        var ak = "<div class='" + Z.toTP("jqx-scheduler-appointment-content") + "'>" + P + "<div class='" + Z.toTP("jqx-scheduler-appointment-inner-content") + "'>" + N + "</div>" + F + "</div>"
+                        var ak = "<div class='" + Z.toTP("jqx-scheduler-appointment-content") + "'>" + P + "<div class='" + Z.toTP("jqx-scheduler-appointment-inner-content") + "'>" + N + "</div>" + F + "</div>";
                     } else {
-                        var ak = "<div class='" + Z.toTP("jqx-scheduler-appointment-content") + "'><div class='" + Z.toTP("jqx-scheduler-appointment-inner-content") + "'>" + N + "</div></div>"
+                        var ak = "<div class='" + Z.toTP("jqx-scheduler-appointment-content") + "'><div class='" + Z.toTP("jqx-scheduler-appointment-inner-content") + "'>" + N + "</div></div>";
                     }
                 }
                 var ao = "";
@@ -10462,13 +9865,13 @@ License: https://jqwidgets.com/license/
                 }
                 if (s) {
                     var h = I.toLowerCase() == "white" ? Z.toTP("jqx-icon-recurrence-exception-white") : Z.toTP("jqx-icon-recurrence-exception");
-                    K = "<div data-key='" + ah.appointment.id + "'" + af + "class='" + ao + T + Z.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ah.x + "px; top: " + ah.y + "px; width: " + ah.width + "px; height: " + ah.height + "px; border-color:" + U + "; color:" + I + "; background:" + X + ";'><div class='" + h + "'></div>" + ak + "<div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-top-resize-indicator") + "'></div><div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-bottom-resize-indicator") + "'></div></div>"
+                    K = "<div data-key='" + ah.appointment.id + "'" + af + "class='" + ao + T + Z.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ah.x + "px; top: " + ah.y + "px; width: " + ah.width + "px; height: " + ah.height + "px; border-color:" + U + "; color:" + I + "; background:" + X + ";'><div class='" + h + "'></div>" + ak + "<div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-top-resize-indicator") + "'></div><div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-bottom-resize-indicator") + "'></div></div>";
                 } else {
                     if (b) {
                         var r = I.toLowerCase() == "white" ? Z.toTP("jqx-icon-recurrence-white") : Z.toTP("jqx-icon-recurrence");
-                        K = "<div data-key='" + ah.appointment.id + "'" + af + "class='" + ao + T + Z.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ah.x + "px; top: " + ah.y + "px; width: " + ah.width + "px; height: " + ah.height + "px; border-color:" + U + "; color:" + I + "; background:" + X + ";'><div class='" + r + "'></div>" + ak + "<div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-top-resize-indicator") + "'></div><div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-bottom-resize-indicator") + "'></div></div>"
+                        K = "<div data-key='" + ah.appointment.id + "'" + af + "class='" + ao + T + Z.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ah.x + "px; top: " + ah.y + "px; width: " + ah.width + "px; height: " + ah.height + "px; border-color:" + U + "; color:" + I + "; background:" + X + ";'><div class='" + r + "'></div>" + ak + "<div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-top-resize-indicator") + "'></div><div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-bottom-resize-indicator") + "'></div></div>";
                     } else {
-                        K = "<div data-key='" + ah.appointment.id + "'" + af + "class='" + ao + T + Z.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ah.x + "px; top: " + ah.y + "px; width: " + ah.width + "px; height: " + ah.height + "px; border-color:" + U + "; color:" + I + "; background:" + X + ";'>" + ak + "<div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-top-resize-indicator") + "'></div><div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-bottom-resize-indicator") + "'></div></div>"
+                        K = "<div data-key='" + ah.appointment.id + "'" + af + "class='" + ao + T + Z.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ah.x + "px; top: " + ah.y + "px; width: " + ah.width + "px; height: " + ah.height + "px; border-color:" + U + "; color:" + I + "; background:" + X + ";'>" + ak + "<div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-top-resize-indicator") + "'></div><div class='" + Z.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-bottom-resize-indicator") + "'></div></div>";
                     }
                 }
                 var S = a(K);
@@ -10479,13 +9882,11 @@ License: https://jqwidgets.com/license/
                         var W = ah.appointment.subject;
                         if (W) {
                             var u = ah.appointment.location;
-                            if (u) {
-                                W += "\n" + u
-                            }
+                            if (u) W += "\n" + u;
                             S[0].setAttribute("title", W)
                         }
                     } else {
-                        S[0].setAttribute("title", ah.appointment.tooltip)
+                        S[0].setAttribute("title", ah.appointment.tooltip);
                     }
                 }
             }
@@ -10498,11 +9899,9 @@ License: https://jqwidgets.com/license/
                 var k = f[d];
                 var e = k.from;
                 var c = k.to;
-                if (a.jqx.scheduler.utilities.rangeIntersection(g, h, e, c)) {
-                    j.push(k)
-                }
+                if (a.jqx.scheduler.utilities.rangeIntersection(g, h, e, c)) j.push(k);
             }
-            return j
+            return j;
         },
         getAllDayCollisionAppointments: function(b, f) {
             var j = new Array();
@@ -10512,34 +9911,28 @@ License: https://jqwidgets.com/license/
                 var k = f[d];
                 var e = a.jqx.scheduler.utilities.getStartOfDay(k.from);
                 var c = a.jqx.scheduler.utilities.getEndOfDay(k.to);
-                if (a.jqx.scheduler.utilities.rangeIntersection(g, h, e, c)) {
-                    j.push(k)
-                }
+                if (a.jqx.scheduler.utilities.rangeIntersection(g, h, e, c)) j.push(k);
             }
-            return j
+            return j;
         },
         _renderAppointments: function(e, c) {
             var d = this;
-            if (d._appupdating) {
-                return
-            }
+            if (d._appupdating) return;
             d.table.find(".jqx-scheduler-appointment").remove();
             d.pinnedtable.find(".jqx-scheduler-appointment").remove();
             var b = d._views[d._view].type;
             if (b === "dayView" || b === "weekView") {
-                d._renderDayWeekAppointments(e, c)
+                d._renderDayWeekAppointments(e, c);
             } else {
                 if (b === "monthView") {
-                    d._renderMonthAppointments(e, c)
+                    d._renderMonthAppointments(e, c);
                 } else {
                     if (b === "timelineWeekView" || b === "timelineDayView" || b === "timelineMonthView") {
-                        d._renderTimelineAppointments(e, c)
+                        d._renderTimelineAppointments(e, c);
                     }
                 }
             }
-            if (d.selectedJQXAppointment) {
-                d._selectAppointment(d.selectedJQXAppointment)
-            }
+            if (d.selectedJQXAppointment) d._selectAppointment(d.selectedJQXAppointment);
         },
         _renderTimelineAppointments: function(t, I) {
             var E = this;
@@ -10558,33 +9951,23 @@ License: https://jqwidgets.com/license/
                 var A = new Array();
                 var v = p.toDate().valueOf();
                 var g = S.toDate().valueOf();
-                if (Q === "timelineMonthView") {
-                    v = p.clearTime().toDate().valueOf()
-                }
+                if (Q === "timelineMonthView") v = p.clearTime().toDate().valueOf();
                 var T = function(j, i) {
-                    if (j.date < i.date) {
-                        return -1
-                    }
-                    if (j.date == i.date) {
-                        return 0
-                    }
-                    if (j.date > i.date) {
-                        return 1
-                    }
+                    if (j.date < i.date) return -1;
+                    if (j.date == i.date) return 0;
+                    if (j.date > i.date) return 1;
                 };
                 var q = E.rows[0];
                 var m = o.resourceId;
                 var f = E._resources.indexOf(m);
                 if (E._resources.length > 0) {
                     if (E.resources.orientation !== "horizontal") {
-                        if (f >= 1) {
-                            q = E.rows[f]
-                        }
+                        if (f >= 1) q = E.rows[f];
                     }
                 }
                 if (E.resources && E.resources.orientation == "none") {
                     f = -1;
-                    var q = E.rows[0]
+                    var q = E.rows[0];
                 }
                 var s = q.cells;
                 for (var M = 0; M < s.length; M++) {
@@ -10595,35 +9978,25 @@ License: https://jqwidgets.com/license/
                     var z = r(k);
                     z.setMinutes(z.getMinutes() + J - 1);
                     var B = z.valueOf();
-                    if (h > S) {
-                        continue
-                    }
+                    if (h > S) continue;
                     if ((v <= h && h < g) || (v <= B && B < g) || (v >= h && v <= B && g <= B)) {
                         if (f != -1) {
-                            if ((1 + f) != s[M].getAttribute("data-view")) {
-                                continue
-                            }
+                            if ((1 + f) != s[M].getAttribute("data-view")) continue;
                         }
                         A.push({
                             cell: s[M],
                             date: O
                         });
-                        q = N
+                        q = N;
                     }
                 }
                 A.sort(T);
                 var w = new Array();
                 var s = A;
-                if (s.length == 0) {
-                    continue
-                }
+                if (s.length == 0) continue;
                 var l = E.appointmentsMinHeight;
-                if (E.isTouchDevice()) {
-                    l = E.touchAppointmentsMinHeight
-                }
-                if (D.appointmentHeight) {
-                    l = D.appointmentHeight
-                }
+                if (E.isTouchDevice()) l = E.touchAppointmentsMinHeight;
+                if (D.appointmentHeight) l = D.appointmentHeight;
                 var H = a(s[0].cell).position();
                 var c = l;
                 var b = a(s[s.length - 1].cell).position().left - H.left + K;
@@ -10633,11 +10006,11 @@ License: https://jqwidgets.com/license/
                     var H = a(s[s.length - 1].cell).position();
                     var b = a(s[0].cell).position().left - H.left + K;
                     var G = H.left;
-                    var F = H.top
+                    var F = H.top;
                 }
                 var n = new a.jqx.date(s[s.length - 1].date, E.timeZone).addMinutes(J);
                 if (Q === "timelineMonthView") {
-                    var n = a.jqx.scheduler.utilities.getEndOfDay(new a.jqx.date(s[s.length - 1].date, E.timeZone))
+                    var n = a.jqx.scheduler.utilities.getEndOfDay(new a.jqx.date(s[s.length - 1].date, E.timeZone));
                 }
                 var R = {
                     cellX: G,
@@ -10654,14 +10027,12 @@ License: https://jqwidgets.com/license/
                 };
                 if (D.appointmentsRenderMode === "exactTime") {
                     R.from = o.from;
-                    R.to = o.to
+                    R.to = o.to;
                 }
                 w.push(R);
                 u.push(R);
                 o.elements = w;
-                if (o.rootAppointment) {
-                    o.rootAppointment.elements = o.rootAppointment.elements.concat(o.elements)
-                }
+                if (o.rootAppointment) o.rootAppointment.elements = o.rootAppointment.elements.concat(o.elements);
             }
             if (this._resources.length < 2 || this.resources.orientation == "none") {
                 this._renderUITimelineAppointments(u, t, I)
@@ -10670,11 +10041,9 @@ License: https://jqwidgets.com/license/
                     var C = this._resources[M];
                     var e = new Array();
                     for (var N = 0; N < u.length; N++) {
-                        if (u[N].appointment.resourceId == C) {
-                            e.push(u[N])
-                        }
+                        if (u[N].appointment.resourceId == C) e.push(u[N]);
                     }
-                    this._renderUITimelineAppointments(e, t, I)
+                    this._renderUITimelineAppointments(e, t, I);
                 }
             }
         },
@@ -10688,38 +10057,28 @@ License: https://jqwidgets.com/license/
             var T = new Array();
             C = Y.getMaxTimelineAppointments(ao, T, w, ac);
             var h = Y.appointmentsMinHeight;
-            if (Y.isTouchDevice()) {
-                h = Y.touchAppointmentsMinHeight
-            }
-            if (X.appointmentHeight) {
-                h = X.appointmentHeight
-            }
+            if (Y.isTouchDevice()) h = Y.touchAppointmentsMinHeight;
+            if (X.appointmentHeight) h = X.appointmentHeight;
             for (var an = 0; an < ao.length; an++) {
                 var g = ao[an];
                 g.row = -1;
                 var d = Y.getCollisionAppointments(g, ao);
                 d.sort(Y._sortAppointmentsByFrom);
                 var t = d.indexOf(g);
-                if (t >= 0) {
-                    for (var aj = t; aj < d.length; aj++) {
-                        d[aj].row = -1
-                    }
-                }
+                if (t >= 0)
+                    for (var aj = t; aj < d.length; aj++)
+                        d[aj].row = -1;
                 for (var ak = 0; ak < C; ak++) {
                     var o = ak;
                     for (var P in d) {
-                        if (P == "indexOf") {
-                            break
-                        }
+                        if (P == "indexOf") break;
                         var U = d[P];
                         if (U.row == -1 && !Y.isBusyRow(o, d)) {
                             U.row = o;
                             var al = C;
                             var c = Y.getMaxTimelineAppointments(d, T, w, ac);
-                            if (al > c) {
-                                al = c
-                            }
-                            U.rowsCount = al
+                            if (al > c) al = c;
+                            U.rowsCount = al;
                         }
                     }
                 }
@@ -10730,43 +10089,31 @@ License: https://jqwidgets.com/license/
                 d.sort(Y._sortAppointmentsByFrom);
                 var n = 1;
                 for (var P in d) {
-                    if (P == "indexOf") {
-                        break
-                    }
+                    if (P == "indexOf") break;
                     var K = d[P];
-                    n = Math.max(n, K.rowsCount)
+                    n = Math.max(n, K.rowsCount);
                 }
                 for (var P in d) {
-                    if (P == "indexOf") {
-                        break
-                    }
+                    if (P == "indexOf") break;
                     var K = d[P];
-                    K.rowsCount = n
+                    K.rowsCount = n;
                 }
                 if (d.length == 1) {
-                    g.rowSpan = n
+                    g.rowSpan = n;
                 } else {
                     var z = 0;
                     var f = true;
                     for (var aj = g.row; aj < n; aj++) {
                         for (var P in d) {
-                            if (P == "indexOf") {
-                                break
-                            }
+                            if (P == "indexOf") break;
                             var U = d[P];
-                            if (U == g) {
-                                continue
-                            }
-                            if (U.row == aj) {
-                                f = false
-                            }
+                            if (U == g) continue;
+                            if (U.row == aj) f = false;
                         }
-                        if (!f) {
-                            break
-                        }
-                        z++
+                        if (!f) break;
+                        z++;
                     }
-                    g.rowSpan = z
+                    g.rowSpan = z;
                 }
             }
             for (var aa = 0; aa < E.length; aa++) {
@@ -10791,17 +10138,14 @@ License: https://jqwidgets.com/license/
                             g.timewidth += G;
                             if (X.appointmentsRenderMode == "exactTime") {
                                 g.width = g.timewidth;
-                                if (Y.date.month() === g.appointment.from.month()) {
-                                    g.x += F
-                                } else {
-                                    g.width = F + g.timewidth
-                                }
+                                if (Y.date.month() === g.appointment.from.month()) g.x += F;
+                                else g.width = F + g.timewidth;
                                 if (g.appointment.duration().days() < 1) {
                                     if (g.width < 15) {
                                         g.width = 15;
                                         if (F + 15 > Y.cellWidth) {
                                             var D = Y.cellWidth - F - 15;
-                                            g.x += D
+                                            g.x += D;
                                         }
                                     }
                                 }
@@ -10809,21 +10153,17 @@ License: https://jqwidgets.com/license/
                         } else {
                             var F = parseFloat(Y.cellWidth / 24) * (g.appointment.to.hour()) + parseFloat(Y.cellWidth / 48) * (g.appointment.to.minute() / 30);
                             var G = (parseFloat(Y.cellWidth / 24) * (g.appointment.from.hour()) + parseFloat(Y.cellWidth / 48) * (g.appointment.from.minute() / 30));
-                            if (F > 0) {
-                                F = Y.cellWidth - F
-                            }
+                            if (F > 0) F = Y.cellWidth - F;
                             if (X.appointmentsRenderMode == "exactTime") {
                                 g.x += F;
                                 g.width -= F;
-                                g.width -= G
+                                g.width -= G;
                             }
                             if (g.appointment.duration().days() < 1) {
-                                if (g.width < 15) {
-                                    g.width = 15
-                                }
+                                if (g.width < 15) g.width = 15;
                             }
                             g.timewidth = g.width;
-                            g.timex = F
+                            g.timex = F;
                         }
                     }
                 } else {
@@ -10833,29 +10173,25 @@ License: https://jqwidgets.com/license/
                             if (g.appointment.from.minute() % ae != 0) {
                                 var au = g.appointment.from.minute() % ae;
                                 var F = parseFloat(Y.cellWidth / ae) * au;
-                                if (Y.rtl) {
-                                    var F = parseFloat(Y.cellWidth / ae) * au
-                                }
+                                if (Y.rtl) var F = parseFloat(Y.cellWidth / ae) * au;
                             } else {
-                                var F = 0
+                                var F = 0;
                             }
                             if (g.appointment.to.minute() % ae != 0) {
                                 var au = g.appointment.to.minute() % ae;
                                 var G = Y.cellWidth - parseFloat(Y.cellWidth / ae) * au;
-                                if (Y.rtl) {
-                                    var G = Y.cellWidth - parseFloat(Y.cellWidth / ae) * au
-                                }
+                                if (Y.rtl) var G = Y.cellWidth - parseFloat(Y.cellWidth / ae) * au;
                             } else {
-                                G = 0
+                                G = 0;
                             }
                             if (!Y.rtl) {
                                 g.x += F;
                                 g.width -= F;
-                                g.width -= G
+                                g.width -= G;
                             } else {
                                 g.x += G;
                                 g.width -= F;
-                                g.width -= G
+                                g.width -= G;
                             }
                         }
                     }
@@ -10869,29 +10205,19 @@ License: https://jqwidgets.com/license/
                 var X = Y._views[Y._view];
                 var q = ai.appointment.from;
                 var at = ai.appointment.to;
-                if (X.timeRuler && X.timeRuler.formatString) {
-                    J = X.timeRuler.formatString
-                }
+                if (X.timeRuler && X.timeRuler.formatString) J = X.timeRuler.formatString;
                 var W = ai.appointment.background;
                 var O = ai.appointment.subject ? ai.appointment.subject : "(No Title)";
                 var u = ai.appointment.location;
-                if (u && u.length > 1) {
-                    u = ", " + u
-                }
+                if (u && u.length > 1) u = ", " + u;
                 var H = ai.appointment.color;
                 var k = ai.appointment.resourceId;
                 var ad = Y.getColors(Y._resources.indexOf(k));
                 var af = " data-resourceId='" + k + "' ";
                 var S = ai.appointment.borderColor;
-                if (!W) {
-                    W = ad.background
-                }
-                if (!S) {
-                    S = ad.border
-                }
-                if (!H) {
-                    H = ad.color
-                }
+                if (!W) W = ad.background;
+                if (!S) S = ad.border;
+                if (!H) H = ad.color;
                 var b = ai.appointment.isRecurrentAppointment();
                 var s = ai.appointment.isException();
                 var am = "";
@@ -10901,14 +10227,14 @@ License: https://jqwidgets.com/license/
                 var l = false;
                 if (M) {
                     if (M == "transparent") {
-                        l = false
+                        l = false;
                     } else {
                         N = "<div style='background: " + M + "; border-right-color: " + S + "' class='" + v + "'></div>";
                         if (M == "tentative") {
                             v = Y.toTP("jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                            N = "<div style='background-color: " + S + "; border-right-color: " + S + "' class='" + v + "'></div>"
+                            N = "<div style='background-color: " + S + "; border-right-color: " + S + "' class='" + v + "'></div>";
                         }
-                        l = true
+                        l = true;
                     }
                 }
                 var A = "";
@@ -10917,10 +10243,10 @@ License: https://jqwidgets.com/license/
                     N = "<div style='background: " + M + "; border-left-color: " + S + "' class='" + v + "'></div>";
                     if (M == "tentative") {
                         v = Y.toTP("jqx-scheduler-appointment-status-rtl jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                        N = "<div style='background-color: " + S + "; border-left-color: " + S + "' class='" + v + "'></div>"
+                        N = "<div style='background-color: " + S + "; border-left-color: " + S + "' class='" + v + "'></div>";
                     }
                     A = N;
-                    N = ""
+                    N = "";
                 }
                 var R = "";
                 var L = O + "<br/>" + u;
@@ -10939,43 +10265,37 @@ License: https://jqwidgets.com/license/
                     });
                     if (ar) {
                         var I = ar.html;
-                        if (I != L) {
-                            L = I
-                        }
+                        if (I != L) L = I;
                         H = ar.textColor;
                         W = ar.background;
                         S = ar.borderColor;
-                        if (ar.cssClass) {
-                            R = ar.cssClass + " "
-                        }
+                        if (ar.cssClass) R = ar.cssClass + " ";
                         if (ar.style != "") {
                             var ad = Y.getAppointmentColors(ar.style);
                             W = ad.background;
                             S = ad.border;
-                            H = ad.color
+                            H = ad.color;
                         }
                     }
                 }
                 if (am === "") {
                     if (l) {
-                        var am = "<div style='white-space:nowrap;' class='" + Y.toTP("jqx-scheduler-appointment-content") + "'>" + N + "<div class='" + Y.toTP("jqx-scheduler-appointment-inner-content") + "'>" + L + "</div>" + A + "</div>"
+                        var am = "<div style='white-space:nowrap;' class='" + Y.toTP("jqx-scheduler-appointment-content") + "'>" + N + "<div class='" + Y.toTP("jqx-scheduler-appointment-inner-content") + "'>" + L + "</div>" + A + "</div>";
                     } else {
-                        var am = "<div style='white-space:nowrap;' class='" + Y.toTP("jqx-scheduler-appointment-content") + "'><div class='" + Y.toTP("jqx-scheduler-appointment-inner-content") + "'>" + L + "</div></div>"
+                        var am = "<div style='white-space:nowrap;' class='" + Y.toTP("jqx-scheduler-appointment-content") + "'><div class='" + Y.toTP("jqx-scheduler-appointment-inner-content") + "'>" + L + "</div></div>";
                     }
                 }
                 var aq = "";
-                if (Y.rtl) {
-                    aq = Y.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " "
-                }
+                if (Y.rtl) aq = Y.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " ";
                 if (s) {
                     var i = H.toLowerCase() == "white" ? Y.toTP("jqx-icon-recurrence-exception-white") : Y.toTP("jqx-icon-recurrence-exception");
-                    I = "<div data-key='" + ai.appointment.id + "'" + af + "class='" + aq + R + Y.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ai.x + "px; top: " + ai.y + "px; width: " + ai.width + "px; height: " + ai.height + "px; line-height: " + ai.height + "px; border-color:" + S + "; color:" + H + "; background:" + W + ";'><div class='" + i + "'></div>" + am + "<div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                    I = "<div data-key='" + ai.appointment.id + "'" + af + "class='" + aq + R + Y.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ai.x + "px; top: " + ai.y + "px; width: " + ai.width + "px; height: " + ai.height + "px; line-height: " + ai.height + "px; border-color:" + S + "; color:" + H + "; background:" + W + ";'><div class='" + i + "'></div>" + am + "<div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                 } else {
                     if (b) {
                         var r = H.toLowerCase() == "white" ? Y.toTP("jqx-icon-recurrence-white") : Y.toTP("jqx-icon-recurrence");
-                        I = "<div data-key='" + ai.appointment.id + "'" + af + "class='" + aq + R + Y.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ai.x + "px; top: " + ai.y + "px; width: " + ai.width + "px; height: " + ai.height + "px; line-height: " + ai.height + "px; border-color:" + S + "; color:" + H + "; background:" + W + ";'><div class='" + r + "'></div>" + am + "<div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                        I = "<div data-key='" + ai.appointment.id + "'" + af + "class='" + aq + R + Y.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ai.x + "px; top: " + ai.y + "px; width: " + ai.width + "px; height: " + ai.height + "px; line-height: " + ai.height + "px; border-color:" + S + "; color:" + H + "; background:" + W + ";'><div class='" + r + "'></div>" + am + "<div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                     } else {
-                        I = "<div data-key='" + ai.appointment.id + "'" + af + "class='" + aq + R + Y.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ai.x + "px; top: " + ai.y + "px; width: " + ai.width + "px; height: " + ai.height + "px; line-height: " + ai.height + "px; border-color:" + S + "; color:" + H + "; background:" + W + ";'>" + am + "<div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                        I = "<div data-key='" + ai.appointment.id + "'" + af + "class='" + aq + R + Y.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + ai.x + "px; top: " + ai.y + "px; width: " + ai.width + "px; height: " + ai.height + "px; line-height: " + ai.height + "px; border-color:" + S + "; color:" + H + "; background:" + W + ";'>" + am + "<div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + Y.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                     }
                 }
                 ah = I;
@@ -10987,13 +10307,11 @@ License: https://jqwidgets.com/license/
                         var V = ai.appointment.subject;
                         if (V) {
                             var u = ai.appointment.location;
-                            if (u) {
-                                V += "\n" + u
-                            }
-                            Q[0].setAttribute("title", V)
+                            if (u) V += "\n" + u;
+                            Q[0].setAttribute("title", V);
                         }
                     } else {
-                        Q[0].setAttribute("title", ai.appointment.tooltip)
+                        Q[0].setAttribute("title", ai.appointment.tooltip);
                     }
                 }
             }
@@ -11001,9 +10319,7 @@ License: https://jqwidgets.com/license/
             var B = function(m) {
                 for (var j = 0; j < ag.length; j++) {
                     var p = ag[j].getAttribute("data-key");
-                    if (p == m) {
-                        return ag[j]
-                    }
+                    if (p == m) return ag[j];
                 }
             };
             for (var aa = 0; aa < E.length; aa++) {
@@ -11015,9 +10331,7 @@ License: https://jqwidgets.com/license/
                     var aw = ai.cellY;
                     var av = ai.cellX;
                     var j = ai.cellHeight;
-                    if (!m[0].appointments) {
-                        m[0].appointments = new Array()
-                    }
+                    if (!m[0].appointments) m[0].appointments = new Array();
                     m[0].appointments.push({
                         ui: Q,
                         appointment: ai
@@ -11029,9 +10343,7 @@ License: https://jqwidgets.com/license/
                         if (x.length > 0) {
                             x[0].style.display = "block";
                             x[0].mousedown = function() {
-                                if (Y.openedMonthCellPopup) {
-                                    Y.openedMonthCellPopup.remove()
-                                }
+                                if (Y.openedMonthCellPopup) Y.openedMonthCellPopup.remove();
                                 var ax = a("<div></div>");
                                 var aA = new a.jqx.date(m.attr("data-date"), Y.timeZone);
                                 var aD = a("<div class='" + Y.toTP("jqx-scheduler-month-cell") + "'><span style='float: right; cursor: pointer; width:16px; height: 16px;' class='" + Y.toTP("jqx-icon-close") + "'></span></div>");
@@ -11068,23 +10380,19 @@ License: https://jqwidgets.com/license/
                                         var aJ = Y.getJQXAppointmentByElement(Y.getAppointmentElement(aI.target));
                                         if (!aJ.readOnly && !Y.editRecurrenceDialog.jqxWindow("isOpen") && (!Y._editDialog || (Y._editDialog && !Y._editDialog.jqxWindow("isOpen")))) {
                                             var aH = Y._initDialog(aJ);
-                                            if (aH !== false) {
-                                                Y._openDialog()
-                                            }
+                                            if (aH !== false) Y._openDialog();
                                         }
                                         Y._raiseEvent("appointmentDoubleClick", {
                                             appointment: aJ.boundAppointment
                                         })
                                     });
                                     aG += az.outerHeight() + 4;
-                                    aE.append(az)
+                                    aE.append(az);
                                 }
                                 ax.css("overflow", "hidden");
                                 ax.css("position", "absolute");
                                 var aF = Y.table.height() - aw - 25;
-                                if (aF < j) {
-                                    aF = j
-                                }
+                                if (aF < j) aF = j;
                                 ax.css("max-height", aF);
                                 ax.height(aG);
                                 ax.width(ay);
@@ -11093,7 +10401,7 @@ License: https://jqwidgets.com/license/
                                 ax.css("top", aC.top);
                                 ax.css("left", aC.left);
                                 Y.table.append(ax);
-                                Y.openedMonthCellPopup = ax
+                                Y.openedMonthCellPopup = ax;
                             }
                         }
                     }
@@ -11108,7 +10416,7 @@ License: https://jqwidgets.com/license/
             var S = this.rows;
             var O = 0;
             if (this.host.find(".jqx-scheduler-month-cell").length > 0) {
-                O = a(this.host.find(".jqx-scheduler-month-cell")[0]).height()
+                O = a(this.host.find(".jqx-scheduler-month-cell")[0]).height();
             }
             for (var e = 0; e < this.appointmentsToRender.length; e++) {
                 var r = this.appointmentsToRender[e];
@@ -11121,21 +10429,15 @@ License: https://jqwidgets.com/license/
                 var B = t.toDate().valueOf();
                 var k = W.toDate().valueOf();
                 var X = function(j, i) {
-                    if (j.date < i.date) {
-                        return -1
-                    }
-                    if (j.date == i.date) {
-                        return 0
-                    }
-                    if (j.date > i.date) {
-                        return 1
-                    }
+                    if (j.date < i.date) return -1;
+                    if (j.date == i.date) return 0;
+                    if (j.date > i.date) return 1;
                 };
                 var u = -1;
                 var o = r.resourceId;
                 var h = K._resources.indexOf(o);
                 if (K.resources && K.resources.orientation == "none") {
-                    h = -1
+                    h = -1;
                 }
                 for (var Q = 0; Q < K.rows.length; Q++) {
                     var w = K.rows[Q].cells;
@@ -11143,26 +10445,22 @@ License: https://jqwidgets.com/license/
                         var m = w[P].getAttribute("data-date");
                         var R = v(m);
                         var l = R.valueOf();
-                        if (l > W) {
-                            continue
-                        }
+                        if (l > W) continue;
                         w[P].appointments = new Array();
                         if (h != -1) {
-                            if ((1 + h) != w[P].getAttribute("data-view")) {
-                                continue
-                            }
+                            if ((1 + h) != w[P].getAttribute("data-view")) continue;
                         }
                         if (B <= l && l < k) {
                             if (u != Q && u != -1) {
                                 F.sort(X);
                                 q.push(F);
-                                F = new Array()
+                                F = new Array();
                             }
                             F.push({
                                 cell: w[P],
                                 date: R
                             });
-                            u = Q
+                            u = Q;
                         }
                     }
                 }
@@ -11171,22 +10469,14 @@ License: https://jqwidgets.com/license/
                 var C = new Array();
                 for (var Q = 0; Q < q.length; Q++) {
                     var w = q[Q];
-                    if (w.length == 0) {
-                        break
-                    }
+                    if (w.length == 0) break;
                     var n = K.appointmentsMinHeight;
-                    if (K.isTouchDevice()) {
-                        n = K.touchAppointmentsMinHeight
-                    }
-                    if (J.appointmentHeight) {
-                        n = J.appointmentHeight
-                    }
+                    if (K.isTouchDevice()) n = K.touchAppointmentsMinHeight;
+                    if (J.appointmentHeight) n = J.appointmentHeight;
                     var d = n;
                     var E = a(w[w.length - 1].cell).position().left;
                     var b = E - a(w[0].cell).position().left + K.columns.records[0].width;
-                    if (J.showWeekNumbers) {
-                        var b = E - a(w[0].cell).position().left + K.columns.records[1].width
-                    }
+                    if (J.showWeekNumbers) var b = E - a(w[0].cell).position().left + K.columns.records[1].width;
                     var G = a(w[0].cell).position();
                     var M = G.left;
                     var L = G.top + O;
@@ -11201,7 +10491,7 @@ License: https://jqwidgets.com/license/
                         var E = a(w[0].cell).position().left;
                         var b = E - a(w[w.length - 1].cell).position().left + K.columns.records[0].width;
                         if (J.showWeekNumbers) {
-                            var b = E - a(w[w.length - 1].cell).position().left + K.columns.records[1].width
+                            var b = E - a(w[w.length - 1].cell).position().left + K.columns.records[1].width;
                         }
                     }
                     var V = {
@@ -11219,12 +10509,10 @@ License: https://jqwidgets.com/license/
                         to: p
                     };
                     C.push(V);
-                    A.push(V)
+                    A.push(V);
                 }
                 r.elements = C;
-                if (r.rootAppointment) {
-                    r.rootAppointment.elements = r.rootAppointment.elements.concat(r.elements)
-                }
+                if (r.rootAppointment) r.rootAppointment.elements = r.rootAppointment.elements.concat(r.elements);
             }
             var z = this.getViewStart();
             var N = this.getViewEnd();
@@ -11239,16 +10527,14 @@ License: https://jqwidgets.com/license/
                         if (f <= s.from && s.to < f.addDays(7)) {
                             s.row = -1;
                             s.rowSpan = 1;
-                            T[H].push(s)
+                            T[H].push(s);
                         }
                     }
                     H++;
-                    f = f.addDays(7)
+                    f = f.addDays(7);
                 }
                 for (var Q = 0; Q < T.length; Q++) {
-                    if (T[Q].length > 0) {
-                        this._renderUIMonthAppointments(T[Q])
-                    }
+                    if (T[Q].length > 0) this._renderUIMonthAppointments(T[Q]);
                 }
             } else {
                 for (var P = 0; P < this._resources.length; P++) {
@@ -11264,18 +10550,14 @@ License: https://jqwidgets.com/license/
                             if (f <= s.from && s.to < f.addDays(7)) {
                                 s.row = -1;
                                 s.rowSpan = 1;
-                                if (s.appointment.resourceId == I) {
-                                    T[H].push(s)
-                                }
+                                if (s.appointment.resourceId == I) T[H].push(s);
                             }
                         }
                         H++;
-                        f = f.addDays(7)
+                        f = f.addDays(7);
                     }
                     for (var Q = 0; Q < T.length; Q++) {
-                        if (T[Q].length > 0) {
-                            this._renderUIMonthAppointments(T[Q])
-                        }
+                        if (T[Q].length > 0) this._renderUIMonthAppointments(T[Q]);
                     }
                 }
             }
@@ -11288,11 +10570,9 @@ License: https://jqwidgets.com/license/
             var U = this.rows;
             var Q = 0;
             if (this.host.find(".jqx-scheduler-month-cell").length > 0) {
-                Q = a(this.host.find(".jqx-scheduler-month-cell")[0]).height()
+                Q = a(this.host.find(".jqx-scheduler-month-cell")[0]).height();
             }
-            if (!M.rows) {
-                return new Array()
-            }
+            if (!M.rows) return new Array();
             var B = this.getViewStart();
             var P = this.getViewEnd();
             for (var e = 0; e < this.appointmentsToRender.length; e++) {
@@ -11306,47 +10586,35 @@ License: https://jqwidgets.com/license/
                 var D = u.toDate().valueOf();
                 var l = Y.toDate().valueOf();
                 var Z = function(j, i) {
-                    if (j.date < i.date) {
-                        return -1
-                    }
-                    if (j.date == i.date) {
-                        return 0
-                    }
-                    if (j.date > i.date) {
-                        return 1
-                    }
+                    if (j.date < i.date) return -1;
+                    if (j.date == i.date) return 0;
+                    if (j.date > i.date) return 1;
                 };
                 var v = -1;
                 var p = s.resourceId;
                 var k = M._resources.indexOf(p);
-                if (M.resources && M.resources.orientation == "none") {
-                    k = -1
-                }
+                if (M.resources && M.resources.orientation == "none") k = -1;
                 for (var S = 0; S < M.rows.length; S++) {
                     var A = M.rows[S].cells;
                     for (var R = 0; R < A.length; R++) {
                         var n = A[R].getAttribute("data-date");
                         var T = B.addDays(S * 7 + R).toDate();
                         var m = T.valueOf();
-                        if (m > Y) {
-                            continue
-                        }
+                        if (m > Y) continue;
                         if (k != -1) {
-                            if ((1 + k) != A[R].getAttribute("data-view")) {
-                                continue
-                            }
+                            if ((1 + k) != A[R].getAttribute("data-view")) continue;
                         }
                         if (D <= m && m < l) {
                             if (v != S && v != -1) {
                                 H.sort(Z);
                                 r.push(H);
-                                H = new Array()
+                                H = new Array();
                             }
                             H.push({
                                 cell: A[R],
                                 date: T
                             });
-                            v = S
+                            v = S;
                         }
                     }
                 }
@@ -11355,21 +10623,15 @@ License: https://jqwidgets.com/license/
                 var E = new Array();
                 for (var S = 0; S < r.length; S++) {
                     var A = r[S];
-                    if (A.length == 0) {
-                        break
-                    }
+                    if (A.length == 0) break;
                     var o = M.appointmentsMinHeight;
-                    if (M.isTouchDevice()) {
-                        o = M.touchAppointmentsMinHeight
-                    }
-                    if (L.appointmentHeight) {
-                        o = L.appointmentHeight
-                    }
+                    if (M.isTouchDevice()) o = M.touchAppointmentsMinHeight;
+                    if (L.appointmentHeight) o = L.appointmentHeight;
                     var d = o;
                     var G = a(A[A.length - 1].cell).position().left;
                     var b = G - a(A[0].cell).position().left + M.columns.records[0].width;
                     if (L.showWeekNumbers) {
-                        var b = G - a(A[0].cell).position().left + M.columns.records[1].width
+                        var b = G - a(A[0].cell).position().left + M.columns.records[1].width;
                     }
                     var I = a(A[0].cell).position();
                     var O = I.left;
@@ -11385,7 +10647,7 @@ License: https://jqwidgets.com/license/
                         var G = a(A[0].cell).position().left;
                         var b = G - a(A[A.length - 1].cell).position().left + M.columns.records[0].width;
                         if (L.showWeekNumbers) {
-                            var b = G - a(A[A.length - 1].cell).position().left + M.columns.records[1].width
+                            var b = G - a(A[A.length - 1].cell).position().left + M.columns.records[1].width;
                         }
                     }
                     var X = {
@@ -11403,7 +10665,7 @@ License: https://jqwidgets.com/license/
                         to: q
                     };
                     E.push(X);
-                    C.push(X)
+                    C.push(X);
                 }
             }
             if (this._resources.length < 2 || this.resources.orientation == "none") {
@@ -11417,26 +10679,22 @@ License: https://jqwidgets.com/license/
                         if (g <= t.from && t.to < g.addDays(7)) {
                             t.row = -1;
                             t.rowSpan = 1;
-                            V[J].push(t)
+                            V[J].push(t);
                         }
                     }
                     J++;
-                    g = g.addDays(7)
+                    g = g.addDays(7);
                 }
                 var f = new Array();
                 for (var S = 0; S < V.length; S++) {
                     if (V[S].length > 0) {
                         var w = this.getMaxMonthAppointments(V[S]);
                         var o = M.appointmentsMinHeight;
-                        if (M.isTouchDevice()) {
-                            o = M.touchAppointmentsMinHeight
-                        }
-                        if (L.appointmentHeight) {
-                            o = L.appointmentHeight
-                        }
-                        f.push((w * (o + 3)) + 22)
+                        if (M.isTouchDevice()) o = M.touchAppointmentsMinHeight;
+                        if (L.appointmentHeight) o = L.appointmentHeight;
+                        f.push((w * (o + 3)) + 22);
                     } else {
-                        f.push("auto")
+                        f.push("auto");
                     }
                 }
                 return f
@@ -11455,23 +10713,21 @@ License: https://jqwidgets.com/license/
                             if (g <= t.from && t.to < g.addDays(7)) {
                                 t.row = -1;
                                 t.rowSpan = 1;
-                                if (t.appointment.resourceId == K) {
-                                    V[J].push(t)
-                                }
+                                if (t.appointment.resourceId == K) V[J].push(t);
                             }
                         }
                         J++;
-                        g = g.addDays(7)
+                        g = g.addDays(7);
                     }
                     for (var S = 0; S < V.length; S++) {
                         if (V[S].length > 0) {
                             var w = this.getMaxMonthAppointments(V[S]);
-                            f.push((w * (o + 3)) + 22)
+                            f.push((w * (o + 3)) + 22);
                         } else {
-                            f.push("auto")
+                            f.push("auto");
                         }
                     }
-                    return f
+                    return f;
                 }
             }
         },
@@ -11484,16 +10740,10 @@ License: https://jqwidgets.com/license/
             var ac = this;
             G = this.getMaxMonthAppointments(ar);
             var i = ac.appointmentsMinHeight;
-            if (ac.isTouchDevice()) {
-                i = ac.touchAppointmentsMinHeight
-            }
-            if (ab.appointmentHeight) {
-                i = ab.appointmentHeight
-            }
+            if (ac.isTouchDevice()) i = ac.touchAppointmentsMinHeight;
+            if (ab.appointmentHeight) i = ab.appointmentHeight;
             var f = this._sortAppointmentsByFrom;
-            if (this.rtl) {
-                f = this._sortAppointmentsByTo
-            }
+            if (this.rtl) f = this._sortAppointmentsByTo;
             for (var aq = 0; aq < ar.length; aq++) {
                 var h = ar[aq];
                 h.row = -1;
@@ -11501,25 +10751,19 @@ License: https://jqwidgets.com/license/
                 d.sort(f);
                 var u = d.indexOf(h);
                 if (u >= 0) {
-                    for (var ak = u; ak < d.length; ak++) {
-                        d[ak].row = -1
-                    }
+                    for (var ak = u; ak < d.length; ak++) d[ak].row = -1;
                 }
                 for (var an = 0; an < G; an++) {
                     var q = an;
                     for (var U in d) {
-                        if (U == "indexOf") {
-                            break
-                        }
+                        if (U == "indexOf") break;
                         var Y = d[U];
                         if (Y.row == -1 && !this.isBusyRow(q, d)) {
                             Y.row = q;
                             var ao = G;
                             var c = this.getMaxMonthAppointments(d);
-                            if (ao > c) {
-                                ao = c
-                            }
-                            Y.rowsCount = ao
+                            if (ao > c) ao = c;
+                            Y.rowsCount = ao;
                         }
                     }
                 }
@@ -11530,43 +10774,31 @@ License: https://jqwidgets.com/license/
                 d.sort(f);
                 var o = 1;
                 for (var U in d) {
-                    if (U == "indexOf") {
-                        break
-                    }
+                    if (U == "indexOf") break;
                     var O = d[U];
-                    o = Math.max(o, O.rowsCount)
+                    o = Math.max(o, O.rowsCount);
                 }
                 for (var U in d) {
-                    if (U == "indexOf") {
-                        break
-                    }
+                    if (U == "indexOf") break;
                     var O = d[U];
-                    O.rowsCount = o
+                    O.rowsCount = o;
                 }
                 if (d.length == 1) {
-                    h.rowSpan = o
+                    h.rowSpan = o;
                 } else {
                     var E = 0;
                     var g = true;
                     for (var ak = h.row; ak < o; ak++) {
                         for (var U in d) {
-                            if (U == "indexOf") {
-                                break
-                            }
+                            if (U == "indexOf") break;
                             var Y = d[U];
-                            if (Y == h) {
-                                continue
-                            }
-                            if (Y.row == ak) {
-                                g = false
-                            }
+                            if (Y == h) continue;
+                            if (Y.row == ak) g = false;
                         }
-                        if (!g) {
-                            break
-                        }
-                        E++
+                        if (!g) break;
+                        E++;
                     }
-                    h.rowSpan = E
+                    h.rowSpan = E;
                 }
             }
             for (var ae = 0; ae < I.length; ae++) {
@@ -11582,37 +10814,32 @@ License: https://jqwidgets.com/license/
                         var K = parseFloat(ac.cellWidth / 24) * (h.appointment.from.hour()) + parseFloat(ac.cellWidth / 48) * (h.appointment.from.minute() / 30);
                         h.timewidth = h.width;
                         if (h.from.clearTime().toString() == h.appointment.from.clearTime().toString()) {
-                            h.timex = K
+                            h.timex = K;
                         } else {
-                            K = 0
+                            K = 0;
                         }
-                        if (h.appointment.elements.length > 1) {
-                            if (h.appointment.elements[0] != h) {
-                                K = 0
-                            }
-                        }
+                        if (h.appointment.elements.length > 1)
+                            if (h.appointment.elements[0] != h)
+                                K = 0;
                         var L = parseFloat(ac.cellWidth / 24) * (h.appointment.to.hour()) + parseFloat(ac.cellWidth / 48) * (h.appointment.to.minute() / 30);
-                        if (h.appointment.elements.length > 1) {
-                            if (h.appointment.elements[h.appointment.elements.length - 1] != h) {
-                                L = 0
-                            }
-                        }
+                        if (h.appointment.elements.length > 1)
+                            if (h.appointment.elements[h.appointment.elements.length - 1] != h)
+                                L = 0;
                         h.timewidth -= K;
                         if (L > 0) {
                             h.timewidth -= ac.cellWidth;
-                            h.timewidth += L
+                            h.timewidth += L;
                         }
                         if (ab.appointmentsRenderMode == "exactTime") {
-                            if (h.from.clearTime().toString() == h.appointment.from.clearTime().toString()) {
-                                h.x += K
-                            }
+                            if (h.from.clearTime().toString() == h.appointment.from.clearTime().toString())
+                                h.x += K;
                             h.width = h.timewidth;
                             if (h.appointment.duration().days() < 1) {
                                 if (h.width < 15) {
                                     h.width = 15;
                                     if (K + 15 > ac.cellWidth) {
                                         var H = ac.cellWidth - K - 15;
-                                        h.x += H
+                                        h.x += H;
                                     }
                                 }
                             }
@@ -11625,13 +10852,13 @@ License: https://jqwidgets.com/license/
                                 if (L > 0) {
                                     if (ab.appointmentsRenderMode == "exactTime") {
                                         h.width -= (ac.cellWidth - K);
-                                        h.width -= L
+                                        h.width -= L;
                                     } else {
-                                        h.timewidth = h.width - ac.cellWidth + K - L
+                                        h.timewidth = h.width - ac.cellWidth + K - L;
                                     }
                                 } else {
                                     h.timewidth = h.width;
-                                    h.timex = 0
+                                    h.timex = 0;
                                 }
                             } else {
                                 if (h == h.appointment.elements[h.appointment.elements.length - 1]) {
@@ -11639,10 +10866,10 @@ License: https://jqwidgets.com/license/
                                         h.x += ac.cellWidth;
                                         h.x -= K;
                                         h.width += K;
-                                        h.width -= ac.cellWidth
+                                        h.width -= ac.cellWidth;
                                     }
                                     h.timewidth = h.width - ac.cellWidth + K;
-                                    h.timex = ac.cellWidth - K
+                                    h.timex = ac.cellWidth - K;
                                 }
                             }
                         } else {
@@ -11650,15 +10877,13 @@ License: https://jqwidgets.com/license/
                                 h.x += ac.cellWidth;
                                 h.x -= K;
                                 h.width -= (ac.cellWidth - K);
-                                h.width -= L
+                                h.width -= L;
                             }
                             if (h.appointment.duration().days() < 1) {
-                                if (h.width < 15) {
-                                    h.width = 15
-                                }
+                                if (h.width < 15) h.width = 15;
                             }
                             h.timewidth = h.width - ac.cellWidth + K - L;
-                            h.timex = ac.cellWidth - K
+                            h.timex = ac.cellWidth - K;
                         }
                     }
                 }
@@ -11674,21 +10899,19 @@ License: https://jqwidgets.com/license/
                 var ab = this._views[this._view];
                 var r = al.appointment.from;
                 var av = al.appointment.to;
-                if (ab.timeRuler && ab.timeRuler.formatString) {
-                    P = ab.timeRuler.formatString
-                }
+                if (ab.timeRuler && ab.timeRuler.formatString) P = ab.timeRuler.formatString;
                 var ag = P;
                 var A = P;
                 if (P === "auto") {
                     if ((r.hour() == 0 && r.minute() == 0) || (r.hour() == 12 && r.minute() == 0)) {
-                        var ag = "hh tt"
+                        var ag = "hh tt";
                     } else {
-                        var ag = "hh:mm"
+                        var ag = "hh:mm";
                     }
                     if ((av.hour() == 0 && av.minute() == 0) || (av.hour() == 12 && av.minute() == 0)) {
-                        var A = "hh tt"
+                        var A = "hh tt";
                     } else {
-                        var A = "hh:mm"
+                        var A = "hh:mm";
                     }
                 }
                 var w = r.toString(ag);
@@ -11703,18 +10926,10 @@ License: https://jqwidgets.com/license/
                 var aj = " data-resourceId='" + l + "' ";
                 var X = al.appointment.borderColor;
                 var v = al.appointment.location;
-                if (v && v.length > 1) {
-                    v = ", " + v
-                }
-                if (!aa) {
-                    aa = ai.background
-                }
-                if (!X) {
-                    X = ai.border
-                }
-                if (!M) {
-                    M = ai.color
-                }
+                if (v && v.length > 1) v = ", " + v;
+                if (!aa) aa = ai.background;
+                if (!X) X = ai.border;
+                if (!M) M = ai.color;
                 var b = al.appointment.isRecurrentAppointment();
                 var t = al.appointment.isException();
                 var ap = "";
@@ -11724,40 +10939,34 @@ License: https://jqwidgets.com/license/
                 var n = false;
                 if (R) {
                     if (R == "transparent") {
-                        n = false
+                        n = false;
                     } else {
                         S = "<div style='background: " + R + "; border-right-color: " + X + "' class='" + z + "'></div>";
                         if (R == "tentative") {
                             z = ac.toTP("jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                            S = "<div style='background-color: " + X + "; border-right-color: " + X + "' class='" + z + "'></div>"
+                            S = "<div style='background-color: " + X + "; border-right-color: " + X + "' class='" + z + "'></div>";
                         }
-                        n = true
+                        n = true;
                     }
                 }
                 var D = ac.toTP("jqx-scheduler-appointment-duration-status");
                 var am = "<div style='width: " + al.timewidth + "px; left: " + al.timex + "px;' class='" + D + "'></div>";
-                if (e) {
-                    am = ""
-                }
-                if (ab.appointmentsRenderMode != "exactTimeStatus") {
-                    am = ""
-                }
+                if (e) am = "";
+                if (ab.appointmentsRenderMode != "exactTimeStatus") am = "";
                 var F = "";
                 if (ac.rtl) {
                     var z = ac.toTP("jqx-scheduler-appointment-status-rtl jqx-scheduler-appointment-status");
                     S = "<div style='background: " + R + "; border-left-color: " + X + "' class='" + z + "'></div>";
                     if (R == "tentative") {
                         z = ac.toTP("jqx-scheduler-appointment-status-rtl jqx-scheduler-appointment-status jqx-scheduler-appointment-status-stripes");
-                        S = "<div style='background-color: " + X + "; border-left-color: " + X + "' class='" + z + "'></div>"
+                        S = "<div style='background-color: " + X + "; border-left-color: " + X + "' class='" + z + "'></div>";
                     }
                     F = S;
-                    S = ""
+                    S = "";
                 }
                 var W = "";
                 var Q = T + v;
-                if (!e) {
-                    Q = T + v + am
-                }
+                if (!e) Q = T + v + am;
                 if (ac.renderAppointment) {
                     var au = ac.renderAppointment({
                         appointment: al.appointment.boundAppointment,
@@ -11773,43 +10982,39 @@ License: https://jqwidgets.com/license/
                     });
                     if (au) {
                         var N = au.html;
-                        if (N != Q) {
-                            Q = N
-                        }
+                        if (N != Q) Q = N;
                         M = au.textColor;
                         aa = au.background;
                         X = au.borderColor;
-                        if (au.cssClass) {
-                            W = au.cssClass + " "
-                        }
+                        if (au.cssClass) W = au.cssClass + " ";
                         if (au.style != "") {
                             var ai = ac.getAppointmentColors(au.style);
                             aa = ai.background;
                             X = ai.border;
-                            M = ai.color
+                            M = ai.color;
                         }
                     }
                 }
                 if (ap === "") {
                     if (n) {
-                        var ap = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'>" + S + "<div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div>" + F + "</div>"
+                        var ap = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'>" + S + "<div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div>" + F + "</div>";
                     } else {
-                        var ap = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'><div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div></div>"
+                        var ap = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'><div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div></div>";
                     }
                 }
                 var at = "";
                 if (ac.rtl) {
-                    at = ac.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " "
+                    at = ac.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " ";
                 }
                 if (t) {
                     var k = M.toLowerCase() == "white" ? ac.toTP("jqx-icon-recurrence-exception-white") : ac.toTP("jqx-icon-recurrence-exception");
-                    N = "<div data-key='" + al.appointment.id + "'" + aj + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + al.x + "px; top: " + al.y + "px; width: " + al.width + "px; line-height: " + al.height + "px; height: " + al.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + k + "'></div>" + ap + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                    N = "<div data-key='" + al.appointment.id + "'" + aj + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + al.x + "px; top: " + al.y + "px; width: " + al.width + "px; line-height: " + al.height + "px; height: " + al.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + k + "'></div>" + ap + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                 } else {
                     if (b) {
                         var s = M.toLowerCase() == "white" ? ac.toTP("jqx-icon-recurrence-white") : ac.toTP("jqx-icon-recurrence");
-                        N = "<div data-key='" + al.appointment.id + "'" + aj + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + al.x + "px; top: " + al.y + "px; width: " + al.width + "px; line-height: " + al.height + "px; height: " + al.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + s + "'></div>" + ap + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                        N = "<div data-key='" + al.appointment.id + "'" + aj + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + al.x + "px; top: " + al.y + "px; width: " + al.width + "px; line-height: " + al.height + "px; height: " + al.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + s + "'></div>" + ap + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                     } else {
-                        N = "<div data-key='" + al.appointment.id + "'" + aj + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + al.x + "px; top: " + al.y + "px; width: " + al.width + "px; line-height: " + al.height + "px; height: " + al.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'>" + ap + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>"
+                        N = "<div data-key='" + al.appointment.id + "'" + aj + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + al.x + "px; top: " + al.y + "px; width: " + al.width + "px; line-height: " + al.height + "px; height: " + al.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'>" + ap + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
                     }
                 }
                 var V = a(N);
@@ -11819,26 +11024,22 @@ License: https://jqwidgets.com/license/
                     if (!al.appointment.tooltip) {
                         var Z = al.appointment.subject;
                         if (w && !e) {
-                            Z = w + " - " + y + " " + Z
+                            Z = w + " - " + y + " " + Z;
                         }
                         if (Z) {
                             var v = al.appointment.location;
-                            if (v) {
-                                Z += "\n" + v
-                            }
-                            V[0].setAttribute("title", Z)
+                            if (v) Z += "\n" + v;
+                            V[0].setAttribute("title", Z);
                         }
                     } else {
-                        V[0].setAttribute("title", al.appointment.tooltip)
+                        V[0].setAttribute("title", al.appointment.tooltip);
                     }
                 }
                 var af = false;
                 a.each(al.cells, function() {
                     var m = a(this.cell);
                     var j = m.position();
-                    if (!m[0].appointments) {
-                        m[0].appointments = new Array()
-                    }
+                    if (!m[0].appointments) m[0].appointments = new Array();
                     m[0].appointments.push({
                         ui: V,
                         appointment: al
@@ -11849,9 +11050,7 @@ License: https://jqwidgets.com/license/
                         p.show();
                         if (p[0]) {
                             p[0].mousedown = function() {
-                                if (ac.openedMonthCellPopup) {
-                                    ac.openedMonthCellPopup.remove()
-                                }
+                                if (ac.openedMonthCellPopup) ac.openedMonthCellPopup.remove();
                                 var aw = a("<div></div>");
                                 var aB = m.find("div").clone(true);
                                 aB.find("span").removeClass().addClass(ac.toTP("jqx-icon-close"));
@@ -11889,9 +11088,7 @@ License: https://jqwidgets.com/license/
                                         var aE = ac.getJQXAppointmentByElement(ac.getAppointmentElement(aD.target));
                                         if (!aE.readOnly && !ac.editRecurrenceDialog.jqxWindow("isOpen") && (!ac._editDialog || (ac._editDialog && !ac._editDialog.jqxWindow("isOpen")))) {
                                             var aC = ac._initDialog(aE);
-                                            if (aC !== false) {
-                                                ac._openDialog()
-                                            }
+                                            if (aC !== false) ac._openDialog();
                                         }
                                         ac._raiseEvent("appointmentDoubleClick", {
                                             appointment: aE.boundAppointment
@@ -11906,7 +11103,7 @@ License: https://jqwidgets.com/license/
                                 aw.css("top", j.top);
                                 aw.css("left", j.left);
                                 ac.table.append(aw);
-                                ac.openedMonthCellPopup = aw
+                                ac.openedMonthCellPopup = aw;
                             }
                         }
                     }
@@ -11918,15 +11115,9 @@ License: https://jqwidgets.com/license/
             d = this._getDateByString(d);
             var c = e.getAttribute("data-date");
             c = this._getDateByString(c);
-            if (d < c) {
-                return -1
-            }
-            if (d > c) {
-                return 1
-            }
-            if (d == c) {
-                return 0
-            }
+            if (d < c) return -1;
+            if (d > c) return 1;
+            if (d == c) return 0;
         },
         _sortAppointmentsByFrom: function(b, f) {
             if (b.from.equals(f.from)) {
@@ -11934,19 +11125,11 @@ License: https://jqwidgets.com/license/
                 var e = d * 10000;
                 var d = f.to - f.from;
                 var c = d * 10000;
-                if (e > c) {
-                    return -1
-                }
+                if (e > c) return -1;
             }
-            if (b.from < f.from) {
-                return -1
-            }
-            if (b.from > f.from) {
-                return 1
-            }
-            if (b.from == f.from) {
-                return 0
-            }
+            if (b.from < f.from) return -1;
+            if (b.from > f.from) return 1;
+            if (b.from == f.from) return 0;
         },
         _sortAppointmentsByTo: function(b, f) {
             if (b.to.equals(f.to)) {
@@ -11954,55 +11137,35 @@ License: https://jqwidgets.com/license/
                 var e = d * 10000;
                 var d = f.to - f.from;
                 var c = d * 10000;
-                if (e > c) {
-                    return -1
-                }
+                if (e > c) return -1;
             }
-            if (b.to < f.to) {
-                return -1
-            }
-            if (b.to > f.to) {
-                return 1
-            }
-            if (b.to == f.to) {
-                return 0
-            }
+            if (b.to < f.to) return -1;
+            if (b.to > f.to) return 1;
+            if (b.to == f.to) return 0;
         },
         _sortAppointmentsByResourceId: function(b, f, e) {
             var d = e._resources.indexOf(b.resourceId);
             var c = e._resources.indexOf(f.resourceId);
-            if (d == c) {
-                return 0
-            }
-            if (d < c) {
-                return -1
-            }
-            if (d > c) {
-                return -1
-            }
+            if (d == c) return 0;
+            if (d < c) return -1;
+            if (d > c) return -1
         },
         isBusyRow: function(e, d) {
             for (var c = 0; c < d.length; c++) {
                 var b = d[c];
-                if (b.row == e) {
-                    return true
-                }
+                if (b.row == e) return true;
             }
-            return false
+            return false;
         },
         isBusyColumn: function(e, d) {
             for (var c = 0; c < d.length; c++) {
                 var b = d[c];
-                if (b.column == e) {
-                    return true
-                }
+                if (b.column == e) return true;
             }
-            return false
+            return false;
         },
         getMaxTimelineAppointments: function(c, s, f, e) {
-            if (c.length == 0) {
-                return 1
-            }
+            if (c.length == 0) return 1;
             var i = this;
             var t = i._views[i._view].type;
             var j = i._views[i._view];
@@ -12014,64 +11177,44 @@ License: https://jqwidgets.com/license/
             var r = null;
             var w = "";
             for (var g in c) {
-                if (g == "indexOf") {
-                    break
-                }
+                if (g == "indexOf") break;
                 var d = c[g];
-                if (!n) {
-                    n = d.from
-                }
-                if (!r) {
-                    r = d.to
-                }
+                if (!n) n = d.from;
+                if (!r) r = d.to;
                 n = Math.min(d.from, n);
                 r = Math.max(d.to, r);
-                w += d.appointment.id
+                w += d.appointment.id;
             }
             w += n;
             w += r;
-            if (s[w]) {
-                return s[w]
-            }
+            if (s[w]) return s[w];
             n = new a.jqx.date(n, i.timeZone);
             r = new a.jqx.date(r, i.timeZone);
             var m = n;
             while (n < r) {
                 var p = m;
-                if (t === "timelineMonthView") {
-                    var b = p.addDays(1)
-                } else {
-                    var b = p.addMinutes(q)
-                }
+                if (t === "timelineMonthView") var b = p.addDays(1);
+                else var b = p.addMinutes(q);
                 var o = 0;
                 for (var g in c) {
-                    if (g == "indexOf") {
-                        break
-                    }
+                    if (g == "indexOf") break;
                     var d = c[g];
                     var h = d.from;
                     var v = d.to;
                     var l = a.jqx.scheduler.utilities.rangeIntersection(p, b, h, v);
-                    if (l) {
-                        o++
-                    }
+                    if (l) o++;
                 }
                 k = Math.max(o, k);
-                if (t === "timelineMonthView") {
-                    m = m.addDays(1, false)
-                } else {
-                    m = m.addMinutes(q, false)
-                }
+                if (t === "timelineMonthView") m = m.addDays(1, false);
+                else m = m.addMinutes(q, false);
             }
             s[w] = k;
-            return k
+            return k;
         },
         getMaxMonthAppointments: function(g) {
             var i = this._views[this._view].type;
             var l = this._views[this._view];
-            if (g.length == 0) {
-                return 1
-            }
+            if (g.length == 0) return 1;
             var o = 1;
             var h = this.getViewStart().clone();
             var e = this.getViewEnd();
@@ -12080,29 +11223,23 @@ License: https://jqwidgets.com/license/
                 var k = a.jqx.scheduler.utilities.getEndOfDay(j);
                 var n = 0;
                 for (var f in g) {
-                    if (f == "indexOf") {
-                        break
-                    }
+                    if (f == "indexOf") break;
                     var b = g[f];
                     var d = b.from;
                     var c = b.to;
                     var m = a.jqx.scheduler.utilities.rangeIntersection(j, k, d, c);
-                    if (m) {
-                        n++
-                    }
+                    if (m) n++;
                 }
                 o = Math.max(n, o);
-                h = h.addDays(1, false)
+                h = h.addDays(1, false);
             }
-            return o
+            return o;
         },
         getMaxAllDayAppointments: function(e) {
             var h = this._views[this._view].type;
             var l = this._views[this._view];
             var f = this;
-            if (e.length == 0) {
-                return 1
-            }
+            if (e.length == 0) return 1;
             var n = function(r) {
                 var y = 1;
                 var s = f.getViewStart();
@@ -12112,36 +11249,26 @@ License: https://jqwidgets.com/license/
                     var u = a.jqx.scheduler.utilities.getEndOfDay(t);
                     var x = 0;
                     for (var q in r) {
-                        if (q == "indexOf") {
-                            break
-                        }
+                        if (q == "indexOf") break;
                         var i = r[q];
                         var v = i;
-                        if (i.appointment) {
-                            v = i.appointment
-                        }
-                        if (v.hidden == true) {
-                            continue
-                        }
-                        if (!v.duration) {
-                            continue
-                        }
+                        if (i.appointment) v = i.appointment;
+                        if (v.hidden == true) continue;
+                        if (!v.duration) continue;
                         if (v.allDay || v.duration().days() >= 1) {
                             var o = i.from;
                             var j = i.to;
                             var w = a.jqx.scheduler.utilities.rangeIntersection(t, u, o, j);
-                            if (w) {
-                                x++
-                            }
+                            if (w) x++;
                         }
                     }
                     y = Math.max(x, y);
-                    s = s.addDays(1, false)
+                    s = s.addDays(1, false);
                 }
-                return y
+                return y;
             };
             if (this._resources.length < 2 || (!this.resources.orientation || this.resources.orientation == "none")) {
-                var m = n(e)
+                var m = n(e);
             } else {
                 var k = 1;
                 for (var c = 0; c < this._resources.length; c++) {
@@ -12149,28 +11276,24 @@ License: https://jqwidgets.com/license/
                     var g = new Array();
                     for (var d = 0; d < e.length; d++) {
                         if (e[d].appointment && e[d].appointment.resourceId == b) {
-                            g.push(e[d])
+                            g.push(e[d]);
                         } else {
-                            if (e[d].resourceId != undefined && e[d].resourceId == b) {
-                                g.push(e[d])
-                            }
+                            if (e[d].resourceId != undefined && e[d].resourceId == b) g.push(e[d]);
                         }
                     }
                     var m = n(g);
-                    k = Math.max(k, m)
+                    k = Math.max(k, m);
                 }
-                m = k
+                m = k;
             }
-            return m
+            return m;
         },
         getMinutesPerScale: function() {
             var b = this._views[this._view].type;
             var d = this._views[this._view];
             var c = 30;
             var e = "halfHour";
-            if (d.timeRuler && d.timeRuler.scale) {
-                e = d.timeRuler.scale
-            }
+            if (d.timeRuler && d.timeRuler.scale) e = d.timeRuler.scale;
             switch (e) {
                 case "sixtyMinutes":
                 case "hour":
@@ -12189,18 +11312,16 @@ License: https://jqwidgets.com/license/
                     break;
                 case "fiveMinutes":
                     c = 5;
-                    break
+                    break;
             }
-            return c
+            return c;
         },
         getMaxColumnsInADay: function(k) {
             var m = this._views[this._view].type;
             var p = this._views[this._view];
             var e = 30;
             var c = "halfHour";
-            if (p.timeRuler && p.timeRuler.scale) {
-                c = p.timeRuler.scale
-            }
+            if (p.timeRuler && p.timeRuler.scale) c = p.timeRuler.scale;
             switch (c) {
                 case "sixtyMinutes":
                 case "hour":
@@ -12219,11 +11340,9 @@ License: https://jqwidgets.com/license/
                     break;
                 case "fiveMinutes":
                     e = 5;
-                    break
+                    break;
             }
-            if (k.length == 0) {
-                return 1
-            }
+            if (k.length == 0) return 1;
             var d = 1;
             var l = k[0].from.clone();
             var i = l.addMinutes(e);
@@ -12233,28 +11352,22 @@ License: https://jqwidgets.com/license/
                 var n = i;
                 var r = 0;
                 for (var j in k) {
-                    if (j == "indexOf") {
-                        break
-                    }
+                    if (j == "indexOf") break;
                     var b = k[j];
-                    if (!b.from && !b.to) {
-                        continue
-                    }
+                    if (!b.from && !b.to) continue;
                     var g = b.from;
                     var f = b.to;
                     var q = a.jqx.scheduler.utilities.rangeIntersection(o, n, g, f);
-                    if (q) {
-                        r++
-                    }
+                    if (q) r++;
                 }
                 d = Math.max(r, d);
                 l = l.addMinutes(e, false);
-                i = i.addMinutes(e, false)
+                i = i.addMinutes(e, false);
             }
-            return d
+            return d;
         },
         getTouches: function(b) {
-            return a.jqx.mobile.getTouches(b)
+            return a.jqx.mobile.getTouches(b);
         },
         _updatecolumnwidths: function() {
             var h = this;
@@ -12262,14 +11375,12 @@ License: https://jqwidgets.com/license/
             var b = j;
             if (this.vScrollBar.css("visibility") !== "hidden" && this.scrollBarSize > 0) {
                 j -= parseInt(this.scrollBarSize) + 6;
-                if (this.rtl) {
-                    j += 3
-                }
-                b = j
+                if (this.rtl) j += 3;
+                b = j;
             }
             var i = "";
             if (this.columns == undefined || this.columns.records == undefined) {
-                return
+                return;
             }
             var h = this;
             var g = false;
@@ -12279,36 +11390,21 @@ License: https://jqwidgets.com/license/
                     if (this.width.toString().indexOf("%") != -1 || this._percentagewidth != undefined) {
                         var m = 0;
                         var n = h.vScrollBar[0].style.visibility == "hidden" ? 0 : h.scrollBarSize + 5;
-                        if (h.scrollBarSize == 0) {
-                            n = 0
-                        }
+                        if (h.scrollBarSize == 0) n = 0;
                         m = parseFloat(this.width) * b / 100;
-                        if (this._percentagewidth != undefined) {
-                            m = parseFloat(this._percentagewidth) * (b) / 100
-                        }
-                        if (m < this.minwidth && this.minwidth != "auto") {
-                            m = this.minwidth
-                        }
-                        if (m > this.maxwidth && this.maxwidth != "auto") {
-                            m = this.maxwidth
-                        }
-                        j -= Math.round(m)
+                        if (this._percentagewidth != undefined) m = parseFloat(this._percentagewidth) * (b) / 100;
+                        if (m < this.minwidth && this.minwidth != "auto") m = this.minwidth;
+                        if (m > this.maxwidth && this.maxwidth != "auto") m = this.maxwidth;
+                        j -= Math.round(m);
                     } else {
-                        if (this.width != "auto" && !this._width) {
-                            j -= this.width
-                        } else {
-                            i += this.text
-                        }
+                        if (this.width != "auto" && !this._width) j -= this.width;
+                        else i += this.text;
                     }
-                    if (this._width == "auto") {
-                        k[k.length] = this
-                    }
+                    if (this._width == "auto") k[k.length] = this;
                 }
             });
             var e = this.columnsheader.find("#columntable" + this.element.id);
-            if (e.length == 0) {
-                return
-            }
+            if (e.length == 0) return;
             var c = 0;
             var f = e.find(".jqx-grid-column-header");
             var d = 0;
@@ -12318,31 +11414,26 @@ License: https://jqwidgets.com/license/
                 var v = this.width;
                 var q = this.width;
                 if (this.width.toString().indexOf("%") != -1 || this._percentagewidth != undefined) {
-                    if (this._percentagewidth != undefined) {
-                        v = parseFloat(this._percentagewidth) * b / 100
-                    } else {
-                        v = parseFloat(this.width) * b / 100
-                    }
+                    if (this._percentagewidth != undefined) v = parseFloat(this._percentagewidth) * b / 100;
+                    else v = parseFloat(this.width) * b / 100;
                     v = Math.round(v);
-                    w = true
+                    w = true;
                 }
                 if (this.width != "auto" && !this._width && !w) {
-                    if (parseInt(m[0].style.width) != this.width) {
-                        m.width(this.width)
-                    }
+                    if (parseInt(m[0].style.width) != this.width) m.width(this.width);
                 } else {
                     if (w) {
                         if (v < this.minwidth && this.minwidth != "auto") {
                             v = this.minwidth;
-                            this.width = v
+                            this.width = v;
                         }
                         if (v > this.maxwidth && this.maxwidth != "auto") {
                             v = this.maxwidth;
-                            this.width = v
+                            this.width = v;
                         }
                         if (parseInt(m[0].style.width) != v) {
                             m.width(v);
-                            this.width = v
+                            this.width = v;
                         }
                     } else {
                         var n = h.columns.records.length;
@@ -12350,17 +11441,13 @@ License: https://jqwidgets.com/license/
                         if (p === "dayView" || p === "weekView") {
                             var r = h._views[h._view];
                             if (r.timeRuler) {
-                                if (r.timeRuler.timeZones) {
-                                    n -= r.timeRuler.timeZones.length
-                                }
-                                n--
+                                if (r.timeRuler.timeZones) n -= r.timeRuler.timeZones.length;
+                                n--;
                             } else {
-                                n--
+                                n--;
                             }
                         } else {
-                            if (p === "monthView" && h._views[h._view].showWeekNumbers) {
-                                n--
-                            }
+                            if (p === "monthView" && h._views[h._view].showWeekNumbers) n--;
                         }
                         var l = Math.floor(j * (1 / n));
                         if (h.resources && h.resources.resourceColumnWidth && h.resources.resourceColumnWidth != "auto") {
@@ -12368,7 +11455,7 @@ License: https://jqwidgets.com/license/
                         } else {
                             if (h.resources && h.resources.resourceColumnWidth && h.resources.resourceColumnWidth == "auto") {
                                 if (h.resources.orientation == "horizontal") {
-                                    l = Math.round((2 + j) * (1 / h._getColumnsLengthPerView()))
+                                    l = Math.round((2 + j) * (1 / h._getColumnsLengthPerView()));
                                 }
                             }
                         }
@@ -12376,56 +11463,42 @@ License: https://jqwidgets.com/license/
                         c += s;
                         if (c >= 1) {
                             c -= 1;
-                            l++
+                            l++;
                         }
-                        if (c >= 0.5 && o == h.columns.records.length - 1) {
-                            l++
-                        }
+                        if (c >= 0.5 && o == h.columns.records.length - 1) l++;
                         if (p == "agendaView") {
                             l = j / k.length;
-                            l++
+                            l++;
                         }
                         if (l < 0) {
                             var u = a("<span>" + this.text + "</span>");
                             a(document.body).append(u);
                             l = 10 + u.width();
-                            u.remove()
+                            u.remove();
                         }
-                        if (l < this.minwidth) {
-                            l = this.minwidth
-                        }
-                        if (l > this.maxwidth) {
-                            l = this.maxwidth
-                        }
+                        if (l < this.minwidth) l = this.minwidth;
+                        if (l > this.maxwidth) l = this.maxwidth;
                         this._width = "auto";
                         this.width = parseInt(l);
-                        m.width(this.width)
+                        m.width(this.width);
                     }
                 }
-                if (parseInt(m[0].style.left) != d) {
-                    m.css("left", d)
-                }
-                if (!(this.hidden)) {
-                    d += this.width
-                }
+                if (parseInt(m[0].style.left) != d) m.css("left", d);
+                if (!(this.hidden)) d += this.width;
                 this._requirewidthupdate = true;
-                if (q !== this.width) {
-                    g = true
-                }
+                if (q !== this.width) g = true;
             });
             this.columnsheader.width(2 + d);
             e.width(this.columnsheader.width());
             this._resizecolumnGroups();
             if (g) {
                 this._renderrows();
-                h._arrange()
+                h._arrange();
             }
         },
         _rendercolumnheaders: function() {
             var g = this;
-            if (this._updating) {
-                return
-            }
+            if (this._updating) return;
             var l = this._views[this._view];
             this._columnsbydatafield = new Array();
             this.columnsheader.find("#columntable" + this.element.id).remove();
@@ -12435,25 +11508,17 @@ License: https://jqwidgets.com/license/
             var d = 0;
             var n = "";
             var p = this._hostWidth;
-            if (!p) {
-                this._hostWidth = this.host.width()
-            }
+            if (!p) this._hostWidth = this.host.width();
             var v = this._hostWidth;
             var m = v;
             var w = this.getRows().length;
             var u = this.rowsHeight;
-            if (this.isTouchDevice()) {
-                u = this.touchRowsHeight
-            }
-            if (w * u > this.host.height()) {
-                this.vScrollBar[0].style.visibility = "inherit"
-            }
+            if (this.isTouchDevice()) u = this.touchRowsHeight;
+            if (w * u > this.host.height()) this.vScrollBar[0].style.visibility = "inherit";
             if (this.vScrollBar.css("visibility") !== "hidden" && this.scrollBarSize > 0) {
                 v -= parseInt(this.scrollBarSize) + 6;
-                if (this.rtl) {
-                    v += 3
-                }
-                m = v
+                if (this.rtl) v += 3;
+                m = v;
             }
             var q = new Array();
             var s = new Array();
@@ -12461,42 +11526,32 @@ License: https://jqwidgets.com/license/
                 if (!(this.hidden)) {
                     if (this.width != "auto" && !this._width) {
                         if (this.width < this.minwidth && this.minwidth != "auto") {
-                            v -= this.minwidth
+                            v -= this.minwidth;
                         } else {
                             if (this.width > this.maxwidth && this.maxwidth != "auto") {
-                                v -= this.maxwidth
+                                v -= this.maxwidth;
                             } else {
                                 if (this.width.toString().indexOf("%") != -1) {
                                     var k = 0;
                                     k = parseFloat(this.width) * m / 100;
-                                    if (k < this.minwidth && this.minwidth != "auto") {
-                                        k = this.minwidth
-                                    }
-                                    if (k > this.maxwidth && this.maxwidth != "auto") {
-                                        k = this.maxwidth
-                                    }
-                                    v -= k
+                                    if (k < this.minwidth && this.minwidth != "auto") k = this.minwidth;
+                                    if (k > this.maxwidth && this.maxwidth != "auto") k = this.maxwidth;
+                                    v -= k;
                                 } else {
-                                    if (typeof this.width == "string") {
-                                        this.width = parseInt(this.width)
-                                    }
-                                    v -= this.width
+                                    if (typeof this.width == "string") this.width = parseInt(this.width);
+                                    v -= this.width;
                                 }
                             }
                         }
                     } else {
-                        n += this.text
+                        n += this.text;
                     }
                 }
-                if (this.width == null || this.width == "auto") {
-                    s[s.length] = this
-                }
-                q[q.length] = this
+                if (this.width == null || this.width == "auto") s[s.length] = this;
+                q[q.length] = this;
             });
             if (this.rtl) {
-                for (var t = 0; t < q.length; t++) {
-                    this.columns.replace(t, q[t])
-                }
+                for (var t = 0; t < q.length; t++) this.columns.replace(t, q[t]);
             }
             var f = this.headerZIndex;
             var i = 0;
@@ -12504,7 +11559,7 @@ License: https://jqwidgets.com/license/
             var b = function(k, x) {
                 var j = g.columnGroupslevel * g.columnsHeight;
                 j = j - (x.level * g.columnsHeight);
-                return j
+                return j;
             };
             var o = 0;
             var c = document.createDocumentFragment();
@@ -12513,16 +11568,12 @@ License: https://jqwidgets.com/license/
                 if (g.columnGroups) {
                     if (g.columnGroups.length) {
                         this.height = b(this.datafield, this);
-                        e = this.height
+                        e = this.height;
                     }
                 }
                 var y = g.toTP("jqx-grid-column-header") + " " + g.toTP("jqx-widget-header");
-                if (g.rtl) {
-                    y += " " + g.toTP("jqx-grid-column-header-rtl")
-                }
-                if (!g.enableBrowserSelection) {
-                    y += " " + g.toTP("jqx-disableselect")
-                }
+                if (g.rtl) y += " " + g.toTP("jqx-grid-column-header-rtl");
+                if (!g.enableBrowserSelection) y += " " + g.toTP("jqx-disableselect");
                 var E = !g.rtl ? f-- : f++;
                 var k = document.createElement("div");
                 k.setAttribute("role", "columnheader");
@@ -12531,82 +11582,57 @@ License: https://jqwidgets.com/license/
                 k.style.height = "100%";
                 k.className = y;
                 var z = a(k);
-                if (g.rtl && D === 0) {
-                    z[0].style.borderLeftColor = "transparent"
-                }
+                if (g.rtl && D === 0) z[0].style.borderLeftColor = "transparent";
                 if (g.columnGroups) {
                     z[0].style.height = e + "px";
-                    z[0].style.bottom = "0px"
+                    z[0].style.bottom = "0px";
                 } else {
-                    if (!this.timeColumn) {
-                        z[0].style.height = -1 + e + "px"
-                    }
+                    if (!this.timeColumn) z[0].style.height = -1 + e + "px";
                 }
                 this.uielement = z;
                 this.element = z;
-                if (this.classname != "" && this.classname) {
-                    z.addClass(this.classname)
-                }
+                if (this.classname != "" && this.classname) z.addClass(this.classname);
                 var K = this.width;
                 var L = false;
-                if (this.width === null) {
-                    this.width = "auto"
-                }
+                if (this.width === null) this.width = "auto";
                 if (this.width.toString().indexOf("%") != -1 || this._percentagewidth != undefined) {
-                    if (this._percentagewidth != undefined) {
-                        K = parseFloat(this._percentagewidth) * m / 100
-                    } else {
-                        K = parseFloat(this.width) * m / 100
-                    }
+                    if (this._percentagewidth != undefined) K = parseFloat(this._percentagewidth) * m / 100;
+                    else K = parseFloat(this.width) * m / 100;
                     K = Math.round(K);
-                    L = true
+                    L = true;
                 }
                 if (this.width != "auto" && !this._width && !L) {
-                    if (K < this.minwidth && this.minwidth != "auto") {
-                        K = this.minwidth
-                    }
-                    if (K > this.maxwidth && this.maxwidth != "auto") {
-                        K = this.maxwidth
-                    }
-                    z[0].style.width = parseInt(K) + "px"
+                    if (K < this.minwidth && this.minwidth != "auto") K = this.minwidth;
+                    if (K > this.maxwidth && this.maxwidth != "auto") K = this.maxwidth;
+                    z[0].style.width = parseInt(K) + "px";
                 } else {
                     if (L) {
-                        if (K < this.minwidth && this.minwidth != "auto") {
-                            K = this.minwidth
-                        }
-                        if (K > this.maxwidth && this.maxwidth != "auto") {
-                            K = this.maxwidth
-                        }
-                        if (this._percentagewidth == undefined || this.width.toString().indexOf("%") != -1) {
-                            this._percentagewidth = this.width
-                        }
+                        if (K < this.minwidth && this.minwidth != "auto") K = this.minwidth;
+                        if (K > this.maxwidth && this.maxwidth != "auto") K = this.maxwidth;
+                        if (this._percentagewidth == undefined || this.width.toString().indexOf("%") != -1) this._percentagewidth = this.width;
                         z.width(K);
-                        this.width = K
+                        this.width = K;
                     } else {
                         var A = g.columns.records.length;
                         var C = g._views[g._view].type;
                         if (C === "dayView" || C === "weekView") {
                             var G = g._views[g._view];
                             if (G.timeRuler) {
-                                if (G.timeRuler.timeZones) {
-                                    A -= G.timeRuler.timeZones.length
-                                }
-                                A--
+                                if (G.timeRuler.timeZones) A -= G.timeRuler.timeZones.length;
+                                A--;
                             } else {
-                                A--
+                                A--;
                             }
                         } else {
-                            if (C === "monthView" && g._views[g._view].showWeekNumbers) {
-                                A--
-                            }
+                            if (C === "monthView" && g._views[g._view].showWeekNumbers) A--;
                         }
                         var j = Math.floor(v * (1 / A));
                         if (g.resources && g.resources.resourceColumnWidth && g.resources.resourceColumnWidth != "auto") {
-                            j = g.resources.resourceColumnWidth
+                            j = g.resources.resourceColumnWidth;
                         } else {
                             if (g.resources && g.resources.resourceColumnWidth && g.resources.resourceColumnWidth == "auto") {
                                 if (g.resources.orientation == "horizontal") {
-                                    j = Math.round((2 + v) * (1 / g._getColumnsLengthPerView()))
+                                    j = Math.round((2 + v) * (1 / g._getColumnsLengthPerView()));
                                 }
                             }
                         }
@@ -12614,50 +11640,36 @@ License: https://jqwidgets.com/license/
                         o += H;
                         if (o >= 1) {
                             o -= 1;
-                            j++
+                            j++;
                         }
-                        if (o >= 0.5 && D == g.columns.records.length - 1) {
-                            j++
-                        }
-                        if (isNaN(j)) {
-                            j = this.minwidth
-                        }
+                        if (o >= 0.5 && D == g.columns.records.length - 1) j++;
+                        if (isNaN(j)) j = this.minwidth;
                         if (C == "agendaView") {
                             j = v / s.length;
-                            j++
+                            j++;
                         }
                         if (j < 0) {
                             var J = a("<span>" + this.text + "</span>");
                             a(document.body).append(J);
                             j = 10 + J.width();
-                            J.remove()
+                            J.remove();
                         }
-                        if (j < this.minwidth) {
-                            j = this.minwidth
-                        }
-                        if (j > this.maxwidth) {
-                            j = this.maxwidth
-                        }
+                        if (j < this.minwidth) j = this.minwidth;
+                        if (j > this.maxwidth) j = this.maxwidth;
                         this._width = "auto";
                         this.width = parseInt(j);
                         K = this.width;
-                        z.width(this.width)
+                        z.width(this.width);
                     }
                 }
                 if (this.timeColumn) {
                     z.css("border-bottom-color", "transparent");
                     if (l.timeRuler && l.timeRuler.timeZones) {
-                        if (D < l.timeRuler.timeZones.length) {
-                            z.css("border-right-color", "transparent")
-                        }
+                        if (D < l.timeRuler.timeZones.length) z.css("border-right-color", "transparent");
                     }
-                    if (this.tableRows == 1) {
-                        z.addClass(g.toTP("jqx-scheduler-time-column"))
-                    }
+                    if (this.tableRows == 1) z.addClass(g.toTP("jqx-scheduler-time-column"));
                 }
-                if (this.hidden) {
-                    z.css("display", "none")
-                }
+                if (this.hidden) z.css("display", "none")
                 var x = a(z.children()[0]);
                 h[0].cells[D] = z[0];
                 var B = g._rendercolumnheader(this.text, this.align, e, g);
@@ -12665,43 +11677,30 @@ License: https://jqwidgets.com/license/
                 c.appendChild(z[0]);
                 var F = this;
                 z[0].style.left = d + "px";
-                if (!(this.hidden)) {
-                    d += K
-                }
+                if (!(this.hidden)) d += K;
             });
             h[0].appendChild(c);
-            if (d > 0) {
-                this.columnsheader[0].style.width = 2 + d + "px"
-            } else {
-                this.columnsheader[0].style.width = d + "px"
-            }
+            if (d > 0) this.columnsheader[0].style.width = 2 + d + "px";
+            else this.columnsheader[0].style.width = d + "px";
             this._columnswidth = d;
             this.columnsrow = h;
             g.columnsheader.append(h);
             h[0].style.width = d + "px";
-            if (this.columnGroups) {
-                this._rendercolumnGroups()
-            }
+            if (this.columnGroups) this._rendercolumnGroups();
         },
         _rendercolumnGroups: function() {
-            if (!this.columnGroups) {
-                return
-            }
+            if (!this.columnGroups) return;
             var r = this.headerZIndex + this.columns.records.length;
             var m = this;
             var f = m.toTP("jqx-grid-column-header") + " " + m.toTP("jqx-grid-columngroup-header") + " " + m.toTP("jqx-widget-header");
-            if (m.rtl) {
-                f += " " + m.toTP("jqx-grid-columngroup-header-rtl")
-            }
+            if (m.rtl) f += " " + m.toTP("jqx-grid-columngroup-header-rtl");
             var d = this.columnsheader.find("#columntable" + this.element.id);
             d.find("jqx-grid-columngroup-header").remove();
             for (var g = 0; g < this.columnGroupslevel - 1; g++) {
                 for (var k = 0; k < this.columnGroups.length; k++) {
                     var o = this.columnGroups[k];
                     var b = o.level;
-                    if (b !== g) {
-                        continue
-                    }
+                    if (b !== g) continue;
                     var n = b * this.columnsHeight;
                     var c = 99999;
                     if (o.groups) {
@@ -12712,13 +11711,13 @@ License: https://jqwidgets.com/license/
                                 if (!i.groups) {
                                     if (!i.hidden) {
                                         t += i.width;
-                                        c = Math.min(parseInt(i.element[0].style.left), c)
+                                        c = Math.min(parseInt(i.element[0].style.left), c);
                                     }
                                 } else {
-                                    t += q(i)
+                                    t += q(i);
                                 }
                             }
-                            return t
+                            return t;
                         };
                         o.width = q(o);
                         o.left = c;
@@ -12726,27 +11725,21 @@ License: https://jqwidgets.com/license/
                         var l = r--;
                         var e = a('<div role="columnheader" style="z-index: ' + l + ';position: absolute;" class="' + f + '"></div>');
                         var h = a(this._rendercolumnheader(o.text, o.align, this.columnsHeight, this));
-                        if (o.renderer) {
-                            o.renderer(e, o.text)
-                        }
+                        if (o.renderer) o.renderer(e, o.text)
                         e.append(h);
                         e[0].style.left = c + "px";
-                        if (c === 0) {
-                            e[0].style.borderLeftColor = "transparent"
-                        }
+                        if (c === 0) e[0].style.borderLeftColor = "transparent";
                         e[0].style.top = n + "px";
                         e[0].style.height = p + "px";
                         e[0].style.width = -1 + o.width + "px";
                         d.append(e);
-                        o.element = e
+                        o.element = e;
                     }
                 }
             }
         },
         _resizecolumnGroups: function() {
-            if (!this.columnGroups) {
-                return
-            }
+            if (!this.columnGroups) return;
             for (var c = 0; c < this.columnGroups.length; c++) {
                 var h = this.columnGroups[c];
                 var j = h.level;
@@ -12759,12 +11752,12 @@ License: https://jqwidgets.com/license/
                             var i = m.groups[k];
                             if (!i.groups) {
                                 l += i.width;
-                                f = Math.min(parseInt(i.element[0].style.left), f)
+                                f = Math.min(parseInt(i.element[0].style.left), f);
                             } else {
-                                l += e(i)
+                                l += e(i);
                             }
                         }
-                        return l
+                        return l;
                     };
                     h.width = e(h);
                     h.left = f;
@@ -12773,7 +11766,7 @@ License: https://jqwidgets.com/license/
                     d[0].style.left = f + "px";
                     d[0].style.top = g + "px";
                     d[0].style.height = b + "px";
-                    d[0].style.width = -1 + h.width + "px"
+                    d[0].style.width = -1 + h.width + "px";
                 }
             }
         },
@@ -12786,49 +11779,43 @@ License: https://jqwidgets.com/license/
                 var d = a(e.filtericon);
                 c.removeHandler(d, "mousedown");
                 c.removeHandler(d, "click");
-                c.removeHandler(b, "click")
+                c.removeHandler(b, "click");
             }
         },
         destroy: function() {
             var b = this;
             b._removeHandlers();
-            if (b._editDialog) {
-                b._editDialog.jqxWindow("destroy")
-            }
-            if (b.menu) {
-                b.menu.jqxMenu("destroy")
-            }
-            if (b.editRecurrenceDialog) {
-                b.editRecurrenceDialog.jqxWindow("destroy")
-            }
+            if (b._editDialog) b._editDialog.jqxWindow("destroy");
+            if (b.menu) b.menu.jqxMenu("destroy");
+            if (b.editRecurrenceDialog) b.editRecurrenceDialog.jqxWindow("destroy");
             b.vScrollBar.jqxScrollBar("destroy");
             b.hScrollBar.jqxScrollBar("destroy");
             delete b.vScrollBar;
             delete b.hScrollBar;
             delete b._mousewheelfunc;
             a.jqx.utilities.resize(b.host, null, true);
-            b.host.remove()
+            b.host.remove();
         },
         propertiesChangedHandler: function(d, b, c) {
             if (c && c.width && c.height && Object.keys(c).length == 2) {
                 d.host.height(d.height);
                 d.host.width(d.width);
-                d._updatesize(false, true)
+                d._updatesize(false, true);
             }
         },
         propertyChangedHandler: function(b, d, f, e) {
             if (this.isInitialized == undefined || this.isInitialized == false) {
-                return
+                return;
             }
             if (b.batchUpdate && b.batchUpdate.width && b.batchUpdate.height && Object.keys(b.batchUpdate).length == 2) {
-                return
+                return;
             }
             if (e !== f) {
                 if (d == "filterable") {
-                    b._render()
+                    b._render();
                 } else {
                     if (d == "view") {
-                        b.setView(e)
+                        b.setView(e);
                     } else {
                         if (d == "views") {
                             b._columns = null;
@@ -12838,45 +11825,45 @@ License: https://jqwidgets.com/license/
                                 if (a.type(b.views[c]) === "string") {
                                     b._views.push({
                                         type: b.views[c]
-                                    })
+                                    });
                                 } else {
-                                    b._views.push(b.views[c])
+                                    b._views.push(b.views[c]);
                                 }
                             }
                             for (var c = 0; c < b._views.length; c++) {
                                 if (b._views[c].type == b.view) {
                                     b._view = c;
-                                    break
+                                    break;
                                 }
                             }
-                            b._render()
+                            b._render();
                         } else {
                             if (d === "height") {
                                 b._hostWidth = null;
                                 b._hostHeight = null;
                                 b.host.height(b.height);
                                 b.host.width(b.width);
-                                b._updatesize(false, true)
+                                b._updatesize(false, true);
                             } else {
                                 if (d === "width") {
                                     b._hostWidth = null;
                                     b._hostHeight = null;
                                     b.host.height(b.height);
                                     b.host.width(b.width);
-                                    b._updatesize(true, false)
+                                    b._updatesize(true, false);
                                 } else {
                                     if (d === "source") {
-                                        b.updateBoundData()
+                                        b.updateBoundData();
                                     } else {
                                         if (d == "resources") {
-                                            b.updateBoundData()
+                                            b.updateBoundData();
                                         } else {
                                             if (d === "columns" || d === "columnGroups") {
                                                 b._columns = null;
-                                                b._render()
+                                                b._render();
                                             } else {
                                                 if (d === "selectionMode") {
-                                                    b.selectionMode = e.toLowerCase()
+                                                    b.selectionMode = e.toLowerCase();
                                                 } else {
                                                     if (d == "touchMode") {
                                                         b._removeHandlers();
@@ -12888,43 +11875,36 @@ License: https://jqwidgets.com/license/
                                                             touchMode: e
                                                         });
                                                         b.refresh();
-                                                        b._addHandlers()
+                                                        b._addHandlers();
                                                     } else {
                                                         if (d == "enableHover") {
-                                                            return
+                                                            return;
                                                         } else {
                                                             if (d == "showLegend") {
                                                                 b.legendbartop.show();
                                                                 b.legendbarbottom.show();
-                                                                b.refresh()
+                                                                b.refresh();
                                                             } else {
                                                                 if (d == "disabled") {
-                                                                    if (e) {
-                                                                        b.host.addClass(this.toThemeProperty("jqx-fill-state-disabled"))
-                                                                    } else {
-                                                                        b.host.removeClass(this.toThemeProperty("jqx-fill-state-disabled"))
-                                                                    }
+                                                                    if (e) b.host.addClass(this.toThemeProperty("jqx-fill-state-disabled"));
+                                                                    else b.host.removeClass(this.toThemeProperty("jqx-fill-state-disabled"));
                                                                     b.host.find(".jqx-grid-group-collapse").css("cursor", e ? "default" : "pointer");
-                                                                    b.host.find(".jqx-grid-group-expand").css("cursor", e ? "default" : "pointer")
+                                                                    b.host.find(".jqx-grid-group-expand").css("cursor", e ? "default" : "pointer");
                                                                 } else {
                                                                     if (d == "columnsHeight") {
-                                                                        b._render()
+                                                                        b._render();
                                                                     } else {
                                                                         if (d == "localization") {
                                                                             b._render();
                                                                             if (b.editRecurrenceDialog) {
                                                                                 b.editRecurrenceDialog.jqxWindow("destroy");
-                                                                                b.createEditRecurrenceDialog()
+                                                                                b.createEditRecurrenceDialog();
                                                                             }
                                                                         } else {
                                                                             if (d == "theme") {
                                                                                 a.jqx.utilities.setTheme(f, e, b.host);
-                                                                                if (b._editDialog) {
-                                                                                    a.jqx.utilities.setTheme(f, e, b._editDialog)
-                                                                                }
-                                                                                if (b.editRecurrenceDialog) {
-                                                                                    a.jqx.utilities.setTheme(f, e, b.editRecurrenceDialog)
-                                                                                }
+                                                                                if (b._editDialog) a.jqx.utilities.setTheme(f, e, b._editDialog);
+                                                                                if (b.editRecurrenceDialog) a.jqx.utilities.setTheme(f, e, b.editRecurrenceDialog);
                                                                                 if (b.menu) {
                                                                                     b.menu.jqxMenu({
                                                                                         theme: b.theme
@@ -12936,13 +11916,10 @@ License: https://jqwidgets.com/license/
                                                                                 b.hScrollBar.jqxScrollBar({
                                                                                     theme: b.theme
                                                                                 });
-                                                                                b.refresh()
+                                                                                b.refresh();
                                                                             } else {
-                                                                                if (d === "date") {
-                                                                                    b.navigateTo(e)
-                                                                                } else {
-                                                                                    b.refresh()
-                                                                                }
+                                                                                if (d === "date") b.navigateTo(e);
+                                                                                else b.refresh();
                                                                             }
                                                                         }
                                                                     }
@@ -12965,27 +11942,21 @@ License: https://jqwidgets.com/license/
             var f = "4px";
             if (e.columnGroups) {
                 f = (d / 2 - this._columnheight / 2);
-                if (f < 0) {
-                    f = 4
-                }
-                f += "px"
+                if (f < 0) f = 4;
+                f += "px";
             } else {
                 if (this.columnsHeight != 25) {
                     f = (this.columnsHeight / 2 - this._columnheight / 2);
-                    if (f < 0) {
-                        f = 4
-                    }
-                    f += "px"
+                    if (f < 0) f = 4;
+                    f += "px";
                 }
             }
             var c = '<div style="overflow: hidden; text-overflow: ellipsis; text-align: ' + h + "; margin-left: 4px; margin-right: 4px; margin-bottom: " + f + "; margin-top: " + f + ';"><span style="text-overflow: ellipsis; cursor: default;">' + g + "</span></div>";
             if (this.columnRenderer) {
                 var b = this.columnRenderer(g, h, d, c);
-                if (b != undefined) {
-                    return b
-                }
+                if (b != undefined) return b;
             }
-            return c
+            return c;
         }
     })
 })(jqxBaseFramework);

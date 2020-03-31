@@ -3028,7 +3028,7 @@ License: https://jqwidgets.com/license/
                         m.editDialogFields.status = B;
                         m.editDialogFields.statusLabel = az;
                         m.editDialogFields.statusContainer = ah;
-                        //ah.hide();
+                        ah.hide();
                         //#endregion
                         
                         //#region "Propietario"

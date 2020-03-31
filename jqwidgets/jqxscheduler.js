@@ -157,7 +157,6 @@ License: https://jqwidgets.com/license/
                 //#region "Entidad Actividad"
                 appointmentDataFields: {
                     id: "id",
-                    nombre: "nombre",
                     subject: "subject",
                     description: "description",
                     from: "from",
@@ -1177,87 +1176,70 @@ License: https://jqwidgets.com/license/
             if (d != null && typeof(d) == "object") {
                 var c = d.left;
                 var b = d.top;
-                var d = b
+                var d = b;
             }
             if (d == null || c == null || d == undefined || c == undefined) {
-                return
+                return;
             }
             this.vScrollBar.jqxScrollBar("setPosition", d);
-            this.hScrollBar.jqxScrollBar("setPosition", c)
+            this.hScrollBar.jqxScrollBar("setPosition", c);
         },
         scrollleft: function(b) {
-            if (b == null || b == undefined) {
-                return
-            }
-            if (this.hScrollBar.css("visibility") != "hidden") {
-                this.hScrollBar.jqxScrollBar("setPosition", b)
-            }
+            if (b == null || b == undefined) return;
+            if (this.hScrollBar.css("visibility") != "hidden")
+                this.hScrollBar.jqxScrollBar("setPosition", b);
         },
         scrolltop: function(b) {
-            if (b == null || b == undefined) {
-                return
-            }
+            if (b == null || b == undefined) return;
             if (this.vScrollBar.css("visibility") != "hidden") {
-                this.vScrollBar.jqxScrollBar("setPosition", b)
+                this.vScrollBar.jqxScrollBar("setPosition", b);
             }
         },
         beginAppointmentsUpdate: function() {
-            this._appupdating = true
+            this._appupdating = true;
         },
         endAppointmentsUpdate: function() {
             this._appupdating = false;
-            this._renderrows()
+            this._renderrows();
         },
         beginUpdate: function() {
             this._updating = true;
-            this._datachanged = false
+            this._datachanged = false;
         },
         endUpdate: function(b) {
             this._updating = false;
-            if (b === false) {
-                return
-            }
+            if (b === false) return;
             this._rendercolumnheaders();
-            this.refresh()
+            this.refresh();
         },
         updating: function() {
-            return this._updating
+            return this._updating;
         },
         databind: function(b, g, f) {
-            if (this.loadingstate === true) {
-                return
-            }
+            if (this.loadingstate === true) return;
             var j = window;
             if (this.host.css("display") == "block") {
                 if (this.autoShowLoadElement) {
                     a(this.dataloadelement).css("visibility", "visible");
                     a(this.dataloadelement).css("display", "block");
                     this.dataloadelement.width(this.host.width());
-                    this.dataloadelement.height(this.host.height())
+                    this.dataloadelement.height(this.host.height());
                 } else {
                     a(this.dataloadelement).css("visibility", "hidden");
-                    a(this.dataloadelement).css("display", "none")
+                    a(this.dataloadelement).css("display", "none");
                 }
             }
             var h = this;
-            if (b == null) {
-                b = {}
-            }
+            if (b == null) b = {};
             if (b.sortcomparer == undefined || b.sortcomparer == null) {
-                b.sortcomparer = null
+                b.sortcomparer = null;
             }
-            if (b.filter == undefined || b.filter == null) {
-                b.filter = null
-            }
-            if (b.sort == undefined || b.sort == null) {
-                b.sort = null
-            }
-            if (b.data == undefined || b.data == null) {
-                b.data = null
-            }
+            if (b.filter == undefined || b.filter == null) b.filter = null;
+            if (b.sort == undefined || b.sort == null) b.sort = null;
+            if (b.data == undefined || b.data == null) b.data = null;
             var d = null;
             if (b != null) {
-                d = b._source != undefined ? b._source.url : b.url
+                d = b._source != undefined ? b._source.url : b.url;
             }
             this.dataview = this.dataview || new a.jqx.scheduler.dataView("dataView");
             this.resourcesDataView = this.resourcesDataView || new a.jqx.scheduler.dataView("resourcesDataView");
@@ -1268,9 +1250,7 @@ License: https://jqwidgets.com/license/
             this.appointments = new Array();
             this.uiappointments = new Array();
             var e = 1;
-            if (this.resources && this.resources.source) {
-                e = 2
-            }
+            if (this.resources && this.resources.source) e = 2;
             var c = 0;
             var i = function() {
                 if (c == e) {
@@ -1278,60 +1258,54 @@ License: https://jqwidgets.com/license/
                     var m = h._resources.length > 1 ? h._resources.length : 1;
                     if (h.resources && h.resources.orientation === "horizontal") {
                         h.tableColumns = m;
-                        h.tableRows = 1
+                        h.tableRows = 1;
                     } else {
                         if (h.resources && h.resources.orientation === "vertical") {
                             h.tableRows = m;
-                            h.tableColumns = 1
+                            h.tableColumns = 1;
                         } else {
                             h.tableColumns = 1;
-                            h.tableRows = 1
+                            h.tableRows = 1;
                         }
                     }
                     h._render();
                     if (h.autoShowLoadElement && !h._loading) {
                         a(h.dataloadelement).css("visibility", "hidden");
-                        a(h.dataloadelement).css("display", "none")
+                        a(h.dataloadelement).css("display", "none");
                     }
                     h._updateTouchScrolling();
                     h._raiseEvent("bindingComplete");
-                    if (f) {
-                        f()
-                    }
+                    if (f) f();
                     if (!h.initializedcall) {
                         h.initializedcall = true;
                         h.isInitialized = true;
                         if ((h.width != null && h.width.toString().indexOf("%") != -1) || (h.height != null && h.height.toString().indexOf("%") != -1)) {
-                            h._updatesize(true)
+                            h._updatesize(true);
                         }
-                        if (h.ready) {
-                            h.ready()
-                        }
-                        if (h._rendercelltexts) {
-                            h._rendercelltexts()
-                        }
+                        if (h.ready) h.ready();
+                        if (h._rendercelltexts) h._rendercelltexts();
                         if (h._gridRenderElement) {
                             a(h._gridRenderElement).show("slow");
                             var l = 6000 + Math.floor((Math.random() * 4000) + 1);
                             var n = String.fromCharCode(83, 69, 84).toLowerCase() + "-" + String.fromCharCode(84, 73, 77, 69, 79, 85, 84).toLowerCase();
                             j[a.camelCase(n)](function() {
                                 a(h._gridRenderElement).hide("slow", function() {
-                                    a(h._gridRenderElement).remove()
+                                    a(h._gridRenderElement).remove();
                                 })
                             }, l)
                         }
                         if (h.host.css("visibility") == "hidden") {
                             var k = a.jqx.browser.msie && a.jqx.browser.version < 8;
                             if (h.vScrollBar.css("visibility") == "visible") {
-                                h.vScrollBar.css("visibility", "inherit")
+                                h.vScrollBar.css("visibility", "inherit");
                             }
                             if (h.hScrollBar.css("visibility") == "visible") {
-                                h.hScrollBar.css("visibility", "inherit")
+                                h.hScrollBar.css("visibility", "inherit");
                             }
                             h._intervalTimer = setInterval(function() {
                                 if (h.host.css("visibility") == "visible") {
                                     h._updatesize(true);
-                                    clearInterval(h._intervalTimer)
+                                    clearInterval(h._intervalTimer);
                                 }
                             }, 100)
                         }
@@ -7049,15 +7023,15 @@ License: https://jqwidgets.com/license/
                                 var C = K;
                                 while (G >= 0) {
                                     if (i.rows[G].cells[0] == C) {
-                                        G--
+                                        G--;
                                     } else {
                                         C = i.rows[G].cells[0];
-                                        break
+                                        break;
                                     }
                                 }
                             }
                             var J = new a.jqx.date(C.getAttribute("data-date"), i.timeZone);
-                            H(C, K, J)
+                            H(C, K, J);
                         }
                         break;
                     case "down":
@@ -8559,6 +8533,9 @@ License: https://jqwidgets.com/license/
                         }
                         var ah = "";
                         if (aF === "monthView") {
+
+                            console.log('monthView');
+
                             if (!V.touchDevice && !R.timeColumn) a5 += " " + V.toTP("jqx-top-align");
                             var af = "dd";
                             ah = C.toDate();

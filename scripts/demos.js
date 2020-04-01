@@ -22,7 +22,7 @@ function InitResponse() {
                 this.refresh();
                 var that = this;
                 this.addHandler($(document), "scroll.jqxresponse", function() {
-                    that.scroll = that.getScroll()
+                    that.scroll = that.getScroll();
                 })
             },
             refresh: function() {
@@ -33,7 +33,7 @@ function InitResponse() {
                 this.document = this.getDocument();
                 this.scroll = this.getScroll();
                 this.media = window.matchMedia || window.msMatchMedia || function() {
-                    return {}
+                    return {};
                 }
             },
             refreshSize: function() {
@@ -45,37 +45,25 @@ function InitResponse() {
                     case "mousemove":
                         if (window.addEventListener && !data) {
                             source[0].addEventListener("mousemove", func, false);
-                            return false
+                            return false;
                         }
-                        break
+                        break;
                 }
-                if (source.on) {
-                    source.on(event, func)
-                } else {
-                    source.bind(event, func)
-                }
+                if (source.on) source.on(event, func);
+                else source.bind(event, func);
             },
             removeHandler: function(source, event, func) {
                 if (event == undefined) {
-                    if (source.off) {
-                        source.off()
-                    } else {
-                        source.unbind()
-                    }
-                    return
+                    if (source.off) source.off();
+                    else source.unbind();
+                    return;
                 }
                 if (func == undefined) {
-                    if (source.off) {
-                        source.off(event)
-                    } else {
-                        source.unbind(event)
-                    }
+                    if (source.off) source.off(event);
+                    else source.unbind(event);
                 } else {
-                    if (source.off) {
-                        source.off(event, func)
-                    } else {
-                        source.unbind(event, func)
-                    }
+                    if (source.off) source.off(event, func);
+                    else source.unbind(event, func);
                 }
             },
             destroy: function() {
@@ -88,7 +76,7 @@ function InitResponse() {
                     this.removeHandler($(element), "mousemove.response" + element[0].id);
                     this.removeHandler($(element), "touchmove.response" + element[0].id);
                     this.removeHandler($(element), "mouseup.response" + element[0].id);
-                    this.removeHandler($(element), "touchend.response" + element[0].id)
+                    this.removeHandler($(element), "touchend.response" + element[0].id);
                 }
             },
             resize: function(resizeFuncs) {
@@ -106,9 +94,7 @@ function InitResponse() {
                     }
                     that.refreshSize();
                 });
-                if (resizeFuncs == null) {
-                    this.removeHandler($(window), "resize.jqxresponse");
-                }
+                if (resizeFuncs == null) this.removeHandler($(window), "resize.jqxresponse");
             },
             pointerDown: function(element, func) {
                 if (element && func) {
@@ -134,14 +120,12 @@ function InitResponse() {
                     if (func != null) {
                         this.addHandler($(element), "mousedown.response" + element[0].id, function(event) {
                             var position = $.jqx.position(event);
-                            if (canCallFunc) {
-                                return func(event, position, "mouse")
-                            }
+                            if (canCallFunc) return func(event, position, "mouse");
                         })
                     } else {
-                        this.removeHandler($(element), "mousedown.response" + element[0].id)
+                        this.removeHandler($(element), "mousedown.response" + element[0].id);
                     }
-                    this._handlers.push(element)
+                    this._handlers.push(element);
                 }
             },
             pointerUp: function(element, func) {
@@ -159,23 +143,21 @@ function InitResponse() {
                                 setTimeout(function() {
                                     canCallFunc = true
                                 }, 500);
-                                return result
+                                return result;
                             })
                         } else {
-                            this.removeHandler($(element), touchend)
+                            this.removeHandler($(element), touchend);
                         }
                     }
                     if (func != null) {
                         this.addHandler($(element), "mouseup.response" + element[0].id, function(event) {
                             var position = $.jqx.position(event);
-                            if (canCallFunc) {
-                                return func(event, position, "mouse")
-                            }
+                            if (canCallFunc) return func(event, position, "mouse");
                         })
                     } else {
-                        this.removeHandler($(element), "mouseup.response" + element[0].id)
+                        this.removeHandler($(element), "mouseup.response" + element[0].id);
                     }
-                    this._handlers.push(element)
+                    this._handlers.push(element);
                 }
             },
             pointerMove: function(element, func) {
@@ -188,48 +170,44 @@ function InitResponse() {
                                 var touches = $.jqx.mobile.getTouches(event);
                                 if (touches.length == 1) {
                                     var position = $.jqx.position(event);
-                                    return func(event, position, "touch")
+                                    return func(event, position, "touch");
                                 }
                             })
                         } else {
-                            this.removeHandler($(element), touchmove)
+                            this.removeHandler($(element), touchmove);
                         }
                     } else {
                         if (func != null) {
                             this.addHandler($(element), "mousemove.response" + element[0].id, function(event) {
                                 var position = $.jqx.position(event);
-                                return func(event, position, "mouse")
+                                return func(event, position, "mouse");
                             })
                         } else {
-                            this.removeHandler($(element), "mousemove.response" + element[0].id)
+                            this.removeHandler($(element), "mousemove.response" + element[0].id);
                         }
                     }
-                    this._handlers.push(element)
+                    this._handlers.push(element);
                 }
             },
             isHidden: function(element) {
-                return $.jqx.isHidden($(element))
+                return $.jqx.isHidden($(element));
             },
             inViewPort: function(element) {
                 var viewPort = this.viewPort;
                 if (element.getBoundingClientRect) {
                     var r = element.getBoundingClientRect ? element.getBoundingClientRect() : {};
-                    return r && (r.bottom >= 0 && r.top <= viewPort.height && r.right >= 0 && r.left <= viewPort.width)
+                    return r && (r.bottom >= 0 && r.top <= viewPort.height && r.right >= 0 && r.left <= viewPort.width);
                 }
-                return false
+                return false;
             },
             getScroll: function() {
                 var obj = {
                     left: window.pageXOffset || document.scrollLeft,
                     top: window.pageYOffset || document.scrollTop
                 };
-                if (obj.left == undefined) {
-                    obj.left = 0
-                }
-                if (obj.top == undefined) {
-                    obj.top = 0
-                }
-                return obj
+                if (obj.left == undefined) obj.left = 0;
+                if (obj.top == undefined) obj.top = 0;
+                return obj;
             },
             getDocument: function() {
                 return {
@@ -247,18 +225,14 @@ function InitResponse() {
                 var eventName = "ontouchstart";
                 var supported = (eventName in window);
                 if (supported) {
-                    return true
+                    return true;
                 } else {
                     var eventName = "MSPointerDown";
                     var supported = (eventName in window);
-                    if (supported) {
-                        return true
-                    }
+                    if (supported) return true;
                 }
-                if ($.jqx.mobile.isWindowsPhone()) {
-                    return true
-                }
-                return false
+                if ($.jqx.mobile.isWindowsPhone()) return true;
+                return false;
             },
             getDevice: function() {
                 var osName = this.os.name;
@@ -266,38 +240,38 @@ function InitResponse() {
                     nativeDeviceType = window.deviceType;
                 var deviceType = "";
                 if (match && match[1]) {
-                    deviceType = match[1]
+                    deviceType = match[1];
                 } else {
                     if (nativeDeviceType === "iPhone") {
-                        deviceType = "Phone"
+                        deviceType = "Phone";
                     } else {
                         if (nativeDeviceType === "iPad") {
-                            deviceType = "Tablet"
+                            deviceType = "Tablet";
                         } else {
                             if (osName != "Android" && osName != "iOS" && /Windows|Linux|MacOS|Mac OS|Mac OS X/.test(osName)) {
-                                deviceType = "Desktop"
+                                deviceType = "Desktop";
                             } else {
                                 if (osName == "iOS" && navigator.userAgent.toLowerCase().indexOf("ipad") >= 0) {
-                                    deviceType = "Tablet"
+                                    deviceType = "Tablet";
                                 } else {
                                     if (osName == "RIMTablet") {
-                                        deviceType = "Tablet"
+                                        deviceType = "Tablet";
                                     } else {
                                         if (osName == "Android") {
                                             if (this.os.version && this.os.version.substring(0, 1).indexOf("3") >= 0) {
-                                                deviceType = "Tablet"
+                                                deviceType = "Tablet";
                                             } else {
                                                 if (this.os.version && this.os.version.substring(0, 1).indexOf("4") >= 0 && navigator.userAgent.search(/mobile/i) == -1) {
-                                                    deviceType = "Tablet"
+                                                    deviceType = "Tablet";
                                                 } else {
-                                                    deviceType = "Phone"
+                                                    deviceType = "Phone";
                                                 }
                                             }
                                             if (navigator.userAgent.toLowerCase().indexOf("kindle fire") >= 0) {
-                                                deviceType = "Tablet"
+                                                deviceType = "Tablet";
                                             }
                                         } else {
-                                            deviceType = "Phone"
+                                            deviceType = "Phone";
                                         }
                                     }
                                 }
@@ -307,13 +281,11 @@ function InitResponse() {
                 }
                 if (/Windows/.test(osName)) {
                     if (navigator.userAgent.indexOf("Windows Phone") >= 0 || navigator.userAgent.indexOf("WPDesktop") >= 0 || navigator.userAgent.indexOf("IEMobile") >= 0 || navigator.userAgent.indexOf("ZuneWP7") >= 0) {
-                        deviceType = "Phone"
+                        deviceType = "Phone";
                     } else {
                         if (navigator.userAgent.indexOf("Touch") >= 0) {
                             deviceType = "Tablet";
-                            if (!this.getTouch()) {
-                                deviceType = "Desktop"
-                            }
+                            if (!this.getTouch()) deviceType = "Desktop";
                         }
                     }
                 }
@@ -330,9 +302,9 @@ function InitResponse() {
                 var canvasSupport = false;
                 var canvas = document.createElement("canvas");
                 if (canvas && canvas.getContext && canvas.getContext("2d")) {
-                    canvasSupport = true
+                    canvasSupport = true;
                 }
-                return canvasSupport
+                return canvasSupport;
             },
             vml: function() {
                 if (this._vmlSupport == undefined) {
@@ -341,12 +313,12 @@ function InitResponse() {
                     var b = a.firstChild;
                     b.style.behavior = "url(#default#VML)";
                     this._vmlSupport = b ? typeof b.adj == "object" : true;
-                    a.parentNode.removeChild(a)
+                    a.parentNode.removeChild(a);
                 }
-                return this._vmlSupport
+                return this._vmlSupport;
             },
             svg: function() {
-                return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")
+                return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1");
             },
             getBrowser: function() {
                 var ua = navigator.userAgent.toLowerCase();
@@ -420,26 +392,26 @@ function InitResponse() {
                         if (this.name == "Other") {
                             if (!match) {
                                 match = this.eval;
-                                name = this.name
+                                name = this.name;
                             }
                         } else {
                             if (this.name == "Internet Explorer 11") {
                                 if (!match) {
                                     match = ["", "msie", 11];
-                                    name = "Internet Explorer"
+                                    name = "Internet Explorer";
                                 }
                             } else {
                                 if (this.name == "Internet Explorer Mobile") {
                                     if (!match) {
                                         match = ["", "msie", 11];
-                                        name = "Internet Explorer"
+                                        name = "Internet Explorer";
                                     }
                                 } else {
                                     if (name == "Chrome" && this.name == "Safari") {
-                                        return true
+                                        return true;
                                     }
                                     match = this.eval;
-                                    name = this.name
+                                    name = this.name;
                                 }
                             }
                         }
@@ -454,7 +426,7 @@ function InitResponse() {
                         svg: this.svg(),
                         vml: this.vml()
                     };
-                    browser[match[1]] = match[1]
+                    browser[match[1]] = match[1];
                 } else {
                     browser = {
                         name: "Other",
@@ -462,7 +434,7 @@ function InitResponse() {
                         version: ""
                     }
                 }
-                return browser
+                return browser;
             },
             getOS: function() {
                 var match = null;
@@ -607,17 +579,17 @@ function InitResponse() {
                     var cs = clientStrings[id];
                     if (cs.r.test(userAgent)) {
                         osys = cs.s;
-                        break
+                        break;
                     }
                 }
                 var osVersion = "";
                 if (/Windows/.test(osys)) {
                     osVersion = /Windows (.*)/.exec(osys)[1];
-                    osys = "Windows"
+                    osys = "Windows";
                 }
                 if (/BB10/.test(osys)) {
                     osVersion = "10";
-                    osys = "BlackBerry"
+                    osys = "BlackBerry";
                 }
                 switch (os) {
                     case "Mac OS X":
@@ -629,19 +601,17 @@ function InitResponse() {
                     case "iOS":
                         osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
                         osVersion = osVersion[1] + "." + osVersion[2] + "." + (osVersion[3] | 0);
-                        break
+                        break;
                 }
-                if (osVersion != "") {
-                    version = osVersion
-                }
+                if (osVersion != "") version = osVersion;
                 $.each(osTypes, function(index, value) {
                     match = userAgent.match(this.regex) || userAgent.toLowerCase().match(this.regex);
                     if (match) {
                         if (!this.name.match(/Windows|Linux|MacOS/)) {
                             if (match[1] && (match[1] == "HTC_" || match[1] == "Silk/")) {
-                                version = "2.3"
+                                version = "2.3";
                             } else {
-                                version = match[match.length - 1]
+                                version = match[match.length - 1];
                             }
                         }
                         os = {
@@ -649,19 +619,13 @@ function InitResponse() {
                             version: version,
                             platform: navigator.platform
                         };
-                        return false
+                        return false;
                     }
                 });
-                if (os && os.name == "Other") {
-                    os.name = osys
-                }
-                if (os && os.name != "" && osys != "") {
-                    os.name = osys
-                }
-                if (os && os.version == "" && osVersion != "") {
-                    os.version = osVersion
-                }
-                return os
+                if (os && os.name == "Other") os.name = osys;
+                if (os && os.name != "" && osys != "") os.name = osys;
+                if (os && os.version == "" && osVersion != "") os.version = osVersion;
+                return os;
             }
         }
     })(jqxBaseFramework);

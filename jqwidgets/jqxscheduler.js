@@ -1216,6 +1216,9 @@ License: https://jqwidgets.com/license/
             return this._updating;
         },
         databind: function(b, g, f) {
+
+            console.log('databind');
+
             if (this.loadingstate === true) return;
             var j = window;
             if (this.host.css("display") == "block") {
@@ -1231,16 +1234,12 @@ License: https://jqwidgets.com/license/
             }
             var h = this;
             if (b == null) b = {};
-            if (b.sortcomparer == undefined || b.sortcomparer == null) {
-                b.sortcomparer = null;
-            }
+            if (b.sortcomparer == undefined || b.sortcomparer == null) b.sortcomparer = null;
             if (b.filter == undefined || b.filter == null) b.filter = null;
             if (b.sort == undefined || b.sort == null) b.sort = null;
             if (b.data == undefined || b.data == null) b.data = null;
             var d = null;
-            if (b != null) {
-                d = b._source != undefined ? b._source.url : b.url;
-            }
+            if (b != null) d = b._source != undefined ? b._source.url : b.url;
             this.dataview = this.dataview || new a.jqx.scheduler.dataView("dataView");
             this.resourcesDataView = this.resourcesDataView || new a.jqx.scheduler.dataView("resourcesDataView");
             this.dataview.pageable = this.pageable;
@@ -1268,7 +1267,9 @@ License: https://jqwidgets.com/license/
                             h.tableRows = 1;
                         }
                     }
+                    console.log('h._render');
                     h._render();
+                    
                     if (h.autoShowLoadElement && !h._loading) {
                         a(h.dataloadelement).css("visibility", "hidden");
                         a(h.dataloadelement).css("display", "none");
@@ -1296,12 +1297,8 @@ License: https://jqwidgets.com/license/
                         }
                         if (h.host.css("visibility") == "hidden") {
                             var k = a.jqx.browser.msie && a.jqx.browser.version < 8;
-                            if (h.vScrollBar.css("visibility") == "visible") {
-                                h.vScrollBar.css("visibility", "inherit");
-                            }
-                            if (h.hScrollBar.css("visibility") == "visible") {
-                                h.hScrollBar.css("visibility", "inherit");
-                            }
+                            if (h.vScrollBar.css("visibility") == "visible") h.vScrollBar.css("visibility", "inherit");
+                            if (h.hScrollBar.css("visibility") == "visible") h.hScrollBar.css("visibility", "inherit");
                             h._intervalTimer = setInterval(function() {
                                 if (h.host.css("visibility") == "visible") {
                                     h._updatesize(true);
@@ -1596,21 +1593,12 @@ License: https://jqwidgets.com/license/
             var m = this._hostHeight;
             var p = this._hostWidth;
             var w = 0;
-            if (!this.columnGroups) {
-                w += this.showHeader ? this.columnsHeight : 0;
-            } else {
-                w += this.showHeader ? this.columnsheader.height() : 0;
-            }
-            if (this.showToolbar) {
-                w += this.toolbarHeight
-            }
+            if (!this.columnGroups) w += this.showHeader ? this.columnsHeight : 0;
+            else w += this.showHeader ? this.columnsheader.height() : 0;
+            if (this.showToolbar) w += this.toolbarHeight;
             m -= w;
-            if (this.showLegend && this._resources.length > 0) {
-                m -= this.legendHeight
-            }
-            if (this.hScrollBar.css("visibility") != "hidden") {
-                m -= 20
-            }
+            if (this.showLegend && this._resources.length > 0) m -= this.legendHeight;
+            if (this.hScrollBar.css("visibility") != "hidden") m -= 20;
             var e = 0;
             var h = 0;
             var l = this._views[this._view].type;
@@ -1619,16 +1607,11 @@ License: https://jqwidgets.com/license/
             if (l == "dayView" || l == "weekView") {
                 var r = this.showAllDayRow;
                 if (j.timeRuler && (l === "dayView" || l === "weekView")) {
-                    if (j.timeRuler.showAllDayRow != undefined) {
-                        r = j.timeRuler.showAllDayRow
-                    }
+                    if (j.timeRuler.showAllDayRow != undefined) r = j.timeRuler.showAllDayRow;
                 }
                 if (r) {
-                    if (this.tableRows == 1) {
-                        y = this.table[0].rows[0].clientHeight
-                    } else {
-                        y = this.table[0].rows[1].clientHeight
-                    }
+                    if (this.tableRows == 1) y = this.table[0].rows[0].clientHeight;
+                    else y = this.table[0].rows[1].clientHeight;
                 }
             }
             var d = t - e;
@@ -1642,49 +1625,42 @@ License: https://jqwidgets.com/license/
             var o = z.position().left;
             o = Math.round(o);
             var c = o + z.outerWidth();
-            if (Math.round(z.position().left) === 0) {
-                this.hScrollBar.jqxScrollBar("setPosition", 0)
-            }
+            if (Math.round(z.position().left) === 0) this.hScrollBar.jqxScrollBar("setPosition", 0);
+
             if (o <= q) {
                 var k = o - z.outerWidth() + h;
-                if (k < 0) {
-                    k = 0
-                }
+                if (k < 0) k = 0;
                 if (!this.rtl) {
-                    this.hScrollBar.jqxScrollBar("setPosition", k)
+                    this.hScrollBar.jqxScrollBar("setPosition", k);
                 } else {
-                    this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - k)
+                    this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - k);
                 }
             }
             if (c >= A) {
                 if (!this.rtl) {
-                    this.hScrollBar.jqxScrollBar("setPosition", 2 + h + c - p)
+                    this.hScrollBar.jqxScrollBar("setPosition", 2 + h + c - p);
                 } else {
-                    this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - (2 + h + c - p))
+                    this.hScrollBar.jqxScrollBar("setPosition", this.hScrollBar.jqxScrollBar("max") - (2 + h + c - p));
                 }
             }
             var g = z.parent().index();
-            if (this.tableRows > 0) {
-                g--
-            }
+            if (this.tableRows > 0) g--;
             if (Math.round(z.position().top) === 0 || g === 0) {
-                return this.vScrollBar.jqxScrollBar("setPosition", 0)
+                return this.vScrollBar.jqxScrollBar("setPosition", 0);
             } else {
                 var n = this.table[0].rows.length - 1;
                 var v = this.table[0].rows[n];
                 if (v[0] === z.parent()[0]) {
-                    return this.vScrollBar.jqxScrollBar("setPosition", this.vScrollBar.jqxScrollBar("max"))
+                    return this.vScrollBar.jqxScrollBar("setPosition", this.vScrollBar.jqxScrollBar("max"));
                 }
             }
             if (f <= d) {
                 var u = f;
-                if (u < 0) {
-                    u = 0
-                }
-                return this.vScrollBar.jqxScrollBar("setPosition", u)
+                if (u < 0) u = 0;
+                return this.vScrollBar.jqxScrollBar("setPosition", u);
             }
             if (i >= x) {
-                return this.vScrollBar.jqxScrollBar("setPosition", 4 + i - m + y)
+                return this.vScrollBar.jqxScrollBar("setPosition", 4 + i - m + y);
             }
         },
         getColumn: function(b) {
@@ -1693,27 +1669,21 @@ License: https://jqwidgets.com/license/
                 a.each(this.columns.records, function() {
                     if (this.datafield == b || this.displayfield == b) {
                         c = this;
-                        return false
+                        return false;
                     }
                 })
             }
-            return c
+            return c;
         },
         _setcolumnproperty: function(c, e, f) {
-            if (c == null || e == null || f == null) {
-                return null
-            }
+            if (c == null || e == null || f == null) return null;
             e = e.toLowerCase();
             var d = this.getColumn(c);
-            if (d == null) {
-                return
-            }
+            if (d == null) return;
             var g = d[e];
             d[e] = f;
             var b = this.getColumn(c);
-            if (b != null) {
-                b[e] = f
-            }
+            if (b != null) b[e] = f;
             switch (e) {
                 case "text":
                 case "hidden":
@@ -1730,51 +1700,47 @@ License: https://jqwidgets.com/license/
                 case "maxwidth":
                     if (e == "align") {
                         this._rendercolumnheaders();
-                        this.refresh()
+                        this.refresh();
                     } else {
                         if (e == "text" || e == "class" || e == "hidden" || e == "pinned" || e == "resizable" || e == "renderer") {
                             this._rendercolumnheaders();
-                            this.refresh()
+                            this.refresh();
                         } else {
                             if (e == "width" || e == "maxwidth" || e == "minwidth") {
                                 d._width = null;
                                 d._percentagewidth = null;
                                 this._updatecolumnwidths();
-                                this.refresh()
+                                this.refresh();
                             } else {
-                                this.refresh()
+                                this.refresh();
                             }
                         }
                     }
-                    break
+                    break;
             }
         },
         getColumnProperty: function(b, d) {
-            if (b == null || d == null) {
-                return null
-            }
+            if (b == null || d == null) return null;
             d = d.toLowerCase();
             var c = this.getColumn(b);
-            return c[d]
+            return c[d];
         },
         setColumnProperty: function(b, c, d) {
-            this._setcolumnproperty(b, c, d)
+            this._setcolumnproperty(b, c, d);
         },
         hideColumn: function(b) {
-            this._setcolumnproperty(b, "hidden", true)
+            this._setcolumnproperty(b, "hidden", true);
         },
         showColumn: function(b) {
-            this._setcolumnproperty(b, "hidden", false)
+            this._setcolumnproperty(b, "hidden", false);
         },
         updateBoundData: function(c, b) {
-            this.databind(this.source, c, b)
+            this.databind(this.source, c, b);
         },
         refresh: function(c) {
             if (c != true) {
                 var b = this;
-                if (a.jqx.isHidden(b.host)) {
-                    return
-                }
+                if (a.jqx.isHidden(b.host)) return;
                 b.table[0].style.top = "0px";
                 b.vScrollInstance.setPosition(0);
                 b._renderrows();
@@ -1782,32 +1748,32 @@ License: https://jqwidgets.com/license/
                 b._renderhorizontalscroll();
                 b._updateTouchScrolling();
                 b._refreshToolBar();
-                b._updateFocusedCell()
+                b._updateFocusedCell();
             }
         },
         _updateFocusedCell: function() {
             var h = this;
             if (h.focusedCell) {
                 h._updateCellsSelection();
-                return
+                return;
             }
             var d = h._views[h._view].type;
             var g = h._views[h._view];
             var c = h.showAllDayRow;
             if (g.timeRuler && (d === "dayView" || d === "weekView")) {
                 if (g.timeRuler.showAllDayRow != undefined) {
-                    c = g.timeRuler.showAllDayRow
+                    c = g.timeRuler.showAllDayRow;
                 }
             }
             if (!c || (d != "dayView" && d != "weekView")) {
                 h.focusedCell = h.rows[0].cells[0];
                 if (h.rtl) {
-                    h.focusedCell = h.rows[0].cells[h.rows[0].cells.length - 1]
+                    h.focusedCell = h.rows[0].cells[h.rows[0].cells.length - 1];
                 }
             } else {
                 h.focusedCell = h.rows[1].cells[0];
                 if (h.rtl) {
-                    h.focusedCell = h.rows[1].cells[h.rows[1].cells.length - 1]
+                    h.focusedCell = h.rows[1].cells[h.rows[1].cells.length - 1];
                 }
             }
             if (h.focusedCell.className.indexOf("jqx-scheduler-disabled-cell") >= 0) {
@@ -1817,16 +1783,14 @@ License: https://jqwidgets.com/license/
                         var b = this.rows[f].cells[e];
                         if (b.className.indexOf("jqx-scheduler-disabled-cell") == -1) {
                             h.focusedCell = b;
-                            break
+                            break;
                         }
                     }
-                    if (h.focusedCell) {
-                        break
-                    }
+                    if (h.focusedCell) break;
                 }
             }
             h._lastSelectedCell = h.focusedCell;
-            h._updateCellsSelection()
+            h._updateCellsSelection();
         },
         _updateTouchScrolling: function() {
             var c = this.that;
@@ -1840,16 +1804,14 @@ License: https://jqwidgets.com/license/
                     c.removeHandler(c.table, d + ".touchScroll");
                     c.removeHandler(c.table, "touchcancel.touchScroll");
                     a.jqx.mobile.touchScroll(c._table[0], Math.max(c.vScrollInstance.max, c.hScrollInstance.max), function(h, g) {
-                        if (c.dragOrResize) {
-                            return
-                        }
+                        if (c.dragOrResize) return;
                         if (g != null && c.vScrollBar.css("visibility") != "hidden") {
                             var f = c.vScrollInstance.value;
-                            c.vScrollInstance.setPosition(g)
+                            c.vScrollInstance.setPosition(g);
                         }
                         if (h != null && c.hScrollBar.css("visibility") != "hidden") {
                             var f = c.hScrollInstance.value;
-                            c.hScrollInstance.setPosition(h)
+                            c.hScrollInstance.setPosition(h);
                         }
                         c.scrolled = new Date()
                     }, this.element.id, this.hScrollBar, this.vScrollBar)
@@ -1857,22 +1819,21 @@ License: https://jqwidgets.com/license/
             }
         },
         scrollWidth: function() {
-            return this.hScrollInstance.max
+            return this.hScrollInstance.max;
         },
         scrollHeight: function() {
-            return this.vScrollInstance.max
+            return this.vScrollInstance.max;
         },
         scrollLeft: function(b) {
-            if (this.hScrollBar[0].style.visibility != "hidden") {
-                this.hScrollInstance.setPosition(b)
-            }
+            if (this.hScrollBar[0].style.visibility != "hidden") this.hScrollInstance.setPosition(b);
         },
         scrollTop: function(b) {
-            if (this.vScrollBar[0].style.visibility != "hidden") {
-                this.vScrollInstance.setPosition(b)
-            }
+            if (this.vScrollBar[0].style.visibility != "hidden") this.vScrollInstance.setPosition(b);
         },
         render: function(i) {
+
+            console.log('render');
+
             var e = "<div style='overflow: hidden; -webkit-appearance: none; outline: none; width:100%; height: 100%; align:left; border: 0px; padding: 0px; margin: 0px; left: 0px; top: 0px; valign:top; position: relative;'><div id='wrapper" + this.element.id + "' style='overflow: hidden; -webkit-appearance: none; border: none; background: transparent; outline: none; width:100%; height: 100%; padding: 0px; margin: 0px; align:left; left: 0px; top: 0px; valign:top; position: relative;'><div id='toolbar' style='visibility: hidden; align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='legendbartop' style='align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='filter' style='visibility: hidden; align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='content" + this.element.id + "' style='overflow: hidden; -webkit-appearance: none; border: none; background: transparent; outline: none; border: none; padding: 0px; margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='verticalScrollBar" + this.element.id + "' style='align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='horizontalScrollBar" + this.element.id + "' style='align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='bottomRight' style='align:left; valign:top; left: 0px; top: 0px; border: none; position: absolute;'></div><div id='aggregates' style='align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='legendbarbottom' style='align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div><div id='pager' style='z-index: 20; align:left; valign:top; left: 0px; top: 0px; position: absolute;'></div></div></div>";
             this.element.innerHTML = e;
             this.wrapper = this.host.find("#wrapper" + this.element.id);
@@ -1881,12 +1842,8 @@ License: https://jqwidgets.com/license/
             var g = this.host.find("#verticalScrollBar" + this.element.id);
             var k = this.host.find("#horizontalScrollBar" + this.element.id);
             this.bottomRight = this.host.find("#bottomRight").addClass(this.toTP("jqx-grid-bottomright")).addClass(this.toTP("jqx-scrollbar-state-normal"));
-            if (this.vScrollBar) {
-                this.vScrollBar.jqxScrollBar("destroy")
-            }
-            if (this.hScrollBar) {
-                this.hScrollBar.jqxScrollBar("destroy")
-            }
+            if (this.vScrollBar) this.vScrollBar.jqxScrollBar("destroy");
+            if (this.hScrollBar) this.hScrollBar.jqxScrollBar("destroy");
             this.vScrollBar = g.jqxScrollBar({
                 vertical: true,
                 rtl: this.rtl,
@@ -1925,16 +1882,12 @@ License: https://jqwidgets.com/license/
             this.schedulertable = null;
             if (this.localizestrings) {
                 this.localizestrings();
-                if (this.localization != null) {
-                    this.localizestrings(this.localization, false)
-                }
+                if (this.localization != null) this.localizestrings(this.localization, false);
             }
             this._builddataloadelement();
             this._cachedcolumns = this.columns;
             var b = this.source.datafields;
-            if (b == null && this.source._source) {
-                b = this.source._source.datafields
-            }
+            if (b == null && this.source._source) b = this.source._source.datafields;
             if (b) {
                 for (var c = 0; c < this.columns.length; c++) {
                     var d = this.columns[c];
@@ -1942,59 +1895,48 @@ License: https://jqwidgets.com/license/
                         for (var j = 0; j < b.length; j++) {
                             if (b[j].name == d.datafield && !b[j].format) {
                                 b[j].format = d.cellsFormat;
-                                break
+                                break;
                             }
                         }
                     }
                 }
             }
+            
             this.databind(this.source);
-            if (this.showToolbar) {
-                this.toolbar.css("visibility", "inherit")
-            }
-            if (this.showLegend) {
-                this.legendbarbottom.css("visibility", "inherit")
-            }
+            if (this.showToolbar) this.toolbar.css("visibility", "inherit");
+            if (this.showLegend) this.legendbarbottom.css("visibility", "inherit");
             this.tableheight = null;
             var f = this;
             var h = function() {
                 if (f.content) {
                     f.content[0].scrollTop = 0;
-                    f.content[0].scrollLeft = 0
+                    f.content[0].scrollLeft = 0;
                 }
                 if (f.schedulercontent) {
                     f.schedulercontent[0].scrollLeft = 0;
-                    f.schedulercontent[0].scrollTop = 0
+                    f.schedulercontent[0].scrollTop = 0;
                 }
             };
             this.removeHandler(this.content, "scroll");
             this.removeHandler(this.content, "mousedown");
             this.addHandler(this.content, "scroll", function(l) {
                 h();
-                return false
+                return false;
             });
-            if (i !== true) {
-                this._render()
-            }
+            if (i !== true) this._render();
         },
         _render: function() {
+
+            console.log('_render');
+
             var g = this;
-            if (g.dataview == null) {
-                return
-            }
-            if (g._loading) {
-                return
-            }
-            if (g.columnsHeight != 25 || g.columnGroups) {
-                g._measureElement("column")
-            }
+            if (g.dataview == null) return;
+            if (g._loading) return;
+            if (g.columnsHeight != 25 || g.columnGroups) g._measureElement("column");
             g.rowinfo = new Array();
             g._removeHandlers();
-            if (g.columns == null) {
-                g.columns = new a.jqx.schedulerDataCollection(g.element)
-            } else {
-                g._initializeColumns()
-            }
+            if (g.columns == null) g.columns = new a.jqx.schedulerDataCollection(g.element);
+            else g._initializeColumns();
             g.host.height(g.height);
             g.host.width(g.width);
             a.jqx.utilities.html(g.content, "");
@@ -2003,11 +1945,9 @@ License: https://jqwidgets.com/license/
             g.columnsheader.addClass(g.toTP("jqx-widget-header"));
             g.columnsheader.addClass(g.toTP("jqx-grid-header"));
             if (!g.showHeader) {
-                g.columnsheader.css("display", "none")
+                g.columnsheader.css("display", "none");
             } else {
-                if (g.columnsheader) {
-                    g.columnsheader.css("display", "block")
-                }
+                if (g.columnsheader) g.columnsheader.css("display", "block");
             }
             g.schedulercontent = g.schedulercontent || a('<div style="width: 100%; overflow: hidden; position: absolute;"></div>');
             g.schedulercontent.remove();
@@ -2021,20 +1961,20 @@ License: https://jqwidgets.com/license/
             g.schedulercontent.find("#contenttable" + g.element.id).remove();
             if (g.table != null) {
                 g.table.remove();
-                g.table = null
+                g.table = null;
             }
             if (g.pinnedtable != null) {
                 g.pinnedtable.remove();
-                g.pinnedtable = null
+                g.pinnedtable = null;
             }
             g.table = a('<div id="contenttable' + g.element.id + '" style="overflow: hidden; position: relative;"></div>');
             g.pinnedtable = a('<div id="contenttable2' + g.element.id + '" style="display: none; overflow: hidden; position: relative;"></div>');
             g.schedulercontent.addClass(g.toTP("jqx-grid-content"));
             g.schedulercontent.addClass(g.toTP("jqx-widget-content"));
             g.schedulercontent.append(g.table);
-            if (g.tableRows == 1) {
-                g.schedulercontent.append(g.pinnedtable)
-            }
+            if (g.tableRows == 1) g.schedulercontent.append(g.pinnedtable);
+
+            
             g._renderrows();
             g._arrange();
             g._resourcesElements = new Array();
@@ -2051,41 +1991,30 @@ License: https://jqwidgets.com/license/
                     k.appendTo(h);
                     g._resourcesElements[i][m] = o;
                     var j = function() {
-                        if (o.attr("data-toggle") == "on") {
-                            g.hideAppointmentsByResource(m)
-                        } else {
-                            g.showAppointmentsByResource(m)
-                        }
+                        if (o.attr("data-toggle") == "on") g.hideAppointmentsByResource(m);
+                        else g.showAppointmentsByResource(m);
                     };
                     g.addHandler(o, "mousedown", function() {
                         j();
-                        return false
+                        return false;
                     });
                     g.addHandler(k, "mousedown", function() {
                         j();
-                        return false
+                        return false;
                     })
                 })
             };
             d(g.legendbarbottom, "bottom");
             d(g.legendbartop, "top");
-            if (g.legendPosition == "top") {
-                g.legendbarbottom.hide()
-            } else {
-                g.legendbartop.hide()
-            }
+            if (g.legendPosition == "top") g.legendbarbottom.hide();
+            else g.legendbartop.hide();
             if (g._resources.length == 0) {
                 g.legendbarbottom.hide();
-                g.legendbartop.hide()
+                g.legendbartop.hide();
             }
-            if (g.renderToolBar) {
-                g.renderToolBar(g.toolbar)
-            } else {
-                g._renderToolBar()
-            }
-            if (g.disabled) {
-                g.host.addClass(g.toThemeProperty("jqx-fill-state-disabled"))
-            }
+            if (g.renderToolBar) g.renderToolBar(g.toolbar);
+            else g._renderToolBar();
+            if (g.disabled) g.host.addClass(g.toThemeProperty("jqx-fill-state-disabled"));
             g._renderhorizontalscroll();
             g._addHandlers();
             g.clearSelection();
@@ -2093,44 +2022,42 @@ License: https://jqwidgets.com/license/
             var f = g._views[g._view];
             var b = g.showAllDayRow;
             if (f.timeRuler && (c === "dayView" || c === "weekView")) {
-                if (f.timeRuler.showAllDayRow != undefined) {
-                    b = f.timeRuler.showAllDayRow
-                }
+                if (f.timeRuler.showAllDayRow != undefined) b = f.timeRuler.showAllDayRow;
             }
-            if (!b || (c != "dayView" && c != "weekView")) {
-                g.focusedCell = g.rows[0].cells[0]
-            } else {
-                g.focusedCell = g.rows[1].cells[0]
-            }
+            if (!b || (c != "dayView" && c != "weekView")) g.focusedCell = g.rows[0].cells[0];
+            else g.focusedCell = g.rows[1].cells[0];
             g._lastSelectedCell = g.focusedCell;
-            g._updateCellsSelection()
+            g._updateCellsSelection();
+
+
+
         },
         clear: function() {
             if (this.source) {
                 this.source.records = new Array();
-                this.source.hierarchy = new Array()
+                this.source.hierarchy = new Array();
             }
             this.dataview._filteredData = new Array();
             this.databind(null);
-            this._render()
+            this._render();
         },
         getAppointmentElement: function(e) {
             var b = null;
             if (e.className.indexOf("jqx-scheduler-appointment") >= 0 && e.className.indexOf("jqx-scheduler-appointment-inner-content") == -1 && e.className.indexOf("jqx-scheduler-appointment-content") == -1 && e.className.indexOf("jqx-scheduler-appointment-resize-indicator") == -1) {
-                b = e
+                b = e;
             }
             var d = e;
             for (var c = 0; c < 4; c++) {
                 if (d.parentNode) {
                     if (d.className.indexOf("jqx-scheduler-appointment") >= 0 && d.className.indexOf("jqx-scheduler-appointment-innter-content") == -1 && d.className.indexOf("jqx-scheduler-appointment-content") == -1 && d.className.indexOf("jqx-scheduler-appointment-resize-indicator") == -1) {
-                        b = d
+                        b = d;
                     }
-                    d = d.parentNode
+                    d = d.parentNode;
                 } else {
-                    break
+                    break;
                 }
             }
-            return b
+            return b;
         },
         getJQXAppointmentByElement: function(d) {
             var f = this;
@@ -2139,12 +2066,12 @@ License: https://jqwidgets.com/license/
                 var c = e.substring(0, e.indexOf("."));
                 var h = e.substring(e.indexOf(".") + 1);
                 var g = f.appointmentsByKey[c];
-                var b = g.jqxAppointment.renderedAppointments[e]
+                var b = g.jqxAppointment.renderedAppointments[e];
             } else {
                 var g = f.appointmentsByKey[e];
-                var b = g.jqxAppointment
+                var b = g.jqxAppointment;
             }
-            return b
+            return b;
         },
         _renderToolBar: function() {
             var i = this;
@@ -2183,54 +2110,48 @@ License: https://jqwidgets.com/license/
             if (i.rtl) {
                 i.toolbarLeftButton.css("float", "right");
                 i.toolbarRightButton.css("float", "right");
-                i.dateTimeInput.css("float", "right")
+                i.dateTimeInput.css("float", "right");
             }
             i.addHandler(i.toolbarRightButton, "mouseenter", function() {
-                j.addClass(i.toThemeProperty("jqx-icon-arrow-right-hover"))
+                j.addClass(i.toThemeProperty("jqx-icon-arrow-right-hover"));
             });
             i.addHandler(i.toolbarLeftButton, "mouseenter", function() {
-                e.addClass(i.toThemeProperty("jqx-icon-arrow-left-hover"))
+                e.addClass(i.toThemeProperty("jqx-icon-arrow-left-hover"));
             });
             i.addHandler(i.toolbarRightButton, "mouseleave", function() {
-                j.removeClass(i.toThemeProperty("jqx-icon-arrow-right-hover"))
+                j.removeClass(i.toThemeProperty("jqx-icon-arrow-right-hover"));
             });
             i.addHandler(i.toolbarLeftButton, "mouseleave", function() {
-                e.removeClass(i.toThemeProperty("jqx-icon-arrow-left-hover"))
+                e.removeClass(i.toThemeProperty("jqx-icon-arrow-left-hover"));
             });
             i.addHandler(i.toolbarRightButton, "mousedown", function() {
-                j.addClass(i.toThemeProperty("jqx-icon-arrow-right-selected"))
+                j.addClass(i.toThemeProperty("jqx-icon-arrow-right-selected"));
             });
             i.addHandler(i.toolbarRightButton, "mouseup", function() {
-                j.removeClass(i.toThemeProperty("jqx-icon-arrow-right-selected"))
+                j.removeClass(i.toThemeProperty("jqx-icon-arrow-right-selected"));
             });
             i.addHandler(i.toolbarLeftButton, "mousedown", function() {
-                e.addClass(i.toThemeProperty("jqx-icon-arrow-left-selected"))
+                e.addClass(i.toThemeProperty("jqx-icon-arrow-left-selected"));
             });
             i.addHandler(i.toolbarLeftButton, "mouseup", function() {
-                e.removeClass(i.toThemeProperty("jqx-icon-arrow-left-selected"))
+                e.removeClass(i.toThemeProperty("jqx-icon-arrow-left-selected"));
             });
             i.addHandler(a(document), "mouseup.pagerbuttons" + i.element.id, function() {
                 j.removeClass(i.toThemeProperty("jqx-icon-arrow-right-selected"));
-                e.removeClass(i.toThemeProperty("jqx-icon-arrow-left-selected"))
+                e.removeClass(i.toThemeProperty("jqx-icon-arrow-left-selected"));
             });
             i.addHandler(i.toolbarRightButton, "click", function() {
                 if (!i.toolbarRightButton.jqxButton("disabled")) {
-                    if (!i.rtl) {
-                        i.navigateForward()
-                    } else {
-                        i.navigateBackward()
-                    }
-                    i.focus()
+                    if (!i.rtl) i.navigateForward();
+                    else i.navigateBackward();
+                    i.focus();
                 }
             });
             i.addHandler(i.toolbarLeftButton, "click", function() {
                 if (!i.toolbarLeftButton.jqxButton("disabled")) {
-                    if (!i.rtl) {
-                        i.navigateBackward()
-                    } else {
-                        i.navigateForward()
-                    }
-                    i.focus()
+                    if (!i.rtl) i.navigateBackward();
+                    else i.navigateForward();
+                    i.focus();
                 }
             });
             i.toolbar.children().remove();
@@ -2238,11 +2159,11 @@ License: https://jqwidgets.com/license/
             if (!i.rtl) {
                 b.append(i.toolbarLeftButton);
                 b.append(i.dateTimeInput);
-                b.append(i.toolbarRightButton)
+                b.append(i.toolbarRightButton);
             } else {
                 b.append(i.toolbarRightButton);
                 b.append(i.dateTimeInput);
-                b.append(i.toolbarLeftButton)
+                b.append(i.toolbarLeftButton);
             }
             i.toolbarDetails = a('<div class="' + i.toTP("jqx-scheduler-toolbar-details") + '" style="margin-left: 7px; margin-top:2px; float: left;"></div>');
             i.toolbarViews = a('<div style="margin-right: 10px; margin-top:0px; float: right;"></div>');
@@ -2252,27 +2173,25 @@ License: https://jqwidgets.com/license/
                 i.toolbarDetails.css("margin-right", "7px");
                 i.toolbarViews.css("margin-left", "10px");
                 i.toolbarViews.css("margin-right", "0px");
-                i.toolbarViews.css("float", "left")
+                i.toolbarViews.css("float", "left");
             }
             var h = new Array();
             if (!i.rtl) {
                 h.push(i.toolbarLeftButton);
                 h.push(i.dateTimeInput);
-                h.push(i.toolbarRightButton)
+                h.push(i.toolbarRightButton);
             } else {
                 h.push(i.toolbarRightButton);
                 h.push(i.dateTimeInput);
-                h.push(i.toolbarLeftButton)
+                h.push(i.toolbarLeftButton);
             }
             var l = i._views.length - 1;
             a.each(i._views, function(p) {
                 var q = "";
                 var n = p;
-                if (i.rtl) {
-                    n = l - p
-                }
+                if (i.rtl) n = l - p;
                 if (i._views[n].text != undefined) {
-                    q = i._views[n].text
+                    q = i._views[n].text;
                 } else {
                     switch (i._views[n].type) {
                         case "dayView":
@@ -2295,7 +2214,7 @@ License: https://jqwidgets.com/license/
                             break;
                         case "timelineMonthView":
                             q = i.schedulerLocalization.timelineMonthViewString;
-                            break
+                            break;
                     }
                 }
                 var o = '<span data-type="' + i._views[n].type + '" style="cursor: pointer; outline: none; margin-left: -1px; position: relative;">' + q + "</span>";
@@ -2313,22 +2232,20 @@ License: https://jqwidgets.com/license/
                 if (n === i._view) m.addClass(i.toTP("jqx-fill-state-pressed"));
 
                 m.mouseenter(function() {
-                    m.addClass(i.toTP("jqx-fill-state-hover"))
+                    m.addClass(i.toTP("jqx-fill-state-hover"));
                 });
                 m.mouseleave(function() {
-                    m.removeClass(i.toTP("jqx-fill-state-hover"))
+                    m.removeClass(i.toTP("jqx-fill-state-hover"));
                 });
                 m.mousedown(function() {
                     i._setView(n);
-                    i.focus()
+                    i.focus();
                 });
-                a(i.toolbarViews).append(m)
+                a(i.toolbarViews).append(m);
             });
             b.append(i.toolbarDetails);
             b.append(i.toolbarViews);
-            if (i._views.length < 2) {
-                i.toolbarViews.hide()
-            }
+            if (i._views.length < 2) i.toolbarViews.hide();
             i.dateTimeInput.jqxDateTimeInput({
                 dropDownWidth: 220,
                 dropDownHeight: 220,
@@ -2345,7 +2262,7 @@ License: https://jqwidgets.com/license/
             i.addHandler(i.dateTimeInput, "change", function(m) {
                 if (!i.fromNavigate) {
                     i.navigateTo(new a.jqx.date(m.args.date, i.timeZone));
-                    i.focus()
+                    i.focus();
                 }
             });
             i.tabKeyElements = h;
@@ -5384,21 +5301,11 @@ License: https://jqwidgets.com/license/
             this.addHandler(this.host, h, function(o) {
                 var C = o.pageX;
                 var A = o.pageY;
-                if (i.disabled || o.which === 3) {
-                    return true
-                }
-                if (i.selectedAppointment && i.isMouseDown) {
-                    return true
-                }
-                if (i.hScrollInstance.isScrolling() || i.vScrollInstance.isScrolling()) {
-                    return true
-                }
-                if (i._hasOpenedMenu) {
-                    return true
-                }
-                if (i.overlay[0].style.display !== "none") {
-                    return true
-                }
+                if (i.disabled || o.which === 3) return true;
+                if (i.selectedAppointment && i.isMouseDown) return true;
+                if (i.hScrollInstance.isScrolling() || i.vScrollInstance.isScrolling()) return true;
+                if (i._hasOpenedMenu) return true;
+                if (i.overlay[0].style.display !== "none") return true;
                 var n = null;
                 if (o.target.className.indexOf("jqx-scheduler-appointment") >= 0 && o.target.className.indexOf("jqx-scheduler-appointment-inner-content") == -1 && o.target.className.indexOf("jqx-scheduler-appointment-content") == -1 && o.target.className.indexOf("jqx-scheduler-appointment-resize-indicator") == -1) {
                     n = o.target
@@ -5409,9 +5316,9 @@ License: https://jqwidgets.com/license/
                         if (u.className.indexOf("jqx-scheduler-appointment") >= 0 && u.className.indexOf("jqx-scheduler-appointment-innter-content") == -1 && u.className.indexOf("jqx-scheduler-appointment-content") == -1 && u.className.indexOf("jqx-scheduler-appointment-resize-indicator") == -1) {
                             n = u
                         }
-                        u = u.parentNode
+                        u = u.parentNode;
                     } else {
-                        break
+                        break;
                     }
                 }
                 if (n) {
@@ -7817,7 +7724,7 @@ License: https://jqwidgets.com/license/
                                         }
                                     })
                                 }
-                                var W = u.subject ? u.subject : "(Sin Nombre)";
+                                var W = u.subject ? u.subject : "(Sin Título)";
                                 var C = u.location;
                                 var y = u.description;
                                 var T = u.status ? ab.schedulerLocalization.editDialogStatuses[u.status] : "";
@@ -7932,6 +7839,10 @@ License: https://jqwidgets.com/license/
             ab.renderedTime = new Date();
         },
         _renderrows: function() {
+
+            console.log('****************************');
+            console.log('_renderrows');
+
             var V = this;
             if (V._loading) return;
             if (V._updating || V._appupdating) return;
@@ -7949,13 +7860,11 @@ License: https://jqwidgets.com/license/
             V._prepareAppointmentsInView(d, aN);
             var N = new Array();
             if (aF === "weekView" || aF === "dayView") {
-                var az = V.getMaxAllDayAppointments(V.appointmentsToRender)
+                var az = V.getMaxAllDayAppointments(V.appointmentsToRender);
             } else {
-                if (aF === "monthView" && G.monthRowAutoHeight && V.rows && V.rows.length == 6) {
-                    N = V._getMonthAppointmentsPerWeek();
-                }
+                if (aF === "monthView" && G.monthRowAutoHeight && V.rows && V.rows.length == 6) N = V._getMonthAppointmentsPerWeek();
             }
-            var aa = V.tableRows > 1 ? V.tableRows : 0;
+            //var aa = V.tableRows > 1 ? V.tableRows : 0;
             var aL = "halfHour";
             var B = null;
             var aQ;
@@ -7973,15 +7882,16 @@ License: https://jqwidgets.com/license/
             if (W) V.host.attr("hideFocus", "true");
             V._lastSelectedCell = null;
             V.focusedCell = null;
-            var E = new Array();
+            //var E = new Array();
             var aD = V.source.records;
             aD = V.dataview.evaluate(aD);
             V.dataViewRecords = aD;
             V.cells = new Array();
-            var E = V.dataViewRecords;
+            //var E = V.dataViewRecords;
             V.renderedRecords = V.getRows();
-            var aZ = V.tableZIndex;
+            //var aZ = V.tableZIndex;
             var ai = V.getRows().length;
+
             var o = 0;
             var aH = 0;
             if (W) {
@@ -8176,8 +8086,13 @@ License: https://jqwidgets.com/license/
                     aW++;
                 }
             }
+
+            //V.tableRows : 1 es el valor por lo general
+            console.log('V.tableRows: ' + V.tableRows);
+
             for (var aE = 0; aE < V.tableRows; aE++) {
-                var aq = 0;
+
+                //var aq = 0;
                 var S = 0;
                 var e = 23;
                 if (G.timeRuler && G.timeRuler.scaleStartHour != undefined) var S = parseInt(G.timeRuler.scaleStartHour);
@@ -8236,6 +8151,9 @@ License: https://jqwidgets.com/license/
                     u += aJ;
                     H += u;
                 }
+
+                console.log('Cantidad de Filas: ' + ai);
+
                 for (var Y = 0; Y < ai; Y++) {
                     var aI = {};
                     var am = "jqx" + V.element.id + "_" + Y;
@@ -8284,6 +8202,10 @@ License: https://jqwidgets.com/license/
                     var aw = 0;
                     if (V.rtl) aw = 1;
                     var aU = 0;
+
+
+                    console.log('Cantidad de Columnas: ' + b);
+
                     for (var X = 0; X < b; X++) {
                         var R = g(X);
                         if (ax >= av) {
@@ -8386,11 +8308,8 @@ License: https://jqwidgets.com/license/
                             var aO = "";
                             var y = "";
                             aO = aB[aE + ae - 1];
-                            if (!(Y == 0 && f && (aF === "dayView" || aF === "weekView"))) {
-                                aO = V.hexToRgba(aB[aE + ae - 1], 0.3).toString();
-                            } else {
-                                aO = V.shadeColor(aB[aE + ae - 1], 0.3).toString();
-                            }
+                            if (!(Y == 0 && f && (aF === "dayView" || aF === "weekView"))) aO = V.hexToRgba(aB[aE + ae - 1], 0.3).toString();
+                            else aO = V.shadeColor(aB[aE + ae - 1], 0.3).toString();
                             if (!(Y == 0 && f && (aF === "dayView" || aF === "weekView"))) {
                                 if (aF.indexOf("month") == -1) {
                                     if (!R.timeColumn) {
@@ -8418,9 +8337,7 @@ License: https://jqwidgets.com/license/
                             aJ += "background: " + aO + ";";
                             aJ += "border-color: " + y + ";";
                         }
-                        if (X == b - 1 && b == 1 && !V.rtl) {
-                            aJ += "border-right-color: transparent;";
-                        }
+                        if (X == b - 1 && b == 1 && !V.rtl) aJ += "border-right-color: transparent;";
                         if (R.timeColumn && !R.hidden && aF === "monthView") {
                             var a5 = V.toTP("jqx-scheduler-time-column") + " " + V.toTP("jqx-widget-header") + " " + V.toTP("jqx-cell") + " " + V.toTP("jqx-grid-cell") + " " + V.toTP("jqx-item");
                             a5 += " " + V.toTP("jqx-scheduler-week-number-column");
@@ -8534,7 +8451,7 @@ License: https://jqwidgets.com/license/
                         var ah = "";
                         if (aF === "monthView") {
 
-                            console.log('monthView');
+                            //console.log('monthView - Fila: ' + Y + ' - Columna: ' + X);
 
                             if (!V.touchDevice && !R.timeColumn) a5 += " " + V.toTP("jqx-top-align");
                             var af = "dd";
@@ -8640,13 +8557,9 @@ License: https://jqwidgets.com/license/
                     u += "</tr>";
                     H += u;
                     if (!V.rowinfo[aI.uid]) {
-                        V.rowinfo[aI.uid] = {
-                            row: aI
-                        }
+                        V.rowinfo[aI.uid] = { row: aI };
                     } else {
-                        if (!("row" in V.rowinfo[aI.uid])) {
-                            V.rowinfo[aI.uid].row = aI;
-                        }
+                        if (!("row" in V.rowinfo[aI.uid])) V.rowinfo[aI.uid].row = aI;
                     }
                 }
             }
@@ -8679,9 +8592,8 @@ License: https://jqwidgets.com/license/
                         V.pinnedTableRow = aP;
                     }
                 }
-            } else {
-                V.pinnedtable[0].style.display = "none";
-            }
+            } else V.pinnedtable[0].style.display = "none";
+
             var Q = a(V.table[0].firstChild);
             var aV = a(V.pinnedtable[0].firstChild);
             V._table = Q;
@@ -8703,11 +8615,9 @@ License: https://jqwidgets.com/license/
                 var c = {};
                 c.cells = new Array();
                 c.indexOf = function(j) {
-                    for (var q = 0; q < c.cells.length; q++) {
-                        if (c.cells[q].getAttribute("data-key") == j.getAttribute("data-key")) {
+                    for (var q = 0; q < c.cells.length; q++)
+                        if (c.cells[q].getAttribute("data-key") == j.getAttribute("data-key"))
                             return q;
-                        }
-                    }
                     return -1;
                 };
                 return c;
@@ -8715,6 +8625,7 @@ License: https://jqwidgets.com/license/
             V.cellWidth = 0;
             V.cellHeight = 0;
             var U = V.table[0].rows.length;
+
             for (var Y = 0; Y < U; Y++) {
                 var v = V.table[0].rows[Y];
                 if (Y == 0 && aP) v = aP;
@@ -8750,7 +8661,10 @@ License: https://jqwidgets.com/license/
                 V._updateScrollbars(V.host.height());
             }
             if (aF === "monthView" && G.monthRowAutoHeight) {
-                if (N.length == 0) V._renderrows();
+                if (N.length == 0) {
+                    console.log('V._renderrows()');
+                    V._renderrows();
+                }
                 else V._updateScrollbars(V.host.height());
             }
             if (V.rendered) V.rendered();
@@ -9230,7 +9144,7 @@ License: https://jqwidgets.com/license/
                 var J = ak.appointment.duration();
                 var e = ak.appointment.allDay || (J.hours === 23 && J.minutes === 59 && J.seconds === 59);
                 var aa = ak.appointment.background;
-                var T = ak.appointment.subject ? ak.appointment.subject : "(No Title)";
+                var T = ak.appointment.subject ? ak.appointment.subject : "(Sin Título)";
                 var M = ak.appointment.color;
                 var i = ak.appointment.resourceId;
                 var ah = ac.getColors(ac._resources.indexOf(i));
@@ -9338,7 +9252,7 @@ License: https://jqwidgets.com/license/
                 if (this.appointmentTooltips) {
                     if (!ak.appointment.tooltip) {
                         var Z = ak.appointment.subject;
-                        if (u) Z = u + " - " + v + " " + Z;
+                        if (u) Z = u + " - " + v + " " + Z; // Fecha y Hora + ubicación + Título
                         if (Z) {
                             var t = ak.appointment.location;
                             if (t) Z += "\n" + t;
@@ -9479,7 +9393,7 @@ License: https://jqwidgets.com/license/
                 var v = q.toString(ab);
                 var w = ar.toString(z);
                 var X = ah.appointment.background;
-                var Q = ah.appointment.subject ? ah.appointment.subject : "(No Title)";
+                var Q = ah.appointment.subject ? ah.appointment.subject : "(Sin Título)";
                 var u = ah.appointment.location ? ah.appointment.location : "";
                 var I = ah.appointment.color;
                 var k = ah.appointment.resourceId;
@@ -9905,7 +9819,7 @@ License: https://jqwidgets.com/license/
                 var at = ai.appointment.to;
                 if (X.timeRuler && X.timeRuler.formatString) J = X.timeRuler.formatString;
                 var W = ai.appointment.background;
-                var O = ai.appointment.subject ? ai.appointment.subject : "(No Title)";
+                var O = ai.appointment.subject ? ai.appointment.subject : "(Sin Título)";
                 var u = ai.appointment.location;
                 if (u && u.length > 1) u = ", " + u;
                 var H = ai.appointment.color;
@@ -10430,6 +10344,9 @@ License: https://jqwidgets.com/license/
             }
         },
         _renderUIMonthAppointments: function(ar) {
+
+            console.log('_renderUIMonthAppointments');
+
             var ab = this._views[this._view];
             var I = ar;
             var B = this.getViewStart();
@@ -10601,23 +10518,17 @@ License: https://jqwidgets.com/license/
                 var ag = P;
                 var A = P;
                 if (P === "auto") {
-                    if ((r.hour() == 0 && r.minute() == 0) || (r.hour() == 12 && r.minute() == 0)) {
-                        var ag = "hh tt";
-                    } else {
-                        var ag = "hh:mm";
-                    }
-                    if ((av.hour() == 0 && av.minute() == 0) || (av.hour() == 12 && av.minute() == 0)) {
-                        var A = "hh tt";
-                    } else {
-                        var A = "hh:mm";
-                    }
+                    if ((r.hour() == 0 && r.minute() == 0) || (r.hour() == 12 && r.minute() == 0)) var ag = "hh tt";
+                    else var ag = "hh:mm";
+                    if ((av.hour() == 0 && av.minute() == 0) || (av.hour() == 12 && av.minute() == 0)) var A = "hh tt";
+                    else var A = "hh:mm";
                 }
                 var w = r.toString(ag);
                 var y = av.toString(A);
                 var J = al.appointment.duration();
                 var e = al.appointment.allDay || (J.hours === 23 && J.minutes === 59 && J.seconds === 59);
                 var aa = al.appointment.background;
-                var T = al.appointment.subject ? al.appointment.subject : "(No Title)";
+                var T = al.appointment.subject ? al.appointment.subject : "(Sin Título)";
                 var M = al.appointment.color;
                 var l = al.appointment.resourceId;
                 var ai = ac.getColors(ac._resources.indexOf(l));
@@ -10663,8 +10574,10 @@ License: https://jqwidgets.com/license/
                     S = "";
                 }
                 var W = "";
-                var Q = T + v;
-                if (!e) Q = T + v + am;
+                // Texto que se muestra en barra
+                var Q = T + v; // Título + ubicación
+                // Sí no está activado el check: Todo el día
+                if (!e) Q = T + v + am; // Título + ubicación + tiempo
                 if (ac.renderAppointment) {
                     var au = ac.renderAppointment({
                         appointment: al.appointment.boundAppointment,
@@ -10697,13 +10610,13 @@ License: https://jqwidgets.com/license/
                     if (n) {
                         var ap = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'>" + S + "<div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div>" + F + "</div>";
                     } else {
-                        var ap = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'><div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + Q + "</div></div>";
+                        console.log('Texto en barra');
+                        var ap = "<div style='white-space:nowrap;' class='" + ac.toTP("jqx-scheduler-appointment-content") + "'><div class='" + ac.toTP("jqx-scheduler-appointment-inner-content") + "'>" + " DEMO 1 - " + Q + "</div></div>";
                     }
+                    
                 }
                 var at = "";
-                if (ac.rtl) {
-                    at = ac.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " ";
-                }
+                if (ac.rtl) at = ac.toTP("jqx-rtl jqx-scheduler-appointment-rtl") + " ";
                 if (t) {
                     var k = M.toLowerCase() == "white" ? ac.toTP("jqx-icon-recurrence-exception-white") : ac.toTP("jqx-icon-recurrence-exception");
                     N = "<div data-key='" + al.appointment.id + "'" + aj + "class='" + at + W + ac.toTP("jqx-scheduler-appointment jqx-rc-all") + "' style='position:absolute; z-index: 399; left: " + al.x + "px; top: " + al.y + "px; width: " + al.width + "px; line-height: " + al.height + "px; height: " + al.height + "px; border-color:" + X + "; color:" + M + "; background:" + aa + ";'><div class='" + k + "'></div>" + ap + "<div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-left-resize-indicator") + "'></div><div class='" + ac.toTP("jqx-scheduler-appointment-resize-indicator jqx-scheduler-appointment-right-resize-indicator") + "'></div>";
@@ -10721,9 +10634,7 @@ License: https://jqwidgets.com/license/
                 if (this.appointmentTooltips) {
                     if (!al.appointment.tooltip) {
                         var Z = al.appointment.subject;
-                        if (w && !e) {
-                            Z = w + " - " + y + " " + Z;
-                        }
+                        if (w && !e) Z = w + " - " + y + " " + Z;
                         if (Z) {
                             var v = al.appointment.location;
                             if (v) Z += "\n" + v;
